@@ -1,0 +1,10 @@
+{
+    "name": "ghost-theme-checker",
+    "version": "0.0.1",
+    "description": "Checks Ghost themes against the theme API",
+    "dependencies": {},
+    "devDependencies": {
+        "mocha": "^1.21.4",
+        "should": "^4.0.4"
+    }
+}
