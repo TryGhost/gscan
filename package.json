@@ -1,10 +1,21 @@
 {
-    "name": "ghost-theme-checker",
-    "version": "0.0.1",
-    "description": "Checks Ghost themes against the theme API",
-    "dependencies": {},
-    "devDependencies": {
-        "mocha": "^1.21.4",
-        "should": "^4.0.4"
-    }
+  "name": "ghost-theme-checker",
+  "version": "0.0.1",
+  "description": "Checks Ghost themes against the theme API",
+  "repository": "https://github.com/ErisDS/Ghost-Theme-Check",
+  "dependencies": {
+    "bluebird": "^3.0.6",
+    "express": "4.13.3",
+    "fs-extra": "0.26.2",
+    "glob": "4.3.1",
+    "multer": "1.1.0",
+    "node-uuid": "1.4.2",
+    "package-json-validator": "0.6.0",
+    "require-dir": "0.1.0",
+    "unzip": "0.1.11"
+  },
+  "devDependencies": {
+    "mocha": "2.3.3",
+    "should": "7.1.0"
+  }
 }
