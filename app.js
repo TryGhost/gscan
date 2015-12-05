@@ -12,9 +12,11 @@ app.use('/', express.static(__dirname + '/public'));
 app.post('/', upload.single('theme'), function (req, res, next) {
     readZip(req.file.path, function (filePath) {
         filePath = path.join(filePath);
-        res.status(200).json({
-            path: path.resolve(filePath),
-            result: GTC.check(filePath)
+        GTC.check(filePath).then(function (result) {
+            res.status(200).json({
+                path: filePath,
+                result: result
+            });
         });
     });
 });

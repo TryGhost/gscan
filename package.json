@@ -4,13 +4,14 @@
   "description": "Checks Ghost themes against the theme API",
   "repository": "https://github.com/ErisDS/Ghost-Theme-Check",
   "dependencies": {
-    "bluebird": "^3.0.6",
+    "bluebird": "3.0.6",
     "express": "4.13.3",
     "fs-extra": "0.26.2",
-    "glob": "4.3.1",
+    "lodash": "3.10.1",
     "multer": "1.1.0",
     "node-uuid": "1.4.2",
     "package-json-validator": "0.6.0",
+    "read-glob-promise": "2.0.0",
     "require-dir": "0.1.0",
     "unzip": "0.1.11"
   },
