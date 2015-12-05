@@ -23,9 +23,9 @@ describe('Zip file handler can read a zip file', function () {
     });
 
     it('should unzip and callback with a path', function (done) {
-        readZip(themePath('000.zip'), function (path) {
+        readZip(themePath('example.zip'), function (path) {
             path.should.be.a.String();
-            path.should.match(/000$/);
+            path.should.match(/example$/);
             done();
         });
     });

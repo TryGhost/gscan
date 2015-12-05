@@ -13,24 +13,24 @@ var should = require('should'),
  */
 
 describe('package.json', function () {
-    it('should output error for missing package.json (theme example 000)', function () {
-        var output = thisCheck.check(themePath('000'));
+    it('should output error for missing package.json (theme example a)', function () {
+        var output = thisCheck.check(themePath('example-a'));
         output.errors.should.be.an.Array().with.lengthOf(1);
         output.errors[0].should.match(/file not present/);
         output.warnings.should.be.empty();
         output.recommendations.should.be.empty();
     });
 
-    it('should output error for invalid package.json (theme example 001)', function () {
-        var output = thisCheck.check(themePath('001'));
+    it('should output error for invalid package.json (theme example b)', function () {
+        var output = thisCheck.check(themePath('example-b'));
         output.errors.should.be.an.Array().with.lengthOf(1);
         output.errors[0].should.match(/file is invalid/);
         output.warnings.should.be.empty();
         output.recommendations.should.be.empty();
     });
 
-    it('should output warnings for missing author (theme example 002)', function () {
-        var output = thisCheck.check(themePath('002'));
+    it('should output warnings for missing author (theme example c)', function () {
+        var output = thisCheck.check(themePath('example-c'));
         output.errors.should.be.empty();
         output.warnings.should.be.an.Array().with.lengthOf(7);
         output.recommendations.should.be.an.Array().with.lengthOf(3);

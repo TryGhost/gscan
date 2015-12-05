@@ -13,8 +13,8 @@ var should = require('should'),
  */
 
 describe('Theme structure', function () {
-    it('should output info about missing theme files (theme example 000)', function () {
-        var output = thisCheck.check(themePath('000'));
+    it('should output info about missing theme files (theme example a)', function () {
+        var output = thisCheck.check(themePath('example-a'));
         output.errors.should.be.an.Array().with.lengthOf(2);
         output.errors[0].should.match(/file not present/);
         output.errors[0].should.match(/index.hbs/);
@@ -26,8 +26,8 @@ describe('Theme structure', function () {
         output.recommendations[0].should.match(/default.hbs/);
     });
 
-    it('should output error when a required theme file is missing (theme example 001)', function () {
-        var output = thisCheck.check(themePath('001'));
+    it('should output error when a required theme file is missing (theme example b)', function () {
+        var output = thisCheck.check(themePath('example-b'));
         output.errors.should.be.an.Array().with.lengthOf(1);
         output.errors[0].should.match(/file not present/);
         output.errors[0].should.match(/post.hbs/);
@@ -37,8 +37,8 @@ describe('Theme structure', function () {
         output.recommendations[0].should.match(/default.hbs/);
     });
 
-    it('should output recommendation when a suggested theme file is missing (theme example 002)', function () {
-        var output = thisCheck.check(themePath('002'));
+    it('should output recommendation when a suggested theme file is missing (theme example c)', function () {
+        var output = thisCheck.check(themePath('example-c'));
         output.errors.should.be.empty();
         output.warnings.should.be.empty();
         output.recommendations.should.be.an.Array().with.lengthOf(1);

@@ -13,8 +13,8 @@ var should = require('should'),
  */
 
 describe('Ghost head & foot', function () {
-    it('should output info about missing ghost head and foot helpers (theme example 002)', function (done) {
-        thisCheck.check(themePath('002')).then(function (output) {
+    it('should show errors for missing ghost head & foot helpers when no .hbs files are present(theme example a)', function (done) {
+        thisCheck.check(themePath('example-a')).then(function (output) {
             output.errors.should.be.an.Array().with.lengthOf(2);
             output.errors[0].should.match(/helper not present/);
             output.errors[0].should.match(/ghost_head/);
@@ -26,8 +26,8 @@ describe('Ghost head & foot', function () {
         }).catch(done);
     });
 
-    it('should output info about missing ghost head and foot helpers (theme example 003)', function (done) {
-        thisCheck.check(themePath('003')).then(function (output) {
+    it('should show errors for missing ghost head & foot helpers when they are not in any .hbs file (theme example d)', function (done) {
+        thisCheck.check(themePath('example-d')).then(function (output) {
             output.errors.should.be.an.Array().with.lengthOf(2);
             output.errors[0].should.match(/helper not present/);
             output.errors[0].should.match(/ghost_head/);
@@ -39,8 +39,8 @@ describe('Ghost head & foot', function () {
         }).catch(done);
     });
 
-    it('should output info about missing ghost head and foot helpers (theme example 004)', function (done) {
-        thisCheck.check(themePath('004')).then(function (output) {
+    it('should output nothing when ghost head & foot helpers are present (theme example e)', function (done) {
+        thisCheck.check(themePath('example-e')).then(function (output) {
             output.errors.should.be.empty();
             output.warnings.should.be.empty();
             output.recommendations.should.be.empty();
