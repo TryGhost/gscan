@@ -1,0 +1,18 @@
+{{!< default}}
+
+{{#if results}}
+<table>
+{{#each results}}
+    <tr><th colspan="2">{{@key}}</th></tr>
+    {{#each errors}}
+        <tr><td>Error:</td><td>{{this}}</td></tr>
+    {{/each}}
+    {{#each warnings}}
+        <tr><td>Warning:</td><td>{{this}}</td></tr>
+    {{/each}}
+    {{#each errors}}
+        <tr><td>Recommendation:</td><td>{{this}}</td></tr>
+    {{/each}}
+{{/each}}
+</table>
+{{/if}}

@@ -6,6 +6,7 @@
   "dependencies": {
     "bluebird": "3.0.6",
     "express": "4.13.3",
+    "express-hbs": "^0.8.4",
     "fs-extra": "0.26.2",
     "lodash": "3.10.1",
     "multer": "1.1.0",

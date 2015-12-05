@@ -1,24 +1,23 @@
-var express = require('express'),
-    path    = require('path'),
-    GTC     = require('./lib/ghost-theme-checker'),
-    readZip = require('./lib/read-zip'),
-    multer  = require('multer'),
-    upload = multer({ dest: 'uploads/' }),
-    app = express(),
+var express    = require('express'),
+    hbs        = require('express-hbs'),
+    multer     = require('multer'),
+    themeCheck = require('./lib'),
+    upload     = multer({ dest: 'uploads/' }),
+    app        = express(),
     server;
 
-app.use('/', express.static(__dirname + '/public'));
+app.engine('hbs', hbs.express4());
+app.set('view engine', 'hbs');
+app.set('views', __dirname + '/tpl');
 
-app.post('/', upload.single('theme'), function (req, res, next) {
-    readZip(req.file.path, function (filePath) {
-        filePath = path.join(filePath);
-        GTC.check(filePath).then(function (result) {
-            res.status(200).json({
-                path: filePath,
-                result: result
-            });
-        });
-    });
+app.get('/', function (req, res) {
+    res.render('index');
+});
+
+app.post('/', upload.single('theme'), themeCheck, function (req, res) {
+    hbs.handlebars.logger.level = 0;
+    console.log({results: res.result});
+    res.render('result', {results: res.result});
 });
 
 server = app.listen(2369, function () {
