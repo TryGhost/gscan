@@ -14,7 +14,7 @@
     "package-json-validator": "0.6.0",
     "read-glob-promise": "2.0.0",
     "require-dir": "0.1.0",
-    "unzip": "0.1.11"
+    "unzip2": "0.2.5"
   },
   "devDependencies": {
     "mocha": "2.3.3",
