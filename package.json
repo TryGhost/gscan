@@ -2,28 +2,38 @@
   "name": "ghost-theme-checker",
   "version": "0.0.1",
   "description": "Checks Ghost themes against the theme API",
-  "keywords": ["ghost", "themes", "validator", "lint", "check"],
+  "keywords": [
+    "ghost",
+    "themes",
+    "validator",
+    "lint",
+    "check"
+  ],
   "homepage": "https://ghost.org",
   "repository": {
     "type": "git",
     "url": "git@github.com:ErisDS/Ghost-Theme-Check.git"
   },
   "bugs": {
-    "url" : "https://github.com/ErisDS/Ghost-Theme-Check/issues"
+    "url": "https://github.com/ErisDS/Ghost-Theme-Check/issues"
   },
   "author": {
     "name": "Hannah Wolfe",
     "email": "npm@erisds.co.uk",
     "web": "https://hannah.wf"
   },
-  "main": "app.js",
+  "main": "lib",
   "license": "MIT",
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "test": "mocha"
+  },
+  "bin": {
+    "gtc": "./bin/cli.js"
   },
   "dependencies": {
     "bluebird": "3.0.6",
+    "commander": "^2.9.0",
     "express": "4.13.3",
     "express-hbs": "0.8.4",
     "fs-extra": "0.26.2",

@@ -23,7 +23,7 @@ describe('Zip file handler can read a zip file', function () {
     });
 
     it('should unzip and callback with a path', function (done) {
-        readZip({path: themePath('example.zip'), name: 'example.zip'}, function (path) {
+        readZip({path: themePath('example.zip'), name: 'example.zip'}).then(function (path) {
             path.should.be.a.String();
             path.should.match(/example$/);
             done();
