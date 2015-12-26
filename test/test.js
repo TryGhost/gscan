@@ -2,7 +2,8 @@
 var should  = require('should'),
     fs = require('fs-extra'),
     themePath = require('./utils').themePath,
-    readZip   = require('../lib/read-zip');
+    readZip   = require('../lib/read-zip'),
+    readTheme = require('../lib/read-theme');
 
 process.env.NODE_ENV = 'testing';
 
@@ -22,11 +23,28 @@ describe('Zip file handler can read a zip file', function () {
         });
     });
 
-    it('should unzip and callback with a path', function (done) {
-        readZip({path: themePath('example.zip'), name: 'example.zip'}).then(function (path) {
-            path.should.be.a.String();
-            path.should.match(/example$/);
+    it('should unzip and callback with a path, resolving base dir', function (done) {
+        readZip({path: themePath('example.zip'), name: 'example.zip'}).then(function (zip) {
+            zip.path.should.be.a.String;
+            zip.origPath.should.be.a.String;
+            zip.name.should.be.a.String;
+            zip.origName.should.be.a.String;
+            zip.path.should.match(/example$/);
+            zip.path.should.not.eql(zip.origPath);
+            zip.origName.should.match(/example$/);
             done();
         });
+    });
+});
+
+describe('Read theme', function () {
+    it('returns correct result for example-a', function (done) {
+        readTheme(themePath('example-a')).then(function (result) {
+           result.should.eql([
+               {file: '.gitkeep', ext: '.gitkeep'},
+               {file: 'README.md', ext: '.md'}
+           ]);
+           done();
+       });
     });
 });

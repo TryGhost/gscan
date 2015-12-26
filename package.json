@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "bluebird": "3.0.6",
-    "commander": "^2.9.0",
+    "commander": "2.9.0",
     "express": "4.13.3",
     "express-hbs": "0.8.4",
     "fs-extra": "0.26.2",

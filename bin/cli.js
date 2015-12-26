@@ -23,11 +23,11 @@ if (!program.args.length) {
 } else {
     if (program.zip) {
         GTC.checkZip(themePath).then(function (result) {
-            console.log(result);
+            console.log('checkZip', result);
         });
     } else {
         GTC.check(themePath).then(function (result) {
-            console.log(result);
+            console.log('check', result);
         });
     }
 }
