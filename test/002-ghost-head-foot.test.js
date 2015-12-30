@@ -4,7 +4,7 @@ var should = require('should'),
     thisCheck = require('../lib/checks/002-ghost-head-foot');
 
 describe('Ghost head & foot', function () {
-    it('should show errors for missing ghost head & foot helpers when no .hbs files are present(theme example a)', function (done) {
+    it('should show warnings for missing ghost head & foot helpers when no .hbs files are present(theme example a)', function (done) {
         utils.testCheck(thisCheck, 'example-a').then(function (output) {
             output.should.be.an.Array().with.lengthOf(2);
 
@@ -22,7 +22,7 @@ describe('Ghost head & foot', function () {
         }).catch(done);
     });
 
-    it('should show errors for missing ghost head & foot helpers when they are not in any .hbs file (theme example d)', function (done) {
+    it('should show warnings for missing ghost head & foot helpers when they are not in any .hbs file (theme example d)', function (done) {
         utils.testCheck(thisCheck, 'example-d').then(function (output) {
             output.should.be.an.Array().with.lengthOf(2);
 
