@@ -1,20 +1,23 @@
-var path      = require('path'),
-    readTheme = require('../lib/read-theme'),
-    themePath,
-    testSetup;
+var path          = require('path'),
+    readTheme     = require('../lib/read-theme'),
+    testThemePath = 'test/fixtures/themes/',
+    getThemePath,
+    testCheck;
 
-themePath = function themePath(id) {
-    return path.resolve(path.join('test/fixtures/themes/', id));
+
+getThemePath = function (themeId) {
+    return path.resolve(path.join(testThemePath, themeId));
 };
 
 testCheck = function testCheck(checkLib, themeId) {
-    var tPath = themePath(themeId);
-    return readTheme(tPath).then(function runCheck(themeFiles) {
-        return checkLib.check.call(this, tPath, themeFiles);
+    var themePath = getThemePath(themeId);
+
+    return readTheme(themePath).then(function runCheck(theme) {
+        return checkLib.check.call(this, theme);
     });
 };
 
 module.exports = {
-    themePath: themePath,
-    testCheck: testCheck
+    testCheck: testCheck,
+    themePath: getThemePath
 };

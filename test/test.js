@@ -40,11 +40,14 @@ describe('Zip file handler can read a zip file', function () {
 describe('Read theme', function () {
     it('returns correct result for example-a', function (done) {
         readTheme(themePath('example-a')).then(function (result) {
-           result.should.eql([
-               {file: '.gitkeep', ext: '.gitkeep'},
-               {file: 'README.md', ext: '.md'}
-           ]);
-           done();
-       });
+            should.exist(result);
+            result.should.be.an.Object;
+            result.should.have.properties(['path', 'files']);
+            result.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+            done();
+        });
     });
 });
