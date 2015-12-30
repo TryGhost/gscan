@@ -1,35 +1,41 @@
 # Ghost Theme Check
- 
-## Check List
 
-Done:
+Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported. 
+Aims to generate a compatibility report and feature listing for themes.
 
-- [ ] Warning: package.json exists
-- [ ] Warning: package.json is correctly formatted
-- [ ] Warning: package.json contains name and version (to match current Ghost)
-- [ ] Recommendation: package.json contains all the other recommended fields
-- [ ] Error: index.hbs exists
-- [ ] Error: post.hbs exists
-- [ ] Recommendation: default.hbs exists
-- [ ] Error: {{ghost_head}} exists
-- [ ] Error: {{ghost_foot}} exists
+To install:
 
-Todo:
+`npm install ghost-theme-check`
 
-- [ ] Error: {{asset}} helper is present
-- [ ] Warning: css files include resources with query params
-- [ ] Warning: pageUrl is deprecated
-- [ ] Warning: css use body classes which are deprecated
+## CLI usage
 
-Feature detection:
+To run a local directory through the checks:
 
-- image
-- asset
-- ghost_head
-- internal tags won't work correctly if using `{{foreach tags}}` instead of `{{tags}}`
-- content 0 hack
+`gtc /path/to/theme/directory`
 
+To run a local zip file through the checks:
 
+`gtc /path/to/theme.zip -z`
 
-Note: package.json warnings should be upgraded to errors.
+## Web usage
 
+You can run a web interface for uploading a zip file:
+
+`node server.js`
+
+Then navigate to `http://localhost:2369`, and use the form to upload your file
+
+## Result types:
+
+- Errors: these are issues which will cause your theme to not work properly. These must be fixed.
+- Warnings: these are usually related to deprecated features. These should be fixed.
+- Recommendations: these are advisories about best practice. Fixing these will improve your theme.
+- Features: detected features which may impact on compatibility. Nothing to do :)
+
+## Still To Do:
+
+- Support for running the checks against a GitHub repository
+- Many, many more checks
+- Detailed advice for each check/result
+- Compatibility report
+- Feature listing
