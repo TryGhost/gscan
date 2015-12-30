@@ -1,7 +1,7 @@
 {
-  "name": "ghost-theme-checker",
+  "name": "ghost-theme-check",
   "version": "0.0.1",
-  "description": "Checks Ghost themes against the theme API",
+  "description": "Checks Ghost themes against the theme API, looking for errors, deprecations and other issues.",
   "keywords": [
     "ghost",
     "themes",
