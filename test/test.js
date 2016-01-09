@@ -1,6 +1,6 @@
 /*globals describe, it */
-var should  = require('should'),
-    fs = require('fs-extra'),
+var should    = require('should'),
+    fs        = require('fs-extra'),
     themePath = require('./utils').themePath,
     readZip   = require('../lib/read-zip'),
     readTheme = require('../lib/read-theme');

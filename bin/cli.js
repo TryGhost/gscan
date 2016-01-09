@@ -3,7 +3,7 @@
 var pkgJson = require('../package.json'),
     program = require('commander'),
     _       = require('lodash'),
-    GTC     = require('../lib'),
+    gscan   = require('../lib'),
 
     themePath = '';
 
@@ -32,10 +32,10 @@ if (!program.args.length) {
 } else {
     if (program.zip) {
         console.log('Checking zip file...');
-        GTC.checkZip(themePath).then(outputResult);
+        gscan.checkZip(themePath).then(outputResult);
     } else {
         console.log('Checking directory...');
-        GTC.check(themePath).then(outputResult).catch(function ENOTDIRPredicate(err) {
+        gscan.check(themePath).then(outputResult).catch(function ENOTDIRPredicate(err) {
             return err.code === 'ENOTDIR';
         }, function (err) {
             console.error(err.message);

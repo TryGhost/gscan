@@ -1,7 +1,7 @@
 var express    = require('express'),
     hbs        = require('express-hbs'),
     multer     = require('multer'),
-    themeCheck = require('./lib'),
+    gscan      = require('./lib'),
     upload     = multer({ dest: 'uploads/' }),
     app        = express(),
     server;
@@ -14,7 +14,7 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.post('/', upload.single('theme'), themeCheck.middleware, function (req, res) {
+app.post('/', upload.single('theme'), gscan.middleware, function (req, res) {
     hbs.handlebars.logger.level = 0;
     console.log({results: res.result});
     res.render('result', {results: res.result});

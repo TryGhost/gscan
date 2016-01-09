@@ -1,21 +1,21 @@
-# Ghost Theme Check
+# GScan
 
 Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported. 
 Aims to generate a compatibility report and feature listing for themes.
 
 To install:
 
-`npm install ghost-theme-check`
+`npm install gscan`
 
 ## CLI usage
 
 To run a local directory through the checks:
 
-`gtc /path/to/theme/directory`
+`gscan /path/to/theme/directory`
 
 To run a local zip file through the checks:
 
-`gtc /path/to/theme.zip -z`
+`gscan /path/to/theme.zip -z`
 
 ## Web usage
 

@@ -1,26 +1,25 @@
 {
-  "name": "ghost-theme-check",
+  "name": "gscan",
   "version": "0.0.1",
-  "description": "Checks Ghost themes against the theme API, looking for errors, deprecations and other issues.",
+  "description": "Scans Ghost themes looking for errors, deprecations, features and compatibility",
   "keywords": [
     "ghost",
     "themes",
     "validator",
-    "lint",
-    "check"
+    "lint"
   ],
   "homepage": "https://ghost.org",
   "repository": {
     "type": "git",
-    "url": "git@github.com:ErisDS/Ghost-Theme-Check.git"
+    "url": "git@github.com:TryGhost/gscan.git"
   },
   "bugs": {
-    "url": "https://github.com/ErisDS/Ghost-Theme-Check/issues"
+    "url": "https://github.com/TryGhost/gscan/issues"
   },
   "author": {
-    "name": "Hannah Wolfe",
-    "email": "npm@erisds.co.uk",
-    "web": "https://hannah.wf"
+    "name": "Ghost Foundation",
+    "email": "hello@ghost.org",
+    "web": "https://ghost.org"
   },
   "main": "lib",
   "license": "MIT",
@@ -29,7 +28,7 @@
     "test": "mocha"
   },
   "bin": {
-    "gtc": "./bin/cli.js"
+    "gscan": "./bin/cli.js"
   },
   "dependencies": {
     "bluebird": "3.0.6",
