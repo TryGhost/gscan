@@ -18,12 +18,12 @@ program
     })
     .parse(process.argv);
 
-function outputResult(result) {
+function outputResult(theme) {
     console.log('\nResults:');
-    if (_.isEmpty(result)) {
+    if (_.isEmpty(theme.results)) {
         console.log('No issues detected.');
     } else {
-        console.log(result);
+        console.log(theme.results);
     }
 }
 

@@ -16,8 +16,8 @@ app.get('/', function (req, res) {
 
 app.post('/', upload.single('theme'), gscan.middleware, function (req, res) {
     hbs.handlebars.logger.level = 0;
-    console.log({results: res.result});
-    res.render('result', {results: res.result});
+    console.log({results: res.theme.results});
+    res.render('result', {results: res.theme.results});
 });
 
 server = app.listen(2369, function () {
