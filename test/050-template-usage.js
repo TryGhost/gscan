@@ -1,7 +1,7 @@
 /*globals describe, it */
 var should = require('should'),
     utils = require('./utils'),
-    thisCheck = require('../lib/checks/004-template-usage');
+    thisCheck = require('../lib/checks/050-template-usage');
 
 describe('Templates', function () {
     it('should be empty for theme with no optional templates (theme example a)', function (done) {

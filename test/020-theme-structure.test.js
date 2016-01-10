@@ -2,7 +2,7 @@
 var should = require('should'),
     utils = require('./utils'),
 
-    thisCheck = require('../lib/checks/001-theme-structure');
+    thisCheck = require('../lib/checks/020-theme-structure');
 
 describe('Theme structure', function () {
     it('should output info about missing theme files (theme example a)', function (done) {

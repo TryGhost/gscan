@@ -1,7 +1,7 @@
 /*globals describe, it */
 var should = require('should'),
     utils = require('./utils'),
-    thisCheck = require('../lib/checks/003-assets');
+    thisCheck = require('../lib/checks/030-assets');
 
 describe('Assets', function () {
     it('should show warning for missing asset helper when no .hbs files are present(theme example a)', function (done) {

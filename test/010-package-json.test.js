@@ -1,7 +1,7 @@
 /*globals describe, it */
 var should = require('should'),
     utils = require('./utils'),
-    thisCheck = require('../lib/checks/000-package-json');
+    thisCheck = require('../lib/checks/010-package-json');
 
 describe('package.json', function () {
     it('should output error for missing package.json (theme example a)', function (done) {

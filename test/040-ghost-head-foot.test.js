@@ -1,7 +1,7 @@
 /*globals describe, it */
 var should = require('should'),
     utils = require('./utils'),
-    thisCheck = require('../lib/checks/002-ghost-head-foot');
+    thisCheck = require('../lib/checks/040-ghost-head-foot');
 
 describe('Ghost head & foot', function () {
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present(theme example a)', function (done) {
