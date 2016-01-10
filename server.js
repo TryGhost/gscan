@@ -4,9 +4,10 @@ var express    = require('express'),
     gscan      = require('./lib'),
     upload     = multer({ dest: 'uploads/' }),
     app        = express(),
+    scanHbs    = hbs.create(),
     server;
 
-app.engine('hbs', hbs.express4());
+app.engine('hbs', scanHbs.express4());
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/tpl');
 
@@ -15,8 +16,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', upload.single('theme'), gscan.middleware, function (req, res) {
-    hbs.handlebars.logger.level = 0;
-    console.log({results: res.theme.results});
+    scanHbs.handlebars.logger.level = 0;
+    console.log('Got results', {results: res.theme.results});
     res.render('result', {results: res.theme.results});
 });
 
