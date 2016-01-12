@@ -1,0 +1,29 @@
+h1 a {
+    color: #393939
+}
+
+h1 a:hover {
+    box-shadow: none;
+}
+
+.report-heading {
+    margin-bottom: 1em;
+}
+
+.features li {
+    list-style-type: none;
+}
+
+.features li:before {
+    content:"\2713\0020";
+}
+
+.slack {
+    max-width: 220px;
+    margin-left: -20px;
+}
+
+.results .pull-right {
+    float: right;
+    margin-right: 30px;
+}

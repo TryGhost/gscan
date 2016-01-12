@@ -1,19 +1,47 @@
 {{!< default}}
+<h2 class="report-heading">Report</h2>
 
-<h2>Results</h2>
+<section class="results">
+    <aside class="pull-right">
+        <dl>
+            <dt>Current Ghost Version:</dt><dd>0.7.5</dd>
+            <dt>Theme is compatible with:</dt><dd>Unknown</dd>
+        </dl>
+    </aside>
+    {{#if errors}}
+    <article class="errors">
+        <h4>Errors :(</h4>
+        <p>This theme has {{errors.length}} error(s), these issues <b>must</b> be fixed for the theme to work and be considered valid.</p>
+        <ul>
+            {{#each errors}}
+                <li><p><span class="red">{{message}}</span> <br /> in <b>{{ref}}</b></li>
+            {{/each}}
+        </ul>
+    </article>
+    {{/if}}
 
-{{#if results}}
-    <table>
-        {{#each results}}
-            <tr>
-                <td>{{type}}</td>
-                <td>{{ref}}</td>
-                <td>{{message}}</td>
-            </tr>
-        {{/each}}
-    </table>
-{{else}}
-    No issues detected.
-{{/if}}
+    {{#if info}}
+    <article class="info">
+        <h4>Details</h4>
+        <ul>
+            {{#each info}}
+                <li><b>[{{type}}]</b> {{ref}} {{message}}</li>
+            {{/each}}
+        </ul>
+    </article>
+    {{/if}}
 
-<a href="/">Start Over</a>
+    {{#if features}}
+        <article class="features">
+            <h4>Features</h4>
+            <ul>
+            {{#each features}}
+                <li>{{ref}}</li>
+            {{/each}}
+            </ul>
+        </article>
+    {{/if}}
+
+    <aside class="pull-right"><a href="/">Start Over</a></aside>
+</section>
+

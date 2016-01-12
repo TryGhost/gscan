@@ -2,6 +2,7 @@
 <head>
     <title>GScan</title>
     <link href="https://ghost.org/assets/application-fa692c48af50d385eab8e8fcf5aeca04.css" media="all" rel="stylesheet">
+    <link href="/css/gscan.css" media="all" rel="stylesheet">
 </head>
 <body class="home">
 <header id="global-header" class="global-header navbar">
@@ -13,12 +14,45 @@
 </header>
 <div class="clearfix"></div>
 <main role="main">
-    <section class="home-banner">
+    <section class="pricing-wrapper page-wrapper">
         <div class="inner">
-            <h1 class="center-text">GScan</h1>
+            <h1 class="center-text"><a href="/">GScan</a></h1>
             {{{body}}}
         </div>
     </section>
+    <section class="page-wrapper myblogs-extras">
+        <article class="myblogs-extra-article myblogs-news-panel">
+            <h3>The Latest</h3>
+            <div class="myblogs-latest-news">{{!-- Ajax does this --}}</div>
+            <p>Subscribe to posts tagged with <a href="https://dev.ghost.org/tag/themes/rss/">themes</a> on the <a href="https://dev.ghost.org">dev blog</a>.</p>
+        </article>
+        <article class="myblogs-extra-article myblogs-docs-panel">
+            <h3>Documentation</h3>
+            <p>The <a href="http://themes.ghost.org">theme documentation</a> is regularly updated with more examples, recipes and other info.</p>
+            <p>See the <a href="http://themes.ghost.org/docs/changelog">theme changelog</a> for details of the latest features &amp; changes.</p>
+        </article>
+        <article class="myblogs-extra-article myblogs-slack-panel">
+            <h3>Need Help?</h3>
+            <p>Visit the <b>#themes</b> channel in our <a href="https://ghost.org/slack/">Slack Community</a></p>
+            <a href="https://ghost.org/slack/">
+                <img class="slack" alt="Slack logo" src="//ghost.org/assets/slack-logo-f3cfeff4302f645c911301e4c00f0c50.png">
+            </a>
+        </article>
+        <article class="myblogs-extra-article myblogs-download-panel">
+            <h3>Get <div class="logo-version">
+                <span class="icon"></span>
+                <span class="word">Ghost</span>
+                <span class="logotype"></span>
+                <div class="version-pill blue"><span>0.7.5</span></div>
+            </div></h3>
+            <p><b>Download</b> a development copy of Ghost, any time!</p>
+            <a href="/download/" class="button-blue-hollow">Grab the source code</a>
+        </article>
+    </section>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://dev.ghost.org/shared/ghost-url.min.js"></script>
+    <script type="text/javascript" src="/js/gscan.js"></script>
 </main>
 </body>
 </html>
