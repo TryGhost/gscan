@@ -48,6 +48,8 @@
             return Math.floor(seconds) + " seconds";
     }
     $(document).ready(function ($) {
+
+        /** Latest News **/
         if ($('.myblogs-latest-news').length && window.ghost) {
             $.get(window.ghost.url.api('posts', {limit: 1, include: 'author'}), function (json) {
                 var item = json.posts[0],
@@ -58,6 +60,24 @@
                         '<img src="https://dev.ghost.org/' + item.author.image + '" />' +
                         '<time title="' + parsed_date + '">' + timeSince(parsed_date) + ' ago</time> by ' + item.author.name + '</span>';
                 $(".myblogs-latest-news").html(news_html);
+            });
+        }
+
+        /** Toggle Details **/
+        if ($('.toggle-details').length) {
+
+            $('.toggle-details').on('click', function () {
+                if ($(this).find('~ .details').is(':hidden')) {
+                    $(this).find('~ .details').show();
+                    $(this).find('.show').hide();
+                    $(this).find('.hide').show();
+                    $(this).parent().addClass('expanded');
+                } else {
+                    $(this).find('~ .details').hide();
+                    $(this).find('.show').show();
+                    $(this).find('.hide').hide();
+                    $(this).parent().removeClass('expanded');
+                }
             });
         }
     });

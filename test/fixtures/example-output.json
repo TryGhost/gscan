@@ -1,0 +1,396 @@
+{
+  "name": "Casper",
+  "version": "1.2.7",
+  "path": "tmp/118c8612-c246-4ad5-9574-644b07c994f7/casper",
+  "files": [
+    {
+      "file": ".gitignore",
+      "ext": ".gitignore"
+    },
+    {
+      "file": "LICENSE"
+    },
+    {
+      "file": "README.md",
+      "ext": ".md"
+    },
+    {
+      "file": "assets/css/screen.css",
+      "ext": ".css"
+    },
+    {
+      "file": "assets/fonts/casper-icons.eot",
+      "ext": ".eot"
+    },
+    {
+      "file": "assets/fonts/casper-icons.svg",
+      "ext": ".svg"
+    },
+    {
+      "file": "assets/fonts/casper-icons.ttf",
+      "ext": ".ttf"
+    },
+    {
+      "file": "assets/fonts/casper-icons.woff",
+      "ext": ".woff"
+    },
+    {
+      "file": "assets/js/index.js",
+      "ext": ".js"
+    },
+    {
+      "file": "assets/js/jquery.fitvids.js",
+      "ext": ".fitvids.js"
+    },
+    {
+      "file": "author.hbs",
+      "ext": ".hbs",
+      "content": "{{!< default}}\n{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}\n\n{{! The big featured header }}\n\n{{! Everything inside the #author tags pulls data from the author }}\n{{#author}}\n    <header class=\"main-header author-head {{#if cover}}\" style=\"background-image: url({{cover}}){{else}}no-cover{{/if}}\">\n        <nav class=\"main-nav overlay clearfix\">\n            {{#if @blog.logo}}<a class=\"blog-logo\" href=\"{{@blog.url}}\"><img src=\"{{@blog.logo}}\" alt=\"{{@blog.title}}\" /></a>{{/if}}\n            {{#if @blog.navigation}}\n                <a class=\"menu-button icon-menu\" href=\"#\"><span class=\"word\">Menu</span></a>\n            {{/if}}\n        </nav>\n    </header>\n\n    <section class=\"author-profile inner\">\n        {{#if image}}\n        <figure class=\"author-image\">\n            <div class=\"img\" style=\"background-image: url({{image}})\"><span class=\"hidden\">{{name}}'s Picture</span></div>\n        </figure>\n        {{/if}}\n        <h1 class=\"author-title\">{{name}}</h1>\n        {{#if bio}}\n            <h2 class=\"author-bio\">{{bio}}</h2>\n        {{/if}}\n        <div class=\"author-meta\">\n            {{#if location}}<span class=\"author-location icon-location\">{{location}}</span>{{/if}}\n            {{#if website}}<span class=\"author-link icon-link\"><a href=\"{{website}}\">{{website}}</a></span>{{/if}}\n            <span class=\"author-stats\"><i class=\"icon-stats\"></i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}</span>\n        </div>\n    </section>\n{{/author}}\n\n{{! The main content area on the homepage }}\n<main class=\"content\" role=\"main\">\n\n    {{! The tag below includes the post loop - partials/loop.hbs }}\n    {{> \"loop\"}}\n\n</main>\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data,blockParams,depths) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=this.escapeExpression;\n\n  return \"    <header class=\\\"main-header author-head \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.cover : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0, blockParams, depths),\"inverse\":this.program(4, data, 0, blockParams, depths),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\">\\n        <nav class=\\\"main-nav overlay clearfix\\\">\\n            \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.logo),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(6, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.navigation),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(8, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"        </nav>\\n    </header>\\n\\n    <section class=\\\"author-profile inner\\\">\\n\"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(10, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"        <h1 class=\\\"author-title\\\">\"\n    + alias2(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"name\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h1>\\n\"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.bio : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(12, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"        <div class=\\\"author-meta\\\">\\n            \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.location : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(14, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n            \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.website : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(16, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n            <span class=\\\"author-stats\\\"><i class=\\\"icon-stats\\\"></i> \"\n    + alias2((helpers.plural || (depth0 && depth0.plural) || alias1).call(depth0,((stack1 = (depths[1] != null ? depths[1].pagination : depths[1])) != null ? stack1.total : stack1),{\"name\":\"plural\",\"hash\":{\"plural\":\"% posts\",\"singular\":\"% post\",\"empty\":\"No posts\"},\"data\":data}))\n    + \"</span>\\n        </div>\\n    </section>\\n\";\n},\"2\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(((helper = (helper = helpers.cover || (depth0 != null ? depth0.cover : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"cover\",\"hash\":{},\"data\":data}) : helper)))\n    + \")\";\n},\"4\":function(depth0,helpers,partials,data) {\n    return \"no-cover\";\n},\"6\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<a class=\\\"blog-logo\\\" href=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\"><img src=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.logo), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"\\\" /></a>\";\n},\"8\":function(depth0,helpers,partials,data) {\n    return \"                <a class=\\\"menu-button icon-menu\\\" href=\\\"#\\\"><span class=\\\"word\\\">Menu</span></a>\\n\";\n},\"10\":function(depth0,helpers,partials,data) {\n    var helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"        <figure class=\\\"author-image\\\">\\n            <div class=\\\"img\\\" style=\\\"background-image: url(\"\n    + alias3(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"image\",\"hash\":{},\"data\":data}) : helper)))\n    + \")\\\"><span class=\\\"hidden\\\">\"\n    + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"name\",\"hash\":{},\"data\":data}) : helper)))\n    + \"'s Picture</span></div>\\n        </figure>\\n\";\n},\"12\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"            <h2 class=\\\"author-bio\\\">\"\n    + this.escapeExpression(((helper = (helper = helpers.bio || (depth0 != null ? depth0.bio : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"bio\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h2>\\n\";\n},\"14\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"<span class=\\\"author-location icon-location\\\">\"\n    + this.escapeExpression(((helper = (helper = helpers.location || (depth0 != null ? depth0.location : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"location\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</span>\";\n},\"16\":function(depth0,helpers,partials,data) {\n    var helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"<span class=\\\"author-link icon-link\\\"><a href=\\\"\"\n    + alias3(((helper = (helper = helpers.website || (depth0 != null ? depth0.website : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"website\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\"\n    + alias3(((helper = (helper = helpers.website || (depth0 != null ? depth0.website : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"website\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</a></span>\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data,blockParams,depths) {\n    var stack1, helper, options, buffer = \n  \"\\n\\n\";\n  stack1 = ((helper = (helper = helpers.author || (depth0 != null ? depth0.author : depth0)) != null ? helper : helpers.helperMissing),(options={\"name\":\"author\",\"hash\":{},\"fn\":this.program(1, data, 0, blockParams, depths),\"inverse\":this.noop,\"data\":data}),(typeof helper === \"function\" ? helper.call(depth0,options) : helper));\n  if (!helpers.author) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  return buffer + \"\\n<main class=\\\"content\\\" role=\\\"main\\\">\\n\\n\"\n    + ((stack1 = this.invokePartial(partials.loop,depth0,{\"name\":\"loop\",\"data\":data,\"indent\":\"    \",\"helpers\":helpers,\"partials\":partials})) != null ? stack1 : \"\")\n    + \"\\n</main>\\n\";\n},\"usePartial\":true,\"useData\":true,\"useDepths\":true}"
+    },
+    {
+      "file": "default.hbs",
+      "ext": ".hbs",
+      "content": "<!DOCTYPE html>\n<html>\n<head>\n    {{! Document Settings }}\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\n\n    {{! Page Meta }}\n    <title>{{meta_title}}</title>\n    <meta name=\"description\" content=\"{{meta_description}}\" />\n\n    <meta name=\"HandheldFriendly\" content=\"True\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\n    <link rel=\"shortcut icon\" href=\"{{asset \"favicon.ico\"}}\">\n\n    {{! Styles'n'Scripts }}\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"{{asset \"css/screen.css\"}}\" />\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400\" />\n\n    {{! Ghost outputs important style and meta data with this tag }}\n    {{ghost_head}}\n</head>\n<body class=\"{{body_class}} nav-closed\">\n\n    {{navigation}}\n\n    <div class=\"site-wrapper\">\n\n        {{! Everything else gets inserted here }}\n        {{{body}}}\n\n        <footer class=\"site-footer clearfix\">\n            <section class=\"copyright\"><a href=\"{{@blog.url}}\">{{@blog.title}}</a> &copy; {{date format=\"YYYY\"}}</section>\n            <section class=\"poweredby\">Proudly published with <a href=\"https://ghost.org\">Ghost</a></section>\n        </footer>\n\n    </div>\n\n    {{!-- jQuery needs to come before `{{ghost_foot}}` so that jQuery can be used in code injection --}}\n    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-1.11.3.min.js\"></script>\n    {{! Ghost outputs important scripts and data with this tag }}\n    {{ghost_foot}}\n\n    <script type=\"text/javascript\" src=\"{{asset \"js/jquery.fitvids.js\"}}\"></script>\n    {{! The main JavaScript file for Casper }}\n    <script type=\"text/javascript\" src=\"{{asset \"js/index.js\"}}\"></script>\n\n</body>\n</html>\n",
+      "compiled": "{\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression, alias4=this.lambda;\n\n  return \"<!DOCTYPE html>\\n<html>\\n<head>\\n    <meta charset=\\\"utf-8\\\" />\\n    <meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\" />\\n\\n    <title>\"\n    + alias3(((helper = (helper = helpers.meta_title || (depth0 != null ? depth0.meta_title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"meta_title\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</title>\\n    <meta name=\\\"description\\\" content=\\\"\"\n    + alias3(((helper = (helper = helpers.meta_description || (depth0 != null ? depth0.meta_description : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"meta_description\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\" />\\n\\n    <meta name=\\\"HandheldFriendly\\\" content=\\\"True\\\" />\\n    <meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\" />\\n\\n    <link rel=\\\"shortcut icon\\\" href=\\\"\"\n    + alias3((helpers.asset || (depth0 && depth0.asset) || alias1).call(depth0,\"favicon.ico\",{\"name\":\"asset\",\"hash\":{},\"data\":data}))\n    + \"\\\">\\n\\n    <link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\"\"\n    + alias3((helpers.asset || (depth0 && depth0.asset) || alias1).call(depth0,\"css/screen.css\",{\"name\":\"asset\",\"hash\":{},\"data\":data}))\n    + \"\\\" />\\n    <link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\"//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400\\\" />\\n\\n    \"\n    + alias3(((helper = (helper = helpers.ghost_head || (depth0 != null ? depth0.ghost_head : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"ghost_head\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n</head>\\n<body class=\\\"\"\n    + alias3(((helper = (helper = helpers.body_class || (depth0 != null ? depth0.body_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"body_class\",\"hash\":{},\"data\":data}) : helper)))\n    + \" nav-closed\\\">\\n\\n    \"\n    + alias3(((helper = (helper = helpers.navigation || (depth0 != null ? depth0.navigation : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"navigation\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n\\n    <div class=\\\"site-wrapper\\\">\\n\\n        \"\n    + ((stack1 = ((helper = (helper = helpers.body || (depth0 != null ? depth0.body : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"body\",\"hash\":{},\"data\":data}) : helper))) != null ? stack1 : \"\")\n    + \"\\n\\n        <footer class=\\\"site-footer clearfix\\\">\\n            <section class=\\\"copyright\\\"><a href=\\\"\"\n    + alias3(alias4(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\">\"\n    + alias3(alias4(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"</a> &copy; \"\n    + alias3((helpers.date || (depth0 && depth0.date) || alias1).call(depth0,{\"name\":\"date\",\"hash\":{\"format\":\"YYYY\"},\"data\":data}))\n    + \"</section>\\n            <section class=\\\"poweredby\\\">Proudly published with <a href=\\\"https://ghost.org\\\">Ghost</a></section>\\n        </footer>\\n\\n    </div>\\n\\n    <script type=\\\"text/javascript\\\" src=\\\"https://code.jquery.com/jquery-1.11.3.min.js\\\"></script>\\n    \"\n    + alias3(((helper = (helper = helpers.ghost_foot || (depth0 != null ? depth0.ghost_foot : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"ghost_foot\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n\\n    <script type=\\\"text/javascript\\\" src=\\\"\"\n    + alias3((helpers.asset || (depth0 && depth0.asset) || alias1).call(depth0,\"js/jquery.fitvids.js\",{\"name\":\"asset\",\"hash\":{},\"data\":data}))\n    + \"\\\"></script>\\n    <script type=\\\"text/javascript\\\" src=\\\"\"\n    + alias3((helpers.asset || (depth0 && depth0.asset) || alias1).call(depth0,\"js/index.js\",{\"name\":\"asset\",\"hash\":{},\"data\":data}))\n    + \"\\\"></script>\\n\\n</body>\\n</html>\\n\";\n},\"useData\":true}"
+    },
+    {
+      "file": "index.hbs",
+      "ext": ".hbs",
+      "content": "{{!< default}}\n{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}\n\n{{! The big featured header }}\n<header class=\"main-header {{#if @blog.cover}}\" style=\"background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}\">\n    <nav class=\"main-nav overlay clearfix\">\n        {{#if @blog.logo}}<a class=\"blog-logo\" href=\"{{@blog.url}}\"><img src=\"{{@blog.logo}}\" alt=\"{{@blog.title}}\" /></a>{{/if}}\n        {{#if @blog.navigation}}\n            <a class=\"menu-button icon-menu\" href=\"#\"><span class=\"word\">Menu</span></a>\n        {{/if}}\n    </nav>\n    <div class=\"vertical\">\n        <div class=\"main-header-content inner\">\n            <h1 class=\"page-title\">{{@blog.title}}</h1>\n            <h2 class=\"page-description\">{{@blog.description}}</h2>\n        </div>\n    </div>\n    <a class=\"scroll-down icon-arrow-left\" href=\"#content\" data-offset=\"-45\"><span class=\"hidden\">Scroll Down</span></a>\n</header>\n\n{{! The main content area on the homepage }}\n<main id=\"content\" class=\"content\" role=\"main\">\n\n    {{! The tag below includes the post loop - partials/loop.hbs }}\n    {{> \"loop\"}}\n\n</main>\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(this.lambda(((stack1 = (data && data.blog)) && stack1.cover), depth0))\n    + \")\";\n},\"3\":function(depth0,helpers,partials,data) {\n    return \"no-cover\";\n},\"5\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<a class=\\\"blog-logo\\\" href=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\"><img src=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.logo), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"\\\" /></a>\";\n},\"7\":function(depth0,helpers,partials,data) {\n    return \"            <a class=\\\"menu-button icon-menu\\\" href=\\\"#\\\"><span class=\\\"word\\\">Menu</span></a>\\n\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"\\n<header class=\\\"main-header \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.cover),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.program(3, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\">\\n    <nav class=\\\"main-nav overlay clearfix\\\">\\n        \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.logo),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(5, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.navigation),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(7, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"    </nav>\\n    <div class=\\\"vertical\\\">\\n        <div class=\\\"main-header-content inner\\\">\\n            <h1 class=\\\"page-title\\\">\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"</h1>\\n            <h2 class=\\\"page-description\\\">\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.description), depth0))\n    + \"</h2>\\n        </div>\\n    </div>\\n    <a class=\\\"scroll-down icon-arrow-left\\\" href=\\\"#content\\\" data-offset=\\\"-45\\\"><span class=\\\"hidden\\\">Scroll Down</span></a>\\n</header>\\n\\n<main id=\\\"content\\\" class=\\\"content\\\" role=\\\"main\\\">\\n\\n\"\n    + ((stack1 = this.invokePartial(partials.loop,depth0,{\"name\":\"loop\",\"data\":data,\"indent\":\"    \",\"helpers\":helpers,\"partials\":partials})) != null ? stack1 : \"\")\n    + \"\\n</main>\\n\";\n},\"usePartial\":true,\"useData\":true}"
+    },
+    {
+      "file": "package.json",
+      "ext": ".json"
+    },
+    {
+      "file": "page.hbs",
+      "ext": ".hbs",
+      "content": "{{!< default}}\n\n{{! This is a page template. A page outputs content just like any other post, and has all the same\n    attributes by default, but you can also customise it to behave differently if you prefer. }}\n\n{{! Everything inside the #post tags pulls data from the page }}\n{{#post}}\n\n<header class=\"main-header post-head {{#if image}}\" style=\"background-image: url({{image}}){{else}}no-cover{{/if}}\">\n    <nav class=\"main-nav {{#if image}}overlay{{/if}} clearfix\">\n        {{#if @blog.logo}}<a class=\"blog-logo\" href=\"{{@blog.url}}\"><img src=\"{{@blog.logo}}\" alt=\"{{@blog.title}}\" /></a>{{/if}}\n        {{#if @blog.navigation}}\n            <a class=\"menu-button icon-menu\" href=\"#\"><span class=\"word\">Menu</span></a>\n        {{/if}}\n    </nav>\n</header>\n\n<main class=\"content\" role=\"main\">\n    <article class=\"{{post_class}}\">\n\n        <header class=\"post-header\">\n            <h1 class=\"post-title\">{{title}}</h1>\n        </header>\n\n        <section class=\"post-content\">\n            {{content}}\n        </section>\n\n    </article>\n</main>\n{{/post}}\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"\\n<header class=\\\"main-header post-head \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.program(4, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\">\\n    <nav class=\\\"main-nav \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(6, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \" clearfix\\\">\\n        \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.logo),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(8, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.navigation),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(10, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"    </nav>\\n</header>\\n\\n<main class=\\\"content\\\" role=\\\"main\\\">\\n    <article class=\\\"\"\n    + alias3(((helper = (helper = helpers.post_class || (depth0 != null ? depth0.post_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"post_class\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\\n\\n        <header class=\\\"post-header\\\">\\n            <h1 class=\\\"post-title\\\">\"\n    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"title\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h1>\\n        </header>\\n\\n        <section class=\\\"post-content\\\">\\n            \"\n    + alias3(((helper = (helper = helpers.content || (depth0 != null ? depth0.content : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"content\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n        </section>\\n\\n    </article>\\n</main>\\n\";\n},\"2\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"image\",\"hash\":{},\"data\":data}) : helper)))\n    + \")\";\n},\"4\":function(depth0,helpers,partials,data) {\n    return \"no-cover\";\n},\"6\":function(depth0,helpers,partials,data) {\n    return \"overlay\";\n},\"8\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<a class=\\\"blog-logo\\\" href=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\"><img src=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.logo), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"\\\" /></a>\";\n},\"10\":function(depth0,helpers,partials,data) {\n    return \"            <a class=\\\"menu-button icon-menu\\\" href=\\\"#\\\"><span class=\\\"word\\\">Menu</span></a>\\n\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1, helper, options, buffer = \n  \"\\n\\n\";\n  stack1 = ((helper = (helper = helpers.post || (depth0 != null ? depth0.post : depth0)) != null ? helper : helpers.helperMissing),(options={\"name\":\"post\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.noop,\"data\":data}),(typeof helper === \"function\" ? helper.call(depth0,options) : helper));\n  if (!helpers.post) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  return buffer;\n},\"useData\":true}"
+    },
+    {
+      "file": "partials/loop.hbs",
+      "ext": ".hbs",
+      "content": "{{! Previous/next page links - only displayed on page 2+ }}\n<div class=\"extra-pagination inner\">\n    {{pagination}}\n</div>\n\n{{! This is the post loop - each post will be output using this markup }}\n{{#foreach posts}}\n<article class=\"{{post_class}}\">\n    <header class=\"post-header\">\n        <h2 class=\"post-title\"><a href=\"{{url}}\">{{{title}}}</a></h2>\n    </header>\n    <section class=\"post-excerpt\">\n        <p>{{excerpt words=\"26\"}} <a class=\"read-more\" href=\"{{url}}\">&raquo;</a></p>\n    </section>\n    <footer class=\"post-meta\">\n        {{#if author.image}}<img class=\"author-thumb\" src=\"{{author.image}}\" alt=\"{{author.name}}\" nopin=\"nopin\" />{{/if}}\n        {{author}}\n        {{tags prefix=\" on \"}}\n        <time class=\"post-date\" datetime=\"{{date format='YYYY-MM-DD'}}\">{{date format=\"DD MMMM YYYY\"}}</time>\n    </footer>\n</article>\n{{/foreach}}\n\n{{! Previous/next page links - displayed on every page }}\n{{pagination}}\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"<article class=\\\"\"\n    + alias3(((helper = (helper = helpers.post_class || (depth0 != null ? depth0.post_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"post_class\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\\n    <header class=\\\"post-header\\\">\\n        <h2 class=\\\"post-title\\\"><a href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\"\n    + ((stack1 = ((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"title\",\"hash\":{},\"data\":data}) : helper))) != null ? stack1 : \"\")\n    + \"</a></h2>\\n    </header>\\n    <section class=\\\"post-excerpt\\\">\\n        <p>\"\n    + alias3((helpers.excerpt || (depth0 && depth0.excerpt) || alias1).call(depth0,{\"name\":\"excerpt\",\"hash\":{\"words\":\"26\"},\"data\":data}))\n    + \" <a class=\\\"read-more\\\" href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">&raquo;</a></p>\\n    </section>\\n    <footer class=\\\"post-meta\\\">\\n        \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.image : stack1),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n        \"\n    + alias3(((helper = (helper = helpers.author || (depth0 != null ? depth0.author : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"author\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n        \"\n    + alias3((helpers.tags || (depth0 && depth0.tags) || alias1).call(depth0,{\"name\":\"tags\",\"hash\":{\"prefix\":\" on \"},\"data\":data}))\n    + \"\\n        <time class=\\\"post-date\\\" datetime=\\\"\"\n    + alias3((helpers.date || (depth0 && depth0.date) || alias1).call(depth0,{\"name\":\"date\",\"hash\":{\"format\":\"YYYY-MM-DD\"},\"data\":data}))\n    + \"\\\">\"\n    + alias3((helpers.date || (depth0 && depth0.date) || alias1).call(depth0,{\"name\":\"date\",\"hash\":{\"format\":\"DD MMMM YYYY\"},\"data\":data}))\n    + \"</time>\\n    </footer>\\n</article>\\n\";\n},\"2\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<img class=\\\"author-thumb\\\" src=\\\"\"\n    + alias2(alias1(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.image : stack1), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.name : stack1), depth0))\n    + \"\\\" nopin=\\\"nopin\\\" />\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"<div class=\\\"extra-pagination inner\\\">\\n    \"\n    + alias3(((helper = (helper = helpers.pagination || (depth0 != null ? depth0.pagination : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"pagination\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n</div>\\n\\n\"\n    + ((stack1 = (helpers.foreach || (depth0 && depth0.foreach) || alias1).call(depth0,(depth0 != null ? depth0.posts : depth0),{\"name\":\"foreach\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + alias3(((helper = (helper = helpers.pagination || (depth0 != null ? depth0.pagination : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"pagination\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n\";\n},\"useData\":true}"
+    },
+    {
+      "file": "partials/navigation.hbs",
+      "ext": ".hbs",
+      "content": "<div class=\"nav\">\n    <h3 class=\"nav-title\">Menu</h3>\n    <a href=\"#\" class=\"nav-close\">\n        <span class=\"hidden\">Close</span>\n    </a>\n    <ul>\n        {{#foreach navigation}}\n            <li class=\"nav-{{slug}}{{#if current}} nav-current{{/if}}\" role=\"presentation\"><a href=\"{{url absolute=\"true\"}}\">{{label}}</a></li>\n        {{/foreach}}\n    </ul>\n    <a class=\"subscribe-button icon-feed\" href=\"{{@blog.url}}/rss/\">Subscribe</a>\n</div>\n<span class=\"nav-cover\"></span>\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"            <li class=\\\"nav-\"\n    + alias3(((helper = (helper = helpers.slug || (depth0 != null ? depth0.slug : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"slug\",\"hash\":{},\"data\":data}) : helper)))\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.current : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\" role=\\\"presentation\\\"><a href=\\\"\"\n    + alias3((helpers.url || (depth0 && depth0.url) || alias1).call(depth0,{\"name\":\"url\",\"hash\":{\"absolute\":\"true\"},\"data\":data}))\n    + \"\\\">\"\n    + alias3(((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"label\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</a></li>\\n\";\n},\"2\":function(depth0,helpers,partials,data) {\n    return \" nav-current\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"<div class=\\\"nav\\\">\\n    <h3 class=\\\"nav-title\\\">Menu</h3>\\n    <a href=\\\"#\\\" class=\\\"nav-close\\\">\\n        <span class=\\\"hidden\\\">Close</span>\\n    </a>\\n    <ul>\\n\"\n    + ((stack1 = (helpers.foreach || (depth0 && depth0.foreach) || helpers.helperMissing).call(depth0,(depth0 != null ? depth0.navigation : depth0),{\"name\":\"foreach\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"    </ul>\\n    <a class=\\\"subscribe-button icon-feed\\\" href=\\\"\"\n    + this.escapeExpression(this.lambda(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"/rss/\\\">Subscribe</a>\\n</div>\\n<span class=\\\"nav-cover\\\"></span>\\n\";\n},\"useData\":true}"
+    },
+    {
+      "file": "post.hbs",
+      "ext": ".hbs",
+      "content": "{{!< default}}\n\n{{! The comment above \"< default\" means - insert everything in this file into\n    the {body} of the default.hbs template, which contains our header/footer. }}\n\n{{! Everything inside the #post tags pulls data from the post }}\n{{#post}}\n\n<header class=\"main-header post-head {{#if image}}\" style=\"background-image: url({{image}}){{else}}no-cover{{/if}}\">\n    <nav class=\"main-nav {{#if image}}overlay{{/if}} clearfix\">\n        {{#if @blog.logo}}<a class=\"blog-logo\" href=\"{{@blog.url}}\"><img src=\"{{@blog.logo}}\" alt=\"{{@blog.title}}\" /></a>{{/if}}\n        {{#if @blog.navigation}}\n            <a class=\"menu-button icon-menu\" href=\"#\"><span class=\"word\">Menu</span></a>\n        {{/if}}\n    </nav>\n</header>\n\n<main class=\"content\" role=\"main\">\n    <article class=\"{{post_class}}\">\n\n        <header class=\"post-header\">\n            <h1 class=\"post-title\">{{title}}</h1>\n            <section class=\"post-meta\">\n                <time class=\"post-date\" datetime=\"{{date format='YYYY-MM-DD'}}\">{{date format=\"DD MMMM YYYY\"}}</time> {{tags prefix=\" on \"}}\n            </section>\n        </header>\n\n        <section class=\"post-content\">\n            {{content}}\n        </section>\n\n        <footer class=\"post-footer\">\n\n        {{! Everything inside the #author tags pulls data from the author }}\n        {{#author}}\n\n            {{#if image}}\n            <figure class=\"author-image\">\n                <a class=\"img\" href=\"{{url}}\" style=\"background-image: url({{image}})\"><span class=\"hidden\">{{name}}'s Picture</span></a>\n            </figure>\n            {{/if}}\n\n            <section class=\"author\">\n                <h4><a href=\"{{url}}\">{{name}}</a></h4>\n\n                {{#if bio}}\n                    <p>{{bio}}</p>\n                {{else}}\n                    <p>Read <a href=\"{{url}}\">more posts</a> by this author.</p>\n                {{/if}}\n                <div class=\"author-meta\">\n                    {{#if location}}<span class=\"author-location icon-location\">{{location}}</span>{{/if}}\n                    {{#if website}}<span class=\"author-link icon-link\"><a href=\"{{website}}\">{{website}}</a></span>{{/if}}\n                </div>\n            </section>\n\n        {{/author}}\n\n            <section class=\"share\">\n                <h4>Share this post</h4>\n                <a class=\"icon-twitter\" href=\"https://twitter.com/intent/tweet?text={{encode title}}&amp;url={{url absolute=\"true\"}}\"\n                    onclick=\"window.open(this.href, 'twitter-share', 'width=550,height=235');return false;\">\n                    <span class=\"hidden\">Twitter</span>\n                </a>\n                <a class=\"icon-facebook\" href=\"https://www.facebook.com/sharer/sharer.php?u={{url absolute=\"true\"}}\"\n                    onclick=\"window.open(this.href, 'facebook-share','width=580,height=296');return false;\">\n                    <span class=\"hidden\">Facebook</span>\n                </a>\n                <a class=\"icon-google-plus\" href=\"https://plus.google.com/share?url={{url absolute=\"true\"}}\"\n                   onclick=\"window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;\">\n                    <span class=\"hidden\">Google+</span>\n                </a>\n            </section>\n\n        </footer>\n\n    </article>\n</main>\n\n<aside class=\"read-next\">\n    {{#next_post}}\n    <a class=\"read-next-story {{#if image}}\" style=\"background-image: url({{image}}){{else}}no-cover{{/if}}\" href=\"{{url}}\">\n        <section class=\"post\">\n            <h2>{{title}}</h2>\n            <p>{{excerpt words=\"19\"}}&hellip;</p>\n        </section>\n    </a>\n    {{/next_post}}\n    {{#prev_post}}\n    <a class=\"read-next-story prev {{#if image}}\" style=\"background-image: url({{image}}){{else}}no-cover{{/if}}\" href=\"{{url}}\">\n        <section class=\"post\">\n            <h2>{{title}}</h2>\n            <p>{{excerpt words=\"19\"}}&hellip;</p>\n        </section>\n    </a>\n    {{/prev_post}}\n</aside>\n\n{{/post}}\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1, helper, options, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression, alias4=helpers.blockHelperMissing, buffer = \n  \"\\n<header class=\\\"main-header post-head \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.program(4, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\">\\n    <nav class=\\\"main-nav \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(6, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \" clearfix\\\">\\n        \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.logo),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(8, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.navigation),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(10, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"    </nav>\\n</header>\\n\\n<main class=\\\"content\\\" role=\\\"main\\\">\\n    <article class=\\\"\"\n    + alias3(((helper = (helper = helpers.post_class || (depth0 != null ? depth0.post_class : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"post_class\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\\n\\n        <header class=\\\"post-header\\\">\\n            <h1 class=\\\"post-title\\\">\"\n    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"title\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h1>\\n            <section class=\\\"post-meta\\\">\\n                <time class=\\\"post-date\\\" datetime=\\\"\"\n    + alias3((helpers.date || (depth0 && depth0.date) || alias1).call(depth0,{\"name\":\"date\",\"hash\":{\"format\":\"YYYY-MM-DD\"},\"data\":data}))\n    + \"\\\">\"\n    + alias3((helpers.date || (depth0 && depth0.date) || alias1).call(depth0,{\"name\":\"date\",\"hash\":{\"format\":\"DD MMMM YYYY\"},\"data\":data}))\n    + \"</time> \"\n    + alias3((helpers.tags || (depth0 && depth0.tags) || alias1).call(depth0,{\"name\":\"tags\",\"hash\":{\"prefix\":\" on \"},\"data\":data}))\n    + \"\\n            </section>\\n        </header>\\n\\n        <section class=\\\"post-content\\\">\\n            \"\n    + alias3(((helper = (helper = helpers.content || (depth0 != null ? depth0.content : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"content\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\n        </section>\\n\\n        <footer class=\\\"post-footer\\\">\\n\\n\";\n  stack1 = ((helper = (helper = helpers.author || (depth0 != null ? depth0.author : depth0)) != null ? helper : alias1),(options={\"name\":\"author\",\"hash\":{},\"fn\":this.program(12, data, 0),\"inverse\":this.noop,\"data\":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));\n  if (!helpers.author) { stack1 = alias4.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  buffer += \"\\n            <section class=\\\"share\\\">\\n                <h4>Share this post</h4>\\n                <a class=\\\"icon-twitter\\\" href=\\\"https://twitter.com/intent/tweet?text=\"\n    + alias3((helpers.encode || (depth0 && depth0.encode) || alias1).call(depth0,(depth0 != null ? depth0.title : depth0),{\"name\":\"encode\",\"hash\":{},\"data\":data}))\n    + \"&amp;url=\"\n    + alias3((helpers.url || (depth0 && depth0.url) || alias1).call(depth0,{\"name\":\"url\",\"hash\":{\"absolute\":\"true\"},\"data\":data}))\n    + \"\\\"\\n                    onclick=\\\"window.open(this.href, 'twitter-share', 'width=550,height=235');return false;\\\">\\n                    <span class=\\\"hidden\\\">Twitter</span>\\n                </a>\\n                <a class=\\\"icon-facebook\\\" href=\\\"https://www.facebook.com/sharer/sharer.php?u=\"\n    + alias3((helpers.url || (depth0 && depth0.url) || alias1).call(depth0,{\"name\":\"url\",\"hash\":{\"absolute\":\"true\"},\"data\":data}))\n    + \"\\\"\\n                    onclick=\\\"window.open(this.href, 'facebook-share','width=580,height=296');return false;\\\">\\n                    <span class=\\\"hidden\\\">Facebook</span>\\n                </a>\\n                <a class=\\\"icon-google-plus\\\" href=\\\"https://plus.google.com/share?url=\"\n    + alias3((helpers.url || (depth0 && depth0.url) || alias1).call(depth0,{\"name\":\"url\",\"hash\":{\"absolute\":\"true\"},\"data\":data}))\n    + \"\\\"\\n                   onclick=\\\"window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;\\\">\\n                    <span class=\\\"hidden\\\">Google+</span>\\n                </a>\\n            </section>\\n\\n        </footer>\\n\\n    </article>\\n</main>\\n\\n<aside class=\\\"read-next\\\">\\n\";\n  stack1 = ((helper = (helper = helpers.next_post || (depth0 != null ? depth0.next_post : depth0)) != null ? helper : alias1),(options={\"name\":\"next_post\",\"hash\":{},\"fn\":this.program(23, data, 0),\"inverse\":this.noop,\"data\":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));\n  if (!helpers.next_post) { stack1 = alias4.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  stack1 = ((helper = (helper = helpers.prev_post || (depth0 != null ? depth0.prev_post : depth0)) != null ? helper : alias1),(options={\"name\":\"prev_post\",\"hash\":{},\"fn\":this.program(25, data, 0),\"inverse\":this.noop,\"data\":data}),(typeof helper === alias2 ? helper.call(depth0,options) : helper));\n  if (!helpers.prev_post) { stack1 = alias4.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  return buffer + \"</aside>\\n\\n\";\n},\"2\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"image\",\"hash\":{},\"data\":data}) : helper)))\n    + \")\";\n},\"4\":function(depth0,helpers,partials,data) {\n    return \"no-cover\";\n},\"6\":function(depth0,helpers,partials,data) {\n    return \"overlay\";\n},\"8\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<a class=\\\"blog-logo\\\" href=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\"><img src=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.logo), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"\\\" /></a>\";\n},\"10\":function(depth0,helpers,partials,data) {\n    return \"            <a class=\\\"menu-button icon-menu\\\" href=\\\"#\\\"><span class=\\\"word\\\">Menu</span></a>\\n\";\n},\"12\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(13, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n            <section class=\\\"author\\\">\\n                <h4><a href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\"\n    + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"name\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</a></h4>\\n\\n\"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.bio : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(15, data, 0),\"inverse\":this.program(17, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"                <div class=\\\"author-meta\\\">\\n                    \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.location : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(19, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n                    \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.website : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(21, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n                </div>\\n            </section>\\n\\n\";\n},\"13\":function(depth0,helpers,partials,data) {\n    var helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"            <figure class=\\\"author-image\\\">\\n                <a class=\\\"img\\\" href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\" style=\\\"background-image: url(\"\n    + alias3(((helper = (helper = helpers.image || (depth0 != null ? depth0.image : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"image\",\"hash\":{},\"data\":data}) : helper)))\n    + \")\\\"><span class=\\\"hidden\\\">\"\n    + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"name\",\"hash\":{},\"data\":data}) : helper)))\n    + \"'s Picture</span></a>\\n            </figure>\\n\";\n},\"15\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"                    <p>\"\n    + this.escapeExpression(((helper = (helper = helpers.bio || (depth0 != null ? depth0.bio : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"bio\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</p>\\n\";\n},\"17\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"                    <p>Read <a href=\\\"\"\n    + this.escapeExpression(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">more posts</a> by this author.</p>\\n\";\n},\"19\":function(depth0,helpers,partials,data) {\n    var helper;\n\n  return \"<span class=\\\"author-location icon-location\\\">\"\n    + this.escapeExpression(((helper = (helper = helpers.location || (depth0 != null ? depth0.location : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === \"function\" ? helper.call(depth0,{\"name\":\"location\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</span>\";\n},\"21\":function(depth0,helpers,partials,data) {\n    var helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"<span class=\\\"author-link icon-link\\\"><a href=\\\"\"\n    + alias3(((helper = (helper = helpers.website || (depth0 != null ? depth0.website : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"website\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\"\n    + alias3(((helper = (helper = helpers.website || (depth0 != null ? depth0.website : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"website\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</a></span>\";\n},\"23\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"    <a class=\\\"read-next-story \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.program(4, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\" href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\\n        <section class=\\\"post\\\">\\n            <h2>\"\n    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"title\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h2>\\n            <p>\"\n    + alias3((helpers.excerpt || (depth0 && depth0.excerpt) || alias1).call(depth0,{\"name\":\"excerpt\",\"hash\":{\"words\":\"19\"},\"data\":data}))\n    + \"&hellip;</p>\\n        </section>\\n    </a>\\n\";\n},\"25\":function(depth0,helpers,partials,data) {\n    var stack1, helper, alias1=helpers.helperMissing, alias2=\"function\", alias3=this.escapeExpression;\n\n  return \"    <a class=\\\"read-next-story prev \"\n    + ((stack1 = helpers['if'].call(depth0,(depth0 != null ? depth0.image : depth0),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(2, data, 0),\"inverse\":this.program(4, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\" href=\\\"\"\n    + alias3(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"url\",\"hash\":{},\"data\":data}) : helper)))\n    + \"\\\">\\n        <section class=\\\"post\\\">\\n            <h2>\"\n    + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{\"name\":\"title\",\"hash\":{},\"data\":data}) : helper)))\n    + \"</h2>\\n            <p>\"\n    + alias3((helpers.excerpt || (depth0 && depth0.excerpt) || alias1).call(depth0,{\"name\":\"excerpt\",\"hash\":{\"words\":\"19\"},\"data\":data}))\n    + \"&hellip;</p>\\n        </section>\\n    </a>\\n\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1, helper, options, buffer = \n  \"\\n\\n\";\n  stack1 = ((helper = (helper = helpers.post || (depth0 != null ? depth0.post : depth0)) != null ? helper : helpers.helperMissing),(options={\"name\":\"post\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.noop,\"data\":data}),(typeof helper === \"function\" ? helper.call(depth0,options) : helper));\n  if (!helpers.post) { stack1 = helpers.blockHelperMissing.call(depth0,stack1,options)}\n  if (stack1 != null) { buffer += stack1; }\n  return buffer;\n},\"useData\":true}"
+    },
+    {
+      "file": "tag.hbs",
+      "ext": ".hbs",
+      "content": "{{!< default}}\n{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}\n\n{{! If we have a tag cover, display that - else blog cover - else nothing }}\n<header class=\"main-header tag-head {{#if tag.image}}\" style=\"background-image: url({{tag.image}}){{else}}{{#if @blog.cover}}\" style=\"background-image: url({{@blog.cover}}){{else}}no-cover{{/if}}{{/if}}\">\n    <nav class=\"main-nav overlay clearfix\">\n        {{#if @blog.logo}}<a class=\"blog-logo\" href=\"{{@blog.url}}\"><img src=\"{{@blog.logo}}\" alt=\"{{@blog.title}}\" /></a>{{/if}}\n        {{#if @blog.navigation}}\n            <a class=\"menu-button icon-menu\" href=\"#\"><span class=\"word\">Menu</span></a>\n        {{/if}}\n    </nav>\n    <div class=\"vertical\">\n        <div class=\"main-header-content inner\">\n            <h1 class=\"page-title\">{{tag.name}}</h1>\n            <h2 class=\"page-description\">\n                {{#if tag.description}}\n                    {{tag.description}}\n                {{else}}\n                    A {{pagination.total}}-post collection\n                {{/if}}\n            </h2>\n        </div>\n    </div>\n</header>\n\n{{! The main content area on the homepage }}\n<main class=\"content\" role=\"main\">\n\n    {{! The tag below includes the post loop - partials/loop.hbs }}\n    {{> \"loop\"}}\n\n</main>\n",
+      "compiled": "{\"1\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.tag : depth0)) != null ? stack1.image : stack1), depth0))\n    + \")\";\n},\"3\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.cover),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(4, data, 0),\"inverse\":this.program(6, data, 0),\"data\":data})) != null ? stack1 : \"\");\n},\"4\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"\\\" style=\\\"background-image: url(\"\n    + this.escapeExpression(this.lambda(((stack1 = (data && data.blog)) && stack1.cover), depth0))\n    + \")\";\n},\"6\":function(depth0,helpers,partials,data) {\n    return \"no-cover\";\n},\"8\":function(depth0,helpers,partials,data) {\n    var stack1, alias1=this.lambda, alias2=this.escapeExpression;\n\n  return \"<a class=\\\"blog-logo\\\" href=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.url), depth0))\n    + \"\\\"><img src=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.logo), depth0))\n    + \"\\\" alt=\\\"\"\n    + alias2(alias1(((stack1 = (data && data.blog)) && stack1.title), depth0))\n    + \"\\\" /></a>\";\n},\"10\":function(depth0,helpers,partials,data) {\n    return \"            <a class=\\\"menu-button icon-menu\\\" href=\\\"#\\\"><span class=\\\"word\\\">Menu</span></a>\\n\";\n},\"12\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"                    \"\n    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.tag : depth0)) != null ? stack1.description : stack1), depth0))\n    + \"\\n\";\n},\"14\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"                    A \"\n    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.pagination : depth0)) != null ? stack1.total : stack1), depth0))\n    + \"-post collection\\n\";\n},\"compiler\":[6,\">= 2.0.0-beta.1\"],\"main\":function(depth0,helpers,partials,data) {\n    var stack1;\n\n  return \"\\n<header class=\\\"main-header tag-head \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.tag : depth0)) != null ? stack1.image : stack1),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(1, data, 0),\"inverse\":this.program(3, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"\\\">\\n    <nav class=\\\"main-nav overlay clearfix\\\">\\n        \"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.logo),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(8, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (data && data.blog)) && stack1.navigation),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(10, data, 0),\"inverse\":this.noop,\"data\":data})) != null ? stack1 : \"\")\n    + \"    </nav>\\n    <div class=\\\"vertical\\\">\\n        <div class=\\\"main-header-content inner\\\">\\n            <h1 class=\\\"page-title\\\">\"\n    + this.escapeExpression(this.lambda(((stack1 = (depth0 != null ? depth0.tag : depth0)) != null ? stack1.name : stack1), depth0))\n    + \"</h1>\\n            <h2 class=\\\"page-description\\\">\\n\"\n    + ((stack1 = helpers['if'].call(depth0,((stack1 = (depth0 != null ? depth0.tag : depth0)) != null ? stack1.description : stack1),{\"name\":\"if\",\"hash\":{},\"fn\":this.program(12, data, 0),\"inverse\":this.program(14, data, 0),\"data\":data})) != null ? stack1 : \"\")\n    + \"            </h2>\\n        </div>\\n    </div>\\n</header>\\n\\n<main class=\\\"content\\\" role=\\\"main\\\">\\n\\n\"\n    + ((stack1 = this.invokePartial(partials.loop,depth0,{\"name\":\"loop\",\"data\":data,\"indent\":\"    \",\"helpers\":helpers,\"partials\":partials})) != null ? stack1 : \"\")\n    + \"\\n</main>\\n\";\n},\"usePartial\":true,\"useData\":true}"
+    }
+  ],
+  "partials": [
+    "loop",
+    "navigation"
+  ],
+  "helpers": {
+    "helperMissing": [
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "default.hbs",
+      "page.hbs",
+      "page.hbs",
+      "page.hbs",
+      "partials/loop.hbs",
+      "partials/loop.hbs",
+      "partials/navigation.hbs",
+      "partials/navigation.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "if": [
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "author.hbs",
+      "index.hbs",
+      "index.hbs",
+      "index.hbs",
+      "page.hbs",
+      "page.hbs",
+      "page.hbs",
+      "page.hbs",
+      "partials/loop.hbs",
+      "partials/navigation.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "tag.hbs",
+      "tag.hbs",
+      "tag.hbs",
+      "tag.hbs",
+      "tag.hbs"
+    ],
+    "name": [
+      "author.hbs",
+      "author.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "plural": [
+      "author.hbs"
+    ],
+    "cover": [
+      "author.hbs"
+    ],
+    "image": [
+      "author.hbs",
+      "page.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "bio": [
+      "author.hbs",
+      "post.hbs"
+    ],
+    "location": [
+      "author.hbs",
+      "post.hbs"
+    ],
+    "website": [
+      "author.hbs",
+      "author.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "author": [
+      "author.hbs",
+      "author.hbs",
+      "partials/loop.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "blockHelperMissing": [
+      "author.hbs",
+      "page.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "meta_title": [
+      "default.hbs"
+    ],
+    "meta_description": [
+      "default.hbs"
+    ],
+    "asset": [
+      "default.hbs",
+      "default.hbs",
+      "default.hbs",
+      "default.hbs"
+    ],
+    "ghost_head": [
+      "default.hbs"
+    ],
+    "body_class": [
+      "default.hbs"
+    ],
+    "navigation": [
+      "default.hbs"
+    ],
+    "body": [
+      "default.hbs"
+    ],
+    "date": [
+      "default.hbs",
+      "partials/loop.hbs",
+      "partials/loop.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "ghost_foot": [
+      "default.hbs"
+    ],
+    "post_class": [
+      "page.hbs",
+      "partials/loop.hbs",
+      "post.hbs"
+    ],
+    "title": [
+      "page.hbs",
+      "partials/loop.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "content": [
+      "page.hbs",
+      "post.hbs"
+    ],
+    "post": [
+      "page.hbs",
+      "page.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "url": [
+      "partials/loop.hbs",
+      "partials/loop.hbs",
+      "partials/navigation.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "excerpt": [
+      "partials/loop.hbs",
+      "post.hbs",
+      "post.hbs"
+    ],
+    "tags": [
+      "partials/loop.hbs",
+      "post.hbs"
+    ],
+    "pagination": [
+      "partials/loop.hbs",
+      "partials/loop.hbs"
+    ],
+    "foreach": [
+      "partials/loop.hbs",
+      "partials/navigation.hbs"
+    ],
+    "slug": [
+      "partials/navigation.hbs"
+    ],
+    "label": [
+      "partials/navigation.hbs"
+    ],
+    "encode": [
+      "post.hbs"
+    ],
+    "next_post": [
+      "post.hbs",
+      "post.hbs"
+    ],
+    "prev_post": [
+      "post.hbs",
+      "post.hbs"
+    ]
+  },
+  "features": [
+    {
+      "name": "Next / previous posts",
+      "detected": {
+        "helper": "next_post",
+        "template": "post.hbs"
+      }
+    },
+    {
+      "name": "Navigation",
+      "detected": {
+        "helper": "navigation",
+        "template": "default.hbs"
+      }
+    }
+  ],
+  "rules": {
+    "GS030-CSS-CACHE": {
+      "level": "warning",
+      "rule": "CSS files should use cache bustable URLs."
+    },
+    "GS035-CONTENT-0": {
+      "level": "warning",
+      "rule": "Replace the content zero hack with the {{image}} helper"
+    },
+    "GS005-TPL-ERR": {
+      "level": "error",
+      "rule": "Templates must contain valid Handlebars."
+    },
+    "GS010-PJ-REQ": {
+      "level": "warning",
+      "rule": "package.json file should be present."
+    },
+    "GS010-PJ-VAL": {
+      "level": "error",
+      "rule": "package.json file must be valid."
+    },
+    "GS020-INDEX-REQ": {
+      "level": "error",
+      "rule": "A template file called index.hbs must be present."
+    },
+    "GS020-POST-REQ": {
+      "level": "error",
+      "rule": "A template file called post.hbs must be present."
+    },
+    "GS020-DEF-REC": {
+      "level": "recommendation",
+      "rule": "Provide a default layout template called default.hbs."
+    },
+    "GS030-ASSET-REQ": {
+      "level": "error",
+      "rule": "Assets such as CSS & JS must use the <code>{{asset}}</code> helper",
+      "details": "<p>The listed files should be included using the <code>{{asset}}</code> helper.</p>"
+    },
+    "GS040-GH-REQ": {
+      "level": "warning",
+      "rule": "The helper <code>{{ghost_head}}</code> should be present."
+    },
+    "GS040-GF-REQ": {
+      "level": "warning",
+      "rule": "The helper <code>{{ghost_foot}}</code> should be present."
+    }
+  },
+  "results": {
+    "fail": {
+      "GS030-ASSET-REQ": {
+        "failures": [
+          {"ref": "/assets/css/normalize.css"},
+          {"ref": "/assets/css/nprogress.css"},
+          {"ref": "/assets/css/style.css"},
+          {"ref": "/assets/js/jquery.history.js"},
+          {"ref": "/assets/js/nprogress.js"},
+          {"ref": "/assets/js/scripts.js"}
+        ]
+      },
+      "GS040-GH-REQ": {},
+      "GS040-GF-REQ": {},
+      "GS020-DEF-REC": {}
+    },
+    "pass": [
+      "GS005-TPL-ERR", "GS010-PJ-REQ", "GS010-PJ-VAL", "GS020-INDEX-REQ", "GS020-POST-REQ"
+    ]
+  }
+}
