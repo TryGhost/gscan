@@ -23,17 +23,17 @@ describe('Template compile', function () {
             output.should.be.an.Array().with.lengthOf(3);
 
             output[0].should.be.a.ValidCheckObject();
-            output[0].type.should.eql('error');
+            output[0].level.should.eql('error');
             output[0].ref.should.eql('index.hbs');
             output[0].message.should.match(/^The partial/);
 
             output[1].should.be.a.ValidCheckObject();
-            output[1].type.should.eql('error');
+            output[1].level.should.eql('error');
             output[1].ref.should.eql('page.hbs');
             output[1].message.should.match(/^Parse error/);
 
             output[2].should.be.a.ValidCheckObject();
-            output[2].type.should.eql('error');
+            output[2].level.should.eql('error');
             output[2].ref.should.eql('post.hbs');
             output[2].message.should.match(/^Missing helper/);
 

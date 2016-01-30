@@ -6,12 +6,12 @@ var path          = require('path'),
     testCheck;
 
 should.Assertion.add('ValidCheckObject', function () {
-    var types = ['error', 'warning', 'recommendation', 'feature'];
+    var levels = ['error', 'warning', 'recommendation', 'feature'];
     this.params = { operator: 'to be valid check object' };
 
     should.exist(this.obj);
-    this.obj.should.be.an.Object().with.properties(['type', 'message', 'ref']);
-    this.obj.should.have.property('type').which.is.a.String().and.be.oneOf(types);
+    this.obj.should.be.an.Object().with.properties(['level', 'message', 'ref']);
+    this.obj.should.have.property('level').which.is.a.String().and.be.oneOf(levels);
     this.obj.should.have.property('message').which.is.a.String();
     this.obj.should.have.property('ref').which.is.a.String();
 });

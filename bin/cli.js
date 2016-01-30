@@ -7,7 +7,7 @@ var pkgJson = require('../package.json'),
     gscan   = require('../lib'),
 
     themePath = '',
-    types;
+    levels;
 
 program
     .version(pkgJson.version)
@@ -20,16 +20,15 @@ program
     })
     .parse(process.argv);
 
-types = {
+levels = {
     error: chalk.red,
     warning: chalk.yellow,
     recommendation: chalk.cyan,
     feature: chalk.green
 };
 
-
 function outputResult(result) {
-    console.log('-', types[result.type](result.type), result.ref, result.message);
+    console.log('-', levels[result.level](result.level), result.ref, result.message);
 }
 
 function outputResults(theme) {

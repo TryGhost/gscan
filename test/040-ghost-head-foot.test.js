@@ -9,12 +9,12 @@ describe('Ghost head & foot', function () {
             output.should.be.an.Array().with.lengthOf(2);
 
             output[0].should.be.a.ValidCheckObject();
-            output[0].type.should.eql('warning');
+            output[0].level.should.eql('warning');
             output[0].message.should.match(/helper not present/);
             output[0].ref.should.match(/ghost_head/);
 
             output[1].should.be.a.ValidCheckObject();
-            output[1].type.should.eql('warning');
+            output[1].level.should.eql('warning');
             output[1].message.should.match(/helper not present/);
             output[1].ref.should.match(/ghost_foot/);
 
@@ -27,12 +27,12 @@ describe('Ghost head & foot', function () {
             output.should.be.an.Array().with.lengthOf(2);
 
             output[0].should.be.a.ValidCheckObject();
-            output[0].type.should.eql('warning');
+            output[0].level.should.eql('warning');
             output[0].message.should.match(/helper not present/);
             output[0].ref.should.match(/ghost_head/);
 
             output[1].should.be.a.ValidCheckObject();
-            output[1].type.should.eql('warning');
+            output[1].level.should.eql('warning');
             output[1].message.should.match(/helper not present/);
             output[1].ref.should.match(/ghost_foot/);
 

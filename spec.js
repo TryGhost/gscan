@@ -68,47 +68,47 @@ templates = [
 rules = {
     "template-parse": {
         "code": "GS005TPLERR",
-        "type": "error",
+        "level": "error",
         "rule": "Templates must contain valid Handlebars."
     },
     "package.json-required": {
         "code": "GS010PJREQ",
-        "type": "warning",
+        "level": "warning",
         "rule": "package.json file should be present."
     },
     "package.json-valid": {
         "code": "GS010PJVAL",
-        "type": "error",
+        "level": "error",
         "rule": "package.json file must be valid."
     },
     "index.hbs-required": {
         "code": "GS020INDEXREQ",
-        "type": "error",
+        "level": "error",
         "rule": "index.hbs file must be present."
     },
     "post.hbs-required": {
         "code": "GS020POSTREQ",
-        "type": "error",
+        "level": "error",
         "rule": "post.hbs file must be present."
     },
     "default.hbs-recommended": {
         "code": "GS020DEFREC",
-        "type": "recommendation",
+        "level": "recommendation",
         "rule": "default.hbs file should be present."
     },
     "asset-required": {
         "code": "GS030ASSETREQ",
-        "type": "error",
+        "level": "error",
         "rule": "Assets such as CSS & JS must use the `{{asset}}` helper"
     },
     "ghost_head-required": {
         "code": "GS040GHREQ",
-        "type": "warning",
+        "level": "warning",
         "rule": "{{ghost_head}} should be present."
     },
     "ghost_foot-required": {
         "code": "GS040GFREQ",
-        "type": "warning",
+        "level": "warning",
         "rule": "{{ghost_foot}} should be present."
     }
 };

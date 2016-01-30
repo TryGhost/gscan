@@ -8,7 +8,7 @@ describe('package.json', function () {
         utils.testCheck(thisCheck, 'example-a').then(function (output) {
             output.should.be.an.Array().with.lengthOf(1);
             output[0].should.be.a.ValidCheckObject();
-            output[0].type.should.eql('warning');
+            output[0].level.should.eql('warning');
             output[0].message.should.match(/file is missing/);
             done();
         });
@@ -18,7 +18,7 @@ describe('package.json', function () {
         utils.testCheck(thisCheck, 'example-b').then(function (output) {
             output.should.be.an.Array().with.lengthOf(1);
             output[0].should.be.a.ValidCheckObject();
-            output[0].type.should.eql('error');
+            output[0].level.should.eql('error');
             output[0].message.should.match(/file is malformed/);
             done();
         });
