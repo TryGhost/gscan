@@ -9,7 +9,7 @@ describe('package.json', function () {
             output.should.be.an.Array().with.lengthOf(1);
             output[0].should.be.a.ValidCheckObject();
             output[0].type.should.eql('warning');
-            output[0].message.should.match(/file not present/);
+            output[0].message.should.match(/file is missing/);
             done();
         });
     });
@@ -19,7 +19,7 @@ describe('package.json', function () {
             output.should.be.an.Array().with.lengthOf(1);
             output[0].should.be.a.ValidCheckObject();
             output[0].type.should.eql('error');
-            output[0].message.should.match(/file is invalid/);
+            output[0].message.should.match(/file is malformed/);
             done();
         });
     });
