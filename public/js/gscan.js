@@ -55,7 +55,7 @@
 
                 var news_html = '<p><a href="https://dev.ghost.org' + item.url + '">' + item.title + '</a></p>' +
                         '<span class="meta">' +
-                        '<img src="' + item.author.image + '" />' +
+                        '<img src="https://dev.ghost.org/' + item.author.image + '" />' +
                         '<time title="' + parsed_date + '">' + timeSince(parsed_date) + ' ago</time> by ' + item.author.name + '</span>';
                 $(".myblogs-latest-news").html(news_html);
             });
