@@ -4,7 +4,7 @@
  * This file contains details of the theme API spec, in a format that can be used by GScan
  */
 
-var knownHelpers, templates;
+var knownHelpers, templates, rules;
 
 knownHelpers = [
     'foreach', 'has', 'is', 'get', 'content', 'excerpt', 'tags', 'author', 'image', 'navigation', 'pagination',
@@ -65,7 +65,56 @@ templates = [
     }
 ];
 
+rules = {
+    "template-parse": {
+        "code": "GS005TPLERR",
+        "type": "error",
+        "rule": "Templates must contain valid Handlebars."
+    },
+    "package.json-required": {
+        "code": "GS010PJREQ",
+        "type": "warning",
+        "rule": "package.json file should be present."
+    },
+    "package.json-valid": {
+        "code": "GS010PJVAL",
+        "type": "error",
+        "rule": "package.json file must be valid."
+    },
+    "index.hbs-required": {
+        "code": "GS020INDEXREQ",
+        "type": "error",
+        "rule": "index.hbs file must be present."
+    },
+    "post.hbs-required": {
+        "code": "GS020POSTREQ",
+        "type": "error",
+        "rule": "post.hbs file must be present."
+    },
+    "default.hbs-recommended": {
+        "code": "GS020DEFREC",
+        "type": "recommendation",
+        "rule": "default.hbs file should be present."
+    },
+    "asset-required": {
+        "code": "GS030ASSETREQ",
+        "type": "error",
+        "rule": "Assets such as CSS & JS must use the `{{asset}}` helper"
+    },
+    "ghost_head-required": {
+        "code": "GS040GHREQ",
+        "type": "warning",
+        "rule": "{{ghost_head}} should be present."
+    },
+    "ghost_foot-required": {
+        "code": "GS040GFREQ",
+        "type": "warning",
+        "rule": "{{ghost_foot}} should be present."
+    }
+};
+
 module.exports = {
     knownHelpers: knownHelpers,
-    templates: templates
+    templates: templates,
+    rules: rules
 };
