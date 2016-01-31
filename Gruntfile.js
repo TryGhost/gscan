@@ -24,6 +24,12 @@ module.exports = function(grunt) {
             prd: {
                 servers: ['app@gscan.ghost.org']
             }
+        },
+        release: {
+            github: {
+                repo: 'TryGhost/gscan',
+                accessTokenVar: 'GITHUB_ACCESS_TOKEN'
+            }
         }
     });
 
