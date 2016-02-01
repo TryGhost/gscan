@@ -36,6 +36,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-mocha-istanbul');
     grunt.loadNpmTasks('grunt-shipit');
     grunt.loadNpmTasks('shipit-deploy');
+    grunt.loadNpmTasks('grunt-release');
 
     grunt.shipit.on('published', function () {
         grunt.task.run(['link-node-modules', 'link-uploads', 'create-tmp', 'npm-install', 'start']);
