@@ -1,7 +1,12 @@
 <article class="rule fail">
     <h4>{{{rule}}}</h4>
     {{> toggle}}
+
     <div class="details hide">
+        {{#if message}}
+            <p>{{message}}</p>
+        {{/if}}
+
         {{#if failures}}
             <ul>
                 {{#each failures}}

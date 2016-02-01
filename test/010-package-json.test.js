@@ -8,13 +8,13 @@ describe('package.json', function () {
         utils.testCheck(thisCheck, 'example-a').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            // Should not pass any rules
-            output.results.pass.should.be.an.Array().which.is.empty();
+            // Should auto pass valid rule
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS010-PJ-VAL');
 
-            // Should have resulted in 2 failures
-            output.results.fail.should.be.an.Object().with.keys('GS010-PJ-REQ', 'GS010-PJ-VAL');
+            // Should have resulted in a failures
+            output.results.fail.should.be.an.Object().with.keys('GS010-PJ-REQ');
             output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS010-PJ-VAL'].should.be.a.ValidFailObject();
 
             done();
         });

@@ -62,11 +62,11 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(2);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ');
+            theme.results.pass.should.be.an.Array().with.lengthOf(3);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS010-PJ-VAL', 'GS030-ASSET-REQ');
 
             theme.results.fail.should.be.an.Object().with.keys(
-                'GS010-PJ-REQ', 'GS010-PJ-VAL', 'GS020-INDEX-REQ', 'GS020-POST-REQ',
+                'GS010-PJ-REQ', 'GS020-INDEX-REQ', 'GS020-POST-REQ',
                 'GS020-DEF-REC', 'GS040-GH-REQ', 'GS040-GF-REQ'
             );
 
