@@ -1,47 +1,69 @@
 {{!< default}}
-<h2 class="report-heading">Report</h2>
+<section class="report">
+    <header>
+        <h2 class="report-heading">
+            <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
+            {{!--Not implemented yet <span class="title">Casper 1.2.7</span>--}}
+        </h2>
+    </header>
 
-<section class="results">
-    <aside class="pull-right">
-        <dl>
-            <dt>Current Ghost Version:</dt><dd>0.7.5</dd>
-            <dt>Theme is compatible with:</dt><dd>Unknown</dd>
-        </dl>
-    </aside>
-    {{#if errors}}
-    <article class="errors">
-        <h4>Errors :(</h4>
-        <p>This theme has {{errors.length}} error(s), these issues <b>must</b> be fixed for the theme to work and be considered valid.</p>
-        <ul>
-            {{#each errors}}
-                <li><p><span class="red">{{message}}</span> <br /> in <b>{{ref}}</b></li>
-            {{/each}}
-        </ul>
-    </article>
-    {{/if}}
+    <div class="report-body">
+        <div class="results report-section">
+            {{#if results.error}}
+                <section class="level-group">
+                    <header class="level-group-header">
+                        <h3 class="level"><span class="indicator error"></span>Must fix:</h3>
+                    </header>
+                    <div class="rule-group">
+                        {{#each results.error}}
+                            {{> rule-fail}}
+                        {{/each}}
+                    </div>
+                </section>
+            {{/if}}
 
-    {{#if info}}
-    <article class="info">
-        <h4>Details</h4>
-        <ul>
-            {{#each info}}
-                <li><b>[{{type}}]</b> {{ref}} {{message}}</li>
-            {{/each}}
-        </ul>
-    </article>
-    {{/if}}
+            {{#if results.warning}}
+                <section class="level-group">
+                    <header class="result-group-header">
+                        <h3 class="level"><span class="indicator warning"></span>Should fix:</h3>
+                    </header>
+                    <div class="rule-group">
+                        {{#each results.warning}}
+                            {{> rule-fail}}
+                        {{/each}}
+                    </div>
+                </section>
+            {{/if}}
 
-    {{#if features}}
-        <article class="features">
-            <h4>Features</h4>
-            <ul>
-            {{#each features}}
-                <li>{{ref}}</li>
-            {{/each}}
-            </ul>
-        </article>
-    {{/if}}
+            {{#if results.recommendation}}
+                <section class="level-group">
+                    <header class="result-group-header">
+                        <h3 class="level"><span class="indicator recommendation"></span>Consider fixing:</h3>
+                    </header>
+                    <div class="rule-group">
+                        {{#each results.recommendation}}
+                            {{> rule-fail}}
+                        {{/each}}
+                    </div>
+                </section>
+            {{/if}}
+
+            {{#if results.pass}}
+                <section class="level-group">
+                    <header class="result-group-header">
+                        <h3 class="level"><span class="indicator passing"></span>{{results.pass.length}} Passed Rules</h3>
+                    </header>
+                    {{> toggle}}
+                    <div class="rule-group details hide">
+                        {{#each results.pass}}
+                            {{> rule-pass}}
+                        {{/each}}
+                    </div>
+                </section>
+            {{/if}}
+        </div>
+    </div>
 
     <aside class="pull-right"><a href="/">Start Over</a></aside>
-</section>
 
+</section>

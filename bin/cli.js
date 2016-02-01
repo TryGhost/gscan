@@ -23,35 +23,39 @@ program
 levels = {
     error: chalk.red,
     warning: chalk.yellow,
-    recommendation: chalk.cyan,
+    recommendation: chalk.yellow,
     feature: chalk.green
 };
 
 function outputResult(result) {
-    console.log('-', levels[result.level](result.level), result.ref, result.message);
+    console.log('-', levels[result.level](result.level), result.rule);
 }
 
 function outputResults(theme) {
-    console.log(chalk.bold.underline('\nResults:'));
-    if (_.isEmpty(theme.results)) {
-        console.log('No issues detected.');
-    } else {
-        // Call the formatter which separates out the results into logical groups
-        theme = gscan.format(theme);
+    theme = gscan.format(theme);
 
-        if (!_.isEmpty(theme.errors)) {
-            console.log(chalk.red.bold.underline('\nErrors:'));
-            _.each(theme.errors, outputResult);
-        }
-        if (!_.isEmpty(theme.info)) {
-            console.log(chalk.grey.bold.underline('\nInfo:'));
-            _.each(theme.info, outputResult);
-        }
-        if (!_.isEmpty(theme.features)) {
-            console.log(chalk.green.bold.underline('\nFeatures:'));
-            _.each(theme.features, outputResult);
-        }
+    console.log(chalk.bold.underline('\nRule Report:'));
+
+    if (!_.isEmpty(theme.results.error)) {
+        console.log(chalk.red.bold.underline('\n! Must fix:'));
+        _.each(theme.results.error, outputResult);
     }
+
+    if (!_.isEmpty(theme.results.warning)) {
+        console.log(chalk.yellow.bold.underline('\n! Should fix:'));
+        _.each(theme.results.warning, outputResult);
+    }
+
+    if (!_.isEmpty(theme.results.recommendation)) {
+        console.log(chalk.red.yellow.underline('\n? Consider fixing:'));
+        _.each(theme.results.recommendation, outputResult);
+    }
+
+    if (!_.isEmpty(theme.results.pass)) {
+        console.log(chalk.green.bold.underline('\n\u2713', theme.results.pass.length, 'Passed Rules'));
+    }
+
+    console.log('\n...checks complete.');
 }
 
 if (!program.args.length) {

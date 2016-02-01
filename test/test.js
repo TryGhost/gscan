@@ -3,7 +3,8 @@ var should    = require('should'),
     fs        = require('fs-extra'),
     themePath = require('./utils').themePath,
     readZip   = require('../lib/read-zip'),
-    readTheme = require('../lib/read-theme');
+    readTheme = require('../lib/read-theme'),
+    checker   = require('../lib/checker');
 
 process.env.NODE_ENV = 'testing';
 
@@ -39,14 +40,36 @@ describe('Zip file handler can read a zip file', function () {
 
 describe('Read theme', function () {
     it('returns correct result for example-a', function (done) {
-        readTheme(themePath('example-a')).then(function (result) {
-            should.exist(result);
-            result.should.be.an.Object;
-            result.should.have.properties(['path', 'files']);
-            result.files.should.eql([
+        readTheme(themePath('example-a')).then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
                 {file: '.gitkeep', ext: '.gitkeep'},
                 {file: 'README.md', ext: '.md'}
             ]);
+            done();
+        });
+    });
+});
+
+describe('Checker', function () {
+    it('returns a valid theme when running all checks for example-a', function (done) {
+        checker(themePath('example-a')).then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(2);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ');
+
+            theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-REQ', 'GS010-PJ-VAL', 'GS020-INDEX-REQ', 'GS020-POST-REQ',
+                'GS020-DEF-REC', 'GS040-GH-REQ', 'GS040-GF-REQ'
+            );
+
             done();
         });
     });

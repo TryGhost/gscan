@@ -87,6 +87,11 @@ h1 .version {
     font-weight: normal;
 }
 
+.report .pull-right {
+    float: right;
+    margin-right: 30px;
+}
+
 .level-group {
     padding: 8px 0 14px;
 }

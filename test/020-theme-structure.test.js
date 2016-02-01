@@ -5,53 +5,51 @@ var should = require('should'),
     thisCheck = require('../lib/checks/020-theme-structure');
 
 describe('Theme structure', function () {
-    it('should output info about missing theme files (theme example a)', function (done) {
+    it('should fail all rules if no files present (theme example a)', function (done) {
         utils.testCheck(thisCheck, 'example-a').then(function (output) {
-            output.should.be.an.Array().with.lengthOf(3);
+            output.should.be.a.ValidThemeObject();
 
-            output[0].should.be.a.ValidCheckObject();
-            output[0].level.should.eql('error');
-            output[0].message.should.match(/file not present/);
-            output[0].ref.should.match(/index.hbs/);
+            // Should not pass any rules
+            output.results.pass.should.be.an.Array().which.is.empty();
 
-            output[1].should.be.a.ValidCheckObject();
-            output[1].level.should.eql('error');
-            output[1].message.should.match(/file not present/);
-            output[1].ref.should.match(/post.hbs/);
+            output.results.fail.should.be.an.Object().with.keys('GS020-INDEX-REQ', 'GS020-POST-REQ', 'GS020-DEF-REC');
+            output.results.fail['GS020-INDEX-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS020-POST-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
 
-            output[2].should.be.a.ValidCheckObject();
-            output[2].level.should.eql('recommendation');
-            output[2].message.should.match(/file not present/);
-            output[2].ref.should.match(/default.hbs/);
             done();
         });
     });
 
-    it('should output error when a required theme file is missing (theme example b)', function (done) {
+    it('should pass and fail when some rules pass and others fail (theme example b)', function (done) {
         utils.testCheck(thisCheck, 'example-b').then(function (output) {
-            output.should.be.an.Array().with.lengthOf(2);
+            output.should.be.a.ValidThemeObject();
 
-            output[0].should.be.a.ValidCheckObject();
-            output[0].level.should.eql('error');
-            output[0].message.should.match(/file not present/);
-            output[0].ref.should.match(/post.hbs/);
+            // Should pass the index rule
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS020-INDEX-REQ');
 
-            output[1].should.be.a.ValidCheckObject();
-            output[1].level.should.eql('recommendation');
-            output[1].message.should.match(/file not present/);
-            output[1].ref.should.match(/default.hbs/);
+            output.results.fail.should.be.an.Object().with.keys('GS020-POST-REQ', 'GS020-DEF-REC');
+
+            output.results.fail['GS020-POST-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
+
             done();
         });
     });
 
-    it('should output recommendation when a suggested theme file is missing (theme example c)', function (done) {
+    it('should still fail with just a recommendation (theme example c)', function (done) {
         utils.testCheck(thisCheck, 'example-c').then(function (output) {
-            output.should.be.an.Array().with.lengthOf(1);
+            output.should.be.a.ValidThemeObject();
 
-            output[0].should.be.a.ValidCheckObject();
-            output[0].level.should.eql('recommendation');
-            output[0].message.should.match(/file not present/);
-            output[0].ref.should.match(/default.hbs/);
+            // Should not pass any rules
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
+            output.results.pass.should.containEql('GS020-INDEX-REQ', 'GS020-POST-REQ');
+
+            output.results.fail.should.be.an.Object().with.keys('GS020-DEF-REC');
+
+            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
+
             done();
         });
     });

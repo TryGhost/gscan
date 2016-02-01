@@ -6,17 +6,14 @@ var should = require('should'),
 describe('Ghost head & foot', function () {
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present(theme example a)', function (done) {
         utils.testCheck(thisCheck, 'example-a').then(function (output) {
-            output.should.be.an.Array().with.lengthOf(2);
+            output.should.be.a.ValidThemeObject();
 
-            output[0].should.be.a.ValidCheckObject();
-            output[0].level.should.eql('warning');
-            output[0].message.should.match(/helper not present/);
-            output[0].ref.should.match(/ghost_head/);
+            output.results.pass.should.be.an.Array().which.is.empty();
 
-            output[1].should.be.a.ValidCheckObject();
-            output[1].level.should.eql('warning');
-            output[1].message.should.match(/helper not present/);
-            output[1].ref.should.match(/ghost_foot/);
+            output.results.fail.should.be.an.Object().with.keys('GS040-GH-REQ', 'GS040-GF-REQ');
+
+            output.results.fail['GS040-GH-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS040-GF-REQ'].should.be.a.ValidFailObject();
 
             done();
         }).catch(done);
@@ -24,17 +21,14 @@ describe('Ghost head & foot', function () {
 
     it('should show warnings for missing ghost head & foot helpers when they are not in any .hbs file (theme example d)', function (done) {
         utils.testCheck(thisCheck, 'example-d').then(function (output) {
-            output.should.be.an.Array().with.lengthOf(2);
+            output.should.be.a.ValidThemeObject();
 
-            output[0].should.be.a.ValidCheckObject();
-            output[0].level.should.eql('warning');
-            output[0].message.should.match(/helper not present/);
-            output[0].ref.should.match(/ghost_head/);
+            output.results.pass.should.be.an.Array().which.is.empty();
 
-            output[1].should.be.a.ValidCheckObject();
-            output[1].level.should.eql('warning');
-            output[1].message.should.match(/helper not present/);
-            output[1].ref.should.match(/ghost_foot/);
+            output.results.fail.should.be.an.Object().with.keys('GS040-GH-REQ', 'GS040-GF-REQ');
+
+            output.results.fail['GS040-GH-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS040-GF-REQ'].should.be.a.ValidFailObject();
 
             done();
         }).catch(done);
@@ -42,7 +36,13 @@ describe('Ghost head & foot', function () {
 
     it('should output nothing when ghost head & foot helpers are present (theme example e)', function (done) {
         utils.testCheck(thisCheck, 'example-e').then(function (output) {
-            output.should.be.empty();
+            output.should.be.a.ValidThemeObject();
+
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
+            output.results.pass.should.containEql('GS040-GH-REQ', 'GS040-GF-REQ');
+
+            output.results.fail.should.be.an.Object().which.is.empty();
+
             done();
         }).catch(done);
     });

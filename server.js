@@ -21,14 +21,13 @@ app.get('/', function (req, res) {
 
 app.get('/example/', function (req, res) {
     pfs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
-        res.render('example', gscan.format.example(theme));
+        res.render('example', gscan.format(theme));
     });
 });
 
 app.post('/', upload.single('theme'), gscan.middleware, function doRender(req, res) {
     scanHbs.handlebars.logger.level = 0;
-    var renderObject = gscan.format(res.theme);
-    res.render('result', renderObject);
+    res.render('result', gscan.format(res.theme));
 });
 
 server = app.listen(2369, function () {
