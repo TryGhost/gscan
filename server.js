@@ -3,13 +3,15 @@ var express    = require('express'),
     multer     = require('multer'),
     gscan      = require('./lib'),
     pfs        = require('./lib/promised-fs'),
+    pkgJson    = require('./package.json'),
     upload     = multer({ dest: 'uploads/' }),
     app        = express(),
     scanHbs    = hbs.create(),
     server;
 
 app.engine('hbs', scanHbs.express4({
-    partialsDir: __dirname + '/tpl/partials'
+    partialsDir: __dirname + '/tpl/partials',
+    templateOptions: {data: {version: pkgJson.version}}
 }));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/tpl');
