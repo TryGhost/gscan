@@ -3,7 +3,9 @@
     <header>
         <h2 class="report-heading">
             <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
-            {{!--Not implemented yet <span class="title">Casper 1.2.7</span>--}}
+            {{#if name}}
+                <span class="title">{{name}} {{version}}</span>
+            {{/if}}
         </h2>
     </header>
 
