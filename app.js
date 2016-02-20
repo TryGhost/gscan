@@ -3,11 +3,16 @@ var express    = require('express'),
     multer     = require('multer'),
     gscan      = require('./lib'),
     pfs        = require('./lib/promised-fs'),
+    server     = require('./lib/server'),
     pkgJson    = require('./package.json'),
+
     upload     = multer({ dest: 'uploads/' }),
     app        = express(),
-    scanHbs    = hbs.create(),
-    server;
+    scanHbs    = hbs.create();
+
+// Configure express
+app.set('x-powered-by', false);
+app.set('query parser', false);
 
 app.engine('hbs', scanHbs.express4({
     partialsDir: __dirname + '/tpl/partials',
@@ -32,9 +37,4 @@ app.post('/', upload.single('theme'), gscan.middleware, function doRender(req, r
     res.render('result', gscan.format(res.theme));
 });
 
-server = app.listen(2369, function () {
-    var host = server.address().address,
-        port = server.address().port;
-
-    console.log('Example app listening at http://%s:%s', host, port);
-});
+server.start(app);

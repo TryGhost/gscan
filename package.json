@@ -24,7 +24,7 @@
   "main": "lib",
   "license": "MIT",
   "scripts": {
-    "start": "node server.js",
+    "start": "node app.js",
     "test": "mocha"
   },
   "bin": {
@@ -41,6 +41,7 @@
     "fs-extra": "0.26.2",
     "lodash": "3.10.1",
     "multer": "1.1.0",
+    "nconf": "0.8.4",
     "node-uuid": "1.4.2",
     "package-json-validator": "0.6.0",
     "require-dir": "0.1.0"
