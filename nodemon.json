@@ -1,5 +1,5 @@
 {
-  "script": "server.js",
+  "exec": "npm start",
   "verbose": true,
   "ignore": ["tmp/*", "uploads/*"]
 }
