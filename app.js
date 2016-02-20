@@ -4,11 +4,13 @@ var express    = require('express'),
     gscan      = require('./lib'),
     pfs        = require('./lib/promised-fs'),
     server     = require('./lib/server'),
+    ghostVer   = require('./lib/ghost-version'),
     pkgJson    = require('./package.json'),
 
     upload     = multer({ dest: 'uploads/' }),
     app        = express(),
     scanHbs    = hbs.create();
+
 
 // Configure express
 app.set('x-powered-by', false);
@@ -20,7 +22,9 @@ app.engine('hbs', scanHbs.express4({
 }));
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/tpl');
+
 app.use(express.static('public'));
+app.use(ghostVer);
 
 app.get('/', function (req, res) {
     res.render('index');

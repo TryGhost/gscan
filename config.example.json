@@ -1,3 +1,4 @@
 {
-  "port": "2369"
+  "port": "2369",
+  "ghostVersionTTL": 3600
 }
