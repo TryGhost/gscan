@@ -1,8 +1,5 @@
 (function ($) {
-    ghost.init({
-        clientId: "ghost-frontend",
-        clientSecret: "5785edad1ffc"
-    });
+
     function timeSince(date) {
 
         var seconds = Math.floor((new Date() - date) / 1000);
@@ -53,11 +50,11 @@
         if ($('.myblogs-latest-news').length && window.ghost) {
             $.get(window.ghost.url.api('posts', {limit: 1, include: 'author'}), function (json) {
                 var item = json.posts[0],
-                    parsed_date = new Date(item.published_at);
-
-                var news_html = '<p><a href="https://dev.ghost.org' + item.url + '">' + item.title + '</a></p>' +
+                    parsed_date = new Date(item.published_at),
+                    image_url = item.author.image.substr(0, 2) === '//' ? item.author.image : '//dev.ghost.org/' + item.author.image,
+                    news_html = '<p><a href="https://dev.ghost.org' + item.url + '">' + item.title + '</a></p>' +
                         '<span class="meta">' +
-                        '<img src="https://dev.ghost.org/' + item.author.image + '" />' +
+                        '<img src="' + image_url + '" />' +
                         '<time title="' + parsed_date + '">' + timeSince(parsed_date) + ' ago</time> by ' + item.author.name + '</span>';
                 $(".myblogs-latest-news").html(news_html);
             });
