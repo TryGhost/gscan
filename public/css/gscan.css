@@ -211,3 +211,11 @@ h1 .version {
 .tags li:last-child:after {
     content: "."
 }
+
+/* Needed to override the application styles */
+button[type="submit"].button-add:disabled,
+button[type="submit"].button-add:disabled:hover {
+    cursor: not-allowed;
+    background: #eeefef;
+    color: #b3b9ba;
+}

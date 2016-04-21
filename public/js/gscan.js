@@ -45,6 +45,11 @@
             return Math.floor(seconds) + " seconds";
     }
     $(document).ready(function ($) {
+        $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
+
+        $(document).on('change', '#theme', function () {
+            $('#theme-submit').prop('disabled', !$(this)[0].files.length);
+        });
 
         /** Latest News **/
         if ($('.myblogs-latest-news').length && window.ghost) {
