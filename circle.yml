@@ -1,6 +1,6 @@
 machine:
   node:
-    version: 0.10.36
+    version: 4.4.7
 test:
   override:
     - grunt coverage
