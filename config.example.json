@@ -1,4 +1,5 @@
 {
+  "alias": "gscan",
   "port": "2369",
   "ghostVersionTTL": 3600
 }

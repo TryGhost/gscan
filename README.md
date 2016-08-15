@@ -17,11 +17,26 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
+## Lib usage
+
+```
+var gscan = require('gscan');
+
+gscan.checkZip({
+    path: 'path-to-zip',
+    name: 'my-theme'
+}).then(function (result) {
+    console.log(result);
+}).catch(function(err) {
+    console.log(err);
+});
+```
+
 ## Web usage
 
 You can run a web interface for uploading a zip file:
 
-`node server.js`
+`node app/index.js` or `nodemon` or `npm start`
 
 Then navigate to `http://localhost:2369`, and use the form to upload your file
 
