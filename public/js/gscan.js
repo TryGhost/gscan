@@ -45,7 +45,9 @@
             return Math.floor(seconds) + " seconds";
     }
     $(document).ready(function ($) {
-        $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
+        if ($('#theme')[0]) {
+            $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
+        }
 
         $(document).on('change', '#theme', function () {
             $('#theme-submit').prop('disabled', !$(this)[0].files.length);
