@@ -10,7 +10,7 @@ module.exports = function(grunt) {
                 options: {
                     mask: '*test.js',
                     coverageFolder: 'test/coverage',
-                    excludes: ['public', 'uploads', 'tmp', 'tpl']
+                    excludes: ['app', 'uploads', 'tmp']
                 }
             }
         },

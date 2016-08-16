@@ -1,6 +1,6 @@
-var debug = require('debug')('gscan:ghost-version'),
+var debug = require('ghost-ignition').debug('ghost-version'),
     exec = require('child_process').exec,
-    config = require('./config'),
+    config = require('ghost-ignition').config,
     fetchGhostVersion,
     middleware,
     ghostVersion,
@@ -33,7 +33,7 @@ fetchGhostVersion = function fetchGhostVersion(cb) {
     cb(null, ghostVersion);
 };
 
-middleware = function middleware (req, res, next) {
+middleware = function middleware(req, res, next) {
     fetchGhostVersion(function (err, version) {
         if (err) {
             // No need to prevent rendering
