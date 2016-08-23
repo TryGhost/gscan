@@ -19,7 +19,7 @@ To run a local zip file through the checks:
 
 ## Lib usage
 
-```
+```js
 var gscan = require('gscan');
 
 gscan.checkZip({
