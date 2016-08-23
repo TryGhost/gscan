@@ -46,4 +46,26 @@ describe('package.json', function () {
             done();
         });
     });
+
+    it('should output warning for invalid package.json version (theme example g)', function (done) {
+        utils.testCheck(thisCheck, 'example-g').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.an.Object().which.is.empty();
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
+
+            done();
+        });
+    });
+
+    it('if version is invalid and there are more errors, we expect a fail (theme example h)', function (done) {
+        utils.testCheck(thisCheck, 'example-h').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            Object.keys(output.results.fail).length.should.eql(1);
+            output.results.fail.should.be.an.Object().with.keys('GS010-PJ-VAL');
+
+            done();
+        });
+    });
 });
