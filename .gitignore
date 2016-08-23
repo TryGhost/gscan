@@ -28,6 +28,7 @@ node_modules
 
 tmp/**
 uploads/**
+app/uploads/**
 
 # editor
 .idea
