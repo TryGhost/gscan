@@ -1,11 +1,12 @@
 var express = require('express'),
+    debug = require('ghost-ignition').debug('app'),
     hbs = require('express-hbs'),
     multer = require('multer'),
     ignition = require('ghost-ignition'),
-    gscan = require('./../lib'),
-    pfs = require('./../lib/promised-fs'),
+    gscan = require('../lib'),
+    pfs = require('../lib/promised-fs'),
     ghostVer = require('./ghost-version'),
-    pkgJson = require('./../package.json'),
+    pkgJson = require('../package.json'),
     upload = multer({dest: __dirname + '/uploads/'}),
     app = express(),
     scanHbs = hbs.create();
@@ -17,6 +18,8 @@ app.set('query parser', false);
 
 app.engine('hbs', scanHbs.express4({
     partialsDir: __dirname + '/tpl/partials',
+    layoutsDir: __dirname + '/tpl/layouts',
+    defaultLayout: __dirname + '/tpl/layouts/default',
     templateOptions: {data: {version: pkgJson.version}}
 }));
 app.set('view engine', 'hbs');
@@ -42,18 +45,33 @@ app.post('/',
             path: req.file.path, 
             name: req.file.originalname
         };
+        debug('Uploaded: ' + zip.name + ' to ' + zip.path);
         
         gscan.checkZip(zip).then(function processResult(theme) {
-            pfs.removeDir(req.file.path).then(function () {
-                res.theme = theme;
-                next();
-            });
+            debug('Checked: ' + zip.name);
+            res.theme = theme;
+
+            debug('attempting to remove: ' + req.file.path);
+            pfs.removeDir(req.file.path)
+                .finally(function () {
+                    debug('Calling next');
+                    return next();
+                });
         });
     },
     function doRender(req, res) {
+        debug('Formatting result');
+        var result = gscan.format(res.theme);
+        debug('Rendering result');
         scanHbs.handlebars.logger.level = 0;
-        res.render('result', gscan.format(res.theme));
+        res.render('result', result);
     }
 );
+
+app.use(function (err, req, res, next) {
+    console.error(err.message);
+    console.error(err.stack);
+    res.render('error', {message: err.message, stack: err.stack});
+});
 
 ignition.server.start(app);

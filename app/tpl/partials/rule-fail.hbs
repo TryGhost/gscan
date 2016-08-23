@@ -8,11 +8,12 @@
         {{/if}}
 
         {{#if failures}}
-            <ul>
+            <dl>
                 {{#each failures}}
-                    <li>{{ref}}</li>
+                    <dt>{{ref}}</dt>
+                    {{#if message}}<dd>{{message}}</dd>{{/if}}
                 {{/each}}
-            </ul>
+            </dl>
         {{/if}}
 
         {{#if details}}
