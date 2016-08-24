@@ -36,34 +36,50 @@ describe('package.json', function () {
         });
     });
 
-    it('should output warnings for missing author (theme example c)', function (done) {
+    it('should output warnings ONLY for missing author (theme example c)', function (done) {
         utils.testCheck(thisCheck, 'example-c').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
+
             output.results.pass.should.be.an.Array().with.lengthOf(2);
+            output.results.pass.should.containEql('GS010-PJ-REQ');
+            output.results.pass.should.containEql('GS010-PJ-VAL');
 
             done();
         });
     });
 
-    it('should output warning for invalid package.json version (theme example g)', function (done) {
+    it('should output warning-level error for invalid version (theme example g)', function (done) {
         utils.testCheck(thisCheck, 'example-g').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().which.is.empty();
-            output.results.pass.should.be.an.Array().with.lengthOf(2);
+            output.results.fail.should.be.an.Object().with.keys('GS010-PJ-VAL');
+            output.results.fail['GS010-PJ-VAL'].should.be.a.ValidFailObject();
+            output.results.fail['GS010-PJ-VAL'].failures.should.be.an.Array().with.lengthOf(1);
+            output.results.fail['GS010-PJ-VAL'].failures[0].should.have.keys('ref', 'message');
+
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS010-PJ-REQ');
+
 
             done();
         });
     });
 
-    it('if version is invalid and there are more errors, we expect a fail (theme example h)', function (done) {
+    it('should output warning-level errors when there are multiple errors (theme example h)', function (done) {
         utils.testCheck(thisCheck, 'example-h').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            Object.keys(output.results.fail).length.should.eql(1);
             output.results.fail.should.be.an.Object().with.keys('GS010-PJ-VAL');
+            output.results.fail['GS010-PJ-VAL'].should.be.a.ValidFailObject();
+            output.results.fail['GS010-PJ-VAL'].failures.should.be.an.Array().with.lengthOf(2);
+            output.results.fail['GS010-PJ-VAL'].failures[0].should.have.keys('ref', 'message');
+            output.results.fail['GS010-PJ-VAL'].failures[1].should.have.keys('ref', 'message');
+
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS010-PJ-REQ');
+
 
             done();
         });
