@@ -42,7 +42,7 @@
     "glob": "7.0.5",
     "lodash": "3.10.1",
     "multer": "1.1.0",
-    "node-uuid": "1.4.2",
+    "node-uuid": "1.4.7",
     "package-json-validator": "0.6.0",
     "require-dir": "0.1.0"
   },
