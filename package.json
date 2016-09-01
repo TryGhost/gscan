@@ -44,7 +44,7 @@
     "multer": "1.2.0",
     "node-uuid": "1.4.7",
     "package-json-validator": "0.6.0",
-    "require-dir": "0.1.0"
+    "require-dir": "0.3.0"
   },
   "devDependencies": {
     "grunt": "0.4.5",
