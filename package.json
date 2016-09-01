@@ -54,8 +54,10 @@
     "grunt-shipit": "1.0.0",
     "istanbul": "0.4.1",
     "mocha": "2.4.5",
+    "rewire": "2.5.2",
     "shipit-deploy": "2.1.3",
-    "should": "7.1.0"
+    "should": "7.1.0",
+    "sinon": "1.17.5"
   },
   "files": [
     "lib",
