@@ -31,7 +31,7 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "bluebird": "3.0.6",
+    "bluebird": "3.4.6",
     "chalk": "1.1.1",
     "commander": "2.9.0",
     "express": "4.14.0",
