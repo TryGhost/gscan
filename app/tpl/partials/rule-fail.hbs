@@ -1,5 +1,5 @@
 <article class="rule fail">
-    <h4>{{{rule}}}</h4>
+    <p>{{{rule}}}</p>
     {{> toggle}}
 
     <div class="details hide">
@@ -8,12 +8,11 @@
         {{/if}}
 
         {{#if failures}}
-            <dl>
+            <ul>
                 {{#each failures}}
-                    <dt>{{ref}}</dt>
-                    {{#if message}}<dd>{{message}}</dd>{{/if}}
+                    <li><strong>{{ref}}:</strong> {{message}}</li>
                 {{/each}}
-            </dl>
+            </ul>
         {{/if}}
 
         {{#if details}}
