@@ -2,7 +2,7 @@ var express = require('express'),
     debug = require('ghost-ignition').debug('app'),
     hbs = require('express-hbs'),
     multer = require('multer'),
-    ignition = require('ghost-ignition'),
+    server = require('ghost-ignition').server,
     gscan = require('../lib'),
     pfs = require('../lib/promised-fs'),
     ghostVer = require('./ghost-version'),
@@ -74,4 +74,4 @@ app.use(function (err, req, res, next) {
     res.render('error', {message: err.message, stack: err.stack});
 });
 
-ignition.server.start(app);
+server.start(app);
