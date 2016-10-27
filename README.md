@@ -36,7 +36,7 @@ gscan.checkZip({
 
 You can run a web interface for uploading a zip file:
 
-`node app/index.js` or `nodemon` or `npm start`
+`node app/index.js` or `nodemon` or `npm start` or `MODE=long npm start`
 
 Then navigate to `http://localhost:2369`, and use the form to upload your file
 
