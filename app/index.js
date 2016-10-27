@@ -2,9 +2,11 @@ var express = require('express'),
     debug = require('ghost-ignition').debug('app'),
     hbs = require('express-hbs'),
     multer = require('multer'),
-    ignition = require('ghost-ignition'),
+    server = require('ghost-ignition').server,
+    errors = require('ghost-ignition').errors,
     gscan = require('../lib'),
     pfs = require('../lib/promised-fs'),
+    logRequest = require('./middlewares/log-request'),
     ghostVer = require('./ghost-version'),
     pkgJson = require('../package.json'),
     upload = multer({dest: __dirname + '/uploads/'}),
@@ -22,9 +24,11 @@ app.engine('hbs', scanHbs.express4({
     defaultLayout: __dirname + '/tpl/layouts/default',
     templateOptions: {data: {version: pkgJson.version}}
 }));
+
 app.set('view engine', 'hbs');
 app.set('views', __dirname + '/tpl');
 
+app.use(logRequest);
 app.use(express.static(__dirname + '/public'));
 app.use(ghostVer);
 
@@ -68,10 +72,13 @@ app.post('/',
     }
 );
 
+app.use(function (req, res, next) {
+    next(new errors.NotFoundError({message: 'Page not found'}));
+});
+
 app.use(function (err, req, res, next) {
-    console.error(err.message);
-    console.error(err.stack);
+    req.err = err;
     res.render('error', {message: err.message, stack: err.stack});
 });
 
-ignition.server.start(app);
+server.start(app);
