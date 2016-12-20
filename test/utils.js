@@ -1,7 +1,7 @@
 var path          = require('path'),
     should        = require('should'),
     readTheme     = require('../lib/read-theme'),
-    testThemePath = 'test/fixtures/themes/',
+    testThemePath = 'test/fixtures/themes',
     getThemePath,
     testCheck;
 
@@ -56,7 +56,7 @@ testCheck = function testCheck(checkLib, themeId) {
     var themePath = getThemePath(themeId);
 
     return readTheme(themePath).then(function runCheck(theme) {
-        return checkLib.call(this, theme);
+        return checkLib.call(this, theme, themePath);
     });
 };
 
