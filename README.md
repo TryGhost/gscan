@@ -54,3 +54,7 @@ Then navigate to `http://localhost:2369`, and use the form to upload your file
 - Detailed advice for each check/result
 - Compatibility report
 - Feature listing
+
+# Copyright & License
+
+Copyright (c) 2014-2017 Ghost Foundation - Released under the [MIT license](LICENSE).
