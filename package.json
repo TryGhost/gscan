@@ -38,7 +38,7 @@
     "express-hbs": "1.0.3",
     "extract-zip-fork": "1.5.1",
     "fs-extra": "0.26.2",
-    "ghost-ignition": "1.0.0",
+    "ghost-ignition": "^2.8.7",
     "glob": "7.0.5",
     "lodash": "3.10.1",
     "multer": "1.1.0",

@@ -1,6 +1,6 @@
 var debug = require('ghost-ignition').debug('ghost-version'),
     exec = require('child_process').exec,
-    config = require('ghost-ignition').config,
+    config = require('ghost-ignition').config(),
     fetchGhostVersion,
     middleware,
     ghostVersion,

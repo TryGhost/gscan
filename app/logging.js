@@ -1,4 +1,4 @@
-var config = require('ghost-ignition').config;
+var config = require('ghost-ignition').config();
 
 // see defaults in GhostLogger
 var logging = require('ghost-ignition').logging({
