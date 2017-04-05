@@ -1,9 +1,11 @@
 /*globals describe, it */
 var should    = require('should'),
     sinon     = require('sinon'),
+    path      = require('path'),
     rewire    = require('rewire'),
     _         = require('lodash'),
     pfs       = require('../lib/promised-fs'),
+    checkZip  = require('../lib').checkZip,
     themePath = require('./utils').themePath,
     readZip   = require('../lib/read-zip'),
     readTheme = rewire('../lib/read-theme'),
@@ -114,6 +116,23 @@ describe('Zip file handler can read zip files', function () {
             zip.origName.should.eql('not-a-theme');
             done();
         }).catch(done);
+    });
+});
+
+describe('check zip', function () {
+    describe('ensure ignored assets are getting ignored', function () {
+        it('default', function () {
+            return checkZip(themePath('example-l.zip'), {keepExtractedDir: true})
+                .then(function (theme) {
+                    theme.files.length.should.eql(1);
+                    theme.files[0].file.should.match(/default\.hbs/);
+
+                    return pfs.readDir(path.join(theme.path, 'example-l', 'assets'));
+                })
+                .then(function (assetFiles) {
+                    assetFiles.should.eql(['default.hbs']);
+                });
+        });
     });
 });
 
