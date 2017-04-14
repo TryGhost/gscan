@@ -6,8 +6,11 @@
         </header>
         <section class="gh-gscan-uploader">
             <form action="/" method="post" enctype="multipart/form-data" class="clearfix">
-                <input type="file" name="theme" id="theme" />
-                <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Upload</span></button>
+                <label class="gh-error-message" for="theme">File type needs to be ZIP (.zip extension).</label>
+                <br/>
+                <input type="file" accept="application/zip"
+ name="theme" id="theme" />
+                <button class="btn gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Upload</span></button>
             </form>
         </section>
 

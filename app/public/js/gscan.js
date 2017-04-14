@@ -46,11 +46,23 @@
     }
     $(document).ready(function ($) {
         if ($('#theme')[0]) {
-            $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
+            $('#theme')
+                .siblings('label')
+                .attr('for', $(this).attr('id'))
+                .toggle(false);
+            $('#theme-submit').prop('disabled', true);
         }
 
         $(document).on('change', '#theme', function () {
-            $('#theme-submit').prop('disabled', !$(this)[0].files.length);
+            var files = $(this)[0].files;
+            var hasFiles = files.length;
+            var isZip = hasFiles && files[0].name.split('.').pop() === 'zip';
+
+            $(this)
+                .siblings('label')
+                .attr('for', $(this).attr('id'))
+                .toggle(!isZip);
+            $('#theme-submit').prop('disabled', !isZip);
         });
 
         /** Latest News **/
