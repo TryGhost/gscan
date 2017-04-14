@@ -133,6 +133,19 @@ describe('check zip', function () {
                     assetFiles.should.eql(['default.hbs']);
                 });
         });
+
+        it('Don\'t remove files if theme not in tmp directory', function () {
+            return checker(themePath('example-l'))
+                .then(function (theme) {
+                    theme.files.length.should.eql(1);
+                    theme.files[0].file.should.match(/default\.hbs/);
+
+                    return pfs.readDir(path.join(theme.path, 'assets'));
+                })
+                .then(function (assetFiles) {
+                    assetFiles.should.eql(['Thumbs.db', 'default.hbs']);
+                });
+        });
     });
 });
 
@@ -192,7 +205,7 @@ describe('Read Hbs Files', function () {
         });
     });
 
-   it('can read partials with windows paths', function (done) {
+    it('can read partials with windows paths', function (done) {
        // This matches Example I, but on Windows
        var exampleI = [
            { file: 'index.hbs', ext: '.hbs' },
