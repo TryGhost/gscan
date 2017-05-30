@@ -5,8 +5,8 @@ var should = require('should'),
     thisCheck = require('../lib/checks/020-theme-structure');
 
 describe('Theme structure', function () {
-    it('should fail all rules if no files present (theme example a)', function (done) {
-        utils.testCheck(thisCheck, 'example-a').then(function (output) {
+    it('should fail all rules if no files present', function (done) {
+        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             // Should not pass any rules
@@ -21,8 +21,8 @@ describe('Theme structure', function () {
         });
     });
 
-    it('should pass and fail when some rules pass and others fail (theme example b)', function (done) {
-        utils.testCheck(thisCheck, 'example-b').then(function (output) {
+    it('should pass and fail when some rules pass and others fail', function (done) {
+        utils.testCheck(thisCheck, '020-structure/mixed').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             // Should pass the index rule
@@ -38,8 +38,8 @@ describe('Theme structure', function () {
         });
     });
 
-    it('should still fail with just a recommendation (theme example c)', function (done) {
-        utils.testCheck(thisCheck, 'example-c').then(function (output) {
+    it('should still fail with just a recommendation', function (done) {
+        utils.testCheck(thisCheck, '020-structure/recommendation').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             // Should not pass any rules
