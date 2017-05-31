@@ -22,7 +22,10 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-C0H',
                 'GS001-DEPR-BC',
                 'GS001-DEPR-AC',
-                'GS001-DEPR-TIMG'
+                'GS001-DEPR-TIMG',
+                'GS001-DEPR-CSS-AT',
+                'GS001-DEPR-CSS-PA',
+                'GS001-DEPR-CSS-PATS'
             );
 
             // pageUrl
@@ -65,6 +68,18 @@ describe('001 Deprecations', function () {
             output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
 
+            // css class .page
+            output.results.fail['GS001-DEPR-CSS-PA'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CSS-PA'].failures.length.should.eql(2);
+
+            // css class .page-template-{slug}
+            output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+
+            // css class .achive-template
+            output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+
             output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
@@ -76,7 +91,7 @@ describe('001 Deprecations', function () {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
-            output.results.pass.should.be.an.Array().with.lengthOf(10);
+            output.results.pass.should.be.an.Array().with.lengthOf(13);
 
             done();
         }).catch(done);
@@ -98,7 +113,7 @@ describe('001 Deprecations', function () {
 
             output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(2);
-            output.results.pass.should.be.an.Array().with.lengthOf(3);
+            output.results.pass.should.be.an.Array().with.lengthOf(6);
 
             done();
         }).catch(done);
