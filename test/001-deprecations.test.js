@@ -27,6 +27,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -50,6 +51,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -73,6 +75,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -96,6 +99,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -119,6 +123,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -142,6 +147,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -165,6 +171,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -188,6 +195,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -211,6 +219,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
@@ -234,6 +243,7 @@ describe('Deprecations', function () {
             );
 
             output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
+            output.results.pass.should.be.an.Object().which.is.empty();
 
             done();
         }).catch(done);
