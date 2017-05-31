@@ -251,6 +251,7 @@ describe('Checker', function () {
                 'GS010-PJ-VERSION-REQ',
                 'GS010-PJ-AUT-EM-VAL',
                 'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP',
                 'GS020-INDEX-REQ',
                 'GS020-POST-REQ',
                 'GS020-DEF-REC',
