@@ -238,7 +238,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(3);
+            theme.results.pass.should.be.an.Array().with.lengthOf(16);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(

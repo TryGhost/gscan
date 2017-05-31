@@ -12,9 +12,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
 
@@ -25,9 +35,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
 
@@ -38,9 +58,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
 
@@ -51,9 +81,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
 
@@ -64,9 +104,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
 
@@ -77,9 +127,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
 
@@ -90,9 +150,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
 
@@ -103,9 +173,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
 
@@ -116,9 +196,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
 
@@ -129,9 +219,19 @@ describe('Deprecations', function () {
         utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
-                                                                'GS001-DEPR-PIMG', 'GS001-DEPR-PPP', 'GS001-DEPR-C0H', 'GS001-DEPR-PIMG',
-                                                                'GS001-DEPR-BC', 'GS001-DEPR-AC', 'GS001-DEPR-TIMG');
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
 
             output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
 
@@ -143,7 +243,7 @@ describe('Deprecations', function () {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
-            output.results.pass.should.be.an.Array().with.lengthOf(40);
+            output.results.pass.should.be.an.Array().with.lengthOf(10);
 
             done();
         }).catch(done);
