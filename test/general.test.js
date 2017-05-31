@@ -150,7 +150,7 @@ describe('check zip', function () {
 });
 
 describe('Read theme', function () {
-    it('returns correct result for empty theme', function (done) {
+    it('returns correct result for is-empty', function (done) {
         readTheme(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
@@ -229,7 +229,7 @@ describe('Read Hbs Files', function () {
 });
 
 describe('Checker', function () {
-    it('returns a valid theme when running all checks', function (done) {
+    it('returns a valid theme when running all checks for is-empty', function (done) {
         checker(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
