@@ -4,6 +4,16 @@ var should = require('should'),
     thisCheck = require('../lib/checks/010-package-json');
 
 describe('010: package.json', function () {
+    it('should pass if package.json error detection is disabled', function (done) {
+        utils.testCheck(thisCheck, 'is-empty', {detectPackageJSONerrors: false}).then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.results.pass.should.eql([]);
+            theme.results.fail.should.be.an.Object().which.is.empty();
+            done();
+        });
+    });
+
     it('should output error for missing package.json', function (done) {
         utils.testCheck(thisCheck, 'is-empty').then(function (output) {
             output.should.be.a.ValidThemeObject();
@@ -76,7 +86,7 @@ describe('010: package.json', function () {
             output.results.fail['GS010-PJ-PARSE'].should.be.a.ValidFailObject();
             output.results.fail['GS010-PJ-PARSE'].failures.length.should.eql(1);
             output.results.fail['GS010-PJ-PARSE'].failures[0].ref.should.eql('package.json');
-            output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.eql('Unexpected token n in JSON at position 4');
+            output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.containEql('Unexpected token');
 
             done();
         });
