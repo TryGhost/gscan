@@ -8,8 +8,8 @@ var should = require('should'),
     format = require('../lib/format');
 
 describe('Deprecations', function () {
-    it('should error if {{pageUrl}} helper is used instead of {{page_url}}(theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{pageUrl}} helper is used instead of {{page_url}}', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -21,8 +21,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{meta_description}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{meta_description}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -34,8 +34,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{image}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{image}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -47,8 +47,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{author.image}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{author.image}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -60,8 +60,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{post.image}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{post.image}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -73,8 +73,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{@blog.cover}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{@blog.cover}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -86,8 +86,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{author.cover}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{author.cover}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -99,8 +99,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{tag.image}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{tag.image}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -112,8 +112,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{@blog.posts_per_page}} helper is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{@blog.posts_per_page}} helper is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -125,8 +125,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('should error if {{content word="0"}} hack is used (theme example m)', function (done) {
-        utils.testCheck(thisCheck, 'example-m').then(function (output) {
+    it('should error if {{content word="0"}} hack is used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS001-DEPR-PURL', 'GS001-DEPR-MD', 'GS001-DEPR-IMG', 'GS001-DEPR-AIMG',
@@ -138,8 +138,8 @@ describe('Deprecations', function () {
             done();
         }).catch(done);
     });
-    it('[SUCCESS] should show no error if no deprecated helpers used (theme example n)', function (done) {
-        utils.testCheck(thisCheck, 'example-n').then(function (output) {
+    it('[SUCCESS] should show no error if no deprecated helpers used', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/valid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();

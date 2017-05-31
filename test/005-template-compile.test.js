@@ -5,7 +5,7 @@ var should = require('should'),
 
 describe('Template compile', function () {
     it('should output empty array for a theme with no templates', function (done) {
-        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+        utils.testCheck(thisCheck, 'example-a').then(function (output) {
             output.should.be.a.ValidThemeObject();
             output.results.fail.should.be.an.Object().which.is.empty();
 
