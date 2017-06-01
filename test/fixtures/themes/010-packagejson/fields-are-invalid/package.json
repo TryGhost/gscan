@@ -1,0 +1,10 @@
+{
+  "name": "ATheme_test",
+  "version": "0.1",
+  "author": {
+    "email": "something"
+  },
+  "config": {
+    "posts_per_page": "something"
+  }
+}

@@ -4,8 +4,8 @@ var should = require('should'),
     thisCheck = require('../lib/checks/030-assets');
 
 describe('Assets', function () {
-    it('should show a warning for missing asset helper when an asset is detected (theme example e)', function (done) {
-        utils.testCheck(thisCheck, 'example-e').then(function (output) {
+    it('should show a warning for missing asset helper when an asset is detected', function (done) {
+        utils.testCheck(thisCheck, '030-assets/missing').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(1);
@@ -22,8 +22,8 @@ describe('Assets', function () {
         }).catch(done);
     });
 
-    it('should pass when asset helper is present (theme example f)', function (done) {
-        utils.testCheck(thisCheck, 'example-f').then(function (output) {
+    it('should pass when asset helper is present', function (done) {
+        utils.testCheck(thisCheck, '030-assets/valid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
@@ -37,7 +37,7 @@ describe('Assets', function () {
     });
 
     it('should show error when symlink is present', function (done) {
-        utils.testCheck(thisCheck, 'example-j').then(function (output) {
+        utils.testCheck(thisCheck, '030-assets/symlink').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(1);

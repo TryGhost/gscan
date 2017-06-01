@@ -1,15 +1,15 @@
 /*globals describe, it */
-var should    = require('should'),
-    sinon     = require('sinon'),
-    path      = require('path'),
-    rewire    = require('rewire'),
-    _         = require('lodash'),
-    pfs       = require('../lib/promised-fs'),
-    checkZip  = require('../lib').checkZip,
+var should = require('should'),
+    sinon = require('sinon'),
+    path = require('path'),
+    rewire = require('rewire'),
+    _ = require('lodash'),
+    pfs = require('../lib/promised-fs'),
+    checkZip = require('../lib').checkZip,
     themePath = require('./utils').themePath,
-    readZip   = require('../lib/read-zip'),
+    readZip = require('../lib/read-zip'),
     readTheme = rewire('../lib/read-theme'),
-    checker   = require('../lib/checker'),
+    checker = require('../lib/checker'),
 
     sandbox = sinon.sandbox.create();
 
@@ -122,12 +122,12 @@ describe('Zip file handler can read zip files', function () {
 describe('check zip', function () {
     describe('ensure ignored assets are getting ignored', function () {
         it('default', function () {
-            return checkZip(themePath('example-l.zip'), {keepExtractedDir: true})
+            return checkZip(themePath('030-assets/ignored.zip'), {keepExtractedDir: true})
                 .then(function (theme) {
                     theme.files.length.should.eql(1);
                     theme.files[0].file.should.match(/default\.hbs/);
 
-                    return pfs.readDir(path.join(theme.path, 'example-l', 'assets'));
+                    return pfs.readDir(path.join(theme.path, 'ignored', 'assets'));
                 })
                 .then(function (assetFiles) {
                     assetFiles.should.eql(['default.hbs']);
@@ -135,7 +135,7 @@ describe('check zip', function () {
         });
 
         it('Don\'t remove files if theme not in tmp directory', function () {
-            return checker(themePath('example-l'))
+            return checker(themePath('030-assets/ignored'))
                 .then(function (theme) {
                     theme.files.length.should.eql(1);
                     theme.files[0].file.should.match(/default\.hbs/);
@@ -150,8 +150,8 @@ describe('check zip', function () {
 });
 
 describe('Read theme', function () {
-    it('returns correct result for example-a', function (done) {
-        readTheme(themePath('example-a')).then(function (theme) {
+    it('returns correct result for empty theme', function (done) {
+        readTheme(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -162,8 +162,8 @@ describe('Read theme', function () {
         });
     });
 
-    it('Can read partials (example-i)', function (done) {
-        readTheme(themePath('example-i')).then(function (theme) {
+    it('Can read partials', function (done) {
+        readTheme(themePath('partials')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.be.an.Array().with.lengthOf(6);
@@ -185,12 +185,12 @@ describe('Read Hbs Files', function () {
     it('can read partials with POSIX paths', function (done) {
         // This roughly matches Example I
         var exampleI = [
-            { file: 'index.hbs', ext: '.hbs' },
-            { file: 'package.json', ext: '.json' },
-            { file: 'partialsbroke.hbs', ext: '.hbs' },
-            { file: 'partials/mypartial.hbs', ext: '.hbs' },
-            { file: 'partials/subfolder/test.hbs', ext: '.hbs' },
-            { file: 'post.hbs', ext: '.hbs' }
+            {file: 'index.hbs', ext: '.hbs'},
+            {file: 'package.json', ext: '.json'},
+            {file: 'partialsbroke.hbs', ext: '.hbs'},
+            {file: 'partials/mypartial.hbs', ext: '.hbs'},
+            {file: 'partials/subfolder/test.hbs', ext: '.hbs'},
+            {file: 'post.hbs', ext: '.hbs'}
         ];
 
         sandbox.stub(pfs, 'readFile').returns(Promise.resolve(''));
@@ -206,31 +206,31 @@ describe('Read Hbs Files', function () {
     });
 
     it('can read partials with windows paths', function (done) {
-       // This matches Example I, but on Windows
-       var exampleI = [
-           { file: 'index.hbs', ext: '.hbs' },
-           { file: 'package.json', ext: '.json' },
-           { file: 'partialsbroke.hbs', ext: '.hbs' },
-           { file: 'partials\\mypartial.hbs', ext: '.hbs' },
-           { file: 'partials\\subfolder\\test.hbs', ext: '.hbs' },
-           { file: 'post.hbs', ext: '.hbs' }
-       ];
+        // This matches Example I, but on Windows
+        var exampleI = [
+            {file: 'index.hbs', ext: '.hbs'},
+            {file: 'package.json', ext: '.json'},
+            {file: 'partialsbroke.hbs', ext: '.hbs'},
+            {file: 'partials\\mypartial.hbs', ext: '.hbs'},
+            {file: 'partials\\subfolder\\test.hbs', ext: '.hbs'},
+            {file: 'post.hbs', ext: '.hbs'}
+        ];
 
-       readTheme.__get__('readHbsFiles')({
-               files: exampleI,
-                path: 'fake\\example-i'
-           })
-           .then(function (result) {
-               result.partials.should.be.an.Array().with.lengthOf(2);
-               result.partials.should.eql(['mypartial', 'subfolder\\test']);
-               done();
-           });
-   });
+        readTheme.__get__('readHbsFiles')({
+            files: exampleI,
+            path: 'fake\\example-i'
+        })
+            .then(function (result) {
+                result.partials.should.be.an.Array().with.lengthOf(2);
+                result.partials.should.eql(['mypartial', 'subfolder\\test']);
+                done();
+            });
+    });
 });
 
 describe('Checker', function () {
-    it('returns a valid theme when running all checks for example-a', function (done) {
-        checker(themePath('example-a')).then(function (theme) {
+    it('returns a valid theme when running all checks', function (done) {
+        checker(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -238,12 +238,25 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(4);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS010-PJ-VAL', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            theme.results.pass.should.be.an.Array().with.lengthOf(3);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
-                'GS010-PJ-REQ', 'GS020-INDEX-REQ', 'GS020-POST-REQ',
-                'GS020-DEF-REC', 'GS040-GH-REQ', 'GS040-GF-REQ'
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP',
+                'GS020-INDEX-REQ',
+                'GS020-POST-REQ',
+                'GS020-DEF-REC',
+                'GS040-GH-REQ',
+                'GS040-GF-REQ'
             );
 
             done();
@@ -251,7 +264,7 @@ describe('Checker', function () {
     });
 
     it('should not follow symlinks', function (done) {
-        checker(themePath('example-k')).then(function (theme) {
+        checker(themePath('030-assets/symlink2')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
             theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
             theme.results.fail.should.containEql('GS030-ASSET-SYM');

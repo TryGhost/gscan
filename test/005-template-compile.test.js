@@ -5,7 +5,7 @@ var should = require('should'),
 
 describe('Template compile', function () {
     it('should output empty array for a theme with no templates', function (done) {
-        utils.testCheck(thisCheck, 'example-a').then(function (output) {
+        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
             output.should.be.a.ValidThemeObject();
             output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -17,7 +17,7 @@ describe('Template compile', function () {
     });
 
     it('should output empty array for a theme with valid templates', function (done) {
-        utils.testCheck(thisCheck, 'example-f').then(function (output) {
+        utils.testCheck(thisCheck, '005-compile/valid').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
@@ -30,7 +30,7 @@ describe('Template compile', function () {
     });
 
     it('should output errors for a theme with invalid templates', function (done) {
-        utils.testCheck(thisCheck, 'example-d').then(function (output) {
+        utils.testCheck(thisCheck, '005-compile/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
             output.results.pass.should.be.an.Array().which.is.empty();
 

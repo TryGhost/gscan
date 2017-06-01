@@ -52,11 +52,11 @@ getThemePath = function (themeId) {
     return path.resolve(path.join(testThemePath, themeId));
 };
 
-testCheck = function testCheck(checkLib, themeId) {
+testCheck = function testCheck(checkLib, themeId, options) {
     var themePath = getThemePath(themeId);
 
     return readTheme(themePath).then(function runCheck(theme) {
-        return checkLib.call(this, theme, themePath);
+        return checkLib.call(this, theme, themePath, options);
     });
 };
 
