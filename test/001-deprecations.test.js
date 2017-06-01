@@ -86,6 +86,30 @@ describe('001 Deprecations', function () {
         }).catch(done);
     });
 
+    it('[failure] theme is invalid - disabled css detection', function (done) {
+        utils.testCheck(thisCheck, '001-deprecations/invalid', {detectDeprecatedCSSErrors: false}).then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG'
+            );
+
+            // the css rules
+            output.results.pass.should.be.an.Array().with.lengthOf(3);
+
+            done();
+        }).catch(done);
+    });
+
     it('[success] should show no error if no deprecated helpers used', function (done) {
         utils.testCheck(thisCheck, '001-deprecations/valid').then(function (output) {
             output.should.be.a.ValidThemeObject();
