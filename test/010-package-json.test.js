@@ -5,7 +5,7 @@ var should = require('should'),
 
 describe('010: package.json', function () {
     it('should pass if package.json error detection is disabled', function (done) {
-        utils.testCheck(thisCheck, 'is-empty', {detectPackageJSONerrors: false}).then(function (theme) {
+        utils.testCheck(thisCheck, 'is-empty', {detectPackageJSONErrors: false}).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([]);
