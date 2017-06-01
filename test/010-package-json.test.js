@@ -4,16 +4,6 @@ var should = require('should'),
     thisCheck = require('../lib/checks/010-package-json');
 
 describe('010: package.json', function () {
-    it('should pass if package.json error detection is disabled', function (done) {
-        utils.testCheck(thisCheck, 'is-empty', {detectPackageJSONErrors: false}).then(function (theme) {
-            theme.should.be.a.ValidThemeObject();
-
-            theme.results.pass.should.eql([]);
-            theme.results.fail.should.be.an.Object().which.is.empty();
-            done();
-        });
-    });
-
     it('should output error for missing package.json', function (done) {
         utils.testCheck(thisCheck, 'is-empty').then(function (output) {
             output.should.be.a.ValidThemeObject();
