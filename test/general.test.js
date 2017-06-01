@@ -150,8 +150,8 @@ describe('check zip', function () {
 });
 
 describe('Read theme', function () {
-    it('returns correct result for example-a', function (done) {
-        readTheme(themePath('example-a')).then(function (theme) {
+    it('returns correct result', function (done) {
+        readTheme(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -229,8 +229,8 @@ describe('Read Hbs Files', function () {
 });
 
 describe('Checker', function () {
-    it('returns a valid theme when running all checks for example-a', function (done) {
-        checker(themePath('example-a')).then(function (theme) {
+    it('returns a valid theme when running all checks', function (done) {
+        checker(themePath('is-empty')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
