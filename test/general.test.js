@@ -10,6 +10,7 @@ var should = require('should'),
     readZip = require('../lib/read-zip'),
     readTheme = rewire('../lib/read-theme'),
     checker = require('../lib/checker'),
+    format = require('../lib/format'),
 
     sandbox = sinon.sandbox.create();
 
@@ -182,6 +183,10 @@ describe('Read theme', function () {
 });
 
 describe('Read Hbs Files', function () {
+    after(function () {
+        sandbox.restore();
+    });
+
     it('can read partials with POSIX paths', function (done) {
         // This roughly matches Example I
         var exampleI = [
@@ -268,6 +273,35 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
             theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
             theme.results.fail.should.containEql('GS030-ASSET-SYM');
+
+            done();
+        });
+    });
+});
+
+describe('format', function () {
+    it('assert sorting', function (done) {
+        checker(themePath('005-compile/invalid')).then(function (theme) {
+            theme = format(theme);
+
+            theme.results.error[0].fatal.should.eql(true);
+            theme.results.error[1].fatal.should.eql(false);
+            theme.results.error[8].fatal.should.eql(false);
+
+            done();
+        });
+    });
+
+    it('assert sorting', function (done) {
+        checker(themePath('is-empty')).then(function (theme) {
+            theme = format(theme);
+
+            theme.results.error[0].fatal.should.eql(true);
+            theme.results.error[1].fatal.should.eql(true);
+            theme.results.error[2].fatal.should.eql(false);
+            theme.results.error[8].fatal.should.eql(false);
+            theme.results.error[9].fatal.should.eql(false);
+            theme.results.error[10].fatal.should.eql(false);
 
             done();
         });

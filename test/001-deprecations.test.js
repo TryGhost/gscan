@@ -1,11 +1,9 @@
 /*globals describe, it */
 var should = require('should'),
     path = require('path'),
-    themePath = require('./utils').themePath,
     checker = require('../lib/checker'),
     thisCheck = require('../lib/checks/001-deprecations'),
-    utils = require('./utils'),
-    format = require('../lib/format');
+    utils = require('./utils');
 
 describe('001 Deprecations', function () {
     it('[failure] theme is invalid', function (done) {
