@@ -167,15 +167,21 @@ describe('Read theme', function () {
         readTheme(themePath('partials')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(6);
-            var fileNames = _.map(theme.files, 'file');
+            theme.files.should.be.an.Array().with.lengthOf(7);
 
-            fileNames.should.containEql('index.hbs');
-            fileNames.should.containEql('package.json');
-            fileNames.should.containEql('partialsbroke.hbs');
-            fileNames.should.containEql('partials/mypartial.hbs');
-            fileNames.should.containEql('partials/subfolder/test.hbs');
-            fileNames.should.containEql('post.hbs');
+            var fileNames = _.map(theme.files, function (file) {
+                return _.pick(file, function(value, key) {
+                    return key === 'file' || key === 'ext';
+                });
+            });
+
+            fileNames.should.containEql({ file: 'index.hbs', ext: '.hbs'});
+            fileNames.should.containEql({ file: 'package.json', ext: '.json' });
+            fileNames.should.containEql({ file: 'partialsbroke.hbs', ext: '.hbs'});
+            fileNames.should.containEql({ file: 'partials/mypartial.hbs', ext: '.hbs'});
+            fileNames.should.containEql({ file: 'partials/subfolder/test.hbs', ext: '.hbs'});
+            fileNames.should.containEql({ file: 'post.hbs', ext: '.hbs'});
+            fileNames.should.containEql({ file: 'logo.new.hbs', ext: '.hbs' });
 
             done();
         });
