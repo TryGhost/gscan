@@ -164,7 +164,7 @@ describe('Read theme', function () {
     });
 
     it('Can read partials', function (done) {
-        readTheme(themePath('partials')).then(function (theme) {
+        readTheme(themePath('theme-with-partials')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.be.an.Array().with.lengthOf(7);
