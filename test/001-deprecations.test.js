@@ -16,10 +16,20 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-IMG',
                 'GS001-DEPR-AIMG',
                 'GS001-DEPR-PIMG',
+                'GS001-DEPR-PAIMG',
+                'GS001-DEPR-PAC',
+                'GS001-DEPR-PTIMG',
+
                 'GS001-DEPR-PPP',
                 'GS001-DEPR-C0H',
                 'GS001-DEPR-BC',
+                'GS001-DEPR-CON-BC',
                 'GS001-DEPR-AC',
+                'GS001-DEPR-CON-AC',
+                'GS001-DEPR-CON-AIMG',
+                'GS001-DEPR-CON-PTIMG',
+                'GS001-DEPR-CON-IMG',
+                'GS001-DEPR-CON-TIMG',
                 'GS001-DEPR-TIMG',
                 'GS001-DEPR-CSS-AT',
                 'GS001-DEPR-CSS-PA',
@@ -40,7 +50,7 @@ describe('001 Deprecations', function () {
 
             // {{author.image}}
             output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-            output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(1);
+            output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
 
             // {{post.image}}
             output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
@@ -52,11 +62,31 @@ describe('001 Deprecations', function () {
 
             // {{author.cover}}
             output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-            output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(1);
+            output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+
+            // {{post.author.cover}}
+            output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+
+            // {{post.author.image}}
+            output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
 
             // {{tag.image}}
             output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+
+            // {{posts.tags.[4].image}}
+            output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+
+            // {{#if image}}
+            output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+
+            // {{#if tag.image}}
+            output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
 
             // {{@blog.posts_per_page}}
             output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
@@ -89,7 +119,7 @@ describe('001 Deprecations', function () {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
-            output.results.pass.should.be.an.Array().with.lengthOf(13);
+            output.results.pass.should.be.an.Array().with.lengthOf(22);
 
             done();
         }).catch(done);
@@ -111,7 +141,7 @@ describe('001 Deprecations', function () {
 
             output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(2);
-            output.results.pass.should.be.an.Array().with.lengthOf(6);
+            output.results.pass.should.be.an.Array().with.lengthOf(15);
 
             done();
         }).catch(done);

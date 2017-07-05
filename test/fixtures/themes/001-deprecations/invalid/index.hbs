@@ -1,6 +1,10 @@
 {{post.image}}
-{{@blog.cover}}
+{{#if @blog.cover}}
+    {{@blog.cover}}
+{{/if}}
 
-{{tag.image}}⁠⁠
+{{#if tag.image}}
+    {{tag.image}}
+{{/if}}
 
 {{> mypartial}}
