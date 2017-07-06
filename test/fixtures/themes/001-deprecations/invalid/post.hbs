@@ -6,16 +6,20 @@
 {{#if post.author.cover}}
     {{post.author.cover}}
 {{/if}}
-
+{{!-- flexible capture--}}
+{{pageUrl 'lol'}}
+{{!-- don't match non-helper reg check --}}
+{{pageUrlA}}
 {{#if post.tags.[3].image}}
     {{post.tags.[3].image}}
 {{/if}}
 {{#post}}
     {{meta_description}}
     {{#if image}}
-        {{image}}
+        {{ image }}
     {{/if}}
 
+    {{image}}
     {{#if author.image}}
         {{author.image}}
     {{/if}}
