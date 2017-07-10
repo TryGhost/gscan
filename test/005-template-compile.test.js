@@ -50,4 +50,17 @@ describe('Template compile', function () {
             done();
         }).catch(done);
     });
+
+    it.only('theme with partials and context', function (done) {
+        utils.testCheck(thisCheck, 'theme-with-partials').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.an.Object().which.is.empty();
+
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS005-TPL-ERR');
+
+            done();
+        }).catch(done);
+    });
 });
