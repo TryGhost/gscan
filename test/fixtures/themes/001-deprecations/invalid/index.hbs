@@ -1,6 +1,15 @@
 {{post.image}}
-{{@blog.cover}}
+{{#if @blog.cover}}
+    {{@blog.cover}}
+{{/if}}
 
-{{tag.image}}⁠⁠
+{{#if tag.image}}
+    {{tag.image}}
+{{/if}}
+{{!-- complex multine test--}}
+{{ image
+ absolute="true"
+}}
+
 
 {{> mypartial}}
