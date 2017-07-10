@@ -51,14 +51,12 @@ describe('Template compile', function () {
         }).catch(done);
     });
 
-    it.only('theme with partials and context', function (done) {
+    it('theme with partials and unknown helper', function (done) {
         utils.testCheck(thisCheck, 'theme-with-partials').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().which.is.empty();
-
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
-            output.results.pass.should.containEql('GS005-TPL-ERR');
+            output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+            output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
             done();
         }).catch(done);

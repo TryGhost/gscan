@@ -167,7 +167,7 @@ describe('Read theme', function () {
         readTheme(themePath('theme-with-partials')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(7);
+            theme.files.should.be.an.Array().with.lengthOf(8);
 
             var fileNames = _.map(theme.files, function (file) {
                 return _.pick(file, function(value, key) {
