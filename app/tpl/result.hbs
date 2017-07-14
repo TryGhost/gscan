@@ -1,14 +1,19 @@
-<section class="report">
-    <header>
-        <h2 class="report-heading">
-            <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
-            {{#if name}}
-                <span class="title">{{name}} {{version}}</span>
-            {{/if}}
-        </h2>
-    </header>
+<section class="gh-section report">
+    <div class="inner">
+        <header>
+            <h2 class="report-heading">
+                <div class="result-summary">
+                    <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
+                    {{#if name}}
+                        <span class="title">{{name}} {{version}}</span>
+                    {{/if}}
+                </div>
+                <a href="/" class="gh-btn gh-btn-blue"><span>Start Over</span></a>
+            </h2>
+        </header>
+    </div>
 
-    <div class="report-body">
+    <div class="inner report-body">
         <div class="results report-section">
             {{#if results.error}}
                 <section class="level-group">
@@ -64,7 +69,5 @@
             {{/if}}
         </div>
     </div>
-
-    <aside class="pull-right"><a href="/">Start Over</a></aside>
 
 </section>
