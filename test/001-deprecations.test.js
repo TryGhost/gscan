@@ -31,6 +31,7 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-CON-PTIMG',
                 'GS001-DEPR-CON-TSIMG',
                 'GS001-DEPR-CON-IMG',
+                'GS001-DEPR-CON-COV',
                 'GS001-DEPR-CON-TIMG',
                 'GS001-DEPR-TIMG',
                 'GS001-DEPR-CSS-AT',
@@ -52,7 +53,7 @@ describe('001 Deprecations', function () {
 
             // {{cover}}
             output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-            output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(2);
+            output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
 
             // {{author.image}}
             output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
@@ -93,6 +94,10 @@ describe('001 Deprecations', function () {
             // {{#if image}}
             output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+
+            // {{#if cover}}
+            output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
 
             // {{#if tag.image}}
             output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
@@ -137,7 +142,7 @@ describe('001 Deprecations', function () {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
-            output.results.pass.should.be.an.Array().with.lengthOf(25);
+            output.results.pass.should.be.an.Array().with.lengthOf(26);
 
             done();
         }).catch(done);
@@ -160,7 +165,7 @@ describe('001 Deprecations', function () {
 
             output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(2);
-            output.results.pass.should.be.an.Array().with.lengthOf(17);
+            output.results.pass.should.be.an.Array().with.lengthOf(18);
 
             done();
         }).catch(done);
