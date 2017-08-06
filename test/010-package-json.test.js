@@ -26,7 +26,7 @@ describe('010: package.json', function () {
 
             output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
             done();
-        });
+        }).catch(done);
     });
 
     it('should output error for missing package.json', function (done) {
@@ -51,7 +51,7 @@ describe('010: package.json', function () {
 
             output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
             done();
-        });
+        }).catch(done);
     });
 
     it('should output error for invalid package.json (parsing)', function (done) {
@@ -79,7 +79,7 @@ describe('010: package.json', function () {
             output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.containEql('Unexpected token');
 
             done();
-        });
+        }).catch(done);
     });
 
     it('valid fields', function (done) {
@@ -102,7 +102,7 @@ describe('010: package.json', function () {
 
             theme.results.fail.should.be.an.Object().which.is.empty();
             done();
-        });
+        }).catch(done);
     });
 
     it('invalid fields', function (done) {
@@ -126,7 +126,7 @@ describe('010: package.json', function () {
                 'GS010-PJ-CONF-PPP-INT'
             );
             done();
-        });
+        }).catch(done);
     });
 
     it('missing fields', function (done) {
@@ -150,6 +150,54 @@ describe('010: package.json', function () {
             );
 
             done();
-        });
+        }).catch(done);
+    });
+
+    it('bad config (ppp: -3 > 0)', function (done) {
+        utils.testCheck(thisCheck, '010-packagejson/bad-config').then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.results.pass.should.eql([
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP'
+            ]);
+
+            theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-CONF-PPP-INT'
+            );
+            done();
+        }).catch(done);
+    });
+
+    it('bad config 2 (ppp: 0 > 0)', function (done) {
+        utils.testCheck(thisCheck, '010-packagejson/bad-config-2').then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.results.pass.should.eql([
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP'
+            ]);
+
+            theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-CONF-PPP-INT'
+            );
+            done();
+        }).catch(done);
     });
 });
