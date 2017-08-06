@@ -170,7 +170,7 @@ describe('Read theme', function () {
             theme.files.should.be.an.Array().with.lengthOf(7);
 
             var fileNames = _.map(theme.files, function (file) {
-                return _.pick(file, function(value, key) {
+                return _.pickBy(file, function(value, key) {
                     return key === 'file' || key === 'ext';
                 });
             });
