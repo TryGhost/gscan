@@ -1,0 +1,14 @@
+machine:
+  node:
+    version: 4
+test:
+  override:
+    - grunt coverage
+deployment:
+  release:
+    tag: /^[0-9]+(\.[0-9]+)*/
+    commands:
+      - grunt shipit:prd deploy
+general:
+  artifacts:
+    - "test/coverage"
