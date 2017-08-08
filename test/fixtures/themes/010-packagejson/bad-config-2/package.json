@@ -1,0 +1,10 @@
+{
+  "name": "my-theme",
+  "version": "0.0.1",
+  "author": {
+    "email": "theme@example.org"
+  },
+  "config": {
+    "posts_per_page": 0
+  }
+}
