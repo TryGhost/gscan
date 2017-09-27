@@ -186,6 +186,38 @@ describe('Read theme', function () {
             done();
         });
     });
+
+    it('Can extract custom templates', function (done) {
+        readTheme(themePath('theme-with-custom-templates')).then(function (theme) {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.be.an.Array().with.lengthOf(7);
+            theme.templates.all.length.should.eql(6);
+            theme.templates.custom.length.should.eql(4);
+
+            theme.templates.custom[0].filename.should.eql('custom-My-Post');
+            theme.templates.custom[0].name.should.eql('My Post');
+            theme.templates.custom[0].for.should.eql(['page', 'post']);
+            should.not.exist(theme.templates.custom[0].slug);
+
+            theme.templates.custom[1].filename.should.eql('custom-about');
+            theme.templates.custom[1].name.should.eql('About');
+            theme.templates.custom[1].for.should.eql(['page', 'post']);
+            should.not.exist(theme.templates.custom[1].slug);
+
+            theme.templates.custom[2].filename.should.eql('page-1');
+            theme.templates.custom[2].name.should.eql('1');
+            theme.templates.custom[2].for.should.eql(['page']);
+            theme.templates.custom[2].slug.should.eql('1');
+
+            theme.templates.custom[3].filename.should.eql('post-welcome-ghost');
+            theme.templates.custom[3].name.should.eql('Welcome Ghost');
+            theme.templates.custom[3].for.should.eql(['post']);
+            theme.templates.custom[3].slug.should.eql('welcome-ghost');
+
+            done();
+        });
+    });
 });
 
 describe('Read Hbs Files', function () {
