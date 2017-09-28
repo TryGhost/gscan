@@ -196,6 +196,12 @@ describe('Read theme', function () {
             theme.templates.all.length.should.eql(6);
             theme.templates.custom.length.should.eql(4);
 
+            // ensure we don't change the structure of theme.files
+            theme.files[0].file.should.eql('custom-My-Post.hbs');
+            theme.files[0].ext.should.eql('.hbs');
+            theme.files[0].content.should.eql('content');
+            should.exist(theme.files[0].compiled);
+
             theme.templates.custom[0].filename.should.eql('custom-My-Post');
             theme.templates.custom[0].name.should.eql('My Post');
             theme.templates.custom[0].for.should.eql(['page', 'post']);
