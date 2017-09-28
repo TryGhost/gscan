@@ -191,7 +191,8 @@ describe('Read theme', function () {
         readTheme(themePath('theme-with-custom-templates')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(7);
+            theme.files.should.be.an.Array().with.lengthOf(8);
+            theme.partials.length.should.eql(0);
             theme.templates.all.length.should.eql(6);
             theme.templates.custom.length.should.eql(4);
 
