@@ -1469,10 +1469,6 @@ grunt-legacy-util@~1.0.0:
     underscore.string "~3.2.3"
     which "~1.2.1"
 
-grunt-mocha-istanbul@^5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/grunt-mocha-istanbul/-/grunt-mocha-istanbul-5.0.2.tgz#23929a8b3f45a66c5fab1f6146e62b58418b7882"
-
 grunt-shipit@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/grunt-shipit/-/grunt-shipit-1.0.1.tgz#f2abccd815d884c5c4a34a0a74c97e680ff6e9c5"

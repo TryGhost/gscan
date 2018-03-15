@@ -27,6 +27,7 @@
     "start": "node app/index.js",
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
     "test": "NODE_ENV=testing mocha -- $(find test -name '*.test.js')",
+    "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
     "ship": "np",
     "deploy": "shipit"
   },
@@ -54,7 +55,6 @@
     "@tryghost/deploy": "0.0.1",
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
-    "grunt-mocha-istanbul": "^5.0.2",
     "grunt-shipit": "^1.0.1",
     "istanbul": "^0.4.1",
     "mocha": "^2.4.5",

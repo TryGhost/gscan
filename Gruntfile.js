@@ -1,19 +1,6 @@
 module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
-        // ### grunt-mocha-istanbul
-        // Configuration for the mocha test coverage generator
-        // `grunt coverage`.
-        mocha_istanbul: {
-            coverage: {
-                src: ['test'],
-                options: {
-                    mask: '*test.js',
-                    coverageFolder: 'test/coverage',
-                    excludes: ['app', 'uploads', 'tmp']
-                }
-            }
-        },
         shipit: {
             options: {
                 workspace: '.',
@@ -27,7 +14,6 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-mocha-istanbul');
     grunt.loadNpmTasks('grunt-shipit');
     grunt.loadNpmTasks('shipit-deploy');
 
@@ -83,8 +69,4 @@ module.exports = function(grunt) {
         'deploy:publish',
         'deploy:clean'
     ]);
-
-    grunt.registerTask('coverage', 'Generate unit and integration (mocha) tests coverage report',
-        ['mocha_istanbul:coverage']
-    );
 };
