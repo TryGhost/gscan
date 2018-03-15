@@ -35,7 +35,5 @@ function init(shipit) {
             }]
         }
     });
-
-    shipit.task('default', ['deploy']);
 }
 module.exports = init;
