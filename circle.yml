@@ -3,12 +3,16 @@ machine:
     version: 4
 test:
   override:
-    - grunt coverage
+    - yarn coverage
 deployment:
-  release:
+  staging:
+    branch: master
+    commands:
+      - yarn deploy staging
+  production:
     tag: /^[0-9]+(\.[0-9]+)*/
     commands:
-      - grunt shipit:prd deploy
+      - yarn deploy production
 general:
   artifacts:
     - "test/coverage"
