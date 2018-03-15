@@ -24,19 +24,12 @@ module.exports = function(grunt) {
             prd: {
                 servers: ['app@gscan.ghost.org']
             }
-        },
-        release: {
-            github: {
-                repo: 'TryGhost/gscan',
-                accessTokenVar: 'GITHUB_ACCESS_TOKEN'
-            }
         }
     });
 
     grunt.loadNpmTasks('grunt-mocha-istanbul');
     grunt.loadNpmTasks('grunt-shipit');
     grunt.loadNpmTasks('shipit-deploy');
-    grunt.loadNpmTasks('grunt-release');
 
     grunt.shipit.on('published', function () {
         grunt.task.run(['link-node-modules', 'link-uploads', 'create-tmp', 'npm-install', 'start']);
