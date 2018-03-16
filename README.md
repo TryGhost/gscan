@@ -48,7 +48,7 @@ gscan.checkZip({
 
 - Either dev mode: `yarn dev`
 - Or standard server: `yarn start`
-- View: [http://localhost:2369]
+- View: http://localhost:2369
 
 ### Publish
 
