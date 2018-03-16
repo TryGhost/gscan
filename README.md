@@ -3,11 +3,19 @@
 Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported. 
 Aims to generate a compatibility report and feature listing for themes.
 
-To install:
+## Usage
 
-`npm install gscan`
+There are 3 ways to use gscan to validate your theme:
 
-## CLI usage
+### 1. Web usage
+
+Visit https://gscan.ghost.org and upload your zip to our online version of Gscan.
+
+### 2. CLI usage
+
+Install using yarn / npm:
+
+`yarn global add gscan` /  `npm install -G gscan`
 
 To run a local directory through the checks:
 
@@ -17,7 +25,9 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
-## Lib usage
+### 3. Lib usage
+
+Install using yarn/npm and then:
 
 ```js
 var gscan = require('gscan');
@@ -32,13 +42,20 @@ gscan.checkZip({
 });
 ```
 
-## Web usage
+## Development
 
-You can run a web interface for uploading a zip file:
+### Run
 
-`node app/index.js` or `nodemon` or `npm start` or `MODE=long npm start`
+- Either dev mode: `yarn dev`
+- Or standard server: `yarn start`
+- View: [http://localhost:2369]
 
-Then navigate to `http://localhost:2369`, and use the form to upload your file
+### Publish
+
+(Core team only)
+
+- `yarn ship`
+- Or if you DGAF `yarn ship --yolo`  (skip yarn install, deploy local deps)
 
 ## Result types:
 
