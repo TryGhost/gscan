@@ -15,7 +15,7 @@ deployment:
     commands:
       - yarn deploy staging
   production:
-    tag: /^[0-9]+(\.[0-9]+)*/
+    tag: /^v[0-9]+(\.[0-9]+)*/
     commands:
       - yarn deploy production
 general:
