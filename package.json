@@ -28,7 +28,7 @@
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
     "test": "NODE_ENV=testing mocha -- $(find test -name '*.test.js')",
     "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
-    "ship": "np",
+    "ship": "np --yolo",
     "deploy": "shipit"
   },
   "bin": {
