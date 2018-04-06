@@ -36,7 +36,9 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-TIMG',
                 'GS001-DEPR-CSS-AT',
                 'GS001-DEPR-CSS-PA',
-                'GS001-DEPR-CSS-PATS'
+                'GS001-DEPR-CSS-PATS',
+                'GS001-DEPR-GIA',
+                'GS001-DEPR-A',
             );
 
             // pageUrl
@@ -130,6 +132,14 @@ describe('001 Deprecations', function () {
             // css class .achive-template
             output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+
+            // {{#get "posts" include="author"}}
+            output.results.fail['GS001-DEPR-GIA'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-GIA'].failures.length.should.eql(1);
+
+            // {{author}}
+            output.results.fail['GS001-DEPR-A'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-A'].failures.length.should.eql(1);
 
             output.results.pass.should.be.an.Object().which.is.empty();
 
