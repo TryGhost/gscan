@@ -11,3 +11,9 @@
         {{cover_image}}
     {{/if}}
 {{/author}}
+
+{{#get "posts" include="tags,author"}}
+    {{#foreach posts}}
+   	    {{title}} 
+    {{/foreach}}
+{{/get}}

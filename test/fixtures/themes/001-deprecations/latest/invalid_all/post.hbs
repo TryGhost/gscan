@@ -6,6 +6,9 @@
 {{#if post.author.cover}}
     {{post.author.cover}}
 {{/if}}
+
+{{#if post.author}}{{/if}}
+
 {{!-- flexible capture--}}
 {{pageUrl 'lol'}}
 {{!-- don't match non-helper reg check --}}
@@ -19,6 +22,11 @@
         {{ image }}
     {{/if}}
 
+    {{img_url author.profile_image}}
+
+    {{#if author}}{{/if}}
+    {{#if author.email}}{{/if}}
+    
     {{image}}
     {{#if author.image}}
         {{author.image}}
@@ -31,9 +39,57 @@
     {{#if tags.[5].image}}
         {{tags.[5].image}}
     {{/if}}
+
+    {{#../author}}{{/../author}}
+    {{#if ../author}}{{/if}}
+    {{../author}}
+    {{../author.name}}
+
+    {{!-- Usage should not be invalid --}}
+    {{#has author="count:>1"}}
+    {{/has}} 
+    
+    {{#foreach authors}}
+        <li>
+            <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
+        </li>  
+    {{/foreach}}
 {{/post}}
 
+{{!-- author attributes --}}
+{{author.id}}
+{{author.slug}}
+{{author.email}}
+{{author.meta_title}}
+{{author.meta_description}}
+{{author.name}}
+{{author.bio}}
+{{author.location}}
+{{author.website}}
+{{author.twitter}}
+{{author.facebook}}
+{{author.profile_image}}
+{{author.cover_image}}
+{{author.url}}
+
+{{post.author}}
+{{post.author.id}}
+{{post.author.slug}}
+{{post.author.email}}
+{{post.author.meta_title}}
+{{post.author.meta_description}}
+{{post.author.name}}
+{{post.author.bio}}
+{{post.author.location}}
+{{post.author.website}}
+{{post.author.twitter}}
+{{post.author.facebook}}
+{{post.author.profile_image}}
+{{post.author.cover_image}}
+{{post.author.url}}
+
 {{#author}}
+    {{> author }}
     {{#if cover}}
         {{cover}}
     {{/if}}
