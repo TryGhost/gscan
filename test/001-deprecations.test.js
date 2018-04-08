@@ -50,6 +50,7 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-AUTH-COIM',
                 'GS001-DEPR-AUTH-URL',
                 'GS001-DEPR-AUTH-FIL',
+                'GS001-DEPR-AUTH-FORE',
             );
 
             // pageUrl
@@ -194,7 +195,11 @@ describe('001 Deprecations', function () {
             
             // filter=author:[...]
             output.results.fail['GS001-DEPR-AUTH-FIL'].should.be.a.ValidFailObject();
-            output.results.fail['GS001-DEPR-AUTH-FIL'].failures.length.should.eql(1);             
+            output.results.fail['GS001-DEPR-AUTH-FIL'].failures.length.should.eql(1);  
+
+            // {{#foreach author}}
+            output.results.fail['GS001-DEPR-AUTH-FORE'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-FORE'].failures.length.should.eql(1);  
 
             output.results.pass.should.be.an.Object().which.is.empty();
 
