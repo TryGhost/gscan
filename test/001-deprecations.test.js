@@ -36,7 +36,21 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-TIMG',
                 'GS001-DEPR-CSS-AT',
                 'GS001-DEPR-CSS-PA',
-                'GS001-DEPR-CSS-PATS'
+                'GS001-DEPR-CSS-PATS',
+                'GS001-DEPR-GIA',
+                'GS001-DEPR-AUTH',
+                'GS001-DEPR-AUTH-ID',
+                'GS001-DEPR-AUTH-NAME',
+                'GS001-DEPR-AUTH-BIO',
+                'GS001-DEPR-AUTH-LOC',
+                'GS001-DEPR-AUTH-WEB',
+                'GS001-DEPR-AUTH-TW',
+                'GS001-DEPR-AUTH-FB',
+                'GS001-DEPR-AUTH-PROIM',
+                'GS001-DEPR-AUTH-COIM',
+                'GS001-DEPR-AUTH-URL',
+                'GS001-DEPR-AUTH-FIL',
+                'GS001-DEPR-AUTH-FORE',
             );
 
             // pageUrl
@@ -130,6 +144,62 @@ describe('001 Deprecations', function () {
             // css class .achive-template
             output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+
+            // {{#get "posts" include="author"}}
+            output.results.fail['GS001-DEPR-GIA'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-GIA'].failures.length.should.eql(1);
+
+            // {{#author}}
+            output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+
+            // {{#author.id}}
+            output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);            
+
+            // {{#author.name}}
+            output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);  
+
+            // {{#author.bio}}
+            output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+
+            // {{#author.location}}
+            output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1); 
+
+            // {{#author.website}}
+            output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);            
+
+            // {{#author.twitter}}
+            output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);  
+
+            // {{#author.facebook}}
+            output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+
+            // {{#author.profile_image}}
+            output.results.fail['GS001-DEPR-AUTH-PROIM'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-PROIM'].failures.length.should.eql(1);             
+
+            // {{#author.cover_image}}
+            output.results.fail['GS001-DEPR-AUTH-COIM'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-COIM'].failures.length.should.eql(1);
+            
+            // {{#author.url}}
+            output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1); 
+            
+            // filter=author:[...]
+            output.results.fail['GS001-DEPR-AUTH-FIL'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-FIL'].failures.length.should.eql(1);  
+
+            // {{#foreach author}}
+            output.results.fail['GS001-DEPR-AUTH-FORE'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-AUTH-FORE'].failures.length.should.eql(1);  
 
             output.results.pass.should.be.an.Object().which.is.empty();
 
