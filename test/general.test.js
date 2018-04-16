@@ -1,4 +1,3 @@
-/*globals describe, it */
 var should = require('should'),
     sinon = require('sinon'),
     path = require('path'),
@@ -26,7 +25,7 @@ process.env.NODE_ENV = 'testing';
  */
 
 function testReadZip(name) {
-    return readZip({path: themePath(name), name: name})
+    return readZip({path: themePath(name), name: name});
 }
 
 describe('Zip file handler can read zip files', function () {
@@ -170,18 +169,18 @@ describe('Read theme', function () {
             theme.files.should.be.an.Array().with.lengthOf(7);
 
             var fileNames = _.map(theme.files, function (file) {
-                return _.pickBy(file, function(value, key) {
+                return _.pickBy(file, function (value, key) {
                     return key === 'file' || key === 'ext';
                 });
             });
 
-            fileNames.should.containEql({ file: 'index.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'package.json', ext: '.json' });
-            fileNames.should.containEql({ file: 'partialsbroke.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'partials/mypartial.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'partials/subfolder/test.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'post.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'logo.new.hbs', ext: '.hbs' });
+            fileNames.should.containEql({file: 'index.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'package.json', ext: '.json'});
+            fileNames.should.containEql({file: 'partialsbroke.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'partials/mypartial.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'partials/subfolder/test.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
             done();
         });

@@ -6,14 +6,14 @@ function init(shipit) {
             yarn: true,
             workspace: './',
             deployTo: '/opt/gscan/',
-            ignores: ['.git', '.gitkeep', '.gitignore', '.jshintrc', 'node_modules'],
+            ignores: ['.git', '.gitkeep', '.gitignore', '.eslintrc.js', '.eslintcache', 'node_modules', '/test', '/app/public/.eslintrc.js']
         },
         staging: {
             servers: process.env.STG_USER + '@' + process.env.STG_SERVER,
             sharedLinks: [{
                 name: 'node_modules',
                 type: 'directory'
-            },  {
+            }, {
                 name: 'uploads',
                 type: 'directory'
             }, {
@@ -26,7 +26,7 @@ function init(shipit) {
             sharedLinks: [{
                 name: 'node_modules',
                 type: 'directory'
-            },  {
+            }, {
                 name: 'uploads',
                 type: 'directory'
             }, {

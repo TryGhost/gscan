@@ -1,7 +1,4 @@
-/*globals describe, it */
-var should = require('should'),
-    path = require('path'),
-    checker = require('../lib/checker'),
+var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/001-deprecations'),
     utils = require('./utils');
 
