@@ -55,7 +55,7 @@
     "validator": "^6.3.0"
   },
   "devDependencies": {
-    "@tryghost/deploy": "0.1.2",
+    "@tryghost/deploy": "0.0.2",
     "istanbul": "^0.4.1",
     "mocha": "^2.4.5",
     "nodemon": "1.17.3",
