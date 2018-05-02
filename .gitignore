@@ -38,3 +38,6 @@ app/uploads/**
 # editor
 .idea
 *.*~
+
+# eslint
+.eslintcache

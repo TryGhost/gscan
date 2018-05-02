@@ -1,12 +1,12 @@
-var path          = require('path'),
-    should        = require('should'),
-    readTheme     = require('../lib/read-theme'),
+var path = require('path'),
+    should = require('should'),
+    readTheme = require('../lib/read-theme'),
     testThemePath = 'test/fixtures/themes',
     getThemePath,
     testCheck;
 
 should.Assertion.add('ValidResultObject', function () {
-    this.params = { operator: 'to be valid result object' };
+    this.params = {operator: 'to be valid result object'};
 
     should.exist(this.obj);
 
@@ -16,7 +16,7 @@ should.Assertion.add('ValidResultObject', function () {
 });
 
 should.Assertion.add('ValidThemeObject', function () {
-    this.params = { operator: 'to be valid theme object' };
+    this.params = {operator: 'to be valid theme object'};
 
     should.exist(this.obj);
     this.obj.should.be.an.Object().with.properties(['path', 'files', 'results']);
@@ -45,7 +45,7 @@ should.Assertion.add('ValidFailObject', function () {
 });
 
 should.Assertion.add('ValidRule', function () {
-    var levels = ['error', 'warning', 'recommendation', 'feature'];
+    var levels = ['error', 'warning', 'recommendation', 'feature']; // eslint-disable-line no-unused-vars
 });
 
 getThemePath = function (themeId) {

@@ -2,9 +2,9 @@
 
 var pkgJson = require('../package.json'),
     program = require('commander'),
-    _       = require('lodash'),
-    chalk   = require('chalk'),
-    gscan   = require('../lib'),
+    _ = require('lodash'),
+    chalk = require('chalk'),
+    gscan = require('../lib'),
 
     themePath = '',
     levels;
@@ -27,6 +27,7 @@ levels = {
     feature: chalk.green
 };
 
+/* eslint-disable no-console */
 function outputResult(result) {
     console.log('-', levels[result.level](result.level), result.rule);
 }
@@ -70,7 +71,8 @@ if (!program.args.length) {
             return err.code === 'ENOTDIR';
         }, function (err) {
             console.error(err.message);
-            console.error('Did you mean to add the -z flag to read a zip file?')
+            console.error('Did you mean to add the -z flag to read a zip file?');
+            /* eslint-enable no-console */
         });
     }
 }

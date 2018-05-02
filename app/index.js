@@ -13,7 +13,6 @@ var express = require('express'),
     app = express(),
     scanHbs = hbs.create();
 
-
 // Configure express
 app.set('x-powered-by', false);
 app.set('query parser', false);
@@ -42,15 +41,15 @@ app.get('/example/', function (req, res) {
     });
 });
 
-app.post('/', 
-    upload.single('theme'), 
+app.post('/',
+    upload.single('theme'),
     function (req, res, next) {
         var zip = {
-            path: req.file.path, 
+            path: req.file.path,
             name: req.file.originalname
         };
         debug('Uploaded: ' + zip.name + ' to ' + zip.path);
-        
+
         gscan.checkZip(zip).then(function processResult(theme) {
             debug('Checked: ' + zip.name);
             res.theme = theme;
@@ -76,6 +75,7 @@ app.use(function (req, res, next) {
     next(new errors.NotFoundError({message: 'Page not found'}));
 });
 
+// eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
     req.err = err;
     res.render('error', {message: err.message, stack: err.stack});
