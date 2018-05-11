@@ -50,17 +50,21 @@ app.post('/',
         };
         debug('Uploaded: ' + zip.name + ' to ' + zip.path);
 
-        gscan.checkZip(zip).then(function processResult(theme) {
-            debug('Checked: ' + zip.name);
-            res.theme = theme;
+        gscan.checkZip(zip)
+            .then(function processResult(theme) {
+                debug('Checked: ' + zip.name);
+                res.theme = theme;
 
-            debug('attempting to remove: ' + req.file.path);
-            pfs.removeDir(req.file.path)
-                .finally(function () {
-                    debug('Calling next');
-                    return next();
-                });
-        });
+                debug('attempting to remove: ' + req.file.path);
+                pfs.removeDir(req.file.path)
+                    .finally(function () {
+                        debug('Calling next');
+                        return next();
+                    });
+            }).catch(function (error) {
+                debug('Calling next with error');
+                return next(error);
+            });
     },
     function doRender(req, res) {
         debug('Formatting result');
@@ -78,7 +82,7 @@ app.use(function (req, res, next) {
 // eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
     req.err = err;
-    res.render('error', {message: err.message, stack: err.stack});
+    res.render('error', {message: err.message, stack: err.stack, details: err.errorDetails, context: err.context});
 });
 
 server.start(app);
