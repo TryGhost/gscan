@@ -25,6 +25,12 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
+This can also be used to integrate gscan into a continuous integration.
+Gscan exits with
+  - 0 if there are no errors or warnings
+  - 1 on errors
+  - 2 on warnings
+
 ### 3. Lib usage
 
 Install using yarn/npm and then:
