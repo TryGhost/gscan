@@ -64,7 +64,11 @@ if (!program.args.length) {
 } else {
     if (program.zip) {
         console.log('Checking zip file...');
-        gscan.checkZip(themePath).then(outputResults);
+        gscan.checkZip(themePath)
+            .then(outputResults)
+            .catch(function (error) {
+                console.error(error);
+            });
     } else {
         console.log('Checking directory...');
         gscan.check(themePath).then(outputResults).catch(function ENOTDIRPredicate(err) {
