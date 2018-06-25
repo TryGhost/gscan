@@ -29,10 +29,12 @@
   "scripts": {
     "start": "node app/index.js",
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
-    "test": "NODE_ENV=testing mocha -- $(find test -name '*.test.js')",
-    "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
     "lint": "eslint . --ext .js --cache",
-    "ship": "np --yolo",
+    "test": "NODE_ENV=testing mocha -- $(find test -name '*.test.js')",
+    "posttest": "yarn lint",
+    "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
+    "preship": "yarn test",
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push --follow-tags; fi",
     "deploy": "shipit"
   },
   "bin": {
@@ -62,7 +64,6 @@
     "istanbul": "^0.4.1",
     "mocha": "^2.4.5",
     "nodemon": "1.17.3",
-    "np": "2.19.0",
     "rewire": "^2.5.2",
     "should": "^7.1.0",
     "sinon": "^1.17.5"
