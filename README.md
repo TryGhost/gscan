@@ -15,7 +15,7 @@ Visit https://gscan.ghost.org and upload your zip to our online version of Gscan
 
 Install using yarn / npm:
 
-`yarn global add gscan` /  `npm install -G gscan`
+`yarn global add gscan` /  `npm install -g gscan`
 
 To run a local directory through the checks:
 
