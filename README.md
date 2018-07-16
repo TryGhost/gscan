@@ -55,7 +55,6 @@ gscan.checkZip({
 (Core team only)
 
 - `yarn ship`
-- Or if you DGAF `yarn ship --yolo`  (skip yarn install, deploy local deps)
 
 ## Result types:
 
