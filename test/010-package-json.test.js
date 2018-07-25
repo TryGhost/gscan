@@ -3,8 +3,10 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/010-package-json');
 
 describe('010: package.json', function () {
+    const options = {checkVersion: 'v1'};
+
     it('should output error for missing package.json', function (done) {
-        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+        utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -29,7 +31,7 @@ describe('010: package.json', function () {
     });
 
     it('should output error for missing package.json', function (done) {
-        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+        utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -54,7 +56,7 @@ describe('010: package.json', function () {
     });
 
     it('should output error for invalid package.json (parsing)', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/parse-error').then(function (output) {
+        utils.testCheck(thisCheck, '010-packagejson/parse-error', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -82,7 +84,7 @@ describe('010: package.json', function () {
     });
 
     it('valid fields', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/fields-are-valid').then(function (theme) {
+        utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([
@@ -105,7 +107,7 @@ describe('010: package.json', function () {
     });
 
     it('invalid fields', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid').then(function (theme) {
+        utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([
@@ -129,7 +131,7 @@ describe('010: package.json', function () {
     });
 
     it('missing fields', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/fields-are-missing').then(function (theme) {
+        utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([
@@ -153,7 +155,7 @@ describe('010: package.json', function () {
     });
 
     it('bad config (ppp: -3 > 0)', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/bad-config').then(function (theme) {
+        utils.testCheck(thisCheck, '010-packagejson/bad-config', options).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([
@@ -177,7 +179,7 @@ describe('010: package.json', function () {
     });
 
     it('bad config 2 (ppp: 0 > 0)', function (done) {
-        utils.testCheck(thisCheck, '010-packagejson/bad-config-2').then(function (theme) {
+        utils.testCheck(thisCheck, '010-packagejson/bad-config-2', options).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.eql([

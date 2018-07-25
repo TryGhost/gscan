@@ -6,6 +6,7 @@ var pkgJson = require('../package.json'),
     chalk = require('chalk'),
     gscan = require('../lib'),
 
+    options = {},
     themePath = '',
     levels;
 
@@ -15,6 +16,7 @@ program
     .arguments('cmd <themePath>')
     .option('-p, --pre', 'Run a pre-check only')
     .option('-z, --zip', 'Theme path points to a zip file')
+    .option('-1, --v1', 'Check theme for Ghost 1.0 compatibility, instead of 2.0')
     .action(function (theme) {
         themePath = theme;
     })
@@ -32,8 +34,8 @@ function outputResult(result) {
     console.log('-', levels[result.level](result.level), result.rule);
 }
 
-function outputResults(theme) {
-    theme = gscan.format(theme);
+function outputResults(theme, options) {
+    theme = gscan.format(theme, options);
 
     console.log(chalk.bold.underline('\nRule Report:'));
 
@@ -62,21 +64,30 @@ function outputResults(theme) {
 if (!program.args.length) {
     program.help();
 } else {
+    if (program.v1) {
+        options.checkVersion = 'v1';
+    } else {
+        // CASE: set default value
+        options.checkVersion = 'latest';
+    }
+
     if (program.zip) {
         console.log('Checking zip file...');
-        gscan.checkZip(themePath)
-            .then(outputResults)
-            .catch(function (error) {
+        gscan.checkZip(themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch((error) => {
                 console.error(error);
             });
     } else {
         console.log('Checking directory...');
-        gscan.check(themePath).then(outputResults).catch(function ENOTDIRPredicate(err) {
-            return err.code === 'ENOTDIR';
-        }, function (err) {
-            console.error(err.message);
-            console.error('Did you mean to add the -z flag to read a zip file?');
+        gscan.check(themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch(function ENOTDIRPredicate(err) {
+                return err.code === 'ENOTDIR';
+            }, function (err) {
+                console.error(err.message);
+                console.error('Did you mean to add the -z flag to read a zip file?');
             /* eslint-enable no-console */
-        });
+            });
     }
 }
