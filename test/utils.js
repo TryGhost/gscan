@@ -56,7 +56,7 @@ testCheck = function testCheck(checkLib, themeId, options) {
     var themePath = getThemePath(themeId);
 
     return readTheme(themePath).then(function runCheck(theme) {
-        return checkLib.call(this, theme, themePath, options);
+        return checkLib.call(this, theme, options, themePath);
     });
 };
 

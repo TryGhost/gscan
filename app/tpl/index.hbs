@@ -3,16 +3,28 @@
         <header class="gh-header">
             <h1>Scan Your Theme</h1>
             <p class="gh-subhead">Upload a zip to check for errors, deprecations and other compatibility issues.</p>
-            <p class="gh-subhead warning"><strong>GScan validates your theme based on the Ghost 1.0 requirements.</strong></p>
-            <a href="https://themes.ghost.org/v1.25.0/docs/changelog#ghost-100" target=_blank class="gh-morelink">
-                See the changelog for Ghost 1.0 themes
+            <p class="gh-subhead warning"><strong>GScan validates your theme based on the Ghost 2.0 requirements by default.</strong></p>
+            <p>You can select a different version if you need to check your theme for a previous major version.</p>
+
+            <a href="https://themes.ghost.org/v2.0.0/docs/changelog" target=_blank class="gh-morelink">
+                See the changelog for Ghost 2.0 themes
                 <svg viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg"><path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             </a>
         </header>
         <section class="gh-gscan-uploader">
-            <form action="/" method="post" enctype="multipart/form-data" class="clearfix">
-                <input type="file" name="theme" id="theme" />
-                <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Upload</span></button>
+            <form class="gh-gscan-uploader-form" action="/" method="post" enctype="multipart/form-data">
+                <div class="gh-form-group">
+                    <input class="gh-input" type="file" name="theme" id="theme" />
+                </div>
+                <div class="gh-form-group">
+                    <label for="version">Select version:</label>
+                    <select class="gh-input gh-select" name="version" id="version">
+                        <option value="latest" selected>2.0 (latest)</option>
+                        <option value="v1">1.0</option>
+                    </select>
+                </div>
+
+            <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Upload</span></button>
             </form>
         </section>
     </div>
