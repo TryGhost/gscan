@@ -63,8 +63,8 @@
                 /* eslint-disable camelcase */
                 var item = json.posts[0],
                     parsed_date = new Date(item.published_at),
-                    image_url = item.author.image.substr(0, 2) === '//' ? item.author.image : '//dev.ghost.org/' + item.author.image,
-                    news_html = '<p><a href="https://dev.ghost.org' + item.url + '">' + item.title + '</a></p>' +
+                    image_url = item.author.image.substr(0, 2) === '//' ? item.author.image : '//blog.ghost.org/' + item.author.image,
+                    news_html = '<p><a href="https://blog.ghost.org' + item.url + '">' + item.title + '</a></p>' +
                         '<span class="meta">' +
                         '<img src="' + image_url + '" />' +
                         '<time title="' + parsed_date + '">' + timeSince(parsed_date) + ' ago</time> by ' + item.author.name + '</span>';
