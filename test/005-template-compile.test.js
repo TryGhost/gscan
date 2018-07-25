@@ -3,8 +3,10 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/005-template-compile');
 
 describe('Template compile', function () {
+    const options = {checkVersion: 'v1'};
+
     it('should output empty array for a theme with no templates', function (done) {
-        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+        utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
             output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -16,7 +18,7 @@ describe('Template compile', function () {
     });
 
     it('should output empty array for a theme with valid templates', function (done) {
-        utils.testCheck(thisCheck, '005-compile/valid').then(function (output) {
+        utils.testCheck(thisCheck, '005-compile/valid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().which.is.empty();
@@ -29,7 +31,7 @@ describe('Template compile', function () {
     });
 
     it('should output errors for a theme with invalid templates', function (done) {
-        utils.testCheck(thisCheck, '005-compile/invalid').then(function (output) {
+        utils.testCheck(thisCheck, '005-compile/invalid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
             output.results.pass.should.be.an.Array().which.is.empty();
 
@@ -57,7 +59,7 @@ describe('Template compile', function () {
     });
 
     it('theme with partials and unknown helper', function (done) {
-        utils.testCheck(thisCheck, 'theme-with-partials').then(function (output) {
+        utils.testCheck(thisCheck, 'theme-with-partials', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
