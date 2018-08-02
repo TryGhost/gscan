@@ -3,8 +3,6 @@
         <header class="gh-header">
             <h1>Scan Your Theme</h1>
             <p class="gh-subhead">Upload a zip to check for errors, deprecations and other compatibility issues.</p>
-            <p class="gh-subhead warning"><strong>GScan validates your theme based on the Ghost 2.0 requirements by default.</strong></p>
-            <p>You can select a different version if you need to check your theme for a previous major version.</p>
 
             <a href="https://themes.ghost.org/v2.0.0/docs/changelog" target=_blank class="gh-morelink">
                 See the changelog for Ghost 2.0 themes
@@ -17,14 +15,14 @@
                     <input class="gh-input" type="file" name="theme" id="theme" />
                 </div>
                 <div class="gh-form-group">
-                    <label for="version">Select version:</label>
+                    <label for="version">Ghost version:</label>
                     <select class="gh-input gh-select" name="version" id="version">
                         <option value="latest" selected>2.0 (latest)</option>
                         <option value="v1">1.0</option>
                     </select>
                 </div>
 
-            <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Upload</span></button>
+            <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Start scanning</span></button>
             </form>
         </section>
     </div>
