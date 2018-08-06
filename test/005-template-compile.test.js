@@ -6,10 +6,10 @@ describe('Template compile', function () {
     it('should output empty array for a theme with no templates', function (done) {
         utils.testCheck(thisCheck, 'is-empty').then(function (output) {
             output.should.be.a.ValidThemeObject();
-            output.results.fail.should.be.an.Object().which.is.empty();
 
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
             output.results.pass.should.containEql('GS005-TPL-ERR');
+            output.results.pass.should.containEql('GS005-FOREACH-REQ');
 
             done();
         }).catch(done);
@@ -21,8 +21,9 @@ describe('Template compile', function () {
 
             output.results.fail.should.be.an.Object().which.is.empty();
 
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
             output.results.pass.should.containEql('GS005-TPL-ERR');
+            output.results.pass.should.containEql('GS005-FOREACH-REQ');
 
             done();
         }).catch(done);
@@ -31,7 +32,8 @@ describe('Template compile', function () {
     it('should output errors for a theme with invalid templates', function (done) {
         utils.testCheck(thisCheck, '005-compile/invalid').then(function (output) {
             output.should.be.a.ValidThemeObject();
-            output.results.pass.should.be.an.Array().which.is.empty();
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS005-FOREACH-REQ');
 
             output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
             output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
@@ -62,6 +64,19 @@ describe('Template compile', function () {
 
             output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
             output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+            done();
+        }).catch(done);
+    });
+
+    it('should output warning for a theme with each instead of foreach', function (done) {
+        utils.testCheck(thisCheck, '005-compile/foreach').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS005-TPL-ERR');
+
+            output.results.fail.should.be.an.Object().with.keys('GS005-FOREACH-REQ');
+            output.results.fail['GS005-FOREACH-REQ'].should.be.a.ValidFailObject();
 
             done();
         }).catch(done);
