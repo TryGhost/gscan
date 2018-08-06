@@ -61,26 +61,26 @@ function outputResults(theme) {
 }
 
 function setExitCode(theme) {
-  process.exitCode = 0;
+    process.exitCode = 0;
 
-  if (!_.isEmpty(theme.results.warning)) {
-      process.exitCode = 2;
-  }
+    if (!_.isEmpty(theme.results.warning)) {
+        process.exitCode = 2;
+    }
 
-  if (!_.isEmpty(theme.results.error)) {
-      process.exitCode = 1;
-  }
+    if (!_.isEmpty(theme.results.error)) {
+        process.exitCode = 1;
+    }
 
-  return theme;
+    return theme;
 }
 
 function handleRejection(error) {
-  process.exitCode = 1;
-  console.error(chalk.red(error.toString()));
+    process.exitCode = 1;
+    console.error(chalk.red(error.toString()));
 
-  if('ENOTDIR' === error.code) {
-    console.error('Did you mean to add the -z flag to read a zip file?');
-  }
+    if ('ENOTDIR' === error.code) {
+        console.error('Did you mean to add the -z flag to read a zip file?');
+    }
 }
 
 if (!program.args.length) {
@@ -89,18 +89,18 @@ if (!program.args.length) {
     if (program.zip) {
         console.log('Checking zip file...');
         gscan.checkZip(themePath)
-          .then(setExitCode)
-          .then(outputResults)
-          .catch(handleRejection);
+            .then(setExitCode)
+            .then(outputResults)
+            .catch(handleRejection);
     } else {
         console.log('Checking directory...');
         gscan.check(themePath)
-          .then(setExitCode)
-          .then(outputResults)
-          .catch(handleRejection);
+            .then(setExitCode)
+            .then(outputResults)
+            .catch(handleRejection);
     }
 }
 
 module.exports = {
-  setExitCode: setExitCode
+    setExitCode: setExitCode
 };
