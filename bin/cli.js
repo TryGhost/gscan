@@ -76,7 +76,7 @@ function setExitCode(theme) {
 
 function handleRejection(error) {
   process.exitCode = 1;
-  console.log(chalk.red(error.toString()));
+  console.error(chalk.red(error.toString()));
 
   if('ENOTDIR' === error.code) {
     console.error('Did you mean to add the -z flag to read a zip file?');

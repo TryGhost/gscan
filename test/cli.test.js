@@ -8,8 +8,6 @@ var should = require('should'),
     }
   };
 
-process.env.NODE_ENV = 'testing';
-
 describe('Exit codes are set', function () {
   beforeEach(function() {
     theme.results.error = [];
