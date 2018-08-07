@@ -44,13 +44,18 @@ app.get('/example/', function (req, res) {
 app.post('/',
     upload.single('theme'),
     function (req, res, next) {
-        var zip = {
+        const zip = {
             path: req.file.path,
             name: req.file.originalname
         };
-        debug('Uploaded: ' + zip.name + ' to ' + zip.path);
+        const options = {
+            checkVersion: req.body.version || 'latest'
+        };
 
-        gscan.checkZip(zip)
+        debug('Uploaded: ' + zip.name + ' to ' + zip.path);
+        debug('Version to check: ' + options.checkVersion);
+
+        gscan.checkZip(zip, options)
             .then(function processResult(theme) {
                 debug('Checked: ' + zip.name);
                 res.theme = theme;
@@ -67,8 +72,11 @@ app.post('/',
             });
     },
     function doRender(req, res) {
+        const options = {
+            checkVersion: req.body.version || 'latest'
+        };
         debug('Formatting result');
-        var result = gscan.format(res.theme);
+        const result = gscan.format(res.theme, options);
         debug('Rendering result');
         scanHbs.handlebars.logger.level = 0;
         res.render('result', result);
