@@ -1,5 +1,4 @@
-/*globals describe, it */
-var should = require('should'),
+var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
 
     thisCheck = require('../lib/checks/020-theme-structure');

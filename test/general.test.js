@@ -1,4 +1,3 @@
-/*globals describe, it */
 var should = require('should'),
     sinon = require('sinon'),
     path = require('path'),
@@ -26,7 +25,7 @@ process.env.NODE_ENV = 'testing';
  */
 
 function testReadZip(name) {
-    return readZip({path: themePath(name), name: name})
+    return readZip({path: themePath(name), name: name});
 }
 
 describe('Zip file handler can read zip files', function () {
@@ -170,18 +169,18 @@ describe('Read theme', function () {
             theme.files.should.be.an.Array().with.lengthOf(7);
 
             var fileNames = _.map(theme.files, function (file) {
-                return _.pickBy(file, function(value, key) {
+                return _.pickBy(file, function (value, key) {
                     return key === 'file' || key === 'ext';
                 });
             });
 
-            fileNames.should.containEql({ file: 'index.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'package.json', ext: '.json' });
-            fileNames.should.containEql({ file: 'partialsbroke.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'partials/mypartial.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'partials/subfolder/test.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'post.hbs', ext: '.hbs'});
-            fileNames.should.containEql({ file: 'logo.new.hbs', ext: '.hbs' });
+            fileNames.should.containEql({file: 'index.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'package.json', ext: '.json'});
+            fileNames.should.containEql({file: 'partialsbroke.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'partials/mypartial.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'partials/subfolder/test.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
+            fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
             done();
         });
@@ -191,16 +190,45 @@ describe('Read theme', function () {
         readTheme(themePath('theme-with-custom-templates')).then(function (theme) {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(8);
+            theme.files.should.be.an.Array().with.lengthOf(11);
             theme.partials.length.should.eql(0);
-            theme.templates.all.length.should.eql(6);
+            theme.templates.all.length.should.eql(9);
             theme.templates.custom.length.should.eql(4);
 
             // ensure we don't change the structure of theme.files
-            theme.files[0].file.should.eql('custom-My-Post.hbs');
+            theme.files[0].file.should.eql('assets/ignoreme.hbs');
             theme.files[0].ext.should.eql('.hbs');
-            theme.files[0].content.should.eql('content');
+            theme.files[0].content.should.eql('ignoreme');
             should.exist(theme.files[0].compiled);
+
+            theme.files[1].file.should.eql('custom/test.hbs');
+            theme.files[1].ext.should.eql('.hbs');
+            theme.files[1].content.should.eql('test');
+            should.exist(theme.files[1].compiled);
+
+            theme.files[2].file.should.eql('custom-My-Post.hbs');
+            theme.files[2].ext.should.eql('.hbs');
+            theme.files[2].content.should.eql('content');
+            should.exist(theme.files[2].compiled);
+
+            theme.templates.all.should.eql([
+                'custom/test',
+                'custom-My-Post',
+                'custom-about',
+                'page-1',
+                'page',
+                'podcast/rss',
+                'post-partials/footer',
+                'post-welcome-ghost',
+                'post'
+            ]);
+
+            _.map(theme.templates.custom, 'filename').should.eql([
+                'custom-My-Post',
+                'custom-about',
+                'page-1',
+                'post-welcome-ghost'
+            ]);
 
             theme.templates.custom[0].filename.should.eql('custom-My-Post');
             theme.templates.custom[0].name.should.eql('My Post');
