@@ -33,7 +33,8 @@ describe('001 Deprecations', function () {
                 'GS001-DEPR-TIMG',
                 'GS001-DEPR-CSS-AT',
                 'GS001-DEPR-CSS-PA',
-                'GS001-DEPR-CSS-PATS'
+                'GS001-DEPR-CSS-PATS',
+                'GS001-DEPR-FAV'
             );
 
             // pageUrl
@@ -127,6 +128,10 @@ describe('001 Deprecations', function () {
             // css class .achive-template
             output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
             output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+
+            // favicon
+            output.results.fail['GS001-DEPR-FAV'].should.be.a.ValidFailObject();
+            output.results.fail['GS001-DEPR-FAV'].failures.length.should.eql(1);
 
             output.results.pass.should.be.an.Object().which.is.empty();
 
