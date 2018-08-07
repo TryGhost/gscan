@@ -11,6 +11,7 @@ var pkgJson = require('../package.json'),
 
 program
     .version(pkgJson.version)
+    .description(pkgJson.description + '. Returns 0 on success, 1 on errors and 2 on warnings.')
     .usage('[options] <themePath>')
     .arguments('cmd <themePath>')
     .option('-p, --pre', 'Run a pre-check only')
@@ -59,24 +60,47 @@ function outputResults(theme) {
     console.log('\n...checks complete.');
 }
 
+function setExitCode(theme) {
+    process.exitCode = 0;
+
+    if (!_.isEmpty(theme.results.warning)) {
+        process.exitCode = 2;
+    }
+
+    if (!_.isEmpty(theme.results.error)) {
+        process.exitCode = 1;
+    }
+
+    return theme;
+}
+
+function handleRejection(error) {
+    process.exitCode = 1;
+    console.error(chalk.red(error.toString()));
+
+    if ('ENOTDIR' === error.code) {
+        console.error('Did you mean to add the -z flag to read a zip file?');
+    }
+}
+
 if (!program.args.length) {
     program.help();
 } else {
     if (program.zip) {
         console.log('Checking zip file...');
         gscan.checkZip(themePath)
+            .then(setExitCode)
             .then(outputResults)
-            .catch(function (error) {
-                console.error(error);
-            });
+            .catch(handleRejection);
     } else {
         console.log('Checking directory...');
-        gscan.check(themePath).then(outputResults).catch(function ENOTDIRPredicate(err) {
-            return err.code === 'ENOTDIR';
-        }, function (err) {
-            console.error(err.message);
-            console.error('Did you mean to add the -z flag to read a zip file?');
-            /* eslint-enable no-console */
-        });
+        gscan.check(themePath)
+            .then(setExitCode)
+            .then(outputResults)
+            .catch(handleRejection);
     }
 }
+
+module.exports = {
+    setExitCode: setExitCode
+};

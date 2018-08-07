@@ -1,6 +1,6 @@
 # GScan
 
-Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported. 
+Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported.
 Aims to generate a compatibility report and feature listing for themes.
 
 ## Usage
@@ -24,6 +24,12 @@ To run a local directory through the checks:
 To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
+
+This can also be used to integrate gscan into a continuous integration.
+Gscan exits with
+  - 0 if there are no errors or warnings
+  - 1 on errors
+  - 2 on warnings
 
 ### 3. Lib usage
 

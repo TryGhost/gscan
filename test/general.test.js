@@ -13,8 +13,6 @@ var should = require('should'),
 
     sandbox = sinon.sandbox.create();
 
-process.env.NODE_ENV = 'testing';
-
 /**
  * Response object from .check is:
  * {
