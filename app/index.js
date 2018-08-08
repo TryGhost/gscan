@@ -1,17 +1,18 @@
-var express = require('express'),
-    debug = require('ghost-ignition').debug('app'),
-    hbs = require('express-hbs'),
-    multer = require('multer'),
-    server = require('ghost-ignition').server,
-    errors = require('ghost-ignition').errors,
-    gscan = require('../lib'),
-    pfs = require('../lib/promised-fs'),
-    logRequest = require('./middlewares/log-request'),
-    ghostVer = require('./ghost-version'),
-    pkgJson = require('../package.json'),
-    upload = multer({dest: __dirname + '/uploads/'}),
-    app = express(),
-    scanHbs = hbs.create();
+const express = require('express');
+const debug = require('ghost-ignition').debug('app');
+const hbs = require('express-hbs');
+const multer = require('multer');
+const server = require('ghost-ignition').server;
+const errors = require('ghost-ignition').errors;
+const gscan = require('../lib');
+const pfs = require('../lib/promised-fs');
+const logRequest = require('./middlewares/log-request');
+const ghostVer = require('./ghost-version');
+const pkgJson = require('../package.json');
+const ghostVersions = require('../lib/utils').versions;
+const upload = multer({dest: __dirname + '/uploads/'});
+const app = express();
+const scanHbs = hbs.create();
 
 // Configure express
 app.set('x-powered-by', false);
@@ -32,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(ghostVer);
 
 app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {ghostVersions});
 });
 
 app.get('/example/', function (req, res) {
