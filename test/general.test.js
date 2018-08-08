@@ -398,6 +398,7 @@ describe('format', function () {
         checker(themePath('005-compile/invalid')).then((theme) => {
             theme = format(theme);
 
+            theme.results.error.length.should.eql(10);
             theme.results.error[0].fatal.should.eql(true);
             theme.results.error[1].fatal.should.eql(false);
             theme.results.error[8].fatal.should.eql(false);
@@ -416,6 +417,53 @@ describe('format', function () {
             theme.results.error[8].fatal.should.eql(false);
             theme.results.error[9].fatal.should.eql(false);
             theme.results.error[10].fatal.should.eql(false);
+
+            done();
+        });
+    });
+
+    it('sort by files', function (done) {
+        checker(themePath('005-compile/invalid')).then((theme) => {
+            theme = format(theme, {sortByFiles: true});
+
+            theme.results.hasFatalErrors.should.be.true();
+
+            theme.results.recommendation.all.length.should.eql(1);
+            theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+
+            theme.results.warning.all.length.should.eql(2);
+            theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+
+            theme.results.error.all.length.should.eql(10);
+
+            // 1 rule has file references
+            theme.results.error.byFiles['author.hbs'].length.should.eql(1);
+            theme.results.error.byFiles['page.hbs'].length.should.eql(1);
+            theme.results.error.byFiles['post.hbs'].length.should.eql(1);
+            theme.results.error.byFiles['index.hbs'].length.should.eql(1);
+            theme.results.error.byFiles['package.json'].length.should.eql(9);
+
+            done();
+        });
+    });
+
+    it('sort by files', function (done) {
+        checker(themePath('001-deprecations/invalid')).then((theme) => {
+            theme = format(theme, {sortByFiles: true});
+
+            theme.results.hasFatalErrors.should.be.true();
+
+            theme.results.recommendation.all.length.should.eql(1);
+            theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+
+            theme.results.error.all.length.should.eql(36);
+            theme.results.warning.all.length.should.eql(0);
+
+            theme.results.error.byFiles['assets/my.css'].length.should.eql(5);
+            theme.results.error.byFiles['default.hbs'].length.should.eql(6);
+            theme.results.error.byFiles['post.hbs'].length.should.eql(17);
+            theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(4);
+            theme.results.error.byFiles['index.hbs'].length.should.eql(7);
 
             done();
         });
