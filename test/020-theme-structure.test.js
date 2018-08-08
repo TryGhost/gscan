@@ -18,6 +18,10 @@ describe('Theme structure', function () {
             output.results.fail['GS020-POST-REQ'].should.be.a.ValidFailObject();
             output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
 
+            output.results.fail['GS020-INDEX-REQ'].failures[0].ref.should.eql('index.hbs');
+            output.results.fail['GS020-POST-REQ'].failures[0].ref.should.eql('post.hbs');
+            output.results.fail['GS020-DEF-REC'].failures[0].ref.should.eql('default.hbs');
+
             done();
         });
     });

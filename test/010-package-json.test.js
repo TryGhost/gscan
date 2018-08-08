@@ -26,6 +26,7 @@ describe('010: package.json', function () {
             );
 
             output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS010-PJ-REQ'].failures[0].ref.should.eql('package.json');
             done();
         }).catch(done);
     });
@@ -51,6 +52,7 @@ describe('010: package.json', function () {
             );
 
             output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS010-PJ-REQ'].failures[0].ref.should.eql('package.json');
             done();
         }).catch(done);
     });
@@ -126,6 +128,9 @@ describe('010: package.json', function () {
                 'GS010-PJ-AUT-EM-VAL',
                 'GS010-PJ-CONF-PPP-INT'
             );
+
+            theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+
             done();
         }).catch(done);
     });
