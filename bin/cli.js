@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 
-var pkgJson = require('../package.json'),
-    program = require('commander'),
-    _ = require('lodash'),
-    chalk = require('chalk'),
-    gscan = require('../lib'),
+const pkgJson = require('../package.json');
+const program = require('commander');
+const _ = require('lodash');
+const chalk = require('chalk');
+const gscan = require('../lib');
 
-    options = {},
-    themePath = '',
-    levels;
+const options = {};
+let themePath = '';
+let levels;
 
 program
     .version(pkgJson.version)
@@ -37,7 +37,7 @@ function outputResult(result) {
 function outputResults(theme, options) {
     theme = gscan.format(theme, options);
 
-    console.log(chalk.bold.underline('\nRule Report:'));
+    console.log(chalk.bold.underline(`\nRule Report for v${theme.checkedVersion}:`));
 
     if (!_.isEmpty(theme.results.error)) {
         console.log(chalk.red.bold.underline('\n! Must fix:'));

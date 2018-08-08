@@ -25,6 +25,15 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
+You can also pass a version. Currently supported is `--v1` or `-1`, which will check the theme
+for 1.0.0 requirements. By default, GScan will always check for the latest version:
+
+`gscan /path/to/theme.zip -z1`
+
+or
+
+`gscan /path/to/theme/directory --v1`
+
 ### 3. Lib usage
 
 Install using yarn/npm and then:
@@ -34,6 +43,11 @@ var gscan = require('gscan');
 
 gscan.checkZip({
     path: 'path-to-zip',
+    // if you need to check the theme for a different
+    // major Ghost version, you can pass it. Currently
+    // v1, which is Ghost 1.0 is supported. Default is
+    // the latest Ghost version 2.0:
+    // checkVersion: 'v1',
     name: 'my-theme'
 }).then(function (result) {
     console.log(result);
