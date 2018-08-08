@@ -16,6 +16,9 @@ describe('Ghost head & foot', function () {
             output.results.fail['GS040-GH-REQ'].should.be.a.ValidFailObject();
             output.results.fail['GS040-GF-REQ'].should.be.a.ValidFailObject();
 
+            output.results.fail['GS040-GH-REQ'].failures[0].ref.should.eql('default.hbs');
+            output.results.fail['GS040-GF-REQ'].failures[0].ref.should.eql('default.hbs');
+
             done();
         }).catch(done);
     });

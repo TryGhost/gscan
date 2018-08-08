@@ -16,8 +16,9 @@ describe('Assets', function () {
 
             output.results.fail['GS030-ASSET-REQ'].should.be.a.ValidFailObject();
             output.results.fail['GS030-ASSET-REQ'].failures.should.be.an.Array().with.lengthOf(1);
-            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('ref');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].ref.should.eql('/assets/css/style.css');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('ref', 'message');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].ref.should.eql('default.hbs');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].message.should.eql('/assets/css/style.css');
 
             done();
         }).catch(done);
