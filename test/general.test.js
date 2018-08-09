@@ -340,7 +340,9 @@ describe('Checker', function () {
                 'GS020-POST-REQ',
                 'GS020-DEF-REC',
                 'GS040-GH-REQ',
-                'GS040-GF-REQ'
+                'GS040-GF-REQ',
+                'GS050-CSS-KGWW',
+                'GS050-CSS-KGWF'
             );
 
             done();
@@ -397,10 +399,12 @@ describe('format', function () {
         checker(themePath('005-compile/invalid')).then((theme) => {
             theme = format(theme);
 
-            theme.results.error.length.should.eql(10);
+            theme.results.error.length.should.eql(12);
             theme.results.error[0].fatal.should.eql(true);
-            theme.results.error[1].fatal.should.eql(false);
-            theme.results.error[8].fatal.should.eql(false);
+            theme.results.error[1].fatal.should.eql(true);
+            theme.results.error[2].fatal.should.eql(true);
+            theme.results.error[3].fatal.should.eql(false);
+            // theme.results.error[10].fatal.should.eql(false);
 
             done();
         });
@@ -412,10 +416,12 @@ describe('format', function () {
 
             theme.results.error[0].fatal.should.eql(true);
             theme.results.error[1].fatal.should.eql(true);
-            theme.results.error[2].fatal.should.eql(false);
-            theme.results.error[8].fatal.should.eql(false);
-            theme.results.error[9].fatal.should.eql(false);
+            theme.results.error[2].fatal.should.eql(true);
+            theme.results.error[3].fatal.should.eql(true);
+            theme.results.error[4].fatal.should.eql(false);
             theme.results.error[10].fatal.should.eql(false);
+            theme.results.error[11].fatal.should.eql(false);
+            theme.results.error[12].fatal.should.eql(false);
 
             done();
         });
@@ -433,7 +439,7 @@ describe('format', function () {
             theme.results.warning.all.length.should.eql(2);
             theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-            theme.results.error.all.length.should.eql(10);
+            theme.results.error.all.length.should.eql(12);
 
             // 1 rule has file references
             theme.results.error.byFiles['author.hbs'].length.should.eql(1);
@@ -447,7 +453,7 @@ describe('format', function () {
     });
 
     it('sort by files', function (done) {
-        checker(themePath('001-deprecations/invalid')).then((theme) => {
+        checker(themePath('001-deprecations/latest/invalid')).then((theme) => {
             theme = format(theme, {sortByFiles: true});
 
             theme.results.hasFatalErrors.should.be.true();
@@ -455,8 +461,8 @@ describe('format', function () {
             theme.results.recommendation.all.length.should.eql(1);
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
-            theme.results.error.all.length.should.eql(36);
-            theme.results.warning.all.length.should.eql(0);
+            theme.results.error.all.length.should.eql(38);
+            theme.results.warning.all.length.should.eql(1);
 
             theme.results.error.byFiles['assets/my.css'].length.should.eql(5);
             theme.results.error.byFiles['default.hbs'].length.should.eql(6);

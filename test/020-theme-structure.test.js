@@ -3,7 +3,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
 
     thisCheck = require('../lib/checks/020-theme-structure');
 
-describe('Theme structure', function () {
+describe('020 Theme structure', function () {
     const options = {checkVersion: 'v1'};
 
     it('should fail all rules if no files present', function (done) {
