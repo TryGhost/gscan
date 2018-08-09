@@ -1,0 +1,18 @@
+<html>
+<head>
+
+    <meta name="description" content="{{meta_description}}">
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
+    {{ghost_head}}
+</head>
+<body>
+    {{pageUrl 'lol'}}
+    {{@config.posts_per_page}}
+
+    {{author.profile_image}}
+
+    {{author.cover_image}}
+</body>
+    {{ghost_foot}}
+</html>
