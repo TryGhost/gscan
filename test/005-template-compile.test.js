@@ -2,7 +2,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
     thisCheck = require('../lib/checks/005-template-compile');
 
-describe('Template compile', function () {
+describe('005 Template compile', function () {
     const options = {checkVersion: 'v1'};
 
     it('should output empty array for a theme with no templates', function (done) {

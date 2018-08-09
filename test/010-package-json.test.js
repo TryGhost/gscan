@@ -2,7 +2,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
     thisCheck = require('../lib/checks/010-package-json');
 
-describe('010: package.json', function () {
+describe('010 package.json', function () {
     const options = {checkVersion: 'v1'};
 
     it('should output error for missing package.json', function (done) {

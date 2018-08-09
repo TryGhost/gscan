@@ -3,7 +3,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils');
 
 describe('001 Deprecations', function () {
-    describe('v1', function () {
+    describe('v1:', function () {
         const options = {checkVersion: 'v1'};
 
         it('[failure] theme is invalid', function (done) {
@@ -172,7 +172,7 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('latest version', function () {
+    describe('latest version:', function () {
         it('[failure] theme is completely invalid (v1 and latest)', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/latest/invalid_all').then(function (output) {
                 output.should.be.a.ValidThemeObject();

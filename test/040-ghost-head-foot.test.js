@@ -2,7 +2,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
     thisCheck = require('../lib/checks/040-ghost-head-foot');
 
-describe('Ghost head & foot', function () {
+describe('040 Ghost head & foot', function () {
     const options = {checkVersion: 'v1'};
 
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present', function (done) {
