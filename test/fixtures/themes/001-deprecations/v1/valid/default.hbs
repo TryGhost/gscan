@@ -1,0 +1,20 @@
+<html>
+<head>
+
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
+    {{ghost_head}}
+</head>
+<body>
+    {{page_url 'lol'}}
+    {{@config.posts_per_page}}
+
+    {{author.profile_image}}
+
+    {{!-- invalid usage of author property. Will not be detected. --}}
+    {{author_profile_image}}
+
+    {{author.cover_image}}
+</body>
+    {{ghost_foot}}
+</html>
