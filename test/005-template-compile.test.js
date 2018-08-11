@@ -66,4 +66,30 @@ describe('Template compile', function () {
             done();
         }).catch(done);
     });
+
+    it('should output empty array for a theme with valid translate', function (done) {
+        utils.testCheck(thisCheck, '005-compile/validTranslate').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.an.Object().which.is.empty();
+
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS005-TPL-ERR');
+
+            done();
+        }).catch(done);
+    });
+
+    it('should output error for a theme with an invalid translate', function (done) {
+        utils.testCheck(thisCheck, '005-compile/invalidTranslate').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.pass.should.be.an.Object().which.is.empty();
+
+            output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+            output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+            done();
+        }).catch(done);
+    });
 });
