@@ -57,6 +57,16 @@
             $('#theme-submit').prop('disabled', !$(this)[0].files.length);
         });
 
+        // Mobile Menu Trigger
+        $('.gh-nav-burger').click(function () {
+            $('.gh-mobilehead').toggleClass('gh-mobilehead-open');
+        });
+
+        // Toggle dropdown arrow
+        $('#version').on('click', function () {
+            $('.gh-input-icon.select-arrow').toggleClass('.active');
+        });
+
         /** Latest News **/
         if ($('.myblogs-latest-news').length && window.ghost) {
             $.get(window.ghost.url.api('posts', {limit: 1, include: 'author'}), function (json) {

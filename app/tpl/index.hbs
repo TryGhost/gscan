@@ -16,6 +16,8 @@
                 </div>
                 <div class="gh-form-group">
                     <label for="version">Ghost version:</label>
+                    <span class="gh-input-icon select-arrow">{{> icon-arrow-up}}</span>
+                    <span class="gh-input-icon select-arrow active">{{> icon-arrow-down}}</span>
                     <select class="gh-input gh-select" name="version" id="version">
                         <option value="latest" selected>{{ghostVersions.latest.major}} (latest)</option>
                         <option value="v1">{{ghostVersions.v1.major}}</option>
