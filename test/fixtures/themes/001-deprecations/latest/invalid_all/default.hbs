@@ -14,6 +14,13 @@
 
     {{cover}}
 
+    {{#get "posts" include="tags, author" fields="author" filter="author:{{author.slug}}+id:-{{id}}"}}
+        {{#foreach posts}}
+            {{author}}
+            {{title}} 
+        {{/foreach}}
+    {{/get}}
+
     {{!-- invalid usage of author property. Will not be detected. --}}
     {{author_image}}
 </body>

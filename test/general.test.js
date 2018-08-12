@@ -322,7 +322,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(32);
+            theme.results.pass.should.be.an.Array().with.lengthOf(72);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -358,7 +358,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(31);
+            theme.results.pass.should.be.an.Array().with.lengthOf(33);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -453,21 +453,21 @@ describe('format', function () {
     });
 
     it('sort by files', function (done) {
-        checker(themePath('001-deprecations/latest/invalid')).then((theme) => {
+        checker(themePath('001-deprecations/latest/invalid_all')).then((theme) => {
             theme = format(theme, {sortByFiles: true});
 
             theme.results.hasFatalErrors.should.be.true();
 
-            theme.results.recommendation.all.length.should.eql(1);
+            theme.results.recommendation.all.length.should.eql(2);
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
-            theme.results.error.all.length.should.eql(38);
+            theme.results.error.all.length.should.eql(78);
             theme.results.warning.all.length.should.eql(1);
 
             theme.results.error.byFiles['assets/my.css'].length.should.eql(5);
-            theme.results.error.byFiles['default.hbs'].length.should.eql(6);
-            theme.results.error.byFiles['post.hbs'].length.should.eql(17);
-            theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(4);
+            theme.results.error.byFiles['default.hbs'].length.should.eql(11);
+            theme.results.error.byFiles['post.hbs'].length.should.eql(53);
+            theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
             theme.results.error.byFiles['index.hbs'].length.should.eql(7);
 
             done();
