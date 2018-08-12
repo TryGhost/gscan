@@ -1,40 +1,67 @@
-{{content words="0"}}
-{{#if post.author.image}}
-    {{post.author.image}}
-{{/if}}
+{{img_url 'bla'}}
 
-{{#if post.author.cover}}
-    {{post.author.cover}}
-{{/if}}
-{{!-- flexible capture--}}
-{{pageUrl 'lol'}}
-{{!-- don't match non-helper reg check --}}
-{{pageUrlA}}
-{{#if post.tags.[3].image}}
-    {{post.tags.[3].image}}
-{{/if}}
 {{#post}}
     {{meta_description}}
-    {{#if image}}
-        {{ image }}
-    {{/if}}
+    {{feature_image}}
 
-    {{image}}
-    {{#if author.image}}
-        {{author.image}}
-    {{/if}}
+    {{img_url author.profile_image}}
 
-    {{#if author.cover}}
-        {{author.cover}}
-    {{/if}}
+    {{#if author}}{{/if}}
+    {{#if author.email}}{{/if}}
+    
+    {{#../author}}{{/../author}}
+    {{#if ../author}}{{/if}}
+    {{../author}}
+    {{../author.name}}
 
-    {{#if tags.[5].image}}
-        {{tags.[5].image}}
-    {{/if}}
+    {{!-- Usage should not be invalid --}}
+    {{#has author="count:>1"}}
+    {{/has}} 
+    
+    {{#foreach authors}}
+        <li>
+            <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
+        </li>  
+    {{/foreach}}
 {{/post}}
 
 {{#author}}
-    {{#if cover}}
-        {{cover}}
+    {{#if cover_image}}
+        {{cover_image}}
     {{/if}}
 {{/author}}
+
+{{#if post.author}}{{/if}}
+{{#if post.author.name}}{{/if}}
+
+{{!-- author attributes --}}
+{{author.id}}
+{{author.slug}}
+{{author.email}}
+{{author.meta_title}}
+{{author.meta_description}}
+{{author.name}}
+{{author.bio}}
+{{author.location}}
+{{author.website}}
+{{author.twitter}}
+{{author.facebook}}
+{{author.profile_image}}
+{{author.cover_image}}
+{{author.url}}
+
+{{post.author}}
+{{post.author.id}}
+{{post.author.slug}}
+{{post.author.email}}
+{{post.author.meta_title}}
+{{post.author.meta_description}}
+{{post.author.name}}
+{{post.author.bio}}
+{{post.author.location}}
+{{post.author.website}}
+{{post.author.twitter}}
+{{post.author.facebook}}
+{{post.author.profile_image}}
+{{post.author.cover_image}}
+{{post.author.url}}
