@@ -165,7 +165,7 @@ describe('Read theme', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
             done();
-        });
+        }).catch(done);
     });
 
     it('Can read partials', function (done) {
@@ -189,7 +189,7 @@ describe('Read theme', function () {
             fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
             done();
-        });
+        }).catch(done);
     });
 
     it('Can extract custom templates', function (done) {
@@ -257,7 +257,7 @@ describe('Read theme', function () {
             theme.templates.custom[3].slug.should.eql('welcome-ghost');
 
             done();
-        });
+        }).catch(done);
     });
 });
 
@@ -286,7 +286,7 @@ describe('Read Hbs Files', function () {
             result.partials.should.be.an.Array().with.lengthOf(2);
             result.partials.should.eql(['mypartial', 'subfolder/test']);
             done();
-        });
+        }).catch(done);
     });
 
     it('can read partials with windows paths', function (done) {
@@ -308,7 +308,7 @@ describe('Read Hbs Files', function () {
                 result.partials.should.be.an.Array().with.lengthOf(2);
                 result.partials.should.eql(['mypartial', 'subfolder\\test']);
                 done();
-            });
+            }).catch(done);
     });
 });
 
@@ -346,7 +346,7 @@ describe('Checker', function () {
             );
 
             done();
-        });
+        }).catch(done);
     });
 
     it('checks for an older version if passed', function (done) {
@@ -380,7 +380,7 @@ describe('Checker', function () {
             );
 
             done();
-        });
+        }).catch(done);
     });
 
     it('should not follow symlinks', function (done) {
@@ -390,7 +390,7 @@ describe('Checker', function () {
             theme.results.fail.should.containEql('GS030-ASSET-SYM');
 
             done();
-        });
+        }).catch(done);
     });
 });
 
@@ -407,7 +407,7 @@ describe('format', function () {
             // theme.results.error[10].fatal.should.eql(false);
 
             done();
-        });
+        }).catch(done);
     });
 
     it('assert sorting', function (done) {
@@ -422,7 +422,7 @@ describe('format', function () {
             theme.results.error[12].fatal.should.eql(false);
 
             done();
-        });
+        }).catch(done);
     });
 
     it('sort by files', function (done) {
@@ -447,7 +447,7 @@ describe('format', function () {
             theme.results.error.byFiles['package.json'].length.should.eql(9);
 
             done();
-        });
+        }).catch(done);
     });
 
     it('sort by files', function (done) {
@@ -470,6 +470,6 @@ describe('format', function () {
             theme.results.error.byFiles['error.hbs'].length.should.eql(1);
 
             done();
-        });
+        }).catch(done);
     });
 });
