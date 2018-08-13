@@ -20,6 +20,10 @@
 
     {{!-- invalid usage of author property. Will not be detected. --}}
     {{author_profile_image}}
+
+    {{#if error}}
+        {{error.statusCode}}
+    {{/if}}
 </body>
     {{ghost_foot}}
 </html>
