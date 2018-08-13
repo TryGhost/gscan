@@ -23,7 +23,7 @@ describe('020 Theme structure', function () {
             output.results.fail['GS020-DEF-REC'].failures[0].ref.should.eql('default.hbs');
 
             done();
-        });
+        }).catch(done);
     });
 
     it('should pass and fail when some rules pass and others fail', function (done) {
@@ -40,7 +40,7 @@ describe('020 Theme structure', function () {
             output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
 
             done();
-        });
+        }).catch(done);
     });
 
     it('should still fail with just a recommendation', function (done) {
@@ -56,6 +56,6 @@ describe('020 Theme structure', function () {
             output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
 
             done();
-        });
+        }).catch(done);
     });
 });
