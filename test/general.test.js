@@ -336,6 +336,7 @@ describe('Checker', function () {
                 'GS010-PJ-AUT-EM-VAL',
                 'GS010-PJ-AUT-EM-REQ',
                 'GS010-PJ-CONF-PPP',
+                'GS010-PJ-KEYWORDS',
                 'GS020-INDEX-REQ',
                 'GS020-POST-REQ',
                 'GS020-DEF-REC',
@@ -434,7 +435,7 @@ describe('format', function () {
             theme.results.recommendation.all.length.should.eql(1);
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
-            theme.results.warning.all.length.should.eql(2);
+            theme.results.warning.all.length.should.eql(3);
             theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
             theme.results.error.all.length.should.eql(12);
@@ -460,7 +461,7 @@ describe('format', function () {
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
             theme.results.error.all.length.should.eql(80);
-            theme.results.warning.all.length.should.eql(1);
+            theme.results.warning.all.length.should.eql(2);
 
             theme.results.error.byFiles['assets/my.css'].length.should.eql(5);
             theme.results.error.byFiles['default.hbs'].length.should.eql(12);
