@@ -401,8 +401,8 @@ describe('format', function () {
 
             theme.results.error.length.should.eql(12);
             theme.results.error[0].fatal.should.eql(true);
-            theme.results.error[1].fatal.should.eql(true);
-            theme.results.error[2].fatal.should.eql(true);
+            // theme.results.error[1].fatal.should.eql(true);
+            // theme.results.error[2].fatal.should.eql(true);
             theme.results.error[3].fatal.should.eql(false);
             // theme.results.error[10].fatal.should.eql(false);
 
@@ -416,8 +416,6 @@ describe('format', function () {
 
             theme.results.error[0].fatal.should.eql(true);
             theme.results.error[1].fatal.should.eql(true);
-            theme.results.error[2].fatal.should.eql(true);
-            theme.results.error[3].fatal.should.eql(true);
             theme.results.error[4].fatal.should.eql(false);
             theme.results.error[10].fatal.should.eql(false);
             theme.results.error[11].fatal.should.eql(false);
