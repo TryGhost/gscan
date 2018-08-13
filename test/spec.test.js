@@ -39,6 +39,7 @@ describe('Specs', function () {
             v1Spec.templates.should.be.an.Array().with.lengthOf(10);
             v1Spec.rules.should.be.an.Object();
             Object.keys(v1Spec.rules).length.should.eql(49);
+            Object.keys(v1Spec.rules).should.containEql('GS002-DISQUS-ID');
         });
     });
 
@@ -50,9 +51,10 @@ describe('Specs', function () {
             latest.templates.should.be.an.Array().with.lengthOf(10);
             latest.rules.should.be.an.Object();
             Object.keys(latest.rules).length.should.eql(92);
-        });
 
-        it('returns updated rules');
-        it('can remove rules');
+            Object.keys(latest.rules).should.not.containEql('GS002-DISQUS-ID');
+
+            console.log(Object.keys(latest.rules));
+        });
     });
 });
