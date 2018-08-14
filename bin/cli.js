@@ -40,6 +40,8 @@ function outputResult(result) {
 
 function outputResults(theme, options) {
     theme = gscan.format(theme, options);
+    let errorCount = theme.results.error.length;
+    let warnCount = theme.results.warning.length;
 
     console.log(chalk.bold.underline(`\nRule Report for v${theme.checkedVersion}:`));
 
@@ -62,7 +64,23 @@ function outputResults(theme, options) {
         console.log(chalk.green.bold.underline('\n\u2713', theme.results.pass.length, 'Passed Rules'));
     }
 
-    console.log('\n...checks complete.');
+    if (errorCount > 0 || warnCount > 0) {
+        let errorString = 'Checks failed with ';
+        // This is a failure case
+        if (errorCount > 0 && warnCount > 0) {
+            errorString += `${errorCount} errors and ${warnCount} warnings.`;
+        } else if (errorCount > 0) {
+            errorString += `${errorCount} errors.`;
+        } else if (warnCount > 0) {
+            errorString += `${warnCount} warnings.`;
+        }
+
+        console.error(errorString);
+        process.exit(1);
+    } else {
+        console.log('\nChecks completed without errors.');
+        process.exit(0);
+    }
 }
 
 if (!program.args.length) {
