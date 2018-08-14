@@ -4,6 +4,7 @@
   "author": {
     "email": "something"
   },
+  "keywords": "ghost-theme",
   "config": {
     "posts_per_page": "something"
   }

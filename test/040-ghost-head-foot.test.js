@@ -1,10 +1,12 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/040-ghost-head-foot');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/040-ghost-head-foot');
 
-describe('Ghost head & foot', function () {
+describe('040 Ghost head & foot', function () {
+    const options = {};
+
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present', function (done) {
-        utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+        utils.testCheck(thisCheck, 'is-empty', options).then((output) => {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().which.is.empty();
@@ -14,12 +16,15 @@ describe('Ghost head & foot', function () {
             output.results.fail['GS040-GH-REQ'].should.be.a.ValidFailObject();
             output.results.fail['GS040-GF-REQ'].should.be.a.ValidFailObject();
 
+            output.results.fail['GS040-GH-REQ'].failures[0].ref.should.eql('default.hbs');
+            output.results.fail['GS040-GF-REQ'].failures[0].ref.should.eql('default.hbs');
+
             done();
         }).catch(done);
     });
 
     it('should show warnings for missing ghost head & foot helpers when they are not in any .hbs file', function (done) {
-        utils.testCheck(thisCheck, '040-head-foot/missing').then(function (output) {
+        utils.testCheck(thisCheck, '040-head-foot/missing', options).then((output) => {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().which.is.empty();
@@ -34,7 +39,7 @@ describe('Ghost head & foot', function () {
     });
 
     it('should output nothing when ghost head & foot helpers are present', function (done) {
-        utils.testCheck(thisCheck, '040-head-foot/valid').then(function (output) {
+        utils.testCheck(thisCheck, '040-head-foot/valid', options).then((output) => {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(2);

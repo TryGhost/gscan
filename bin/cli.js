@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 
-var pkgJson = require('../package.json'),
-    program = require('commander'),
-    _ = require('lodash'),
-    chalk = require('chalk'),
-    gscan = require('../lib'),
+const pkgJson = require('../package.json');
+const program = require('commander');
+const _ = require('lodash');
+const chalk = require('chalk');
+const gscan = require('../lib');
 
-    themePath = '',
-    levels;
+const options = {};
+let themePath = '';
+let levels;
 
 program
     .version(pkgJson.version)
@@ -15,6 +16,7 @@ program
     .arguments('cmd <themePath>')
     .option('-p, --pre', 'Run a pre-check only')
     .option('-z, --zip', 'Theme path points to a zip file')
+    .option('-1, --v1', 'Check theme for Ghost 1.0 compatibility, instead of 2.0')
     .action(function (theme) {
         themePath = theme;
     })
@@ -30,12 +32,18 @@ levels = {
 /* eslint-disable no-console */
 function outputResult(result) {
     console.log('-', levels[result.level](result.level), result.rule);
+
+    if (result.failures && result.failures.length) {
+        console.log(`    Files: ${_.map(result.failures, 'ref')}`);
+    }
 }
 
-function outputResults(theme) {
-    theme = gscan.format(theme);
+function outputResults(theme, options) {
+    theme = gscan.format(theme, options);
+    let errorCount = theme.results.error.length;
+    let warnCount = theme.results.warning.length;
 
-    console.log(chalk.bold.underline('\nRule Report:'));
+    console.log(chalk.bold.underline(`\nRule Report for v${theme.checkedVersion}:`));
 
     if (!_.isEmpty(theme.results.error)) {
         console.log(chalk.red.bold.underline('\n! Must fix:'));
@@ -56,27 +64,52 @@ function outputResults(theme) {
         console.log(chalk.green.bold.underline('\n\u2713', theme.results.pass.length, 'Passed Rules'));
     }
 
-    console.log('\n...checks complete.');
+    if (errorCount > 0 || warnCount > 0) {
+        let errorString = 'Checks failed with ';
+        // This is a failure case
+        if (errorCount > 0 && warnCount > 0) {
+            errorString += `${errorCount} errors and ${warnCount} warnings.`;
+        } else if (errorCount > 0) {
+            errorString += `${errorCount} errors.`;
+        } else if (warnCount > 0) {
+            errorString += `${warnCount} warnings.`;
+        }
+
+        console.error(errorString);
+        process.exit(1);
+    } else {
+        console.log('\nChecks completed without errors.');
+        process.exit(0);
+    }
 }
 
 if (!program.args.length) {
     program.help();
 } else {
+    if (program.v1) {
+        options.checkVersion = 'v1';
+    } else {
+        // CASE: set default value
+        options.checkVersion = 'latest';
+    }
+
     if (program.zip) {
         console.log('Checking zip file...');
-        gscan.checkZip(themePath)
-            .then(outputResults)
-            .catch(function (error) {
+        gscan.checkZip(themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch((error) => {
                 console.error(error);
             });
     } else {
         console.log('Checking directory...');
-        gscan.check(themePath).then(outputResults).catch(function ENOTDIRPredicate(err) {
-            return err.code === 'ENOTDIR';
-        }, function (err) {
-            console.error(err.message);
-            console.error('Did you mean to add the -z flag to read a zip file?');
+        gscan.check(themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch(function ENOTDIRPredicate(err) {
+                return err.code === 'ENOTDIR';
+            }, function (err) {
+                console.error(err.message);
+                console.error('Did you mean to add the -z flag to read a zip file?');
             /* eslint-enable no-console */
-        });
+            });
     }
 }

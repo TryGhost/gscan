@@ -1,7 +1,18 @@
 # GScan
 
-Checks Ghost themes for errors, deprecations, best practices and looks to see which features are supported. 
-Aims to generate a compatibility report and feature listing for themes.
+GScan is a tool for validating Ghost themes. It produces detailed reports of issues where themes need to be modified in order to be compatible with a specific version.
+GScan is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v2 and v1).
+GScan works on a system of rules. Each rule has a way to check whether it passes or fails and has help content which describes how to fix it. Each rule is also marked with an error level:
+
+- **recommendation** = these are things the dev might want to know about
+- **warning** = usually used for deprecations, things that will be errors in the next version
+- **error** = anything that makes the theme invalid or incompatible with the current version of Ghost
+
+In addition, an **error** can be marked as **fatal**. A **fatal error** means, left unchecked a Ghost publication would throw 500 errors on certain pages because of the detected out-of-date or erroneous code. 
+
+In Ghost, we call GScan on boot. If any fatal errors are detected, the blog will not boot. In Ghost(Pro) and in Ghost-CLI we call GScan as part of major upgrades. The upgrade will not be allowed to continue if any fatal errors are detected.
+
+Errors are only be marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
 
 ## Usage
 
@@ -25,6 +36,15 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
+You can also pass a version. Currently supported is `--v1` or `-1`, which will check the theme
+for 1.0.0 requirements. By default, GScan will always check for the latest version:
+
+`gscan /path/to/theme.zip -z1`
+
+or
+
+`gscan /path/to/theme/directory --v1`
+
 ### 3. Lib usage
 
 Install using yarn/npm and then:
@@ -34,6 +54,11 @@ var gscan = require('gscan');
 
 gscan.checkZip({
     path: 'path-to-zip',
+    // if you need to check the theme for a different
+    // major Ghost version, you can pass it. Currently
+    // v1, which is Ghost 1.0 is supported. Default is
+    // the latest Ghost version 2.0:
+    // checkVersion: 'v1',
     name: 'my-theme'
 }).then(function (result) {
     console.log(result);
