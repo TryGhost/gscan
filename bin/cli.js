@@ -32,6 +32,10 @@ levels = {
 /* eslint-disable no-console */
 function outputResult(result) {
     console.log('-', levels[result.level](result.level), result.rule);
+
+    if (result.failures && result.failures.length) {
+        console.log(`    Files: ${_.map(result.failures, 'ref')}`);
+    }
 }
 
 function outputResults(theme, options) {
