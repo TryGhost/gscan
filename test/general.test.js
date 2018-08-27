@@ -196,7 +196,7 @@ describe('Read theme', function () {
         readTheme(themePath('theme-with-custom-templates')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(11);
+            theme.files.should.be.an.Array().with.lengthOf(12);
             theme.partials.length.should.eql(0);
             theme.templates.all.length.should.eql(9);
             theme.templates.custom.length.should.eql(4);
@@ -207,14 +207,19 @@ describe('Read theme', function () {
             theme.files[0].content.should.eql('ignoreme');
             should.exist(theme.files[0].compiled);
 
-            theme.files[1].file.should.eql('custom/test.hbs');
-            theme.files[1].ext.should.eql('.hbs');
-            theme.files[1].content.should.eql('test');
-            should.exist(theme.files[1].compiled);
+            theme.files[1].file.should.eql('assets/styles.css');
+            theme.files[1].ext.should.eql('.css');
+            theme.files[1].content.should.eql('.some-class {\n    border: 0;\n}\n');
+            should.not.exist(theme.files[1].compiled);
 
-            theme.files[2].file.should.eql('custom-My-Post.hbs');
+            theme.files[2].file.should.eql('custom/test.hbs');
             theme.files[2].ext.should.eql('.hbs');
-            theme.files[2].content.should.eql('content');
+            theme.files[2].content.should.eql('test');
+            should.exist(theme.files[2].compiled);
+
+            theme.files[3].file.should.eql('custom-My-Post.hbs');
+            theme.files[3].ext.should.eql('.hbs');
+            theme.files[3].content.should.eql('content');
             should.exist(theme.files[2].compiled);
 
             theme.templates.all.should.eql([
@@ -279,7 +284,7 @@ describe('Read Hbs Files', function () {
 
         sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
 
-        readTheme.__get__('readHbsFiles')({
+        readTheme.__get__('readFiles')({
             files: exampleI,
             path: 'fake/example-i'
         }).then((result) => {
@@ -300,7 +305,7 @@ describe('Read Hbs Files', function () {
             {file: 'post.hbs', ext: '.hbs'}
         ];
 
-        readTheme.__get__('readHbsFiles')({
+        readTheme.__get__('readFiles')({
             files: exampleI,
             path: 'fake\\example-i'
         })
