@@ -25,16 +25,25 @@ describe('050 Koenig CSS classes', function () {
 
                 output.results.pass.should.be.an.Array().which.is.empty();
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
                 output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
                 output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
+                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
 
                 output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
                 output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
+                output.results.fail['GS050-CSS-KGGC'].failures.length.should.eql(1);
+                output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
+                output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
+
                 output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
                 output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
+                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('styles');
+                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('styles');
+                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('styles');
 
                 done();
             }).catch(done);
@@ -46,24 +55,29 @@ describe('050 Koenig CSS classes', function () {
 
                 output.results.pass.should.be.an.Array().which.is.empty();
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
                 output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
                 output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
 
                 done();
             }).catch(done);
         });
 
-        it('[failure] should invalidate theme when one CSS class is missing', function (done) {
+        it('[failure] should invalidate theme when three CSS classes are missing', function (done) {
             utils.testCheck(thisCheck, '050-koenig-css-classes/mixed').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF');
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
 
                 output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
 
                 done();
             }).catch(done);
@@ -73,7 +87,7 @@ describe('050 Koenig CSS classes', function () {
             utils.testCheck(thisCheck, '050-koenig-css-classes/valid').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                output.results.pass.should.be.an.Array().with.lengthOf(5);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
