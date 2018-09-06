@@ -67,7 +67,7 @@ describe('050 Koenig CSS classes', function () {
             }).catch(done);
         });
 
-        it('[failure] should invalidate theme when three CSS classes are missing', function (done) {
+        it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function (done) {
             utils.testCheck(thisCheck, '050-koenig-css-classes/mixed').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
