@@ -399,6 +399,14 @@ describe('Checker', function () {
 });
 
 describe('format', function () {
+    beforeEach(function () {
+        sandbox.stub(pfs, 'removeDir');
+    });
+
+    afterEach(function () {
+        sandbox.restore();
+    });
+
     it('assert sorting', function (done) {
         checker(themePath('005-compile/invalid')).then((theme) => {
             theme = format(theme);
