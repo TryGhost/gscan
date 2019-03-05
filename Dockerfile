@@ -1,5 +1,7 @@
 FROM node:10-alpine
 
+ENV NODE_ENV development
+
 # Set port to run application on
 ENV port 2369
 
@@ -16,7 +18,7 @@ COPY . /usr/src/app
 # Run tests at build time and make sure we clean up unused packages and caches
 RUN yarn install && yarn test \
     && yarn install --production && yarn cache clean \
-    && chown -R $user:$user /usr/src/app
+    && chown -R $user:$user /usr/src/app && rm -rf config.*.json
 
 USER $user
 EXPOSE $port
