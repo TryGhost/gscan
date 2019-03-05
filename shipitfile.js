@@ -6,7 +6,7 @@ function init(shipit) {
             yarn: true,
             workspace: './',
             deployTo: '/opt/gscan/',
-            ignores: ['.git', '.gitkeep', '.gitignore', '.eslintrc.js', '.eslintcache', 'node_modules', '/test', '/app/public/.eslintrc.js']
+            ignores: ['.git', '.gitkeep', '.gitignore', '.eslintrc.js', '.eslintcache', 'node_modules', '/test', '/app/public/.eslintrc.js', 'Dockerfile', '.dockerignore']
         },
         staging: {
             servers: process.env.STG_USER + '@' + process.env.STG_SERVER,

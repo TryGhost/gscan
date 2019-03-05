@@ -1,0 +1,10 @@
+node_modules/
+*.log
+.git*
+.npmignore
+.travis.yml
+circle.yml
+.dockerignore
+Dockerfile
+nodemon.json
+shipitfile.js
