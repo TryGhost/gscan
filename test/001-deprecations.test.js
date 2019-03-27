@@ -37,7 +37,6 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-TIMG',
                     'GS001-DEPR-CSS-AT',
-                    'GS001-DEPR-CSS-PA',
                     'GS001-DEPR-CSS-PATS'
                 );
 
@@ -121,10 +120,6 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
 
-                // css class .page
-                output.results.fail['GS001-DEPR-CSS-PA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PA'].failures.length.should.eql(2);
-
                 // css class .page-template-{slug}
                 output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
@@ -144,7 +139,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(28);
+                output.results.pass.should.be.an.Array().with.lengthOf(27);
 
                 done();
             }).catch(done);
@@ -167,7 +162,7 @@ describe('001 Deprecations', function () {
 
                 output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(2);
-                output.results.pass.should.be.an.Array().with.lengthOf(20);
+                output.results.pass.should.be.an.Array().with.lengthOf(19);
 
                 done();
             }).catch(done);
@@ -206,7 +201,6 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-TIMG',
                     'GS001-DEPR-CSS-AT',
-                    'GS001-DEPR-CSS-PA',
                     'GS001-DEPR-CSS-PATS',
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
@@ -330,10 +324,6 @@ describe('001 Deprecations', function () {
                 // {{content word="0"}}
                 output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
-
-                // css class .page
-                output.results.fail['GS001-DEPR-CSS-PA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PA'].failures.length.should.eql(2);
 
                 // css class .page-template-{slug}
                 output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
@@ -733,7 +723,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(43);
+                output.results.pass.should.be.an.Array().with.lengthOf(42);
 
                 done();
             }).catch(done);
@@ -744,7 +734,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(85);
+                output.results.pass.should.be.an.Array().with.lengthOf(84);
 
                 done();
             }).catch(done);
@@ -758,7 +748,6 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
-                    'GS001-DEPR-CSS-PA',
                     'GS001-DEPR-CSS-PATS',
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
