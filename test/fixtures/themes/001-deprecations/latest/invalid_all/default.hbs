@@ -1,4 +1,4 @@
-<html>
+<html lang="{{lang}}">
 <head>
 
     <meta name="description" content="{{meta_description}}">
@@ -17,13 +17,13 @@
     {{#get "posts" include="tags, author" fields="author" filter="author:{{author.slug}}+id:-{{id}}"}}
         {{#foreach posts}}
             {{author}}
-            {{title}} 
+            {{title}}
         {{/foreach}}
     {{/get}}
 
     {{!-- invalid usage of author property. Will not be detected. --}}
     {{author_image}}
-    
+
     {{#if error}}
         {{error.statusCode}}
     {{/if}}

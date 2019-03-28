@@ -1,4 +1,4 @@
-<html>
+<html lang="{{lang}}">
 <head>
 
     <title>Test Theme</title>
@@ -14,7 +14,7 @@
     {{#get "posts" include=' author,tags' filter='author:{{author.slug}}+id:-{{id}}' fields="author"}}
         {{#foreach posts}}
             {{author}}
-            {{title}} 
+            {{title}}
         {{/foreach}}
     {{/get}}
 
