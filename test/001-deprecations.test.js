@@ -243,8 +243,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-IUA',
                     'GS001-DEPR-ESC',
                     'GS001-DEPR-BPL',
-                    'GS001-DEPR-BLG',
-                    'GS001-DEPR-LNG'
+                    'GS001-DEPR-BLOG',
+                    'GS001-DEPR-LANG'
                 );
 
                 // pageUrl
@@ -497,8 +497,8 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLG'].failures.length.should.eql(2);
+                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
 
                 // {{@blog.permalinks}}
                 output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
@@ -561,9 +561,9 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-IUA',
                     'GS001-DEPR-AIMG-2',
                     'GS001-DEPR-ESC',
-                    'GS001-DEPR-BLG',
+                    'GS001-DEPR-BLOG',
                     'GS001-DEPR-BPL',
-                    'GS001-DEPR-LNG'
+                    'GS001-DEPR-LANG'
                 );
 
                 // css class .kg-card-markdown
@@ -732,16 +732,16 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLG'].failures.length.should.eql(1);
+                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
 
                 // {{@blog.permalinks}}
                 output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LNG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LNG'].failures.length.should.eql(1);
+                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
 
                 output.results.pass.should.be.an.Array().with.lengthOf(42);
 
@@ -799,7 +799,7 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-IUA',
                     'GS001-DEPR-ESC',
                     'GS001-DEPR-BPL',
-                    'GS001-DEPR-BLG'
+                    'GS001-DEPR-BLOG'
                 );
 
                 output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
