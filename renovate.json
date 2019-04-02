@@ -11,5 +11,5 @@
   "travis": { "enabled": true },
   "node": {
     "supportPolicy": ["lts"]
-  },
+  }
 }
