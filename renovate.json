@@ -1,5 +1,15 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "config:base",
+    "group:jsTestMonMajor",
+    "group:linters",
+    ":maintainLockFilesWeekly",
+    ":prHourlyLimitNone",
+    ":automergeMinor"
+  ],
+  "travis": { "enabled": true },
+  "node": {
+    "supportPolicy": ["lts"]
+  },
 }
