@@ -509,7 +509,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(16);
+                output.results.pass.length.should.eql(17);
 
                 done();
             }).catch(done);
@@ -563,6 +563,7 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-ESC',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-BPL',
+                    'GS001-DEPR-SPL',
                     'GS001-DEPR-LANG'
                 );
 
@@ -739,6 +740,10 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
 
+                // {{@site.permalinks}}
+                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+
                 // {{lang}}
                 output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
@@ -754,7 +759,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(86);
+                output.results.pass.should.be.an.Array().with.lengthOf(87);
 
                 done();
             }).catch(done);
@@ -808,7 +813,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(52);
+                output.results.pass.should.be.an.Array().with.lengthOf(53);
 
                 done();
             }).catch(done);
