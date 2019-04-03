@@ -246,7 +246,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-SGH',
                     'GS001-DEPR-SGF',
                     'GS001-DEPR-BLOG',
-                    'GS001-DEPR-LANG'
+                    'GS001-DEPR-LANG',
+                    'GS001-DEPR-PAID'
                 );
 
                 // pageUrl
@@ -484,6 +485,10 @@ describe('001 Deprecations', function () {
                 // {{post.author.url}}
                 output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+
+                // {{post.author_id}}
+                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
@@ -758,7 +763,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(44);
+                output.results.pass.should.be.an.Array().with.lengthOf(45);
 
                 done();
             }).catch(done);
@@ -769,7 +774,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(89);
+                output.results.pass.should.be.an.Array().with.lengthOf(90);
 
                 done();
             }).catch(done);
@@ -823,7 +828,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(55);
+                output.results.pass.should.be.an.Array().with.lengthOf(56);
 
                 done();
             }).catch(done);
