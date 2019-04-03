@@ -5,6 +5,7 @@
     <title>Test Theme</title>
     <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
     {{ghost_head}}
+    {{@site.ghost_head}}
 </head>
 <body>
     {{pageUrl 'lol'}}
@@ -29,4 +30,5 @@
     {{/if}}
 </body>
     {{ghost_foot}}
+    {{@site.ghost_foot}}
 </html>
