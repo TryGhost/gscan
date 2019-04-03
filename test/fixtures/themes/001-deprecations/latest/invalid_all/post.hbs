@@ -9,6 +9,8 @@
 
 {{#if post.author}}{{/if}}
 
+{{post.author_id}}
+
 {{!-- flexible capture--}}
 {{pageUrl 'lol'}}
 {{!-- don't match non-helper reg check --}}
@@ -26,7 +28,7 @@
 
     {{#if author}}{{/if}}
     {{#if author.email}}{{/if}}
-    
+
     {{image}}
     {{#if author.image}}
         {{author.image}}
@@ -47,12 +49,12 @@
 
     {{!-- Usage should not be invalid --}}
     {{#has author="count:>1"}}
-    {{/has}} 
-    
+    {{/has}}
+
     {{#foreach authors}}
         <li>
             <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
-        </li>  
+        </li>
     {{/foreach}}
 {{/post}}
 
