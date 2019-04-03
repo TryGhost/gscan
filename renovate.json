@@ -1,7 +1,6 @@
 {
   "extends": [
     "config:base",
-    "config:base",
     "group:jsTestMonMajor",
     "group:linters",
     ":maintainLockFilesWeekly",
