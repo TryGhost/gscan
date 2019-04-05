@@ -1,26 +1,67 @@
 #!/usr/bin/env node
-
-const pkgJson = require('../package.json');
-const program = require('commander');
+/* eslint-disable no-console */
+const prettyCLI = require('@tryghost/pretty-cli');
 const _ = require('lodash');
 const chalk = require('chalk');
 const gscan = require('../lib');
 
 const options = {};
-let themePath = '';
 let levels;
 
-program
-    .version(pkgJson.version)
-    .usage('[options] <themePath>')
-    .arguments('cmd <themePath>')
-    .option('-p, --pre', 'Run a pre-check only')
-    .option('-z, --zip', 'Theme path points to a zip file')
-    .option('-1, --v1', 'Check theme for Ghost 1.0 compatibility, instead of 2.0')
-    .action(function (theme) {
-        themePath = theme;
+prettyCLI
+    .configure({
+        name: 'gscan'
     })
-    .parse(process.argv);
+    .groupOrder([
+        'Sources:',
+        'Utilities:',
+        'Commands:',
+        'Arguments:',
+        'Required Options:',
+        'Options:',
+        'Global Options:'
+    ])
+    .positional('<themePath>', {
+        paramsDesc: 'Theme folder or .zip file path',
+        mustExist: true
+    })
+    .boolean('-p, --pre', {
+        desc: 'Run a pre-check only'
+    })
+    .boolean('-z, --zip', {
+        desc: 'Theme path points to a zip file'
+    })
+    .boolean('-1, --v1', {
+        desc: 'Check theme for Ghost 1.0 compatibility, instead of 2.0'
+    })
+    .parseAndExit()
+    .then((argv) => {
+        if (argv.v1) {
+            options.checkVersion = 'v1';
+        } else {
+            // CASE: set default value
+            options.checkVersion = 'latest';
+        }
+
+        if (argv.zip) {
+            console.log('Checking zip file...');
+            gscan.checkZip(argv.themePath, options)
+                .then(theme => outputResults(theme, options))
+                .catch((error) => {
+                    console.error(error);
+                });
+        } else {
+            console.log('Checking directory...');
+            gscan.check(argv.themePath, options)
+                .then(theme => outputResults(theme, options))
+                .catch(function ENOTDIRPredicate(err) {
+                    return err.code === 'ENOTDIR';
+                }, function (err) {
+                    console.error(err.message);
+                    console.error('Did you mean to add the -z flag to read a zip file?');
+                });
+        }
+    });
 
 levels = {
     error: chalk.red,
@@ -29,7 +70,6 @@ levels = {
     feature: chalk.green
 };
 
-/* eslint-disable no-console */
 function outputResult(result) {
     console.log('-', levels[result.level](result.level), result.rule);
 
@@ -80,36 +120,5 @@ function outputResults(theme, options) {
     } else {
         console.log('\nChecks completed without errors.');
         process.exit(0);
-    }
-}
-
-if (!program.args.length) {
-    program.help();
-} else {
-    if (program.v1) {
-        options.checkVersion = 'v1';
-    } else {
-        // CASE: set default value
-        options.checkVersion = 'latest';
-    }
-
-    if (program.zip) {
-        console.log('Checking zip file...');
-        gscan.checkZip(themePath, options)
-            .then(theme => outputResults(theme, options))
-            .catch((error) => {
-                console.error(error);
-            });
-    } else {
-        console.log('Checking directory...');
-        gscan.check(themePath, options)
-            .then(theme => outputResults(theme, options))
-            .catch(function ENOTDIRPredicate(err) {
-                return err.code === 'ENOTDIR';
-            }, function (err) {
-                console.error(err.message);
-                console.error('Did you mean to add the -z flag to read a zip file?');
-            /* eslint-enable no-console */
-            });
     }
 }
