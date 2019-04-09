@@ -7,18 +7,19 @@
             <p>{{message}}</p>
         {{/if}}
 
-        {{#if failures}}
-            <ul>
-                {{#each failures}}
-                    <li><strong>{{ref}}:</strong> {{message}}</li>
-                {{/each}}
-            </ul>
+        {{#if details}}
+            <p>{{{details}}}</p>
         {{/if}}
 
-        {{#if details}}
-            {{{details}}}
-        {{else}}
-            <p>There is no info for this rule yet.</p>
+        {{#if failures}}
+        <div><h4>Affected files:</h4></div>
+        <ul>
+            {{#each failures}}
+            <li><strong>{{ref}}:</strong> {{message}}</li>
+            {{/each}}
+        </ul>
         {{/if}}
+
+
     </div>
 </article>
