@@ -22,6 +22,12 @@
         {{/foreach}}
     {{/get}}
 
+    {{#get "users"}}
+        {{#foreach users}}
+            {{name}}
+        {{/foreach}}
+    {{/get}}
+
     {{!-- invalid usage of author property. Will not be detected. --}}
     {{author_image}}
 
