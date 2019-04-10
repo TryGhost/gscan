@@ -247,7 +247,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-SGF',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-LANG',
-                    'GS001-DEPR-PAID'
+                    'GS001-DEPR-PAID',
+                    'GS001-DEPR-USER-GET'
                 );
 
                 // pageUrl
@@ -523,6 +524,10 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
 
+                // {{#get "users"}}
+                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+
                 // there are some single author rules which are not invalid for this theme.
                 output.results.pass.length.should.eql(17);
 
@@ -763,7 +768,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(45);
+                output.results.pass.should.be.an.Array().with.lengthOf(46);
 
                 done();
             }).catch(done);
@@ -774,7 +779,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(90);
+                output.results.pass.should.be.an.Array().with.lengthOf(91);
 
                 done();
             }).catch(done);
@@ -828,7 +833,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(56);
+                output.results.pass.should.be.an.Array().with.lengthOf(57);
 
                 done();
             }).catch(done);
