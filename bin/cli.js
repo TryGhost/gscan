@@ -81,12 +81,49 @@ function outputResult(result) {
     }
 }
 
+function getSummary(theme) {
+    const errorCount = theme.results.error.length;
+    const warnCount = theme.results.warning.length;
+    const pluralize = require('pluralize');
+    let summaryText = '';
+    const checkSymbol = '\u2713';
+    const warningSymbol = '\u26A0';
+
+    if (errorCount === 0 && warnCount === 0) {
+        summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with ${theme.checkedVersion}`;
+    } else {
+        let warning;
+
+        if (!_.isEmpty(theme.results.error)) {
+            warning = chalk.red(warningSymbol);
+        } else {
+            warning = chalk.yellow(warningSymbol);
+        }
+
+        summaryText = `\n${warning} Your theme has`;
+
+        if (!_.isEmpty(theme.results.error)) {
+            summaryText += chalk.red(` ${pluralize('error', theme.results.error.length, true)}`);
+        }
+
+        if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
+            summaryText += ' and';
+        }
+
+        if (!_.isEmpty(theme.results.warning)) {
+            summaryText += chalk.yellow(` ${pluralize('warning', theme.results.warning.length, true)}`);
+        }
+    }
+
+    return summaryText;
+}
+
 function outputResults(theme, options) {
     theme = gscan.format(theme, options);
     let errorCount = theme.results.error.length;
     let warnCount = theme.results.warning.length;
 
-    ui.log(chalk.bold.underline(`\nRule Report for v${theme.checkedVersion}:`));
+    ui.log(getSummary(theme));
 
     if (!_.isEmpty(theme.results.error)) {
         ui.log(chalk.red.bold.underline('\n! Must fix:'));
@@ -108,20 +145,8 @@ function outputResults(theme, options) {
     }
 
     if (errorCount > 0 || warnCount > 0) {
-        let errorString = 'Checks failed with ';
-        // This is a failure case
-        if (errorCount > 0 && warnCount > 0) {
-            errorString += `${errorCount} errors and ${warnCount} warnings.`;
-        } else if (errorCount > 0) {
-            errorString += `${errorCount} errors.`;
-        } else if (warnCount > 0) {
-            errorString += `${warnCount} warnings.`;
-        }
-
-        ui.log(errorString);
         process.exit(1);
     } else {
-        ui.log('\nChecks completed without errors.');
         process.exit(0);
     }
 }
