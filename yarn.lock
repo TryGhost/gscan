@@ -829,7 +829,7 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
+debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -843,7 +843,7 @@ debug@3.2.6, debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1:
+debug@^4.0.0, debug@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -1669,6 +1669,18 @@ gauge@~2.7.3:
     strip-ansi "^3.0.1"
     wide-align "^1.1.0"
 
+gelf-stream@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/gelf-stream/-/gelf-stream-1.1.1.tgz#9cea9b6386ac301c741838ca3cb91e66dbfbf669"
+  integrity sha1-nOqbY4asMBx0GDjKPLkeZtv79mk=
+  dependencies:
+    gelfling "^0.3.0"
+
+gelfling@^0.3.0:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/gelfling/-/gelfling-0.3.1.tgz#336a98f81510f9ae0af2a494e17468a116a9dc04"
+  integrity sha1-M2qY+BUQ+a4K8qSU4XRooRap3AQ=
+
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -1703,17 +1715,18 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-ghost-ignition@3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/ghost-ignition/-/ghost-ignition-3.0.4.tgz#b951140d2734cd8ff48006f3c1de640499b1028c"
-  integrity sha512-oSA9ri7kUohnk2l1SE0p4nXiO6va1GgE5zRyD4nwt8ni924L2+ccCUQMrFqc/Mne2oXO6TJ/wG8qeL0pACW2Bg==
+ghost-ignition@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/ghost-ignition/-/ghost-ignition-3.1.0.tgz#4a0d7f0a15e54fbc0e16d398da62ff68737e4e23"
+  integrity sha512-ae0r/yBJDo9SkeLfy0ecrHVqO0gt9l07wiCOWmdzdvbmoU24AB881PjymnM/DLP9SY6E33mLYtT8K3ximgieLg==
   dependencies:
     bunyan "1.8.12"
     bunyan-loggly "^1.3.1"
     caller "1.0.1"
-    debug "^2.6.9"
+    debug "^4.0.0"
     find-root "1.1.0"
     fs-extra "^3.0.1"
+    gelf-stream "^1.1.1"
     json-stringify-safe "^5.0.1"
     lodash "^4.16.4"
     moment "^2.15.2"
