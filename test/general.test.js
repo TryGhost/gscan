@@ -476,4 +476,15 @@ describe('format', function () {
             done();
         }).catch(done);
     });
+
+    it('formats for CLI output', function () {
+        return checker(themePath('001-deprecations/latest/invalid_all')).then((theme) => {
+            theme = format(theme, {format: 'cli'});
+
+            theme.results.error[0].rule.should.equal('Replace \u001b[34m{{pageUrl}}\u001b[39m with \u001b[34m{{page_url}}\u001b[39m');
+
+            theme.results.error[0].details.should.startWith(`The helper \u001b[34m{{pageUrl}}\u001b[39m was replaced with \u001b[34m{{page_url}}\u001b[39m.\n\n`);
+            theme.results.error[0].details.should.endWith(`Find more information about the \u001b[34m{{page_url}}\u001b[39m helper <a href="https://themes.ghost.org/docs/page_url" target=_blank>here</a>.`);
+        });
+    });
 });

@@ -5,7 +5,10 @@ const _ = require('lodash');
 const chalk = require('chalk');
 const gscan = require('../lib');
 
-const options = {};
+const options = {
+    format: 'cli'
+};
+
 let levels;
 
 prettyCLI
