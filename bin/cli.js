@@ -46,15 +46,15 @@ prettyCLI
             options.checkVersion = 'latest';
         }
 
+        ui.log(chalk.white.bold('Checking theme compatibility..'));
+
         if (argv.zip) {
-            ui.log('Checking zip file...');
             gscan.checkZip(argv.themePath, options)
                 .then(theme => outputResults(theme, options))
                 .catch((error) => {
                     ui.log(error);
                 });
         } else {
-            ui.log('Checking directory...');
             gscan.check(argv.themePath, options)
                 .then(theme => outputResults(theme, options))
                 .catch(function ENOTDIRPredicate(err) {
