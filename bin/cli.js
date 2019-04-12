@@ -46,7 +46,7 @@ prettyCLI
             options.checkVersion = 'latest';
         }
 
-        ui.log(chalk.white.bold('Checking theme compatibility..'));
+        ui.log(chalk.bold('Checking theme compatibility..'));
 
         if (argv.zip) {
             gscan.checkZip(argv.themePath, options)
@@ -77,7 +77,7 @@ function outputResult(result) {
     ui.log('-', levels[result.level](result.level), result.rule);
 
     if (result.failures && result.failures.length) {
-        ui.log(`    Files: ${_.map(result.failures, 'ref')}`);
+        ui.log(`    ${chalk.bold('Files')}: ${_.map(result.failures, 'ref')}`);
     }
 }
 
