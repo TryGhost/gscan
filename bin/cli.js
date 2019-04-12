@@ -85,25 +85,15 @@ function getSummary(theme) {
     const errorCount = theme.results.error.length;
     const warnCount = theme.results.warning.length;
     const pluralize = require('pluralize');
-    let summaryText = '';
     const checkSymbol = '\u2713';
-    const warningSymbol = '\u26A0';
 
     if (errorCount === 0 && warnCount === 0) {
-        summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with ${theme.checkedVersion}`;
+        summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with Ghost ${theme.checkedVersion}`;
     } else {
-        let warning;
+        summaryText = `Your theme has`;
 
         if (!_.isEmpty(theme.results.error)) {
-            warning = chalk.red(warningSymbol);
-        } else {
-            warning = chalk.yellow(warningSymbol);
-        }
-
-        summaryText = `\n${warning} Your theme has`;
-
-        if (!_.isEmpty(theme.results.error)) {
-            summaryText += chalk.red(` ${pluralize('error', theme.results.error.length, true)}`);
+            summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
         }
 
         if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
@@ -111,8 +101,15 @@ function getSummary(theme) {
         }
 
         if (!_.isEmpty(theme.results.warning)) {
-            summaryText += chalk.yellow(` ${pluralize('warning', theme.results.warning.length, true)}`);
+            summaryText += chalk.yellow.bold(` ${pluralize('warning', theme.results.warning.length, true)}`);
         }
+
+        summaryText += '!';
+
+        // NOTE: had to subtract the number of 'invisible' formating symbols
+        //       needs update if formatting above changes
+        const hiddenSymbols = 38;
+        summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
     }
 
     return summaryText;
@@ -123,7 +120,7 @@ function outputResults(theme, options) {
     let errorCount = theme.results.error.length;
     let warnCount = theme.results.warning.length;
 
-    ui.log(getSummary(theme));
+    ui.log('\n' + getSummary(theme));
 
     if (!_.isEmpty(theme.results.error)) {
         ui.log(chalk.red.bold.underline('\n! Must fix:'));
