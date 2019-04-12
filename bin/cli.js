@@ -46,15 +46,15 @@ prettyCLI
             options.checkVersion = 'latest';
         }
 
+        ui.log(chalk.bold('Checking theme compatibility..'));
+
         if (argv.zip) {
-            ui.log('Checking zip file...');
             gscan.checkZip(argv.themePath, options)
                 .then(theme => outputResults(theme, options))
                 .catch((error) => {
                     ui.log(error);
                 });
         } else {
-            ui.log('Checking directory...');
             gscan.check(argv.themePath, options)
                 .then(theme => outputResults(theme, options))
                 .catch(function ENOTDIRPredicate(err) {
@@ -77,51 +77,81 @@ function outputResult(result) {
     ui.log('-', levels[result.level](result.level), result.rule);
 
     if (result.failures && result.failures.length) {
-        ui.log(`    Files: ${_.map(result.failures, 'ref')}`);
+        ui.log(`    ${chalk.bold('Files')}: ${_.map(result.failures, 'ref')}`);
     }
+}
+
+function getSummary(theme) {
+    let summaryText = '';
+    const errorCount = theme.results.error.length;
+    const warnCount = theme.results.warning.length;
+    const pluralize = require('pluralize');
+    const checkSymbol = '\u2713';
+
+    if (errorCount === 0 && warnCount === 0) {
+        summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with Ghost ${theme.checkedVersion}`;
+    } else {
+        summaryText = `Your theme has`;
+
+        if (!_.isEmpty(theme.results.error)) {
+            summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
+        }
+
+        if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
+            summaryText += ' and';
+        }
+
+        if (!_.isEmpty(theme.results.warning)) {
+            summaryText += chalk.yellow.bold(` ${pluralize('warning', theme.results.warning.length, true)}`);
+        }
+
+        summaryText += '!';
+
+        // NOTE: had to subtract the number of 'invisible' formating symbols
+        //       needs update if formatting above changes
+        const hiddenSymbols = 38;
+        summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
+    }
+
+    return summaryText;
 }
 
 function outputResults(theme, options) {
     theme = gscan.format(theme, options);
+
     let errorCount = theme.results.error.length;
     let warnCount = theme.results.warning.length;
 
-    ui.log(chalk.bold.underline(`\nRule Report for v${theme.checkedVersion}:`));
+    ui.log('\n' + getSummary(theme));
 
     if (!_.isEmpty(theme.results.error)) {
-        ui.log(chalk.red.bold.underline('\n! Must fix:'));
+        ui.log(chalk.red.bold('\nErrors'));
+        ui.log(chalk.red.bold('------'));
+        ui.log(chalk.red('Very recommended to fix, functionality can be restricted.\n'));
+
         _.each(theme.results.error, outputResult);
     }
 
     if (!_.isEmpty(theme.results.warning)) {
-        ui.log(chalk.yellow.bold.underline('\n! Should fix:'));
+        ui.log(chalk.yellow.bold('\nWarnings'));
+        ui.log(chalk.yellow.bold('--------'));
+
         _.each(theme.results.warning, outputResult);
     }
 
     if (!_.isEmpty(theme.results.recommendation)) {
-        ui.log(chalk.red.yellow.underline('\n? Consider fixing:'));
+        ui.log(chalk.yellow.bold('\nRecommendations'));
+        ui.log(chalk.yellow.bold('---------------'));
+
         _.each(theme.results.recommendation, outputResult);
     }
 
-    if (!_.isEmpty(theme.results.pass)) {
-        ui.log(chalk.green.bold.underline('\n\u2713', theme.results.pass.length, 'Passed Rules'));
-    }
+    ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/api/handlebars-themes/')}`);
+    ui.log(`You can also check theme compatibility at ${chalk.cyan.underline('https://gscan.ghost.org/')}`);
 
     if (errorCount > 0 || warnCount > 0) {
-        let errorString = 'Checks failed with ';
-        // This is a failure case
-        if (errorCount > 0 && warnCount > 0) {
-            errorString += `${errorCount} errors and ${warnCount} warnings.`;
-        } else if (errorCount > 0) {
-            errorString += `${errorCount} errors.`;
-        } else if (warnCount > 0) {
-            errorString += `${warnCount} warnings.`;
-        }
-
-        ui.log(errorString);
         process.exit(1);
     } else {
-        ui.log('\nChecks completed without errors.');
         process.exit(0);
     }
 }
