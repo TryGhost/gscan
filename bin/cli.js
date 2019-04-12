@@ -74,11 +74,13 @@ levels = {
 };
 
 function outputResult(result) {
-    ui.log('-', levels[result.level](result.level), result.rule);
+    ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
 
     if (result.failures && result.failures.length) {
-        ui.log(`${chalk.bold('Files')}: ${_.map(result.failures, 'ref')}`);
+        ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
     }
+
+    ui.log('');
 }
 
 function getSummary(theme) {
