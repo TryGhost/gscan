@@ -1,28 +1,26 @@
 <section class="gh-section report">
     <div class="inner">
         <header>
-            <h2 class="report-heading">
+            <h1 class="report-heading">
                 <div class="result-summary">
-                    <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
-                    {{#if name}}
-                        <span class="title">{{name}} {{version}}</span>
-                    {{/if}}
+                    <span class="title">Result {{#if name}}for <strong>"{{name}} {{version}}"</strong>{{/if}}</span>
                 </div>
                 <a href="/" class="gh-btn gh-btn-blue"><span>Start Over</span></a>
-            </h2>
+            </h1>
+            <div class="health-meter {{results.score.level}}">
+                <h4>Theme compatibility for Ghost version {{checkedVersion}}</h4>
+                <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
+            </div>
         </header>
     </div>
 
     <div class="inner report-body">
         <div class="results report-section">
-            {{!-- TODO: make this pretty --}}
-            <div>
-                <p>Result for version {{checkedVersion}}:</p>
-            </div>
             {{#if results.error}}
-                <section class="level-group">
+                <section class="level-group errors">
                     <header class="level-group-header">
-                        <h3 class="level"><span class="indicator error"></span>Must fix:</h3>
+                        <h3 class="level">Errors</h3>
+                        <p>Highly recommended to fix, functionality could be restricted!</p>
                     </header>
                     <div class="rule-group">
                         {{#each results.error}}
@@ -33,9 +31,9 @@
             {{/if}}
 
             {{#if results.warning}}
-                <section class="level-group">
+                <section class="level-group warnings">
                     <header class="result-group-header">
-                        <h3 class="level"><span class="indicator warning"></span>Should fix:</h3>
+                        <h3 class="level">Warnings</h3>
                     </header>
                     <div class="rule-group">
                         {{#each results.warning}}
@@ -46,9 +44,9 @@
             {{/if}}
 
             {{#if results.recommendation}}
-                <section class="level-group">
+                <section class="level-group recommendations">
                     <header class="result-group-header">
-                        <h3 class="level"><span class="indicator recommendation"></span>Consider fixing:</h3>
+                        <h3 class="level">Recommendations</h3>
                     </header>
                     <div class="rule-group">
                         {{#each results.recommendation}}
@@ -59,9 +57,9 @@
             {{/if}}
 
             {{#if results.pass}}
-                <section class="level-group">
+                <section class="level-group passes">
                     <header class="result-group-header">
-                        <h3 class="level"><span class="indicator passing"></span>{{results.pass.length}} Passed Rules</h3>
+                        <h3 class="level">{{results.pass.length}} passed rules</h3>
                     </header>
                     {{> toggle}}
                     <div class="rule-group details hide">
