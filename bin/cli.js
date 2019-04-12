@@ -146,6 +146,9 @@ function outputResults(theme, options) {
         _.each(theme.results.recommendation, outputResult);
     }
 
+    ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/api/handlebars-themes/')}`);
+    ui.log(`You can also check theme compatibility at ${chalk.cyan.underline('https://gscan.ghost.org/')}`);
+
     if (errorCount > 0 || warnCount > 0) {
         process.exit(1);
     } else {
