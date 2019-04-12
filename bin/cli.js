@@ -82,7 +82,7 @@ function outputResult(result) {
     ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
 
     if (options.verbose) {
-        ui.log(`${chalk.bold('\nDetails: ')} result.details`);
+        ui.log(`${chalk.bold('\nDetails:')} ${result.details}`);
     }
 
     if (result.failures && result.failures.length) {
