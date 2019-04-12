@@ -82,6 +82,7 @@ function outputResult(result) {
 }
 
 function getSummary(theme) {
+    let summaryText = '';
     const errorCount = theme.results.error.length;
     const warnCount = theme.results.warning.length;
     const pluralize = require('pluralize');
