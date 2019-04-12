@@ -117,28 +117,32 @@ function getSummary(theme) {
 
 function outputResults(theme, options) {
     theme = gscan.format(theme, options);
+
     let errorCount = theme.results.error.length;
     let warnCount = theme.results.warning.length;
 
     ui.log('\n' + getSummary(theme));
 
     if (!_.isEmpty(theme.results.error)) {
-        ui.log(chalk.red.bold.underline('\n! Must fix:'));
+        ui.log(chalk.red.bold('\nErrors'));
+        ui.log(chalk.red.bold('------'));
+        ui.log(chalk.red('Very recommended to fix, functionality can be restricted.\n'));
+
         _.each(theme.results.error, outputResult);
     }
 
     if (!_.isEmpty(theme.results.warning)) {
-        ui.log(chalk.yellow.bold.underline('\n! Should fix:'));
+        ui.log(chalk.yellow.bold('\nWarnings'));
+        ui.log(chalk.yellow.bold('--------'));
+
         _.each(theme.results.warning, outputResult);
     }
 
     if (!_.isEmpty(theme.results.recommendation)) {
-        ui.log(chalk.red.yellow.underline('\n? Consider fixing:'));
-        _.each(theme.results.recommendation, outputResult);
-    }
+        ui.log(chalk.yellow.bold('\nRecommendations'));
+        ui.log(chalk.yellow.bold('---------------'));
 
-    if (!_.isEmpty(theme.results.pass)) {
-        ui.log(chalk.green.bold.underline('\n\u2713', theme.results.pass.length, 'Passed Rules'));
+        _.each(theme.results.recommendation, outputResult);
     }
 
     if (errorCount > 0 || warnCount > 0) {
