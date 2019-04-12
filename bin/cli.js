@@ -97,34 +97,49 @@ function outputResult(result) {
 }
 
 function getSummary(theme) {
-    let summaryText = '';
-    const errorCount = theme.results.error.length;
-    const warnCount = theme.results.warning.length;
     const pluralize = require('pluralize');
     const checkSymbol = '\u2713';
+    // NOTE: had to subtract the number of 'invisible' formating symbols
+    //       needs update if formatting above changes
+    let hiddenSymbols = 0;
+    let summaryText = '';
 
-    if (errorCount === 0 && warnCount === 0) {
+    if (theme.results.fatal.length === 0
+        && theme.results.error.length === 0
+        && theme.results.warning.length === 0) {
         summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with Ghost ${theme.checkedVersion}`;
     } else {
         summaryText = `Your theme has`;
 
-        if (!_.isEmpty(theme.results.error)) {
-            summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
+        if (!_.isEmpty(theme.results.fatal)) {
+            summaryText += chalk.red.bold(` ${pluralize('fatal error', theme.results.fatal.length, true)}`);
+            hiddenSymbols += 19;
         }
 
-        if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
-            summaryText += ' and';
+        if (!_.isEmpty(theme.results.error)) {
+            if (!_.isEmpty(theme.results.fatal)){
+                if (!_.isEmpty(theme.results.warning)){
+                    summaryText += ',';
+                } else {
+                    summaryText += ' and';
+                }
+            }
+
+            summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
+            hiddenSymbols += 19;
         }
 
         if (!_.isEmpty(theme.results.warning)) {
+            if (!_.isEmpty(theme.results.error) || !_.isEmpty(theme.results.fatal)){
+                summaryText += ' and';
+            }
+
             summaryText += chalk.yellow.bold(` ${pluralize('warning', theme.results.warning.length, true)}`);
+            hiddenSymbols += 19;
         }
 
         summaryText += '!';
 
-        // NOTE: had to subtract the number of 'invisible' formating symbols
-        //       needs update if formatting above changes
-        const hiddenSymbols = 38;
         summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
     }
 
@@ -137,6 +152,14 @@ function outputResults(theme, options) {
     let errorCount = theme.results.error.length;
 
     ui.log('\n' + getSummary(theme));
+
+    if (!_.isEmpty(theme.results.fatal)) {
+        ui.log(chalk.red.bold('\nFatal errors'));
+        ui.log(chalk.red.bold('------------'));
+        ui.log(chalk.red('Must be fixed to activate the theme.\n'));
+
+        _.each(theme.results.fatal, outputResult);
+    }
 
     if (!_.isEmpty(theme.results.error)) {
         ui.log(chalk.red.bold('\nErrors'));
