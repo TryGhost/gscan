@@ -299,13 +299,6 @@ async@1.x, async@^1.4.0:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-async@^2.5.0:
-  version "2.6.2"
-  resolved "https://registry.yarnpkg.com/async/-/async-2.6.2.tgz#18330ea7e6e313887f5d2f2a904bac6fe4dd5381"
-  integrity sha512-H1qVYh1MYhEEFLsP97cVKqCGo7KfCyTt6uEWqsTBr9SO84oK9Uwbyd/yCW+6rKJLHksBNUVWZDAjfS+Ccx0Bbg==
-  dependencies:
-    lodash "^4.17.11"
-
 async@~0.2.10:
   version "0.2.10"
   resolved "https://registry.yarnpkg.com/async/-/async-0.2.10.tgz#b6bbe0b0674b9d719708ca38de8c237cb526c3d1"
@@ -1308,12 +1301,12 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express-hbs@^1.0.3:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-1.1.0.tgz#703c3855c30c8052c7d6f9df642d538404c492b5"
-  integrity sha512-4TQ8kwsMyiJ5yh3F5tWnAmYtYn4tHx7kjK42/Hlmq00/ekw6KMeRgK1INJtUK4QETJcQXiuTtwx68yNoNVAomQ==
+express-hbs@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-1.1.1.tgz#0a181c01a399c0fe148ef4a006c59afd21c24f20"
+  integrity sha512-nFBXq8SNb58wospQeRsh3FZL+srv6KMVkCKJnUGB3Gm7pXUf4DzaIQ0zUb+qQRCFeAVQHaF7X4vNfIea00FiGA==
   dependencies:
-    handlebars "4.0.13"
+    handlebars "4.1.2"
     js-beautify "1.6.8"
     lodash "4.17.11"
     readdirp "2.1.0"
@@ -1830,18 +1823,7 @@ growl@1.10.5:
   resolved "https://registry.yarnpkg.com/growl/-/growl-1.10.5.tgz#f2735dc2283674fa67478b10181059355c369e5e"
   integrity sha512-qBr4OuELkhPenW6goKVXiv47US3clb3/IbuWF9KNKEijAy9oeHxU9IgzjvJhHkUzhaj7rOUD7+YGWqUjLp5oSA==
 
-handlebars@4.0.13:
-  version "4.0.13"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.0.13.tgz#89fc17bf26f46fd7f6f99d341d92efaae64f997d"
-  integrity sha512-uydY0jy4Z3wy/iGXsi64UtLD4t1fFJe16c/NFxsYE4WdQis8ZCzOXUZaPQNG0e5bgtLQV41QTfqBindhEjnpyQ==
-  dependencies:
-    async "^2.5.0"
-    optimist "^0.6.1"
-    source-map "^0.6.1"
-  optionalDependencies:
-    uglify-js "^3.1.4"
-
-handlebars@^4.0.1:
+handlebars@4.1.2, handlebars@^4.0.1:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.1.2.tgz#b6b37c1ced0306b221e094fc7aca3ec23b131b67"
   integrity sha512-nvfrjqvt9xQ8Z/w0ijewdD/vvWDTOweBUm96NTr66Wfvo1mJenBLwcYmPs3TIBP5ruzYGD7Hx/DaM9RmhroGPw==
