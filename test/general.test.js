@@ -483,8 +483,8 @@ describe('format', function () {
 
             theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-            theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n\n`);
-            theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper <a href="https://themes.ghost.org/docs/page_url" target=_blank>here</a>.`);
+            theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+            theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://themes.ghost.org/docs/page_url).`);
         });
     });
 });

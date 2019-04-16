@@ -37,6 +37,9 @@ prettyCLI
     .boolean('-1, --v1', {
         desc: 'Check theme for Ghost 1.0 compatibility, instead of 2.0'
     })
+    .boolean('--verbose', {
+        desc: 'Output check details'
+    })
     .parseAndExit()
     .then((argv) => {
         if (argv.v1) {
@@ -45,6 +48,8 @@ prettyCLI
             // CASE: set default value
             options.checkVersion = 'latest';
         }
+
+        options.verbose = argv.verbose;
 
         ui.log(chalk.bold('\nChecking theme compatibility...'));
 
@@ -76,11 +81,19 @@ levels = {
 function outputResult(result) {
     ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
 
-    if (result.failures && result.failures.length) {
-        ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
+    if (options.verbose) {
+        ui.log(`${chalk.bold('\nDetails:')} ${result.details}`);
     }
 
-    ui.log('');
+    if (result.failures && result.failures.length) {
+        ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
+
+        if (options.verbose) {
+            ui.log(''); // extra line-break
+        }
+    }
+
+    ui.log(''); // extra line-break
 }
 
 function getSummary(theme) {
@@ -131,21 +144,21 @@ function outputResults(theme, options) {
         ui.log(chalk.red.bold('------'));
         ui.log(chalk.red('Very recommended to fix, functionality can be restricted.\n'));
 
-        _.each(theme.results.error, outputResult);
+        _.each(theme.results.error, rule => outputResult(rule, options));
     }
 
     if (!_.isEmpty(theme.results.warning)) {
         ui.log(chalk.yellow.bold('\nWarnings'));
         ui.log(chalk.yellow.bold('--------'));
 
-        _.each(theme.results.warning, outputResult);
+        _.each(theme.results.warning, rule => outputResult(rule, options));
     }
 
     if (!_.isEmpty(theme.results.recommendation)) {
         ui.log(chalk.yellow.bold('\nRecommendations'));
         ui.log(chalk.yellow.bold('---------------'));
 
-        _.each(theme.results.recommendation, outputResult);
+        _.each(theme.results.recommendation, rule => outputResult(rule, options));
     }
 
     ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/api/handlebars-themes/')}`);
