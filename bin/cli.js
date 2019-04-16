@@ -46,7 +46,7 @@ prettyCLI
             options.checkVersion = 'latest';
         }
 
-        ui.log(chalk.bold('Checking theme compatibility..'));
+        ui.log(chalk.bold('\nChecking theme compatibility...'));
 
         if (argv.zip) {
             gscan.checkZip(argv.themePath, options)
