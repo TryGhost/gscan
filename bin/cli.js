@@ -87,9 +87,13 @@ function outputResult(result) {
 
     if (result.failures && result.failures.length) {
         ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
+
+        if (options.verbose) {
+            ui.log(''); // extra line-break
+        }
     }
 
-    ui.log('');
+    ui.log(''); // extra line-break
 }
 
 function getSummary(theme) {
