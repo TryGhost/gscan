@@ -1,14 +1,13 @@
 dist: xenial
 language: node_js
 node_js:
-- '10'
-- '8'
-- '6'
+      - 6
+      - 8
+      - 10
+  
+cache: yarn
 
-cache:
-  directories:
-    - node_modules
+# Don't run builds for renovate PRs, only renovate pushes
+if: NOT branch =~ /^renovate\\/.+$/ AND type != pull_request
 
-branches:
-  except:
-  - "/^renovate\\/.+$/"
+
