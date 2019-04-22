@@ -135,7 +135,7 @@ function outputResults(theme, options) {
     theme = gscan.format(theme, options);
 
     let errorCount = theme.results.error.length;
-    let warnCount = theme.results.warning.length;
+    // let warnCount = theme.results.warning.length;
 
     ui.log('\n' + getSummary(theme));
 
@@ -164,7 +164,13 @@ function outputResults(theme, options) {
     ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/api/handlebars-themes/')}`);
     ui.log(`You can also check theme compatibility at ${chalk.cyan.underline('https://gscan.ghost.org/')}`);
 
-    if (errorCount > 0 || warnCount > 0) {
+    // The CLI feature is mainly used to run gscan programatically in tests within themes.
+    // Exiting with error code for warnings, causes the test to fail, even tho a theme
+    // upload via Ghost Admin would be possible without showing errors/warning.
+    // See also here: https://github.com/TryGhost/Blog/pull/41#issuecomment-484525754
+    // TODO: make failing for warnings configurable by e. g. passing an option, so we can
+    // disable it for the usage with tests
+    if (errorCount > 0) {
         process.exit(1);
     } else {
         process.exit(0);
