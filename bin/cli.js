@@ -135,7 +135,6 @@ function outputResults(theme, options) {
     theme = gscan.format(theme, options);
 
     let errorCount = theme.results.error.length;
-    // let warnCount = theme.results.warning.length;
 
     ui.log('\n' + getSummary(theme));
 
