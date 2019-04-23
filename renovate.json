@@ -2,6 +2,9 @@
   "extends": [
     "@tryghost:quietJS"
   ],
+  "ignoreDeps": [
+    "validator"
+  ],
   "travis": { "enabled": true },
   "node": {
     "supportPolicy": ["lts"]
