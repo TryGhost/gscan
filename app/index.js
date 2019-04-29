@@ -5,7 +5,7 @@ const multer = require('multer');
 const server = require('ghost-ignition').server;
 const errors = require('ghost-ignition').errors;
 const gscan = require('../lib');
-const pfs = require('../lib/promised-fs');
+const fs = require('fs-extra');
 const logRequest = require('./middlewares/log-request');
 const ghostVer = require('./ghost-version');
 const pkgJson = require('../package.json');
@@ -37,7 +37,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/example/', function (req, res) {
-    pfs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
+    fs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
         res.render('example', gscan.format(theme));
     });
 });
@@ -62,7 +62,7 @@ app.post('/',
                 res.theme = theme;
 
                 debug('attempting to remove: ' + req.file.path);
-                pfs.removeDir(req.file.path)
+                fs.rmdir(req.file.path)
                     .finally(function () {
                         debug('Calling next');
                         return next();
