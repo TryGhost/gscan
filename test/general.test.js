@@ -4,7 +4,6 @@ const path = require('path');
 const rewire = require('rewire');
 const _ = require('lodash');
 const fs = require('fs-extra');
-const pfs = require('../lib/promised-fs');
 const checkZip = require('../lib').checkZip;
 const themePath = require('./utils').themePath;
 const readZip = require('../lib/read-zip');
@@ -278,7 +277,7 @@ describe('Read Hbs Files', function () {
             {file: 'post.hbs', ext: '.hbs'}
         ];
 
-        sandbox.stub(pfs, 'readFile').returns(Promise.resolve(''));
+        sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
 
         readTheme.__get__('readHbsFiles')({
             files: exampleI,
