@@ -5,6 +5,7 @@ const multer = require('multer');
 const server = require('ghost-ignition').server;
 const errors = require('ghost-ignition').errors;
 const gscan = require('../lib');
+const fs = require('fs-extra');
 const pfs = require('../lib/promised-fs');
 const logRequest = require('./middlewares/log-request');
 const ghostVer = require('./ghost-version');
@@ -62,7 +63,7 @@ app.post('/',
                 res.theme = theme;
 
                 debug('attempting to remove: ' + req.file.path);
-                pfs.removeDir(req.file.path)
+                fs.rmdir(req.file.path)
                     .finally(function () {
                         debug('Calling next');
                         return next();
