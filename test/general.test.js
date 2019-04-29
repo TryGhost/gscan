@@ -3,6 +3,7 @@ const sinon = require('sinon');
 const path = require('path');
 const rewire = require('rewire');
 const _ = require('lodash');
+const fs = require('fs-extra');
 const pfs = require('../lib/promised-fs');
 const checkZip = require('../lib').checkZip;
 const themePath = require('./utils').themePath;
@@ -133,7 +134,7 @@ describe('check zip', function () {
                     theme.files.length.should.eql(1);
                     theme.files[0].file.should.match(/default\.hbs/);
 
-                    return pfs.readDir(path.join(theme.path, 'ignored', 'assets'));
+                    return fs.readdir(path.join(theme.path, 'ignored', 'assets'));
                 })
                 .then(function (assetFiles) {
                     assetFiles.should.eql(['default.hbs']);
@@ -146,7 +147,7 @@ describe('check zip', function () {
                     theme.files.length.should.eql(1);
                     theme.files[0].file.should.match(/default\.hbs/);
 
-                    return pfs.readDir(path.join(theme.path, 'assets'));
+                    return fs.readdir(path.join(theme.path, 'assets'));
                 })
                 .then(function (assetFiles) {
                     assetFiles.should.eql(['Thumbs.db', 'default.hbs']);
