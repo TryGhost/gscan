@@ -6,7 +6,6 @@ const server = require('ghost-ignition').server;
 const errors = require('ghost-ignition').errors;
 const gscan = require('../lib');
 const fs = require('fs-extra');
-const pfs = require('../lib/promised-fs');
 const logRequest = require('./middlewares/log-request');
 const ghostVer = require('./ghost-version');
 const pkgJson = require('../package.json');
@@ -38,7 +37,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/example/', function (req, res) {
-    pfs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
+    fs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
         res.render('example', gscan.format(theme));
     });
 });
