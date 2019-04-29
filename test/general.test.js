@@ -391,7 +391,7 @@ describe('Checker', function () {
         checker(themePath('030-assets/symlink2')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
             theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
-            theme.results.fail.should.containEql('GS030-ASSET-SYM');
+            theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
 
             done();
         }).catch(done);
