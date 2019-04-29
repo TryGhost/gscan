@@ -31,7 +31,7 @@ function testReadZip(name) {
 
 describe('Zip file handler can read zip files', function () {
     after((done) => {
-        pfs.remove('./test/tmp', function (err) {
+        fs.remove('./test/tmp', function (err) {
             done(err);
         });
     });
