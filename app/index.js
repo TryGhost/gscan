@@ -7,6 +7,7 @@ const errors = require('ghost-ignition').errors;
 const gscan = require('../lib');
 const fs = require('fs-extra');
 const logRequest = require('./middlewares/log-request');
+const uploadValidation = require('./middlewares/upload-validation');
 const ghostVer = require('./ghost-version');
 const pkgJson = require('../package.json');
 const ghostVersions = require('../lib/utils').versions;
@@ -44,6 +45,7 @@ app.get('/example/', function (req, res) {
 
 app.post('/',
     upload.single('theme'),
+    uploadValidation,
     function (req, res, next) {
         const zip = {
             path: req.file.path,
