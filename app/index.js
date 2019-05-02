@@ -62,7 +62,7 @@ app.post('/',
                 res.theme = theme;
 
                 debug('attempting to remove: ' + req.file.path);
-                fs.rmdir(req.file.path)
+                fs.remove(req.file.path)
                     .finally(function () {
                         debug('Calling next');
                         return next();
