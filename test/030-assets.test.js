@@ -24,6 +24,30 @@ describe('030 Assets', function () {
         }).catch(done);
     });
 
+    it('should show two warning for missing asset helper when an assets are detected in multiple files', function (done) {
+        utils.testCheck(thisCheck, '030-assets/twoDefectFiles').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS030-ASSET-SYM');
+
+            output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-REQ');
+
+            output.results.fail['GS030-ASSET-REQ'].should.be.a.ValidFailObject();
+            output.results.fail['GS030-ASSET-REQ'].failures.should.be.an.Array().with.lengthOf(2);
+            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('ref');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].ref.should.eql('default.hbs');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('message');
+            output.results.fail['GS030-ASSET-REQ'].failures[0].message.should.eql('/assets/css/style.css');
+            output.results.fail['GS030-ASSET-REQ'].failures[1].should.have.keys('ref');
+            output.results.fail['GS030-ASSET-REQ'].failures[1].ref.should.eql('partials/sidebar.hbs');
+            output.results.fail['GS030-ASSET-REQ'].failures[1].should.have.keys('message');
+            output.results.fail['GS030-ASSET-REQ'].failures[1].message.should.eql('/assets/images/JohnDo.jpg');
+
+            done();
+        }).catch(done);
+    });
+
     it('should pass when asset helper is present', function (done) {
         utils.testCheck(thisCheck, '030-assets/valid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
