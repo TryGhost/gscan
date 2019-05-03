@@ -68,4 +68,13 @@ describe('005 Template compile', function () {
             done();
         }).catch(done);
     });
+
+    it('theme with block partials', function (done) {
+        utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.empty();
+            done();
+        }).catch(done);
+    });
 });
