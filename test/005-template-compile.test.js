@@ -69,13 +69,11 @@ describe('005 Template compile', function () {
         }).catch(done);
     });
 
-    it('theme with block partials and unknown helper', function (done) {
+    it('theme with block partials', function (done) {
         utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
             output.should.be.a.ValidThemeObject();
 
-            output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
-            output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
-
+            output.results.fail.should.be.empty();
             done();
         }).catch(done);
     });
