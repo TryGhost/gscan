@@ -8,7 +8,7 @@ GScan works on a system of rules. Each rule has a way to check whether it passes
 - **warning** = usually used for deprecations, things that will be errors in the next version
 - **error** = anything that makes the theme invalid or incompatible with the current version of Ghost
 
-In addition, an **error** can be marked as **fatal**. A **fatal error** means, left unchecked a Ghost publication would throw 500 errors on certain pages because of the detected out-of-date or erroneous code. 
+In addition, an **error** can be marked as **fatal**. A **fatal error** means, left unchecked a Ghost publication would throw 500 errors on certain pages because of the detected out-of-date or erroneous code.
 
 In Ghost, we call GScan on boot. If any fatal errors are detected, the blog will not boot. In Ghost(Pro) and in Ghost-CLI we call GScan as part of major upgrades. The upgrade will not be allowed to continue if any fatal errors are detected.
 
