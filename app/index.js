@@ -65,7 +65,12 @@ app.post('/',
 
                 debug('attempting to remove: ' + req.file.path);
                 fs.remove(req.file.path)
-                    .finally(function () {
+                    .then(function () {
+                        debug('Calling next');
+                        return next();
+                    })
+                    .catch(function () {
+                        // NOTE: transform to `.finally(...) once package is compatible with node >=10
                         debug('Calling next');
                         return next();
                     });
