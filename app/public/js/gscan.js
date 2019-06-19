@@ -67,23 +67,6 @@
             $('.gh-input-icon.select-arrow').toggleClass('.active');
         });
 
-        /** Latest News **/
-        if ($('.myblogs-latest-news').length && window.ghost) {
-            $.get(window.ghost.url.api('posts', {limit: 1, include: 'author'}), function (json) {
-                /* eslint-disable camelcase */
-                var item = json.posts[0],
-                    parsed_date = new Date(item.published_at),
-                    image_url = item.author.image.substr(0, 2) === '//' ? item.author.image : '//blog.ghost.org/' + item.author.image,
-                    news_html = '<p><a href="https://blog.ghost.org' + item.url + '">' + item.title + '</a></p>' +
-                        '<span class="meta">' +
-                        '<img src="' + image_url + '" />' +
-                        '<time title="' + parsed_date + '">' + timeSince(parsed_date) + ' ago</time> by ' + item.author.name + '</span>';
-                $('.myblogs-latest-news').html(news_html);
-
-                /* eslint-disable camelcase */
-            });
-        }
-
         /** Toggle Details **/
         if ($('.toggle-details').length) {
             $('.toggle-details').on('click', function () {
