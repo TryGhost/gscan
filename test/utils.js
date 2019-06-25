@@ -35,11 +35,11 @@ should.Assertion.add('ValidFailObject', function () {
         key.should.be.oneOf('message', 'failures');
     });
 
-    if (this.obj.hasOwnProperty('message')) {
+    if (Object.prototype.hasOwnProperty.call(this.obj, 'message')) {
         this.obj.message.should.be.a.String();
     }
 
-    if (this.obj.hasOwnProperty('failures')) {
+    if (Object.prototype.hasOwnProperty.call(this.obj, 'failures')) {
         this.obj.failures.should.be.an.Array();
     }
 });
