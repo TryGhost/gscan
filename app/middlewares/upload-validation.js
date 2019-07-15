@@ -19,7 +19,7 @@ const checkFileIsValid = function checkFileIsValid(fileData, types, extensions) 
 
 module.exports = function uploadValidation(req, res, next) {
     const extensions = ['.zip'];
-    const contentTypes = ['application/zip'];
+    const contentTypes = ['application/zip', 'application/x-zip-compressed', 'application/octet-stream'];
 
     req.file = req.file || {};
     req.file.name = req.file.originalname;
