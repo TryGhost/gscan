@@ -160,7 +160,7 @@ function outputResults(theme, options) {
         _.each(theme.results.recommendation, rule => outputResult(rule, options));
     }
 
-    ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/api/handlebars-themes/')}`);
+    ui.log(`\nGet more help at ${chalk.cyan.underline('https://ghost.org/docs/api/v2/handlebars-themes/')}`);
     ui.log(`You can also check theme compatibility at ${chalk.cyan.underline('https://gscan.ghost.org/')}`);
 
     // The CLI feature is mainly used to run gscan programatically in tests within themes.
