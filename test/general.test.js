@@ -489,7 +489,7 @@ describe('format', function () {
             theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
             theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-            theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/api/v2/handlebars-themes/helpers/pagination/).`);
+            theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/api/handlebars-themes/helpers/pagination/).`);
         });
     });
 });
