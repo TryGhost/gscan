@@ -37,6 +37,9 @@ prettyCLI
     .boolean('-1, --v1', {
         desc: 'Check theme for Ghost 1.0 compatibility, instead of 2.0'
     })
+    .boolean('-c, --canary', {
+        desc: 'Check theme for upcoming version compatibility, instead of 2.0'
+    })
     .boolean('--verbose', {
         desc: 'Output check details'
     })
@@ -44,6 +47,8 @@ prettyCLI
     .then((argv) => {
         if (argv.v1) {
             options.checkVersion = 'v1';
+        } else if (argv.canary) {
+            options.checkVersion = 'canary';
         } else {
             // CASE: set default value
             options.checkVersion = 'latest';
