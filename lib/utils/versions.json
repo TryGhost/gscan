@@ -6,5 +6,9 @@
     "latest": {
         "major": "2.x",
         "docs": "2.1.0"
-    }
+    },
+    "canary": {
+      "major": "3.x",
+      "docs": "3.0.0"
+  }
 }
