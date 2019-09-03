@@ -1,0 +1,4 @@
+{{author.cover_image}}
+
+{{!-- invalid usage of author property. Will not be detected. --}}
+{{author_cover_image}}

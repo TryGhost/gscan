@@ -392,6 +392,40 @@ describe('Checker', function () {
         }).catch(done);
     });
 
+    it('checks for a canary version if passed', function (done) {
+        checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+
+            theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP',
+                'GS020-INDEX-REQ',
+                'GS020-POST-REQ',
+                'GS020-DEF-REC',
+                'GS040-GH-REQ',
+                'GS040-GF-REQ'
+            );
+
+            done();
+        }).catch(done);
+    });
+
     it('should not follow symlinks', function (done) {
         checker(themePath('030-assets/symlink2')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
