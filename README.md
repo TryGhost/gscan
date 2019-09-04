@@ -36,14 +36,26 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
-You can also pass a version. Currently supported is `--v1` or `-1`, which will check the theme
-for 1.0.0 requirements. By default, GScan will always check for the latest version:
+You can also pass a version. Currently supported are:
+- `--v1` or `-1`
+- `--v2` or `-2`
+- `--v3` or `-3`
+
+Above will check the theme for according 1.0, 2.0, 3.0 requirements. By default, GScan will always check for the latest (2.0) version:
 
 `gscan /path/to/theme.zip -z1`
 
 or
 
 `gscan /path/to/theme/directory --v1`
+
+or
+
+`gscan /path/to/theme/directory --v3`
+
+Another accepted parameter is `--canary` which checks for upcoming (3.0) version:
+
+`gscan /path/to/theme/directory --canary`
 
 ### 3. Lib usage
 
