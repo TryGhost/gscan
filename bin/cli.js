@@ -44,7 +44,7 @@ prettyCLI
         desc: 'Check theme for Ghost 3.0 compatibility'
     })
     .boolean('-c, --canary', {
-        desc: 'Check theme for upcoming Ghost 3.0 compatibility, instead of 2.0'
+        desc: 'Check theme for upcoming Ghost version compatibility'
     })
     .boolean('--verbose', {
         desc: 'Output check details'
