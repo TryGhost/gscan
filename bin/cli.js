@@ -35,10 +35,16 @@ prettyCLI
         desc: 'Theme path points to a zip file'
     })
     .boolean('-1, --v1', {
-        desc: 'Check theme for Ghost 1.0 compatibility, instead of 2.0'
+        desc: 'Check theme for Ghost 1.0 compatibility'
+    })
+    .boolean('-2, --v2', {
+        desc: 'Check theme for Ghost 2.0 compatibility'
+    })
+    .boolean('-3, --v3', {
+        desc: 'Check theme for Ghost 3.0 compatibility'
     })
     .boolean('-c, --canary', {
-        desc: 'Check theme for upcoming version compatibility, instead of 2.0'
+        desc: 'Check theme for upcoming Ghost 3.0 compatibility, instead of 2.0'
     })
     .boolean('--verbose', {
         desc: 'Output check details'
@@ -47,6 +53,10 @@ prettyCLI
     .then((argv) => {
         if (argv.v1) {
             options.checkVersion = 'v1';
+        } else if (argv.v2) {
+            options.checkVersion = 'v2';
+        } else if (argv.v3) {
+            options.checkVersion = 'v3';
         } else if (argv.canary) {
             options.checkVersion = 'canary';
         } else {
