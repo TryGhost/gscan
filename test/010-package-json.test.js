@@ -209,7 +209,7 @@ describe('010 package.json', function () {
         });
     });
 
-    describe('latest version:', function () {
+    describe('v2:', function () {
         it('valid fields', function (done) {
             utils.testCheck(thisCheck, '010-packagejson/fields-are-valid').then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
@@ -288,8 +288,8 @@ describe('010 package.json', function () {
         });
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v3:', function () {
+        const options = {checkVersion: 'v3'};
 
         it('valid fields', function (done) {
             utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {

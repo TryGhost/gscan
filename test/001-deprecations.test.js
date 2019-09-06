@@ -174,8 +174,8 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('latest version:', function () {
-        it('[failure] theme is completely invalid (v1 and latest)', function (done) {
+    describe('v2 version:', function () {
+        it('[failure] theme is completely invalid', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v2/invalid_all').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -545,7 +545,7 @@ describe('001 Deprecations', function () {
             }).catch(done);
         });
 
-        it('[failure] theme is invalid for latest version', function (done) {
+        it('[failure] theme is invalid', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v2/invalid').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -855,10 +855,10 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v3:', function () {
+        const options = {checkVersion: 'v3'};
 
-        it('[failure] theme is completely invalid (canary)', function (done) {
+        it('[failure] theme is completely invalid', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v3/invalid_all', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -1228,7 +1228,7 @@ describe('001 Deprecations', function () {
             }).catch(done);
         });
 
-        it('[failure] theme is invalid for canary version', function (done) {
+        it('[failure] theme is invalid', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v3/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
