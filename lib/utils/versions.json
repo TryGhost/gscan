@@ -3,11 +3,11 @@
         "major": "1.x",
         "docs": "1.25.0"
     },
-    "latest": {
+    "v2": {
         "major": "2.x",
         "docs": "2.1.0"
     },
-    "canary": {
+    "v3": {
       "major": "3.x",
       "docs": "3.0.0"
   }
