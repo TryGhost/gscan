@@ -532,7 +532,7 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('2.x');
+            theme.checkedVersion.should.equal('3.x');
             done();
         }).catch(done);
     });
@@ -567,7 +567,7 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('3.x');
+            theme.checkedVersion.should.equal('4.x');
             done();
         }).catch(done);
     });
