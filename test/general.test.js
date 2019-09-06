@@ -604,7 +604,7 @@ describe('format', function () {
     });
 
     it('sort by files', function (done) {
-        checker(themePath('001-deprecations/latest/invalid_all')).then((theme) => {
+        checker(themePath('001-deprecations/v2/invalid_all')).then((theme) => {
             theme = format(theme, {sortByFiles: true});
 
             theme.results.hasFatalErrors.should.be.true();
@@ -627,7 +627,7 @@ describe('format', function () {
     });
 
     it('formats for CLI output', function () {
-        return checker(themePath('001-deprecations/latest/invalid_all')).then((theme) => {
+        return checker(themePath('001-deprecations/v2/invalid_all')).then((theme) => {
             theme = format(theme, {format: 'cli'});
 
             theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
