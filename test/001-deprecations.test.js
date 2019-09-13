@@ -174,7 +174,7 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('v2 version:', function () {
+    describe('v2:', function () {
         it('[failure] theme is completely invalid', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v2/invalid_all').then(function (output) {
                 output.should.be.a.ValidThemeObject();

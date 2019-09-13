@@ -358,7 +358,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for v1 version if passed', function (done) {
+    it('checks against v1 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -394,7 +394,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a v2 version if passed', function (done) {
+    it('checks against v2 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -430,7 +430,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a v3 version if passed', function (done) {
+    it('checks against v3 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -466,7 +466,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a v4 version if passed', function (done) {
+    it('checks against v4 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -502,7 +502,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest version if passed', function (done) {
+    it('checks against latest (v3 alias) rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'latest'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -537,7 +537,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a canary version if passed', function (done) {
+    it('checks against canary (v4 alias) rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
