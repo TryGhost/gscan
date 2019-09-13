@@ -855,11 +855,11 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('v3:', function () {
-        const options = {checkVersion: 'v3'};
+    describe('canary:', function () {
+        const options = {checkVersion: 'canary'};
 
         it('[failure] theme is completely invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v3/invalid_all', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/canary/invalid_all', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
@@ -1229,7 +1229,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[failure] theme is invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v3/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/canary/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
@@ -1473,7 +1473,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[success] should show no error if no deprecated helpers used', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v3/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/canary/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -1484,7 +1484,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v3/mixed', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/canary/mixed', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
