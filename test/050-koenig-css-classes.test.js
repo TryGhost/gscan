@@ -96,8 +96,8 @@ describe('050 Koenig CSS classes', function () {
         });
     });
 
-    describe('v3:', function () {
-        const options = {checkVersion: 'v3'};
+    describe('canary:', function () {
+        const options = {checkVersion: 'canary'};
 
         it('[failure] should invalidate theme when .css file is missing', function (done) {
             utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
