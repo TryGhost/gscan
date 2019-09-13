@@ -3,9 +3,6 @@ const utils = require('./utils');
 const thisCheck = require('../lib/checks/040-ghost-head-foot');
 
 describe('040 Ghost head & foot', function () {
-    // checks "latest" rules only
-    // NOTE: if any of the rules in versions become different should introduce
-    //       similar test structure as in deprecations suite (describe group per version)
     const options = {};
 
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present', function (done) {
