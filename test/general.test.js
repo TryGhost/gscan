@@ -358,7 +358,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for v1 version if passed', function (done) {
+    it('checks against v1 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -394,7 +394,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a v2 version if passed', function (done) {
+    it('checks against v2 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -430,7 +430,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a v3 version if passed', function (done) {
+    it('checks against v3 rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -466,7 +466,43 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest version if passed', function (done) {
+    it('checks against v4 rules', function (done) {
+        checker(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+
+            theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP',
+                'GS020-INDEX-REQ',
+                'GS020-POST-REQ',
+                'GS020-DEF-REC',
+                'GS040-GH-REQ',
+                'GS040-GF-REQ'
+            );
+
+            theme.checkedVersion.should.equal('4.x');
+
+            done();
+        }).catch(done);
+    });
+
+    it('checks against latest (v3 alias) rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'latest'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -496,12 +532,12 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('2.x');
+            theme.checkedVersion.should.equal('3.x');
             done();
         }).catch(done);
     });
 
-    it('checks for a canary version if passed', function (done) {
+    it('checks against canary (v4 alias) rules', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -531,7 +567,7 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('3.x');
+            theme.checkedVersion.should.equal('4.x');
             done();
         }).catch(done);
     });

@@ -57,6 +57,8 @@ prettyCLI
             options.checkVersion = 'v2';
         } else if (argv.v3) {
             options.checkVersion = 'v3';
+        } else if (argv.v4) {
+            options.checkVersion = 'v4';
         } else if (argv.canary) {
             options.checkVersion = 'canary';
         } else {
