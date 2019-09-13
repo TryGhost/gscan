@@ -4,10 +4,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/020-theme-structure');
 
 describe('020 Theme structure', function () {
-    // checks "latest" rules only
-    // NOTE: if any of the rules in versions become different should introduce
-    //       similar test structure as in deprecations suite (describe group per version)
-    const options = {};
+    const options = {checkVersion: 'v1'};
 
     it('should fail all rules if no files present', function (done) {
         utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
