@@ -17,7 +17,7 @@ function init(shipit) {
 
     var srv = parseServerList(shipit.environment);
     var configFile = 'config.' + shipit.environment + '.json';
-    
+
     shipit.initConfig({
         default: {
             yarn: true,
@@ -27,14 +27,13 @@ function init(shipit) {
             sharedLinks: [{
                 name: 'node_modules',
                 type: 'directory'
-            },  {
+            }, {
                 name: 'uploads',
                 type: 'directory'
-            },  {
+            }, {
                 name: configFile,
                 type: 'file'
-            }],
-            yarn: true
+            }]
         },
         staging: {
             servers: srv
