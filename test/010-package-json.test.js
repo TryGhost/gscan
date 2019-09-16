@@ -307,7 +307,8 @@ describe('010 package.json', function () {
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
-                    'GS010-PJ-KEYWORDS'
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
