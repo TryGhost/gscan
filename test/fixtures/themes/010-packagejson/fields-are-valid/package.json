@@ -9,6 +9,9 @@
     "theme",
     "ghost-theme"
   ],
+  "engines": {
+    "ghost-api": "v3"
+  },
   "config": {
     "posts_per_page": 3
   }
