@@ -308,7 +308,8 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API'
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V01'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
@@ -326,7 +327,8 @@ describe('010 package.json', function () {
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
                     'GS010-PJ-AUT-EM-REQ',
-                    'GS010-PJ-CONF-PPP'
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-GHOST-API'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -350,7 +352,8 @@ describe('010 package.json', function () {
 
                 theme.results.pass.should.eql([
                     'GS010-PJ-REQ',
-                    'GS010-PJ-PARSE'
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-GHOST-API-V01'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(

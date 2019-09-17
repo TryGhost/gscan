@@ -5,6 +5,9 @@
     "email": "something"
   },
   "keywords": "ghost-theme",
+  "engines": {
+    "ghost-api": "v0.1"
+  },
   "config": {
     "posts_per_page": "something"
   }
