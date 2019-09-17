@@ -309,7 +309,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-GHOST-API',
-                    'GS010-PJ-GHOST-API-V1'
+                    'GS010-PJ-GHOST-API-V01'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
@@ -353,7 +353,7 @@ describe('010 package.json', function () {
                 theme.results.pass.should.eql([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
-                    'GS010-PJ-GHOST-API-V1'
+                    'GS010-PJ-GHOST-API-V01'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
