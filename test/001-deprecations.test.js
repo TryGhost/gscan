@@ -1189,7 +1189,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
 
-                // {{error.statusCode}}
+                // {{error.code}} / {{code}}
                 output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
 
