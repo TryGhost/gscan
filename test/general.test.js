@@ -552,7 +552,7 @@ describe('format', function () {
         checker(themePath('005-compile/invalid')).then((theme) => {
             theme = format(theme);
 
-            theme.results.error.length.should.eql(16);
+            theme.results.error.length.should.eql(26);
             theme.results.error[0].fatal.should.eql(true);
             // theme.results.error[1].fatal.should.eql(true);
             // theme.results.error[2].fatal.should.eql(true);
@@ -590,7 +590,7 @@ describe('format', function () {
             theme.results.warning.all.length.should.eql(3);
             theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-            theme.results.error.all.length.should.eql(16);
+            theme.results.error.all.length.should.eql(26);
 
             // 1 rule has file references
             theme.results.error.byFiles['author.hbs'].length.should.eql(1);
@@ -612,7 +612,7 @@ describe('format', function () {
             theme.results.recommendation.all.length.should.eql(2);
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
-            theme.results.error.all.length.should.eql(88);
+            theme.results.error.all.length.should.eql(98);
             theme.results.warning.all.length.should.eql(5);
 
             theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
