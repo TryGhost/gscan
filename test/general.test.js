@@ -327,7 +327,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.be.an.Array().with.lengthOf(96);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -403,7 +403,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.be.an.Array().with.lengthOf(96);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -475,7 +475,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.be.an.Array().with.lengthOf(96);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -612,15 +612,14 @@ describe('format', function () {
             theme.results.recommendation.all.length.should.eql(2);
             theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
-            theme.results.error.all.length.should.eql(98);
+            theme.results.error.all.length.should.eql(97);
             theme.results.warning.all.length.should.eql(5);
 
             theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-            theme.results.error.byFiles['default.hbs'].length.should.eql(17);
+            theme.results.error.byFiles['default.hbs'].length.should.eql(16);
             theme.results.error.byFiles['post.hbs'].length.should.eql(54);
             theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
             theme.results.error.byFiles['index.hbs'].length.should.eql(9);
-            theme.results.error.byFiles['error.hbs'].length.should.eql(1);
 
             done();
         }).catch(done);
