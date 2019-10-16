@@ -28,9 +28,6 @@ prettyCLI
         paramsDesc: 'Theme folder or .zip file path',
         mustExist: true
     })
-    .boolean('-p, --pre', {
-        desc: 'Run a pre-check only'
-    })
     .boolean('-z, --zip', {
         desc: 'Theme path points to a zip file'
     })
