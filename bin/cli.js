@@ -43,6 +43,9 @@ prettyCLI
     .boolean('-c, --canary', {
         desc: 'Check theme for upcoming Ghost version compatibility'
     })
+    .boolean('-f, --fatal', {
+        desc: 'Only show fatal errors that prevent upgrading Ghost'
+    })
     .boolean('--verbose', {
         desc: 'Output check details'
     })
@@ -62,8 +65,13 @@ prettyCLI
         }
 
         options.verbose = argv.verbose;
+        options.onlyFatalErrors = argv.fatal;
 
-        ui.log(chalk.bold('\nChecking theme compatibility...'));
+        if (options.onlyFatalErrors) {
+            ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
+        } else {
+            ui.log(chalk.bold('\nChecking theme compatibility...'));
+        }
 
         if (argv.zip) {
             gscan.checkZip(argv.themePath, options)
@@ -108,7 +116,7 @@ function outputResult(result) {
     ui.log(''); // extra line-break
 }
 
-function getSummary(theme) {
+function getSummary(theme, options) {
     let summaryText = '';
     const errorCount = theme.results.error.length;
     const warnCount = theme.results.warning.length;
@@ -116,7 +124,11 @@ function getSummary(theme) {
     const checkSymbol = '\u2713';
 
     if (errorCount === 0 && warnCount === 0) {
-        summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with Ghost ${theme.checkedVersion}`;
+        if (options.onlyFatalErrors) {
+            summaryText = `${chalk.green(checkSymbol)} Your theme has no fatal compatibility issues with Ghost ${theme.checkedVersion}`;
+        } else {
+            summaryText = `${chalk.green(checkSymbol)} Your theme is compatible with Ghost ${theme.checkedVersion}`;
+        }
     } else {
         summaryText = `Your theme has`;
 
@@ -153,7 +165,7 @@ function outputResults(theme, options) {
 
     let errorCount = theme.results.error.length;
 
-    ui.log('\n' + getSummary(theme));
+    ui.log('\n' + getSummary(theme, options));
 
     if (!_.isEmpty(theme.results.error)) {
         ui.log(chalk.red.bold('\nErrors'));
