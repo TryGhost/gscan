@@ -144,7 +144,12 @@ function getSummary(theme) {
 }
 
 function outputResults(theme, options) {
-    theme = gscan.format(theme, options);
+    try {
+        theme = gscan.format(theme, options);
+    } catch (err) {
+        ui.log.error('Error formating result, some results may be missing.');
+        ui.log.error(err);
+    }
 
     let errorCount = theme.results.error.length;
 
