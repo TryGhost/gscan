@@ -170,7 +170,7 @@ function outputResults(theme, options) {
     if (!_.isEmpty(theme.results.error)) {
         ui.log(chalk.red.bold('\nErrors'));
         ui.log(chalk.red.bold('------'));
-        ui.log(chalk.red('Very recommended to fix, functionality can be restricted.\n'));
+        ui.log(chalk.red('Important to fix, functionality may be degraded.\n'));
 
         _.each(theme.results.error, rule => outputResult(rule, options));
     }
