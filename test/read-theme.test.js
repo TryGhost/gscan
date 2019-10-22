@@ -155,6 +155,8 @@ describe('Read theme', function () {
             {file: 'post.hbs', ext: '.hbs'}
         ];
 
+        sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
+
         readTheme.__get__('readFiles')({
             files: exampleI,
             path: 'fake\\example-i'
