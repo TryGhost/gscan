@@ -32,32 +32,6 @@ describe('010 package.json', function () {
             }).catch(done);
         });
 
-        it('should output error for missing package.json', function (done) {
-            utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
-
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
-
-                // package.json not found, can't parse and all fields are missing + invalid
-                output.results.fail.should.be.an.Object().with.keys(
-                    'GS010-PJ-REQ',
-                    'GS010-PJ-PARSE',
-                    'GS010-PJ-NAME-REQ',
-                    'GS010-PJ-NAME-LC',
-                    'GS010-PJ-NAME-HY',
-                    'GS010-PJ-VERSION-SEM',
-                    'GS010-PJ-VERSION-REQ',
-                    'GS010-PJ-AUT-EM-VAL',
-                    'GS010-PJ-AUT-EM-REQ',
-                    'GS010-PJ-CONF-PPP'
-                );
-
-                output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
-                output.results.fail['GS010-PJ-REQ'].failures[0].ref.should.eql('package.json');
-                done();
-            }).catch(done);
-        });
-
         it('should output error for invalid package.json (parsing)', function (done) {
             utils.testCheck(thisCheck, '010-packagejson/parse-error', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
