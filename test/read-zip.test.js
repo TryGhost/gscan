@@ -19,7 +19,7 @@ describe('Zip file handler can read zip files', function () {
     let sandbox;
 
     before(function () {
-        sandbox = sinon.sandbox.create();
+        sandbox = sinon.createSandbox();
     });
 
     after(function (done) {

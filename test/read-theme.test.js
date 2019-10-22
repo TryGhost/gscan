@@ -9,7 +9,7 @@ describe('Read theme', function () {
     let sandbox;
 
     before(function () {
-        sandbox = sinon.sandbox.create();
+        sandbox = sinon.createSandbox();
     });
 
     afterEach(function () {
