@@ -125,7 +125,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.be.an.Array().with.lengthOf(98);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -182,7 +182,7 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('2.x');
+            theme.checkedVersion.should.equal('3.x');
             done();
         }).catch(done);
     });
@@ -196,7 +196,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(97);
+            theme.results.pass.should.be.an.Array().with.lengthOf(98);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
