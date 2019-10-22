@@ -16,7 +16,11 @@ function testReadZip(name) {
 }
 
 describe('Zip file handler can read zip files', function () {
-    const sandbox = sinon.sandbox.create();
+    let sandbox;
+
+    before(function () {
+        sandbox = sinon.sandbox.create();
+    });
 
     after(function (done) {
         fs.remove('./test/tmp', function (err) {

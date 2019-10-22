@@ -6,7 +6,11 @@ const themePath = require('./utils').themePath;
 const readTheme = rewire('../lib/read-theme');
 
 describe('Read theme', function () {
-    const sandbox = sinon.sandbox.create();
+    let sandbox;
+
+    before(function () {
+        sandbox = sinon.sandbox.create();
+    });
 
     afterEach(function () {
         sandbox.restore();
