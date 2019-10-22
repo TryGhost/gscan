@@ -1,12 +1,9 @@
 const sinon = require('sinon');
 const path = require('path');
-const rewire = require('rewire');
-
 const fs = require('fs-extra');
 const checkZip = require('../lib').checkZip;
 const themePath = require('./utils').themePath;
 const readZip = require('../lib/read-zip');
-const readTheme = rewire('../lib/read-theme');
 const checker = require('../lib/checker');
 
 const sandbox = sinon.sandbox.create();
@@ -150,57 +147,6 @@ describe('check zip', function () {
                     assetFiles.should.eql(['Thumbs.db', 'default.hbs']);
                 });
         });
-    });
-});
-
-describe('Read Hbs Files', function () {
-    after(function () {
-        sandbox.restore();
-    });
-
-    it('can read partials with POSIX paths', function (done) {
-        // This roughly matches Example I
-        const exampleI = [
-            {file: 'index.hbs', ext: '.hbs'},
-            {file: 'package.json', ext: '.json'},
-            {file: 'partialsbroke.hbs', ext: '.hbs'},
-            {file: 'partials/mypartial.hbs', ext: '.hbs'},
-            {file: 'partials/subfolder/test.hbs', ext: '.hbs'},
-            {file: 'post.hbs', ext: '.hbs'}
-        ];
-
-        sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
-
-        readTheme.__get__('readFiles')({
-            files: exampleI,
-            path: 'fake/example-i'
-        }).then((result) => {
-            result.partials.should.be.an.Array().with.lengthOf(2);
-            result.partials.should.eql(['mypartial', 'subfolder/test']);
-            done();
-        }).catch(done);
-    });
-
-    it('can read partials with windows paths', function (done) {
-        // This matches Example I, but on Windows
-        const exampleI = [
-            {file: 'index.hbs', ext: '.hbs'},
-            {file: 'package.json', ext: '.json'},
-            {file: 'partialsbroke.hbs', ext: '.hbs'},
-            {file: 'partials\\mypartial.hbs', ext: '.hbs'},
-            {file: 'partials\\subfolder\\test.hbs', ext: '.hbs'},
-            {file: 'post.hbs', ext: '.hbs'}
-        ];
-
-        readTheme.__get__('readFiles')({
-            files: exampleI,
-            path: 'fake\\example-i'
-        })
-            .then((result) => {
-                result.partials.should.be.an.Array().with.lengthOf(2);
-                result.partials.should.eql(['mypartial', 'subfolder\\test']);
-                done();
-            }).catch(done);
     });
 });
 

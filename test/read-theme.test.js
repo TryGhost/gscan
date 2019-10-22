@@ -1,9 +1,17 @@
 const _ = require('lodash');
+const fs = require('fs-extra');
+const sinon = require('sinon');
 const rewire = require('rewire');
 const themePath = require('./utils').themePath;
 const readTheme = rewire('../lib/read-theme');
 
 describe('Read theme', function () {
+    const sandbox = sinon.sandbox.create();
+
+    afterEach(function () {
+        sandbox.restore();
+    });
+
     it('returns correct result', function (done) {
         readTheme(themePath('is-empty')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
@@ -111,5 +119,50 @@ describe('Read theme', function () {
 
             done();
         }).catch(done);
+    });
+
+    it('can read partials with POSIX paths', function (done) {
+        // This roughly matches Example I
+        const exampleI = [
+            {file: 'index.hbs', ext: '.hbs'},
+            {file: 'package.json', ext: '.json'},
+            {file: 'partialsbroke.hbs', ext: '.hbs'},
+            {file: 'partials/mypartial.hbs', ext: '.hbs'},
+            {file: 'partials/subfolder/test.hbs', ext: '.hbs'},
+            {file: 'post.hbs', ext: '.hbs'}
+        ];
+
+        sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
+
+        readTheme.__get__('readFiles')({
+            files: exampleI,
+            path: 'fake/example-i'
+        }).then((result) => {
+            result.partials.should.be.an.Array().with.lengthOf(2);
+            result.partials.should.eql(['mypartial', 'subfolder/test']);
+            done();
+        }).catch(done);
+    });
+
+    it('can read partials with windows paths', function (done) {
+        // This matches Example I, but on Windows
+        const exampleI = [
+            {file: 'index.hbs', ext: '.hbs'},
+            {file: 'package.json', ext: '.json'},
+            {file: 'partialsbroke.hbs', ext: '.hbs'},
+            {file: 'partials\\mypartial.hbs', ext: '.hbs'},
+            {file: 'partials\\subfolder\\test.hbs', ext: '.hbs'},
+            {file: 'post.hbs', ext: '.hbs'}
+        ];
+
+        readTheme.__get__('readFiles')({
+            files: exampleI,
+            path: 'fake\\example-i'
+        })
+            .then((result) => {
+                result.partials.should.be.an.Array().with.lengthOf(2);
+                result.partials.should.eql(['mypartial', 'subfolder\\test']);
+                done();
+            }).catch(done);
     });
 });
