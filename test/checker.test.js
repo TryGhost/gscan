@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
     it('returns a valid theme when running all checks', function (done) {
-        checker(themePath('is-empty')).then((theme) => {
+        checker(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -117,7 +117,7 @@ describe('Checker', function () {
     });
 
     it('checks for a v3 version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+        checker(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -152,7 +152,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest version if passed', function (done) {
+    it('checks for a latest (v3) version if passed', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'latest'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -161,7 +161,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(96);
+            theme.results.pass.should.be.an.Array().with.lengthOf(98);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -187,7 +187,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a canary version if passed', function (done) {
+    it('checks for a canary (v3) version if passed', function (done) {
         checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
