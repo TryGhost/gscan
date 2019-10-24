@@ -106,10 +106,14 @@ function outputResult(result) {
     }
 
     if (result.failures && result.failures.length) {
-        ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
-
         if (options.verbose) {
             ui.log(''); // extra line-break
+            ui.log(`${chalk.bold('Files:')}`);
+            result.failures.forEach((failure) => {
+                ui.log(`${failure.ref} - ${failure.message}`);
+            });
+        } else {
+            ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
         }
     }
 
