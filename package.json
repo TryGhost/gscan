@@ -1,6 +1,6 @@
 {
   "name": "gscan",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "Scans Ghost themes looking for errors, deprecations, features and compatibility",
   "keywords": [
     "ghost",
