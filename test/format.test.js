@@ -8,7 +8,7 @@ describe('Format', function () {
         const options = {checkVersion: 'v2'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/invalid'), options).then((theme) => {
+            checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme);
 
                 theme.results.error.length.should.eql(26);
@@ -38,7 +38,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/invalid'), options).then((theme) => {
+            checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -100,7 +100,7 @@ describe('Format', function () {
         const options = {checkVersion: 'canary'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/invalid'), options).then((theme) => {
+            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
                 theme = format(theme);
 
                 theme.results.error.length.should.eql(27);
@@ -130,7 +130,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/invalid'), options).then((theme) => {
+            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
