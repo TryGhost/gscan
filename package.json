@@ -44,7 +44,7 @@
     "@tryghost/extract-zip": "1.6.6",
     "@tryghost/pretty-cli": "1.2.2",
     "bluebird": "^3.4.6",
-    "chalk": "^2.0.0",
+    "chalk": "^3.0.0",
     "common-tags": "^1.8.0",
     "express": "^4.16.2",
     "express-hbs": "1.1.1",
