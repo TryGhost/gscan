@@ -65,11 +65,11 @@
     "eslint": "6.8.0",
     "eslint-plugin-ghost": "0.6.0",
     "istanbul": "0.4.5",
-    "mocha": "6.2.2",
+    "mocha": "7.0.0",
     "nodemon": "2.0.2",
     "rewire": "4.0.1",
     "should": "13.2.3",
-    "sinon": "7.5.0"
+    "sinon": "8.0.4"
   },
   "files": [
     "lib",
