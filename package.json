@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git@github.com:TryGhost/gscan.git"
   },
-  "engine": {
+  "engines": {
     "node": ">=8"
   },
   "bugs": {
