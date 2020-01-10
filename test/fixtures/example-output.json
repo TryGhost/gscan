@@ -343,9 +343,9 @@
       "level": "warning",
       "rule": "package.json file should be present."
     },
-    "GS010-PJ-VAL": {
+    "GS010-PJ-PARSE": {
       "level": "error",
-      "rule": "package.json file must be valid."
+      "rule": "package.json file must be parsable."
     },
     "GS020-INDEX-REQ": {
       "level": "error",
@@ -390,7 +390,7 @@
       "GS020-DEF-REC": {}
     },
     "pass": [
-      "GS005-TPL-ERR", "GS010-PJ-REQ", "GS010-PJ-VAL", "GS020-INDEX-REQ", "GS020-POST-REQ"
+      "GS005-TPL-ERR", "GS010-PJ-REQ", "GS010-PJ-PARSE", "GS020-INDEX-REQ", "GS020-POST-REQ"
     ]
   }
 }
