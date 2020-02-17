@@ -88,10 +88,10 @@
     mkdirp "0.5.0"
     yauzl "2.4.1"
 
-"@tryghost/pretty-cli@1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.2.tgz#bebc31cabdba3a60c0848b9fdb39f1f4846b4017"
-  integrity sha512-3GK42+Ju7blugavxmGZoNBhkKXtd4NNcXGE9FZ99+tXLiFs+Y5psVLm9dK3DJB6lgt2Keo0GbpJxsh57ivLG2w==
+"@tryghost/pretty-cli@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.3.tgz#06fc84e4659ffde7166ca2a9ebe17c3951438a6c"
+  integrity sha512-y6syQcWerVbsulED1PaW+YWX0HNhVUtyoyT5iU4idHCKcn2LR6iBOIQnfUDvK7FH364rpQe92FdayPfDtb+29A==
   dependencies:
     chalk "^2.4.1"
     sywac "^1.2.1"
