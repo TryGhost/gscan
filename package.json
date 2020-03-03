@@ -55,7 +55,7 @@
     "multer": "^1.1.0",
     "pluralize": "^8.0.0",
     "require-dir": "^1.0.0",
-    "semver": "^6.0.0",
+    "semver": "^7.0.0",
     "upath": "^1.1.0",
     "uuid": "^3.0.0",
     "validator": "^6.3.0"
