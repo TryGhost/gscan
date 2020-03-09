@@ -1412,16 +1412,17 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express-hbs@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.3.0.tgz#ceccd1845674ad70f35d47b2130727be280af086"
-  integrity sha512-vhm9DXIPebBXnajFX5c33fMFe3Y+3Zd02BDn2uWiWVZ+A2VMErZYRLoVTx0fcldHM2wGLajjSO+dwubkklsOGA==
+express-hbs@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.3.1.tgz#b25e471f9f537002dbffa4b6ab700bddd45fd1e8"
+  integrity sha512-0Qwj54EVz4DPFNVmy7oS3eeRL21UpIi9LZDak6s9cMJ2YJ4m6m9fkCM+u1QabrweYL43BaDWuOXiPL8npEA00g==
   dependencies:
     bluebird "^3.5.3"
     handlebars "4.5.3"
-    js-beautify "1.8.8"
     lodash "4.17.15"
     readdirp "2.2.1"
+  optionalDependencies:
+    js-beautify "1.8.8"
 
 express@^4.16.2:
   version "4.17.1"
