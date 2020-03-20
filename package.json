@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@tryghost/extract-zip": "1.6.6",
-    "@tryghost/pretty-cli": "1.2.3",
+    "@tryghost/pretty-cli": "1.2.4",
     "bluebird": "^3.4.6",
     "chalk": "^3.0.0",
     "common-tags": "^1.8.0",

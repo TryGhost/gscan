@@ -96,12 +96,12 @@
     mkdirp "0.5.0"
     yauzl "2.4.1"
 
-"@tryghost/pretty-cli@1.2.3":
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.3.tgz#06fc84e4659ffde7166ca2a9ebe17c3951438a6c"
-  integrity sha512-y6syQcWerVbsulED1PaW+YWX0HNhVUtyoyT5iU4idHCKcn2LR6iBOIQnfUDvK7FH364rpQe92FdayPfDtb+29A==
+"@tryghost/pretty-cli@1.2.4":
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.4.tgz#c66d6ec5b805218bcaa0071fbc8e61416ce64747"
+  integrity sha512-zRcfYbJ2mu9gfWAgcYxKPXbolR+gznlZv5gPWB6S4/HJ499CX51GAeGSiPw8Z939Kt+KjoneZClHkXJTSq2FxQ==
   dependencies:
-    chalk "^2.4.1"
+    chalk "^3.0.0"
     sywac "^1.2.1"
 
 "@types/color-name@^1.1.1":
@@ -529,7 +529,7 @@ chalk@^1.0.0:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.1, chalk@^2.4.2:
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
