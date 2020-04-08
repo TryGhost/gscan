@@ -123,11 +123,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
-                    'GS010-PJ-NAME-LC',
-                    'GS010-PJ-NAME-HY',
-                    'GS010-PJ-VERSION-SEM',
-                    'GS010-PJ-CONF-PPP',
-                    'GS010-PJ-AUT-EM-VAL'
+                    'GS010-PJ-CONF-PPP'
                 );
 
                 done();
@@ -249,11 +245,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
-                    'GS010-PJ-NAME-LC',
-                    'GS010-PJ-NAME-HY',
-                    'GS010-PJ-VERSION-SEM',
                     'GS010-PJ-CONF-PPP',
-                    'GS010-PJ-AUT-EM-VAL',
                     'GS010-PJ-KEYWORDS'
                 );
 
@@ -334,11 +326,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
-                    'GS010-PJ-NAME-LC',
-                    'GS010-PJ-NAME-HY',
-                    'GS010-PJ-VERSION-SEM',
                     'GS010-PJ-CONF-PPP',
-                    'GS010-PJ-AUT-EM-VAL',
                     'GS010-PJ-KEYWORDS'
                 );
 
