@@ -91,8 +91,14 @@ app.use(function (req, res, next) {
 
 // eslint-disable-next-line no-unused-vars
 app.use(function (err, req, res, next) {
+    let template = 'error';
     req.err = err;
-    res.render('error', {message: err.message, stack: err.stack, details: err.errorDetails, context: err.context});
+    res.status(err.statusCode);
+    if (res.statusCode === 404) {
+        template = 'error-404';
+    }
+
+    res.render(template, {message: err.message, stack: err.stack, details: err.errorDetails, context: err.context});
 });
 
 server.start(app);
