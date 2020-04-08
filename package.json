@@ -66,7 +66,7 @@
     "eslint-plugin-ghost": "1.1.0",
     "istanbul": "0.4.5",
     "mocha": "7.1.1",
-    "nodemon": "2.0.2",
+    "nodemon": "2.0.3",
     "rewire": "5.0.0",
     "should": "13.2.3",
     "sinon": "9.0.2"
