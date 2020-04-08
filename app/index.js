@@ -37,12 +37,6 @@ app.get('/', function (req, res) {
     res.render('index', {ghostVersions});
 });
 
-app.get('/example/', function (req, res) {
-    fs.readJSON('./test/fixtures/example-output.json').then(function (theme) {
-        res.render('example', gscan.format(theme));
-    });
-});
-
 app.post('/',
     upload.single('theme'),
     uploadValidation,
