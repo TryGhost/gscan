@@ -1,4 +1,4 @@
-#!/usr/bin/env node --no-warnings
+#!/usr/bin/env -S node --no-warnings
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
