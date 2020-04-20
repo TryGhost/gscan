@@ -1,4 +1,8 @@
-#!/usr/bin/env -S node --no-warnings
+#!/usr/bin/env node
+
+// Remove all Node warnings before doing anything else
+process.removeAllListeners('warning');
+
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
