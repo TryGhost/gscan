@@ -1,0 +1,38 @@
+name: Deploy
+on:
+  push:
+    tags:
+      - v*
+jobs:
+  build-and-push:
+    name: Build and Push
+    runs-on: ubuntu-latest
+    env:
+      NAME: ghost/gscan
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Get version
+        run: echo "::set-env name=IMAGE_VERSION::$(git describe --tags)"
+
+      - name: Publish to DigitalOcean Registry
+        uses: elgohr/Publish-Docker-Github-Action@2.14
+        with:
+          registry: registry.digitalocean.com
+          name: ${{ env.NAME }}
+          dockerfile: .github/deploy/Dockerfile
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          tags: "latest,${{ env.IMAGE_VERSION }}"
+
+      - uses: matootie/dokube@v1.3.0
+        with:
+          personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
+          clusterName: ${{ secrets.CLUSTER_NAME }}
+
+      - name: Deploy manifests
+        uses: azure/k8s-deploy@v1
+        with:
+          manifests: .github/deploy/k8s-deploy.yml
+          images: registry.digitalocean.com/${{ env.NAME }}:${{ env.IMAGE_VERSION }}
+          imagePullSecrets: do-registry
