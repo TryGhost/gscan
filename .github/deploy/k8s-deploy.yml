@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gscan
+  labels:
+    app: gscan
+spec:
+  replicas: 3
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: gscan
+  template:
+    metadata:
+      labels:
+        app: gscan
+    spec:
+      containers:
+      - name: gscan
+        image: registry.digitalocean.com/ghost/gscan
+        ports:
+        - containerPort: 2369
+      imagePullSecrets:
+      - name: do-registry
