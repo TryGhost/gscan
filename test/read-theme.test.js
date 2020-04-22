@@ -56,9 +56,9 @@ describe('Read theme', function () {
         readTheme(themePath('theme-with-custom-templates')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
-            theme.files.should.be.an.Array().with.lengthOf(12);
+            theme.files.should.be.an.Array().with.lengthOf(13);
             theme.partials.length.should.eql(0);
-            theme.templates.all.length.should.eql(9);
+            theme.templates.all.length.should.eql(10);
             theme.templates.custom.length.should.eql(4);
 
             // ensure we don't change the structure of theme.files
@@ -86,6 +86,7 @@ describe('Read theme', function () {
                 'custom/test',
                 'custom-My-Post',
                 'custom-about',
+                'my-page-about',
                 'page-1',
                 'page',
                 'podcast/rss',
