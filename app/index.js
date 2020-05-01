@@ -93,7 +93,10 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
     let template = 'error';
     req.err = err;
-    res.status(err.statusCode);
+
+    let statusCode = err.statusCode || 500;
+    res.status(statusCode);
+
     if (res.statusCode === 404) {
         template = 'error-404';
     }
