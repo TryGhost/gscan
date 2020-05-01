@@ -8,6 +8,7 @@ jobs:
     name: Build and Push
     runs-on: ubuntu-latest
     env:
+      REGISTRY: registry.digitalocean.com
       NAME: ghost/gscan
     steps:
       - uses: actions/checkout@v1
@@ -18,7 +19,7 @@ jobs:
       - name: Publish to DigitalOcean Registry
         uses: elgohr/Publish-Docker-Github-Action@2.14
         with:
-          registry: registry.digitalocean.com
+          registry: ${{ env.REGISTRY }}
           name: ${{ env.NAME }}
           dockerfile: .github/deploy/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -30,9 +31,5 @@ jobs:
           personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
           clusterName: ${{ secrets.CLUSTER_NAME }}
 
-      - name: Deploy manifests
-        uses: azure/k8s-deploy@v1
-        with:
-          manifests: .github/deploy/k8s-deploy.yml
-          images: registry.digitalocean.com/${{ env.NAME }}:${{ env.IMAGE_VERSION }}
-          imagePullSecrets: do-registry
+      - name: Update deployment
+        run: kubectl set image deployment/gscan gscan=${{ env.REGISTRY }}/${{ env.NAME }}:${{ env.IMAGE_VERSION }}
