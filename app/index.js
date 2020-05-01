@@ -8,12 +8,15 @@ const gscan = require('../lib');
 const fs = require('fs-extra');
 const logRequest = require('./middlewares/log-request');
 const uploadValidation = require('./middlewares/upload-validation');
+const sentry = require('./middlewares/sentry');
 const ghostVer = require('./ghost-version');
 const pkgJson = require('../package.json');
 const ghostVersions = require('../lib/utils').versions;
 const upload = multer({dest: __dirname + '/uploads/'});
 const app = express();
 const scanHbs = hbs.create();
+
+app.use(sentry.requestHandler);
 
 // Configure express
 app.set('x-powered-by', false);
@@ -84,6 +87,8 @@ app.post('/',
         res.render('result', result);
     }
 );
+
+app.use(sentry.errorHandler);
 
 app.use(function (req, res, next) {
     next(new errors.NotFoundError({message: 'Page not found'}));
