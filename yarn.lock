@@ -191,13 +191,13 @@
     lodash "^4.17.4"
     shipit-cli "^3.0.0"
 
-"@tryghost/pretty-cli@1.2.5":
-  version "1.2.5"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.5.tgz#889e355f81e9d4fb7f85004708fa5878a4663a2c"
-  integrity sha512-mWpSqrZEVxZaYJtK2okZdr4/U0mScxk1bQDqZzxQ49Pk9qoMkD6YAUX7etfkgs5iGTIcDVbOY+KrVphr1hFSew==
+"@tryghost/pretty-cli@1.2.6":
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.6.tgz#6d1c2723682ef292210550103c9ac9af594be33d"
+  integrity sha512-Qb5MyYpxG9XGMAzGLrzcxC62QlDCvlqSAjKzaYWwsbclKAZdFeKzHQbiYN+gVbZ29ccX7FfCAL7UFr4Ye52xGg==
   dependencies:
-    chalk "^3.0.0"
-    sywac "^1.2.1"
+    chalk "4.0.0"
+    sywac "1.3.0"
 
 "@tryghost/zip@1.0.1":
   version "1.0.1"
@@ -716,6 +716,14 @@ chalk@3.0.0, chalk@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
   integrity sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
+chalk@4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.0.0.tgz#6e98081ed2d17faab615eb52ac66ec1fe6209e72"
+  integrity sha512-N9oWFcegS0sFr9oh1oz2d7Npos6vNoWW9HvtCg5N1KRFpUhaAhvTv5Y58g880fZaEYSNm3qDz8SU1UrGvp+n7A==
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -4311,10 +4319,10 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-sywac@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/sywac/-/sywac-1.2.2.tgz#8d9e7271fc11337de09a38e70b71a264cb74caf0"
-  integrity sha512-Bfyo0Oddco9b/ifXTevNmMCewmWH2EeE06cPKolsahly7nShbYooZmJYZxJc5EN4WFAXvbR8WOx97PUvaYYMEg==
+sywac@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/sywac/-/sywac-1.3.0.tgz#324789bdb8bd7d0d66625c9144fce81ab5ba6f99"
+  integrity sha512-LDt2stNTp4bVPMgd70Jj9PWrSa4batl+bv+Ea5NLNGT7ufc4oQPtRfQ73wbddNV6RilaPqnEt6y1Wkm5FVTNEg==
 
 table@^5.2.3:
   version "5.4.6"
