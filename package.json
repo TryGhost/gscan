@@ -52,7 +52,7 @@
     "fs-extra": "8.1.0",
     "ghost-ignition": "4.2.1",
     "glob": "7.1.6",
-    "lodash": "4.17.15",
+    "lodash": "4.17.16",
     "multer": "1.4.2",
     "pluralize": "8.0.0",
     "require-dir": "1.2.0",
