@@ -1591,14 +1591,14 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express-hbs@2.3.3:
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.3.3.tgz#6f31092daec38e6c582ec76326fcad09c984a0fd"
-  integrity sha512-/yJPRKtzcebvRnH08g/OUOn00RjFpWQl42xdLjIY55tbY74wT3nhFbBUb41zEmGR+7WZRf5PhWd3E8DujC9jQQ==
+express-hbs@2.3.4:
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.3.4.tgz#ec3e0796bec0b5937199b0d800d3a6b30c63063a"
+  integrity sha512-cirblS55Syynfjcn6bLwFAVwq1iHyyItGyoEb7D08iwJIBRy2V7D47se/My8/B0YPjOP6JyRXNcPgCDQKyiqGQ==
   dependencies:
     bluebird "^3.5.3"
     handlebars "4.7.6"
-    lodash "4.17.15"
+    lodash "4.17.19"
     readdirp "3.4.0"
   optionalDependencies:
     js-beautify "1.11.0"
