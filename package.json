@@ -58,7 +58,7 @@
     "require-dir": "1.2.0",
     "semver": "7.3.2",
     "upath": "1.2.0",
-    "uuid": "8.2.0",
+    "uuid": "8.3.0",
     "validator": "13.0.0"
   },
   "devDependencies": {
