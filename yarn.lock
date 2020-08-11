@@ -174,10 +174,10 @@
     lodash "4.17.19"
     shipit-cli "^5.1.0"
 
-"@tryghost/pretty-cli@1.2.8":
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.8.tgz#f1a193e06a8ff18c24f9ce1109c5699340597c26"
-  integrity sha512-yRIofDRAq84qATSsMneBcc3KI8j312ydCVwys4ZeDoRgfuNjPc0jzcgde40q+5DXTvit2qA75M1qoMnICLw9Hg==
+"@tryghost/pretty-cli@1.2.9":
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.9.tgz#1eb1fa48ab5cadcc5dba75454ff28cb59586c117"
+  integrity sha512-MmN9SPVLFOUBBSzowHZuODMurQ7hLatDpWMojmVQzH4DSW07yQcD+yogpld15c9A2CZhcNfuT/XzKzRWpk/rAQ==
   dependencies:
     chalk "4.1.0"
     sywac "1.3.0"
