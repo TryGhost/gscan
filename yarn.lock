@@ -164,10 +164,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tryghost/deploy@0.2.2":
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/@tryghost/deploy/-/deploy-0.2.2.tgz#a4eb98654ab05d40f901ff32f7eef5ed9ba12b9e"
-  integrity sha512-f06whc/rSvJU9wvOa6nmFAUSmbDb2/dS8CDr63mzBfuOy3xOmRRBwUqar9MjzotyluFn1PPvc4DOlkubFzlI2g==
+"@tryghost/deploy@0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@tryghost/deploy/-/deploy-0.2.3.tgz#9457a26ce602b58c1986b83a9e194fbba0420647"
+  integrity sha512-Cr+9tvA0y4TdZayLIuEKvvnpDCFohq9+zheUkWOkWN6FZ/aPQOY52pN8ePeGf48ixGbBdTAwjWEKEvyj5BGPRg==
   dependencies:
     bluebird "3.5.0"
     lodash "4.17.19"
