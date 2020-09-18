@@ -160,13 +160,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tryghost/deploy@0.2.3":
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/@tryghost/deploy/-/deploy-0.2.3.tgz#9457a26ce602b58c1986b83a9e194fbba0420647"
-  integrity sha512-Cr+9tvA0y4TdZayLIuEKvvnpDCFohq9+zheUkWOkWN6FZ/aPQOY52pN8ePeGf48ixGbBdTAwjWEKEvyj5BGPRg==
+"@tryghost/deploy@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/deploy/-/deploy-0.3.0.tgz#8d71978ea3ca0b2ed1e1559243ee32349171690d"
+  integrity sha512-vXriXPzG9UWC1nLX/bkYOnW/MHPIvctj0aPLl26lhJ0xHAFOjyY+zYEjzXo1vcjWN63Pf67SLitDCOBEj7bTMA==
   dependencies:
-    bluebird "3.5.0"
-    lodash "4.17.19"
+    bluebird "3.7.2"
+    lodash "4.17.20"
     shipit-cli "5.1.0"
 
 "@tryghost/pretty-cli@1.2.9":
@@ -509,11 +509,6 @@ bl@^4.0.1:
     buffer "^5.5.0"
     inherits "^2.0.4"
     readable-stream "^3.4.0"
-
-bluebird@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-  integrity sha1-eRQg1/VR7qKJdFOop3ZT+WYG1nw=
 
 bluebird@3.7.2, bluebird@^3.5.3:
   version "3.7.2"
