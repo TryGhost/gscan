@@ -17,7 +17,7 @@ jobs:
         run: echo "::set-env name=IMAGE_VERSION::$(git describe --tags)"
 
       - name: Publish to DigitalOcean Registry
-        uses: elgohr/Publish-Docker-Github-Action@2.14
+        uses: elgohr/Publish-Docker-Github-Action@2.22
         with:
           registry: ${{ env.REGISTRY }}
           name: ${{ env.NAME }}
