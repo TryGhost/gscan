@@ -11,7 +11,7 @@ jobs:
       REGISTRY: registry.digitalocean.com
       NAME: ghost/gscan
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Get version
         run: echo "::set-env name=IMAGE_VERSION::$(git describe --tags)"
