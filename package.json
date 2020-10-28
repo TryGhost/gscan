@@ -70,7 +70,7 @@
     "nodemon": "2.0.6",
     "rewire": "5.0.0",
     "should": "13.2.3",
-    "sinon": "9.2.0"
+    "sinon": "9.2.1"
   },
   "files": [
     "lib",
