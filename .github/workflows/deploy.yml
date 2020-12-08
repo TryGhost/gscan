@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,${{ env.IMAGE_VERSION }}"
 
-      - uses: matootie/dokube@v1.3.3
+      - uses: matootie/dokube@v1.3.4
         with:
           personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
           clusterName: ${{ secrets.CLUSTER_NAME }}
