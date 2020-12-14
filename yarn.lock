@@ -186,10 +186,10 @@
     chalk "4.1.0"
     sywac "1.3.0"
 
-"@tryghost/zip@1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.6.tgz#95ad124d0d7313616043a6464f0dc5120fddd5a6"
-  integrity sha512-jWeqT+hmWy9A+xFBrBU618jUNe8V1KPQ3tQ0jvT7oup9zcvd7z+S31fRAm10S16LE09y8TFKs4HOskO+AumjGg==
+"@tryghost/zip@1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.7.tgz#8aa721158087f7bb7d031337513aa03f7a489233"
+  integrity sha512-FAb7f7sOSUPaCrxtyRRk1yhl3EHTdypFbcLqv69W67Su/eMb2YDTJ7JwC2Jowy9fTnLa+aM/f3PeTOJepCQmGQ==
   dependencies:
     archiver "4.0.1"
     bluebird "3.7.2"
