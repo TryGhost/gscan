@@ -42,7 +42,7 @@
   },
   "dependencies": {
     "@sentry/node": "5.29.2",
-    "@tryghost/pretty-cli": "1.2.12",
+    "@tryghost/pretty-cli": "1.2.13",
     "@tryghost/zip": "1.1.7",
     "bluebird": "3.7.2",
     "chalk": "4.1.0",
