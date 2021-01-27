@@ -55,13 +55,6 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@sam-lord/elasticsearch-bunyan@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@sam-lord/elasticsearch-bunyan/-/elasticsearch-bunyan-0.0.5.tgz#0e79654974b7c7f674c02ea0b3ff79adccea5c9a"
-  integrity sha512-dVRHMjtIdF90teoClns5Wc7ZNfKu55ykOmCfLKZeLAGGaNHnCrmaKAK2i0gL4C6XMNzJpzM+NqkW7u4ck9Dn6g==
-  dependencies:
-    "@elastic/elasticsearch" "^7.10.0"
-
 "@sentry/core@5.30.0":
   version "5.30.0"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.30.0.tgz#6b203664f69e75106ee8b5a2fe1d717379b331f3"
@@ -178,6 +171,13 @@
     bluebird "3.7.2"
     lodash "4.17.20"
     shipit-cli "5.1.0"
+
+"@tryghost/elasticsearch-bunyan@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/elasticsearch-bunyan/-/elasticsearch-bunyan-0.1.0.tgz#cb66b2eba0c5e5970645b4548e2a41b1ce7a33cc"
+  integrity sha512-Qg/6JfMU5l5+dWJDuXLTrq4CIzucIeZ2H3bH5cOY6Yp+rLqBAADhRzAdlwL6s2Ab/X7/156Ljl58Ik+dpsgWRQ==
+  dependencies:
+    "@elastic/elasticsearch" "^7.10.0"
 
 "@tryghost/pretty-cli@1.2.13":
   version "1.2.13"
@@ -1927,12 +1927,12 @@ getpass@^0.1.1:
   dependencies:
     assert-plus "^1.0.0"
 
-ghost-ignition@4.4.2:
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/ghost-ignition/-/ghost-ignition-4.4.2.tgz#80abad2ec6cf881105d33f38ce1826e8620a54d2"
-  integrity sha512-y/+U8GYBr3XzjzhKiIZh2IUf6oiOUrtW48PTUR+ZwmFYajd0Ej/xpKEKq0JY5Bv1gBBqjCKInSr/LPwcK4zr7Q==
+ghost-ignition@4.4.3:
+  version "4.4.3"
+  resolved "https://registry.yarnpkg.com/ghost-ignition/-/ghost-ignition-4.4.3.tgz#c837ab11e1f3a1cfd22cc24df6b506a9afc1bc25"
+  integrity sha512-eViE/ae+AGV/YmVbTq2W5TBWVu724EUJ0pjtSwa4q6o1+fXxMIqoELJaxMX+Gc9PBK0nI3J+E0JI8GdrEiqndg==
   dependencies:
-    "@sam-lord/elasticsearch-bunyan" "^0.0.5"
+    "@tryghost/elasticsearch-bunyan" "^0.1.0"
     bunyan "1.8.15"
     bunyan-loggly "1.4.2"
     caller "1.0.1"
