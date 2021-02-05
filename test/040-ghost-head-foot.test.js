@@ -3,7 +3,7 @@ const utils = require('./utils');
 const thisCheck = require('../lib/checks/040-ghost-head-foot');
 
 describe('040 Ghost head & foot', function () {
-    const options = {};
+    const options = {checkVersion: 'v3'};
 
     it('should show warnings for missing ghost head & foot helpers when no .hbs files are present', function (done) {
         utils.testCheck(thisCheck, 'is-empty', options).then((output) => {

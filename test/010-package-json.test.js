@@ -180,8 +180,10 @@ describe('010 package.json', function () {
     });
 
     describe('v2:', function () {
+        const options = {checkVersion: 'v2'};
+
         it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid').then(function (theme) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -205,7 +207,7 @@ describe('010 package.json', function () {
         });
 
         it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid').then(function (theme) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -233,12 +235,93 @@ describe('010 package.json', function () {
         });
 
         it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing').then(function (theme) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-KEYWORDS'
+                );
+
+                done();
+            }).catch(done);
+        });
+    });
+
+    describe('v3:', function () {
+        const options = {checkVersion: 'v3'};
+
+        it('valid fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V01'
+                ]);
+
+                theme.results.fail.should.be.an.Object().which.is.empty();
+                done();
+            }).catch(done);
+        });
+
+        it('invalid fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-GHOST-API'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS'
+                );
+
+                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+
+                done();
+            }).catch(done);
+        });
+
+        it('missing fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-GHOST-API-V01'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
