@@ -153,7 +153,7 @@ describe('Checker', function () {
     });
 
     it('checks for a latest (v4) version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'latest'}).then((theme) => {
+        checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([

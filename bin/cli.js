@@ -63,11 +63,8 @@ prettyCLI
             options.checkVersion = 'v3';
         } else if (argv.v4) {
             options.checkVersion = 'v4';
-        } else if (argv.canary) {
-            options.checkVersion = 'canary';
         } else {
-            // CASE: set default value
-            options.checkVersion = 'latest';
+            options.checkVersion = 'canary';
         }
 
         options.verbose = argv.verbose;
