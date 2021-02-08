@@ -1,0 +1,42 @@
+<html lang="{{lang}}">
+<head>
+
+    <meta name="description" content="{{meta_description}}">
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
+    {{ghost_head}}
+    {{@site.ghost_head}}
+</head>
+<body>
+    {{pageUrl 'lol'}}
+    {{@blog.posts_per_page}}
+
+    {{author.image}}
+
+    {{cover}}
+
+    {{#get "posts" include="tags, author" fields="author" filter="author:{{author.slug}}+id:-{{id}}"}}
+        {{#foreach posts}}
+            {{author}}
+            {{title}}
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "users"}}
+        {{#foreach users}}
+            {{name}}
+        {{/foreach}}
+    {{/get}}
+
+    {{!-- invalid usage of author property. Will not be detected. --}}
+    {{author_image}}
+
+    {{#if error}}
+        {{error.code}}
+    {{/if}}
+
+     {{#each}}
+</body>
+    {{ghost_foot}}
+    {{@site.ghost_foot}}
+</html>

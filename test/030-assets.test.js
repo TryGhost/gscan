@@ -3,7 +3,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/030-assets');
 
 describe('030 Assets', function () {
-    const options = {checkVersion: 'v1'};
+    const options = {checkVersion: 'v3'};
 
     it('should show a warning for missing asset helper when an asset is detected', function (done) {
         utils.testCheck(thisCheck, '030-assets/missing', options).then(function (output) {
