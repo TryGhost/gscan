@@ -49,7 +49,7 @@ app.post('/',
             name: req.file.originalname
         };
         const options = {
-            checkVersion: req.body.version || 'canary'
+            checkVersion: req.body.version || ghostVersions.default
         };
 
         debug('Uploaded: ' + zip.name + ' to ' + zip.path);
@@ -78,7 +78,7 @@ app.post('/',
     },
     function doRender(req, res) {
         const options = {
-            checkVersion: req.body.version || 'canary'
+            checkVersion: req.body.version || ghostVersions.default
         };
         debug('Formatting result');
         const result = gscan.format(res.theme, options);

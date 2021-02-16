@@ -8,6 +8,7 @@ const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
 const chalk = require('chalk');
 const gscan = require('../lib');
+const ghostVersions = require('../lib/utils').versions;
 
 const options = {
     format: 'cli'
@@ -63,8 +64,10 @@ prettyCLI
             options.checkVersion = 'v3';
         } else if (argv.v4) {
             options.checkVersion = 'v4';
-        } else {
+        } else if (argv.canary) {
             options.checkVersion = 'canary';
+        } else {
+            options.checkVersion = ghostVersions.default;
         }
 
         options.verbose = argv.verbose;
