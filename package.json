@@ -41,7 +41,7 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "@sentry/node": "6.1.0",
+    "@sentry/node": "6.2.0",
     "@tryghost/pretty-cli": "1.2.14",
     "@tryghost/zip": "1.1.9",
     "bluebird": "3.7.2",
