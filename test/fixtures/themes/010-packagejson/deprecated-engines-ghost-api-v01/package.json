@@ -1,0 +1,18 @@
+{
+  "name": "my-theme",
+  "version": "0.0.1",
+  "author": {
+    "email": "theme@example.org"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "engines": {
+    "ghost-api": "v0.1"
+  },
+  "config": {
+    "posts_per_page": 3
+  }
+}
