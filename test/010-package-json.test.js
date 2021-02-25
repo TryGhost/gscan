@@ -386,7 +386,8 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-GHOST-API',
-                    'GS010-PJ-GHOST-API-V01'
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
@@ -405,7 +406,8 @@ describe('010 package.json', function () {
                     'GS010-PJ-VERSION-REQ',
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-CONF-PPP',
-                    'GS010-PJ-GHOST-API'
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V2'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -430,7 +432,8 @@ describe('010 package.json', function () {
                 theme.results.pass.should.eql([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
-                    'GS010-PJ-GHOST-API-V01'
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -462,11 +465,41 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API'
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V2'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-V01'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('deprecated ghost-api v2', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v2', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V01'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-GHOST-API-V2'
                 );
 
                 done();
