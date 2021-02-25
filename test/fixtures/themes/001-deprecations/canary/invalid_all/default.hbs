@@ -15,6 +15,10 @@
 
     {{cover}}
 
+    {{#if @labs.members}}
+        <h1>Hi Member!</h1>
+    {{/if}}
+
     {{#get "posts" include="tags, author" fields="author" filter="author:{{author.slug}}+id:-{{id}}"}}
         {{#foreach posts}}
             {{author}}

@@ -1611,7 +1611,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-PAID',
                     'GS001-DEPR-USER-GET',
-                    'GS001-DEPR-EACH'
+                    'GS001-DEPR-EACH',
+                    'GS001-DEPR-LABS-MEMBERS'
                 );
 
                 // pageUrl
@@ -1895,6 +1896,10 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
 
+                // {{@labs.members}} helper usage warning
+                output.results.fail['GS001-DEPR-LABS-MEMBERS'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length.should.eql(1);
+
                 // there are some single author rules which are not invalid for this theme.
                 output.results.pass.length.should.eql(17);
 
@@ -2140,7 +2145,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(46);
+                output.results.pass.should.be.an.Array().with.lengthOf(47);
 
                 done();
             }).catch(done);
@@ -2151,7 +2156,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(92);
+                output.results.pass.should.be.an.Array().with.lengthOf(93);
 
                 done();
             }).catch(done);
@@ -2205,7 +2210,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(58);
+                output.results.pass.should.be.an.Array().with.lengthOf(59);
 
                 done();
             }).catch(done);
