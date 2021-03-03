@@ -1,0 +1,42 @@
+{{content words="0"}}
+{{#if post.author.image}}
+    {{post.author.image}}
+{{/if}}
+
+{{#if post.author.cover}}
+    {{post.author.cover}}
+{{/if}}
+{{!-- flexible capture--}}
+{{pageUrl 'lol'}}
+{{!-- don't match non-helper reg check --}}
+{{pageUrlA}}
+{{#if post.tags.[3].image}}
+    {{post.tags.[3].image}}
+{{/if}}
+{{#post}}
+    {{meta_description}}
+    {{#if image}}
+        {{ image }}
+    {{/if}}
+
+    {{image}}
+    {{#if author.image}}
+        {{author.image}}
+    {{/if}}
+
+    {{#if author.cover}}
+        {{author.cover}}
+    {{/if}}
+
+    {{#if tags.[5].image}}
+        {{tags.[5].image}}
+    {{/if}}
+{{/post}}
+
+{{#author}}
+    {{#if cover}}
+        {{cover}}
+    {{/if}}
+{{/author}}
+
+{{author}}
