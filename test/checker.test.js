@@ -125,8 +125,8 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(99);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            theme.results.pass.should.be.an.Array().with.lengthOf(101);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM', 'GS080-FEACH-POSTS', 'GS080-CARD-LAST4');
 
             theme.results.fail.should.be.an.Object().with.keys(
                 'GS010-PJ-REQ',
@@ -161,7 +161,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(100);
+            theme.results.pass.should.be.an.Array().with.lengthOf(102);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -196,7 +196,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md'}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(100);
+            theme.results.pass.should.be.an.Array().with.lengthOf(102);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
