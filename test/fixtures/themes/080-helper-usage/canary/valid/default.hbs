@@ -12,9 +12,7 @@
     {{primary_author.profile_image}}
 
     {{#get "posts" include="tags,authors" filter="authors:{{primary_author.slug}}+id:-{{id}}" fields="authors"}}
-        {{#foreach posts}}
-            {{title}}
-        {{/foreach}}
+
     {{/get}}
 
     {{!-- invalid usage of author property. Will not be detected. --}}

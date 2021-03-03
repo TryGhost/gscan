@@ -164,7 +164,7 @@ describe('Format', function () {
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
                 theme.results.error.all.length.should.eql(99);
-                theme.results.warning.all.length.should.eql(7);
+                theme.results.warning.all.length.should.eql(6);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(17);

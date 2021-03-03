@@ -2148,7 +2148,7 @@ describe('001 Deprecations', function () {
 
                 // {{.currency_symbol}} usage warning
                 output.results.fail['GS001-DEPR-CURR-SYM'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(1);
+                output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(2);
 
                 output.results.pass.should.be.an.Array().with.lengthOf(47);
 
