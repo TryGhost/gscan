@@ -1,0 +1,42 @@
+/* deprecated classes */
+.archive-template {
+
+}
+
+.page-template-something {
+
+}
+
+.page-template-thing {
+
+}
+
+.aclass .page {
+
+}
+
+/* some other classes */
+.page-slug {
+
+}
+
+.mypage {
+
+}
+
+.pagex {
+
+}
+
+/* normal usage */
+.kg-card-markdown {}
+
+.test,
+.kg-card-markdown{}
+
+.kg-card-markdown,
+.test {}
+
+.kg-card-markdown:latest  {}
+
+.kg-card-markdown.test {}
