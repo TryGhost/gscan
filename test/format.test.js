@@ -9,7 +9,7 @@ describe('Format', function () {
 
         it('assert sorting in invalid theme', function (done) {
             checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
-                theme = format(theme);
+                theme = format(theme, options);
 
                 theme.results.error.length.should.eql(26);
                 theme.results.error[0].fatal.should.eql(true);
@@ -24,7 +24,7 @@ describe('Format', function () {
 
         it('assert sorting in empty theme', function (done) {
             checker(themePath('is-empty'), options).then((theme) => {
-                theme = format(theme);
+                theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
                 theme.results.error[1].fatal.should.eql(true);
@@ -39,7 +39,7 @@ describe('Format', function () {
 
         it('sort by files for invalid theme', function (done) {
             checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
-                theme = format(theme, {sortByFiles: true});
+                theme = format(theme, {sortByFiles: true, checkVersion: 'v2'});
 
                 theme.results.hasFatalErrors.should.be.true();
 
@@ -64,7 +64,7 @@ describe('Format', function () {
 
         it('sort by files for invalid_all theme', function (done) {
             checker(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
-                theme = format(theme, {sortByFiles: true});
+                theme = format(theme, {sortByFiles: true, checkVersion: 'v2'});
 
                 theme.results.hasFatalErrors.should.be.true();
 
@@ -86,7 +86,7 @@ describe('Format', function () {
 
         it('formats for CLI output', function () {
             return checker(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
-                theme = format(theme, {format: 'cli'});
+                theme = format(theme, {format: 'cli', checkVersion: 'v2'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
@@ -100,8 +100,8 @@ describe('Format', function () {
         const options = {checkVersion: 'v3'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
-                theme = format(theme);
+            checker(themePath('005-compile/v3/invalid'), options).then((theme) => {
+                theme = format(theme, options);
 
                 theme.results.error.length.should.eql(27);
                 theme.results.error[0].fatal.should.eql(true);
@@ -116,7 +116,7 @@ describe('Format', function () {
 
         it('assert sorting in empty theme', function (done) {
             checker(themePath('is-empty'), options).then((theme) => {
-                theme = format(theme);
+                theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
                 theme.results.error[1].fatal.should.eql(true);
@@ -130,8 +130,8 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
-                theme = format(theme, {sortByFiles: true});
+            checker(themePath('005-compile/v3/invalid'), options).then((theme) => {
+                theme = format(theme, {sortByFiles: true, checkVersion: 'v3'});
 
                 theme.results.hasFatalErrors.should.be.true();
 
@@ -155,8 +155,8 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            checker(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
-                theme = format(theme, {sortByFiles: true});
+            checker(themePath('001-deprecations/v3/invalid_all'), options).then((theme) => {
+                theme = format(theme, {sortByFiles: true, checkVersion: 'v3'});
 
                 theme.results.hasFatalErrors.should.be.true();
 
@@ -178,7 +178,7 @@ describe('Format', function () {
 
         it('formats for CLI output', function () {
             return checker(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
-                theme = format(theme, {format: 'cli'});
+                theme = format(theme, {format: 'cli', checkVersion: 'v3'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
