@@ -1612,7 +1612,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-PAID',
                     'GS001-DEPR-USER-GET',
                     'GS001-DEPR-EACH',
-                    'GS001-DEPR-LABS-MEMBERS'
+                    'GS001-DEPR-LABS-MEMBERS',
+                    'GS001-DEPR-SITE-LANG'
                 );
 
                 // pageUrl
@@ -1900,6 +1901,10 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-LABS-MEMBERS'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length.should.eql(1);
 
+                // {{@site.lang}} helper usage warning
+                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+
                 // there are some single author rules which are not invalid for this theme.
                 output.results.pass.length.should.eql(18);
 
@@ -1958,7 +1963,8 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-SPL',
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-EACH',
-                    'GS001-DEPR-CURR-SYM'
+                    'GS001-DEPR-CURR-SYM',
+                    'GS001-DEPR-SITE-LANG'
                 );
 
                 // css class .kg-card-markdown
@@ -2150,6 +2156,10 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-CURR-SYM'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(2);
 
+                // {{@site.lang}}
+                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+
                 output.results.pass.should.be.an.Array().with.lengthOf(47);
 
                 done();
@@ -2161,7 +2171,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(94);
+                output.results.pass.should.be.an.Array().with.lengthOf(95);
 
                 done();
             }).catch(done);
@@ -2215,7 +2225,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(60);
+                output.results.pass.should.be.an.Array().with.lengthOf(61);
 
                 done();
             }).catch(done);

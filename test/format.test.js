@@ -256,13 +256,15 @@ describe('Format', function () {
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
                 theme.results.error.all.length.should.eql(99);
-                theme.results.warning.all.length.should.eql(8);
+                theme.results.warning.all.length.should.eql(9);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(17);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(54);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(9);
+
+                theme.results.warning.byFiles['index.hbs'].length.should.eql(1);
 
                 done();
             }).catch(done);
