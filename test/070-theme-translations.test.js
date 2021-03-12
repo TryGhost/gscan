@@ -28,7 +28,7 @@ describe('070 Theme Translations', function () {
     });
 
     it('should fail when a theme has invalid locales', function (done) {
-        const options = {checkVersion: 'v3'};
+        const options = {checkVersion: 'canary'};
         utils.testCheck(thisCheck, '070-theme-translations/invalid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
