@@ -48,7 +48,7 @@
     "chalk": "4.1.0",
     "common-tags": "1.8.0",
     "express": "4.17.1",
-    "express-hbs": "2.3.4",
+    "express-hbs": "2.3.5",
     "fs-extra": "9.1.0",
     "ghost-ignition": "4.6.2",
     "glob": "7.1.6",
