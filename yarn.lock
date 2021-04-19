@@ -192,13 +192,13 @@
   dependencies:
     "@elastic/elasticsearch" "^7.10.0"
 
-"@tryghost/pretty-cli@1.2.16":
-  version "1.2.16"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.16.tgz#9f47d4e341326690d3816fec9fd5bf0c946805f3"
-  integrity sha512-jSlExfLyW6cYoA3UVvNr5v4nh3YNdoha7N6h7r/66BNIZ4vClqNjk6KFAUHLii0rzjV8zXdrqHrixonYs2ArEQ==
+"@tryghost/pretty-cli@1.2.17":
+  version "1.2.17"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.17.tgz#851048ee60fc5e9e5df1aef03fdd4be0978fa131"
+  integrity sha512-1l42Om1PouMZ/3YSys9ORLOlefsBPnKHDgcpODEI4PEPBsbA98wuz6tXXEP/JDtS34MUeahGqcM+rQzYG5Rbzw==
   dependencies:
-    chalk "4.1.0"
-    sywac "1.3.0"
+    chalk "^4.1.0"
+    sywac "^1.3.0"
 
 "@tryghost/zip@1.1.11":
   version "1.1.11"
@@ -4235,7 +4235,7 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-sywac@1.3.0:
+sywac@^1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/sywac/-/sywac-1.3.0.tgz#324789bdb8bd7d0d66625c9144fce81ab5ba6f99"
   integrity sha512-LDt2stNTp4bVPMgd70Jj9PWrSa4batl+bv+Ea5NLNGT7ufc4oQPtRfQ73wbddNV6RilaPqnEt6y1Wkm5FVTNEg==
