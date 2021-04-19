@@ -200,15 +200,15 @@
     chalk "^4.1.0"
     sywac "^1.3.0"
 
-"@tryghost/zip@1.1.11":
-  version "1.1.11"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.11.tgz#4042c44fd47cac91a91c6bc8344d1d810158d9f8"
-  integrity sha512-+2TxbZ6NxQRGiehpP/RoDbW+zT/z3RbHZJRnm1XOUJ/xRpctIDmWeMx0XFuCy+w6im9MrxIkY+aylgQtweNYKQ==
+"@tryghost/zip@1.1.12":
+  version "1.1.12"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.12.tgz#49e70168d062d81be4a73923e3585c43f35272b7"
+  integrity sha512-PAuQ0RtG/IlKa2fYKS8jktm5AL7Sf62NIwNRJb1QezMTTZIVdQJmIzHvo0C6sCLcxw67Q+4+GM6jdCP31PCiuw==
   dependencies:
-    archiver "4.0.2"
-    bluebird "3.7.2"
+    archiver "^4.0.2"
+    bluebird "^3.7.2"
     extract-zip "2.0.0"
-    fs-extra "9.1.0"
+    fs-extra "^9.1.0"
 
 "@types/node@*":
   version "14.14.37"
@@ -364,7 +364,7 @@ archiver-utils@^2.1.0:
     normalize-path "^3.0.0"
     readable-stream "^2.0.0"
 
-archiver@4.0.2:
+archiver@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/archiver/-/archiver-4.0.2.tgz#43c72865eadb4ddaaa2fb74852527b6a450d927c"
   integrity sha512-B9IZjlGwaxF33UN4oPbfBkyA4V1SxNLeIhR1qY8sRXSsbdUkEHrrOvwlYFPx+8uQeCe9M+FG6KgO+imDmQ79CQ==
@@ -535,7 +535,7 @@ bl@^4.0.3:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
-bluebird@3.7.2, bluebird@^3.5.3:
+bluebird@3.7.2, bluebird@^3.5.3, bluebird@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
@@ -1793,7 +1793,7 @@ fs-constants@^1.0.0:
   resolved "https://registry.yarnpkg.com/fs-constants/-/fs-constants-1.0.0.tgz#6be0de9be998ce16af8afc24497b9ee9b7ccd9ad"
   integrity sha512-y6OAwoSIf7FyjMIv94u+b5rdheZEjzR63GTyZJm5qh4Bi+2YgwLCcI/fPFZkL5PSixOt6ZNKm+w+Hfp/Bciwow==
 
-fs-extra@9.1.0:
+fs-extra@9.1.0, fs-extra@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
