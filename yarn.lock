@@ -1497,10 +1497,10 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
-express-hbs@2.3.5:
-  version "2.3.5"
-  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.3.5.tgz#020d37815c958b2cd33558bef4e12e3b4d7fbf75"
-  integrity sha512-5D3mr28ZCy47mposP3lYAy9nBH8+kkVb9mHJgqy6v79shF16RTuTXd9pnyXwgdMqm7FYjXtFK9dfQ+SH+SujOg==
+express-hbs@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.4.0.tgz#b91ad28a35319ec08be9350db65169904bc69490"
+  integrity sha512-CruS8DA6m8i20MTjWpE6X8zu6q0rbQJbQyIp7V7NoYD1znf0krnCHQ8tVB7I9pJSZYnOPj/VPSByNU3sVDxJfw==
   dependencies:
     bluebird "^3.5.3"
     handlebars "^4.7.7"
