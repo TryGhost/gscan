@@ -34,8 +34,7 @@
     "posttest": "yarn lint",
     "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
     "preship": "yarn test",
-    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push ${GHOST_UPSTREAM:-upstream} main --follow-tags; fi",
-    "deploy": "shipit"
+    "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn publish && git push ${GHOST_UPSTREAM:-upstream} main --follow-tags; fi"
   },
   "bin": {
     "gscan": "./bin/cli.js"
@@ -61,7 +60,6 @@
     "validator": "13.0.0"
   },
   "devDependencies": {
-    "@tryghost/deploy": "0.3.1",
     "eslint": "7.25.0",
     "eslint-plugin-ghost": "2.1.0",
     "istanbul": "0.4.5",
