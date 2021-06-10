@@ -336,8 +336,8 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
-        describe.skip('Broken cases', function () {
-            it('CASE 1: Detect missing partials in code flows', function (done) {
+        describe.only('Broken cases', function () {
+            it.only('CASE 1: Detect missing partials in code flows', function (done) {
                 utils.testCheck(thisCheck, '005-compile/canary/missing-partials', options).then(function (output) {
                     output.should.be.a.ValidThemeObject();
                     output.results.pass.should.be.an.Array().which.is.empty();
