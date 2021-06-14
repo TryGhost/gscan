@@ -327,7 +327,7 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
-        it('theme with block partials', function (done) {
+        it('theme with invalid block partials', function (done) {
             utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -336,41 +336,51 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
+        it('Detects missing partials in code flows', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/missing-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+
+                failures.length.should.eql(1);
+
+                failures[0].ref.should.eql('index.hbs');
+                failures[0].message.should.match(/^The partial missingpartial could not be found/);
+
+                done();
+            }).catch(done);
+        });
+
+        it('Lists but not wastes time on processing unused partials', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                output.results.pass.should.containEql('GS005-TPL-ERR');
+
+                output.partials.should.be.an.Array().with.lengthOf(1);
+                output.partials.should.containEql('mypartial');
+
+                done();
+            }).catch(done);
+        });
+
         describe('Broken cases', function () {
-            it('CASE 1: Detect missing partials in code flows', function (done) {
-                utils.testCheck(thisCheck, '005-compile/canary/missing-partials', options).then(function (output) {
-                    output.should.be.a.ValidThemeObject();
-                    output.results.pass.should.be.an.Array().which.is.empty();
-
-                    output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
-                    output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
-
-                    var failures = output.results.fail['GS005-TPL-ERR'].failures;
-
-                    failures.length.should.eql(1);
-
-                    failures[0].ref.should.eql('index.hbs');
-                    failures[0].message.should.match(/^The partial missingpartial could not be found/);
-
-                    done();
-                }).catch(done);
-            });
-
-            it('CASE 2: list, but not waste time on processing unused partials', function (done) {
+            it.skip('Lists used helpers', function (done) {
                 utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
                     output.should.be.a.ValidThemeObject();
 
                     output.results.fail.should.be.an.Object().which.is.empty();
 
-                    output.results.pass.should.be.an.Array().with.lengthOf(1);
-                    output.results.pass.should.containEql('GS005-TPL-ERR');
-
-                    output.partials.should.be.an.Array().with.lengthOf(1);
-                    output.partials.should.containEql('mypartial');
-
-                    // let helperList = Object.keys(output.helpers);
-                    // helperList.should.be.an.Array().with.lengthOf(1);
-                    // helperList.should.containEql('cancel_link');
+                    let helperList = Object.keys(output.helpers);
+                    helperList.should.be.an.Array().with.lengthOf(1);
+                    helperList.should.containEql('cancel_link');
 
                     done();
                 }).catch(done);
