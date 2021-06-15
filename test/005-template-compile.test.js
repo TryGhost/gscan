@@ -2,7 +2,7 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
     thisCheck = require('../lib/checks/005-template-compile');
 
-describe('005 Template compile', function () {
+describe.only('005 Template compile', function () {
     describe('v1', function () {
         const options = {checkVersion: 'v1'};
 
@@ -47,10 +47,10 @@ describe('005 Template compile', function () {
                 failures[0].message.should.match(/^Missing helper: "bla"/);
 
                 failures[1].ref.should.eql('index.hbs');
-                failures[1].message.should.match(/^The partial/);
+                failures[1].message.should.match(/^The partial my-partial could not be found/);
 
                 failures[2].ref.should.eql('page.hbs');
-                failures[2].message.should.match(/^Parse error/);
+                failures[2].message.should.match(/^Parse error on line 2/);
 
                 failures[3].ref.should.eql('post.hbs');
                 failures[3].message.should.match(/^Missing helper: "my-helper"/);
@@ -124,10 +124,10 @@ describe('005 Template compile', function () {
                 failures[0].message.should.match(/^Missing helper: "bla"/);
 
                 failures[1].ref.should.eql('index.hbs');
-                failures[1].message.should.match(/^The partial/);
+                failures[1].message.should.match(/^The partial my-partial could not be found/);
 
                 failures[2].ref.should.eql('page.hbs');
-                failures[2].message.should.match(/^Parse error/);
+                failures[2].message.should.match(/^Parse error on line 2/);
 
                 failures[3].ref.should.eql('post.hbs');
                 failures[3].message.should.match(/^Missing helper: "my-helper"/);
@@ -201,10 +201,10 @@ describe('005 Template compile', function () {
                 failures[0].message.should.match(/^Missing helper: "bla"/);
 
                 failures[1].ref.should.eql('index.hbs');
-                failures[1].message.should.match(/^The partial/);
+                failures[1].message.should.match(/^The partial my-partial could not be found/);
 
                 failures[2].ref.should.eql('page.hbs');
-                failures[2].message.should.match(/^Parse error/);
+                failures[2].message.should.match(/^Parse error on line 2/);
 
                 failures[3].ref.should.eql('post.hbs');
                 failures[3].message.should.match(/^Missing helper: "my-helper"/);
@@ -291,10 +291,10 @@ describe('005 Template compile', function () {
                 failures[0].message.should.match(/^Missing helper: "bla"/);
 
                 failures[1].ref.should.eql('index.hbs');
-                failures[1].message.should.match(/^The partial/);
+                failures[1].message.should.match(/^The partial my-partial could not be found/);
 
                 failures[2].ref.should.eql('page.hbs');
-                failures[2].message.should.match(/^Parse error/);
+                failures[2].message.should.match(/^Parse error on line 2/);
 
                 failures[3].ref.should.eql('post.hbs');
                 failures[3].message.should.match(/^Missing helper: "my-helper"/);
