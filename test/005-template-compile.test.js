@@ -371,20 +371,20 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
-        describe('Broken cases', function () {
-            it.skip('Lists used helpers', function (done) {
-                utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
-                    output.should.be.a.ValidThemeObject();
+        it('lists used helpers', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
 
-                    output.results.fail.should.be.an.Object().which.is.empty();
+                output.results.fail.should.be.an.Object().which.is.empty();
 
-                    let helperList = Object.keys(output.helpers);
-                    helperList.should.be.an.Array().with.lengthOf(1);
-                    helperList.should.containEql('cancel_link');
+                let helperList = Object.keys(output.helpers);
+                helperList.should.be.an.Array().with.lengthOf(3);
+                helperList.should.containEql('cancel_link');
+                helperList.should.containEql('img_url');
+                helperList.should.containEql('if');
 
-                    done();
-                }).catch(done);
-            });
+                done();
+            }).catch(done);
         });
     });
 });
