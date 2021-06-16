@@ -378,10 +378,8 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().which.is.empty();
 
                 let helperList = Object.keys(output.helpers);
-                helperList.should.be.an.Array().with.lengthOf(3);
+                helperList.should.be.an.Array().with.lengthOf(1);
                 helperList.should.containEql('cancel_link');
-                helperList.should.containEql('img_url');
-                helperList.should.containEql('if');
 
                 done();
             }).catch(done);
