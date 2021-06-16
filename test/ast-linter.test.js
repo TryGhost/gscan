@@ -28,7 +28,7 @@ describe('ast-linter', function () {
             const parsed = ASTLinter.parse(template);
             const results = linter
                 .verify({parsed, moduleId: 'simple.hbs', source: template})
-                .filter(error => error.rule === 'no-img-url-in-conditionals');
+                .filter(error => error.rule === 'GS090-NO-IMG-URL-IN-CONDITIONALS');
             should(results).have.length(1);
             should(results[0].line).eql(2);
             should(results[0].column).eql(0);
