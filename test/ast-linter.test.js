@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const ASTLinter = require('../lib/ast-linter');
 const linter = new ASTLinter();
+const helpers = require('../lib/ast-linter/helpers');
 
 function getTemplate(name) {
     return fs.readFileSync(path.join(__dirname, 'fixtures', 'ast-linter', name), {encoding: 'utf8'});
@@ -48,6 +49,48 @@ describe('ast-linter', function () {
             should(results).have.length(1);
             should(results[0].line).eql(2);
             should(results[0].column).eql(0);
+        });
+    });
+
+    describe('getPartialName', function () {
+        it('should return the name of a partial with quotes', function () {
+            const parsed = ASTLinter.parse('{{> "test/testing"}}');
+            const pathExpression = parsed.ast.body[0];
+            const name = helpers.getPartialName(pathExpression);
+
+            name.should.eql('test/testing');
+        });
+
+        it('should return the name of a partial without quotes', function () {
+            const parsed = ASTLinter.parse('{{> test/testing}}');
+            const pathExpression = parsed.ast.body[0];
+            const name = helpers.getPartialName(pathExpression);
+
+            name.should.eql('test/testing');
+        });
+
+        it('should return the name of a partial without the context', function () {
+            const parsed = ASTLinter.parse('{{> test/testing context1 context2}}');
+            const pathExpression = parsed.ast.body[0];
+            const name = helpers.getPartialName(pathExpression);
+
+            name.should.eql('test/testing');
+        });
+
+        it('should return the name of a partial without the parameters', function () {
+            const parsed = ASTLinter.parse('{{> test/testing parameter=paramValue}}');
+            const pathExpression = parsed.ast.body[0];
+            const name = helpers.getPartialName(pathExpression);
+
+            name.should.eql('test/testing');
+        });
+
+        it('should return the name of a partial block', function () {
+            const parsed = ASTLinter.parse('{{#> test/testing}}OK{{/test/testing}}');
+            const pathExpression = parsed.ast.body[0];
+            const name = helpers.getPartialName(pathExpression);
+
+            name.should.eql('test/testing');
         });
     });
 });
