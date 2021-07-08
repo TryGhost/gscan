@@ -371,6 +371,22 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
+        it('Ignores self referencing partials', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/recursive-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                output.results.pass.should.containEql('GS005-TPL-ERR');
+
+                output.partials.should.be.an.Array().with.lengthOf(1);
+                output.partials.should.containEql('recursive');
+
+                done();
+            }).catch(done);
+        });
+
         it('lists used helpers', function (done) {
             utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
