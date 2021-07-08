@@ -35,5 +35,25 @@ describe('Check zip', function () {
                 });
         });
     });
+
+    describe('throws errors', function () {
+        it('non existing file', async function () {
+            try {
+                await checkZip(themePath('030-assets/do_not_exist.zip'));
+                should.fail(checkZip, 'Should have errored');
+            } catch (err) {
+                should.exist(err);
+
+                should.exist(err.errorType);
+                should.equal(err.errorType, 'ValidationError');
+
+                should.exist(err.message);
+                should.equal(err.message, 'Failed to read zip file');
+
+                should.exist(err.help);
+                should.equal(err.help, 'Your zip file might be corrupted, try unzipping and zipping again.');
+            }
+        });
+    });
 });
 
