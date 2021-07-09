@@ -52,6 +52,42 @@ describe('ast-linter', function () {
         });
     });
 
+    describe('Helper extraction', function () {
+        it('extracts a simple helper', function () {
+            const localLinter = new ASTLinter();
+            const source = '{{pagination}}';
+            const parsed = ASTLinter.parse(source);
+            localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/mark-used-helpers')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            localLinter.helpers.length.should.eql(1);
+            localLinter.helpers[0].name.should.eql('pagination');
+        });
+
+        it('extracts a simple double-quoted helper', function () {
+            const localLinter = new ASTLinter();
+            const source = '{{"pagination"}}';
+            const parsed = ASTLinter.parse(source);
+            localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/mark-used-helpers')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            localLinter.helpers.length.should.eql(1);
+            localLinter.helpers[0].name.should.eql('pagination');
+        });
+    });
+
     describe('getPartialName', function () {
         it('should return the name of a partial with quotes', function () {
             const parsed = ASTLinter.parse('{{> "test/testing"}}');
