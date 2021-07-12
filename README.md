@@ -14,6 +14,10 @@ In Ghost, we call GScan on boot. If any fatal errors are detected, the blog will
 
 Errors are only be marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
 
+### Tooling
+When developing new rules or testing gscan following tools are great to have in the toolbelt:
+- [astexplorer](https://astexplorer.net) - absolutely awesome Handlebars AST fiddler, helpful when testing out new ideas and exploring what's possible through AST parser;
+
 ## Usage
 
 There are 3 ways to use gscan to validate your theme:
