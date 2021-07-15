@@ -1,9 +1,7 @@
 var path = require('path'),
     should = require('should'),
     readTheme = require('../lib/read-theme'),
-    testThemePath = 'test/fixtures/themes',
-    getThemePath,
-    testCheck;
+    testThemePath = 'test/fixtures/themes';
 
 should.Assertion.add('ValidResultObject', function () {
     this.params = {operator: 'to be valid result object'};
@@ -48,11 +46,11 @@ should.Assertion.add('ValidRule', function () {
     var levels = ['error', 'warning', 'recommendation', 'feature']; // eslint-disable-line no-unused-vars
 });
 
-getThemePath = function (themeId) {
+const getThemePath = function (themeId) {
     return path.resolve(path.join(testThemePath, themeId));
 };
 
-testCheck = function testCheck(checkLib, themeId, options) {
+const testCheck = function testCheck(checkLib, themeId, options) {
     var themePath = getThemePath(themeId);
 
     return readTheme(themePath).then(function runCheck(theme) {

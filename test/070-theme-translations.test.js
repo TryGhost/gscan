@@ -49,7 +49,7 @@ describe('070 Theme Translations', function () {
 
             theme = format(theme, options);
 
-            const error = theme.results.error.find(error => error.code === 'GS070-VALID-TRANSLATIONS');
+            const error = theme.results.error.find(e => e.code === 'GS070-VALID-TRANSLATIONS');
 
             error.should.be.an.Object();
             error.fatal.should.be.true;

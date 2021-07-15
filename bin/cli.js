@@ -10,11 +10,16 @@ const chalk = require('chalk');
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
 
-const options = {
-    format: 'cli'
+const levels = {
+    error: chalk.red,
+    warning: chalk.yellow,
+    recommendation: chalk.yellow,
+    feature: chalk.green
 };
 
-let levels;
+const cliOptions = {
+    format: 'cli'
+};
 
 prettyCLI
     .configure({
@@ -60,37 +65,37 @@ prettyCLI
     .parseAndExit()
     .then((argv) => {
         if (argv.v1) {
-            options.checkVersion = 'v1';
+            cliOptions.checkVersion = 'v1';
         } else if (argv.v2) {
-            options.checkVersion = 'v2';
+            cliOptions.checkVersion = 'v2';
         } else if (argv.v3) {
-            options.checkVersion = 'v3';
+            cliOptions.checkVersion = 'v3';
         } else if (argv.v4) {
-            options.checkVersion = 'v4';
+            cliOptions.checkVersion = 'v4';
         } else if (argv.canary) {
-            options.checkVersion = 'canary';
+            cliOptions.checkVersion = 'canary';
         } else {
-            options.checkVersion = ghostVersions.default;
+            cliOptions.checkVersion = ghostVersions.default;
         }
 
-        options.verbose = argv.verbose;
-        options.onlyFatalErrors = argv.fatal;
+        cliOptions.verbose = argv.verbose;
+        cliOptions.onlyFatalErrors = argv.fatal;
 
-        if (options.onlyFatalErrors) {
+        if (cliOptions.onlyFatalErrors) {
             ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
         } else {
             ui.log(chalk.bold('\nChecking theme compatibility...'));
         }
 
         if (argv.zip) {
-            gscan.checkZip(argv.themePath, options)
-                .then(theme => outputResults(theme, options))
+            gscan.checkZip(argv.themePath, cliOptions)
+                .then(theme => outputResults(theme, cliOptions))
                 .catch((error) => {
                     ui.log(error);
                 });
         } else {
-            gscan.check(argv.themePath, options)
-                .then(theme => outputResults(theme, options))
+            gscan.check(argv.themePath, cliOptions)
+                .then(theme => outputResults(theme, cliOptions))
                 .catch(function ENOTDIRPredicate(err) {
                     return err.code === 'ENOTDIR';
                 }, function (err) {
@@ -100,14 +105,7 @@ prettyCLI
         }
     });
 
-levels = {
-    error: chalk.red,
-    warning: chalk.yellow,
-    recommendation: chalk.yellow,
-    feature: chalk.green
-};
-
-function outputResult(result) {
+function outputResult(result, options) {
     ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
 
     if (options.verbose) {
