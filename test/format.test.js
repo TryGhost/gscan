@@ -227,7 +227,7 @@ describe('Format', function () {
 
                 theme.results.hasFatalErrors.should.be.true();
 
-                theme.results.recommendation.all.length.should.eql(1);
+                theme.results.recommendation.all.length.should.eql(3);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
                 theme.results.warning.all.length.should.eql(5);
@@ -252,7 +252,7 @@ describe('Format', function () {
 
                 theme.results.hasFatalErrors.should.be.true();
 
-                theme.results.recommendation.all.length.should.eql(2);
+                theme.results.recommendation.all.length.should.eql(4);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
 
                 theme.results.error.all.length.should.eql(99);
