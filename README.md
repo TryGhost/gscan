@@ -4,10 +4,10 @@
   </a>
 </p>
 
-# GScan
-
 GScan is a tool for validating Ghost themes. It produces detailed reports of issues where themes need to be modified in order to be compatible with a specific version.
-GScan is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v4, v3, v2 and v1).
+
+It is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v4, v3, v2 and v1).
+
 GScan works on a system of rules. Each rule has a way to check whether it passes or fails and has help content which describes how to fix it. Each rule is also marked with an error level:
 
 - **recommendation** = these are things the dev might want to know about
