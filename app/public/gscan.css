@@ -2588,7 +2588,7 @@ body {
     color: rgba(255, 255, 255, 0);
     white-space: nowrap; 
     border-radius: 5px;
-]    animation: progress-bar 2s;
+    animation: progress-bar 2s;
 }
 
 .progress-bar-value.passing { 
