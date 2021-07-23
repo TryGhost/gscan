@@ -1,4 +1,4 @@
-<div class="inner">
+<div class="inner flex">
     <div class="newsletter-success-message">
         <h3>✉️ Nice! Please check your email</h3>
         <p><em>Click on the link in your inbox to confirm your subscription</em></p>
@@ -9,20 +9,13 @@
     </div>
 
     <header class="gh-header">
-        <h1>Scan Your Theme</h1>
-        <p class="gh-subhead">Upload a zip to check for errors, deprecations and other compatibility issues.</p>
-
-        <a href="https://ghost.org/docs/api/handlebars-themes/" target=_blank class="gh-morelink" style="display:inline-block;margin-top: 10px;">
-            See the Ghost Themes documentation
-            <svg viewBox="0 0 18 27" xmlns="http://www.w3.org/2000/svg"><path d="M2.397 25.426l13.143-11.5-13.143-11.5" stroke-width="3"
-                    stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
-        </a>
+        <p class="gh-subhead"><strong>Scan your theme.</strong> Upload a zip to check for errors, deprecations and other compatibility issues.</p>
     </header>
 
     <section class="gh-gscan-uploader">
         <form class="gh-gscan-uploader-form" action="/" method="post" enctype="multipart/form-data">
             <div class="gh-form-group">
-                <input class="gh-input" type="file" accept="application/zip" name="theme" id="theme" />
+                <input class="gh-input" type="file" accept="application/zip" name="theme" id="theme"/>
             </div>
             <div class="gh-form-group">
                 <label for="version">Ghost version:</label>
@@ -35,32 +28,28 @@
                     <option value="v1">{{ghostVersions.v1.major}}</option>
                 </select>
             </div>
-
-            <button class="gh-btn gh-btn-blue" id="theme-submit" type="submit"><span>Start scanning</span></button>
+            <button class="gh-btn" id="theme-submit" type="submit"><span>Start scanning &rarr;</span></button>
         </form>
     </section>
-
 </div>
 
-<div class="gh-section gh-section-dark gh-section-themenewsletter">
+<div class="gh-section gh-section-themenewsletter">
     <div class="inner">
         <header class="gh-section-head">
-            <div class="gh-features-icon gh-features-icon-org">
-                <svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.5 13.382V11.5a.5.5 0 0 0-1 0v1.882l-4.947 9.895A.5.5 0 0 0 7 24h10a.498.498 0 0 0 .447-.723L12.5 13.382zm-.5 1.236l.941 1.882h-1.882L12 14.618zm1.441 2.882l.415.829-1.853 1.239-1.858-1.239.414-.829h2.882zm-2.338 2.669l-2.822 1.887 1.413-2.826 1.409.939zm.901.601L15.349 23h-6.68l3.335-2.23zm.9-.601l1.402-.938 1.405 2.809-2.807-1.871zM12 0C5.383 0 0 5.383 0 12c0 3.102 1.184 6.048 3.332 8.295a.5.5 0 0 0 .723-.691A10.955 10.955 0 0 1 1 12C1 5.935 5.935 1 12 1s11 4.935 11 11c0 2.844-1.085 5.544-3.055 7.604a.5.5 0 0 0 .723.692A11.96 11.96 0 0 0 24 12c0-6.617-5.383-12-12-12zm0 4c-4.411 0-8 3.589-8 8a7.94 7.94 0 0 0 1.502 4.655.5.5 0 1 0 .812-.583A6.948 6.948 0 0 1 5 12c0-3.86 3.141-7 7-7s7 3.14 7 7a6.942 6.942 0 0 1-1.315 4.072.5.5 0 0 0 .812.584A7.946 7.946 0 0 0 20 12c0-4.411-3.589-8-8-8zm3.468 8.622h.023c.263 0 .485-.233.504-.497L16 12c0-2.206-1.794-4-4-4s-4 1.794-4 4l.005.125.503.028-.5.019c.011.272.235.416.506.404.272-.005.486-.303.486-.576 0-1.654 1.346-3 3-3s3 1.346 3 3h.5l-.508.134c-.01.273.202.473.476.488z"></path></svg>
-            </div>
             <h2>Want to make sure you're always up to date?</h2>
-            <p>Subscribe to the theme developer mailing list to be notified in advance of major changes in Ghost</p>
+            <p>Subscribe to the theme developer mailing list to be notified in advance of major changes in Ghost. No marketing campaigns. No jibber jabber. Unsubscribe anytime.</p>
         </header>
         <div class="newsletter-form-container">
             <form id="subForm" class="newsletter-form js-cm-form" action="https://www.createsend.com/t/subscribeerror?description=" method="post"
                 data-id="2BE4EF332AA2E32596E38B640E905619C85F3F597FD033B6F6C6422EB1015CD3797460F8635AD5359E57FD834AC206B931043CF78DEA9DF7C031BD9E6544B488">
-                <label for="fieldEmail">Email Address</label>
                 <div class="newsletter-form-group">
-                    <input id="fieldEmail" class="gh-input js-cm-email-input" name="cm-vlkgh-vlkgh" type="email" placeholder="yourname@example.com"
-                        required="">
-                    <button class="gh-btn gh-btn-green" type="submit"><span>Subscribe</span></button>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.33332 3.33334H16.6667C17.5833 3.33334 18.3333 4.08334 18.3333 5.00001V15C18.3333 15.9167 17.5833 16.6667 16.6667 16.6667H3.33332C2.41666 16.6667 1.66666 15.9167 1.66666 15V5.00001C1.66666 4.08334 2.41666 3.33334 3.33332 3.33334Z" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.3333 5L9.99999 10.8333L1.66666 5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input id="fieldEmail" class="gh-input js-cm-email-input" name="cm-vlkgh-vlkgh" type="email" placeholder="yourname@example.com" required="">
+                    <button class="gh-btn gh-btn-subscribe" type="submit"><span>Subscribe</span></button>
                 </div>
-                <small>No marketing campaigns. No jibber jabber. Unsubscribe anytime.</small>
             </form>
         </div>
     </div>
