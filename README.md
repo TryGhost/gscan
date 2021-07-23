@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://gscan.ghost.org/">
+    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/app/public/logo-gscan-black.png" width="216px" alt="Ghost" />
+  </a>
+</p>
+
 # GScan
 
 GScan is a tool for validating Ghost themes. It produces detailed reports of issues where themes need to be modified in order to be compatible with a specific version.
