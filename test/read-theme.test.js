@@ -48,6 +48,8 @@ describe('Read theme', function () {
             fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
             fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
+            theme.should.not.have.key('customSettings');
+
             done();
         }).catch(done);
     });
@@ -167,5 +169,25 @@ describe('Read theme', function () {
                 result.partials.should.eql(['mypartial', 'subfolder\\test']);
                 done();
             }).catch(done);
+    });
+
+    it('can extract custom settings from package.json', function (done) {
+        const options = {labs: {customThemeSettings: true}};
+
+        readTheme(themePath('theme-with-custom-settings-packagejson'), options).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            should.exist(theme.customSettings);
+
+            theme.customSettings.should.deepEqual({
+                test_select: {
+                    type: 'select',
+                    options: ['one', 'two'],
+                    default: 'two'
+                }
+            });
+
+            done();
+        }).catch(done);
     });
 });
