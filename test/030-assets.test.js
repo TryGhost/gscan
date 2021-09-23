@@ -62,21 +62,21 @@ describe('030 Assets', function () {
         }).catch(done);
     });
 
-    // it('should show error when symlink is present', function (done) {
-    //     utils.testCheck(thisCheck, '030-assets/symlink', options).then(function (output) {
-    //         output.should.be.a.ValidThemeObject();
+    it('should show error when symlink is present', function (done) {
+        utils.testCheck(thisCheck, '030-assets/symlink', options).then(function (output) {
+            output.should.be.a.ValidThemeObject();
 
-    //         output.results.pass.should.be.an.Array().with.lengthOf(1);
-    //         output.results.pass.should.containEql('GS030-ASSET-REQ');
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS030-ASSET-REQ');
 
-    //         output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-SYM');
+            output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-SYM');
 
-    //         output.results.fail['GS030-ASSET-SYM'].should.be.a.ValidFailObject();
-    //         output.results.fail['GS030-ASSET-SYM'].failures.should.be.an.Array().with.lengthOf(1);
-    //         output.results.fail['GS030-ASSET-SYM'].failures[0].should.have.keys('ref');
-    //         output.results.fail['GS030-ASSET-SYM'].failures[0].ref.should.eql('assets/mysymlink.png');
+            output.results.fail['GS030-ASSET-SYM'].should.be.a.ValidFailObject();
+            output.results.fail['GS030-ASSET-SYM'].failures.should.be.an.Array().with.lengthOf(1);
+            output.results.fail['GS030-ASSET-SYM'].failures[0].should.have.keys('ref');
+            output.results.fail['GS030-ASSET-SYM'].failures[0].ref.should.eql('assets/mysymlink.png');
 
-    //         done();
-    //     }).catch(done);
-    // });
+            done();
+        }).catch(done);
+    });
 });

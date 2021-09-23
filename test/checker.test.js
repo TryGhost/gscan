@@ -222,13 +222,13 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    // it('should not follow symlinks', function (done) {
-    //     checker(themePath('030-assets/symlink2')).then((theme) => {
-    //         theme.should.be.a.ValidThemeObject();
-    //         theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
-    //         theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
+    it('should not follow symlinks', function (done) {
+        checker(themePath('030-assets/symlink2')).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+            theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
+            theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
 
-    //         done();
-    //     }).catch(done);
-    // });
+            done();
+        }).catch(done);
+    });
 });
