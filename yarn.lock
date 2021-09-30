@@ -182,10 +182,10 @@
   dependencies:
     "@elastic/elasticsearch" "^7.10.0"
 
-"@tryghost/pretty-cli@1.2.19":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.19.tgz#26daa51651f87a4c39d3d3013a1ba87622f4f13e"
-  integrity sha512-99aXM1O9FD2U7ZgJNEyJ8kktuHRGt4FDihgfdbqvJjGL2mmPg9VsbJJwRa6mTNUhH1EYOyBZ4yH654Mg9hYTrg==
+"@tryghost/pretty-cli@1.2.20":
+  version "1.2.20"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.20.tgz#dd048f4caebdd429864fc955a3b24c9afc18d5bf"
+  integrity sha512-F3Cl9BoO9x9ogZJYMPC+qjsM2GW/+sVwaR9vokR52bFzRp4LTH7zAV2hJ/xlP0cWkdUmyIyyB0JQEhmUCs2ong==
   dependencies:
     chalk "^4.1.0"
     sywac "^1.3.0"
