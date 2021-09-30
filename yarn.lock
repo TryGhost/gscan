@@ -198,10 +198,10 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/zip@1.1.15":
-  version "1.1.15"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.15.tgz#8f908b69f8835b9bf2e96222e0448796ef17de3f"
-  integrity sha512-gHszBx8PryyEWdWg6UA0fKT1CWbKqIgAHNo+bN5sJs32MRGFfpQC2KMsMRlB1Xhr/64eHnGUE1b5cDMFx5eU/g==
+"@tryghost/zip@1.1.16":
+  version "1.1.16"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.16.tgz#2f3760bf0cc7ffc2129ec5ae4c231aaca870de1a"
+  integrity sha512-RxJ3kkQrItN4EsO5XsbqoqYuK7aOKlehwU6oqsBx9JYD0Z4SqXTvavulNlOTYMNIRljgeK/6VNY0Z5z9iUbmdA==
   dependencies:
     archiver "^4.0.2"
     bluebird "^3.7.2"
