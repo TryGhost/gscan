@@ -387,7 +387,13 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V01',
-                    'GS010-PJ-GHOST-API-V2'
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
@@ -407,7 +413,13 @@ describe('010 package.json', function () {
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-GHOST-API',
-                    'GS010-PJ-GHOST-API-V2'
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -433,7 +445,13 @@ describe('010 package.json', function () {
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-V01',
-                    'GS010-PJ-GHOST-API-V2'
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -466,7 +484,13 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-GHOST-API',
-                    'GS010-PJ-GHOST-API-V2'
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -495,12 +519,87 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-GHOST-API',
-                    'GS010-PJ-GHOST-API-V01'
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-V2'
                 );
+
+                done();
+            }).catch(done);
+        });
+
+        it('correctly flags invalid custom themes', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('correctly validates custom themes', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
+                ]);
+
+                theme.results.fail.should.be.an.Object().which.is.empty();
 
                 done();
             }).catch(done);
