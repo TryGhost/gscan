@@ -134,6 +134,59 @@ describe('ast-linter', function () {
         });
     });
 
+    describe('Custom theme select settings usage in match', function () {
+        it('errors out when an unkown value is found', function () {
+            const localLinter = new ASTLinter({
+                partials: [],
+                helpers: [],
+                customThemeSettings: {
+                    typography: {
+                        type: 'select',
+                        options: ['serif','sans-serif']
+                    }
+                }
+            });
+            const source = '{{#match @custom.typography "=" "comic sans"}}{{/match}}';
+            const parsed = ASTLinter.parse(source);
+            const messages = localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/lint-no-unknown-custom-theme-select-value-in-match')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            messages.length.should.eql(1);
+            messages[0].message.should.eql('Invalid custom theme select value: "comic sans"');
+        });
+
+        it('doesn\'t error out when a kown value is found', function () {
+            const localLinter = new ASTLinter({
+                partials: [],
+                helpers: [],
+                customThemeSettings: {
+                    typography: {
+                        type: 'select',
+                        options: ['serif','sans-serif']
+                    }
+                }
+            });
+            const source = '{{#match @custom.typography "=" "sans-serif"}}{{/match}}';
+            const parsed = ASTLinter.parse(source);
+            const messages = localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/lint-no-unknown-custom-theme-settings')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            messages.length.should.eql(0);
+        });
+    });
+
     describe('getPartialName', function () {
         it('should return the name of a partial with quotes', function () {
             const parsed = ASTLinter.parse('{{> "test/testing"}}');
