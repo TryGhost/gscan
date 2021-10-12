@@ -88,6 +88,52 @@ describe('ast-linter', function () {
         });
     });
 
+    describe('Custom theme settings extraction', function () {
+        it('extracts a simple custom theme settings', function () {
+            const localLinter = new ASTLinter({
+                partials: [],
+                helpers: [],
+                customThemeSettings: {my_text_prop: {}}
+            });
+            const source = '{{@custom.my_text_prop}}';
+            const parsed = ASTLinter.parse(source);
+            const messages = localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/lint-no-unknown-custom-theme-settings')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            messages.length.should.eql(0);
+            // messages[0].message.should.eql('Missing Custom Theme Setting: "my_text_prop2"');
+        });
+
+        it('extracts more complex custom theme settings', function () {
+            const localLinter = new ASTLinter();
+            const source = '{{#match @custom.cover_style "!=" "No cover"}}{{/match}}{{#match "No cover" "!=" @custom.cover_color}}{{/match}}{{echo @custom.my_text_prop}}{{echo (url @custom.my_text_prop2)}}{{#if @custom.is_feature_enabled}}{{/if}}';
+            const parsed = ASTLinter.parse(source);
+            const messages = localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/lint-no-unknown-custom-theme-settings')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            messages.length.should.eql(5);
+            messages.map(msg => msg.source).should.deepEqual([
+                '@custom.cover_style',
+                '@custom.cover_color',
+                '@custom.my_text_prop',
+                '@custom.my_text_prop2',
+                '@custom.is_feature_enabled'
+            ]);
+        });
+    });
+
     describe('getPartialName', function () {
         it('should return the name of a partial with quotes', function () {
             const parsed = ASTLinter.parse('{{> "test/testing"}}');

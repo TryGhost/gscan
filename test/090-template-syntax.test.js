@@ -11,8 +11,7 @@ describe('090 Template syntax', function () {
                 output.should.be.a.ValidThemeObject();
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS090-NO-IMG-URL-IN-CONDITIONALS');
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
 
                 done();
             }).catch(done);
@@ -24,8 +23,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS090-NO-IMG-URL-IN-CONDITIONALS');
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
 
                 done();
             }).catch(done);
@@ -37,8 +35,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS090-NO-IMG-URL-IN-CONDITIONALS');
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
                 done();
             }).catch(done);
         });
