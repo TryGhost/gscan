@@ -17,14 +17,16 @@
     "custom": {
       "unkown": {
         "type": "color",
-        "group": "post"
+        "group": "post",
+        "default": null
       },
       "unkown2": {
         "type": "image",
         "group": "homepage"
       },
       "typography": {
-        "type": "boolean"
+        "type": "boolean",
+        "default": true
       },
       "no_default": {
         "type": "select",
