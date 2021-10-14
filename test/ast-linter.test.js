@@ -172,7 +172,7 @@ describe('ast-linter', function () {
                     }
                 }
             });
-            const source = '{{#match @custom.typography "=" "sans-serif"}}{{/match}}';
+            const source = '{{#match @custom.typography "=" "sans-serif"}}{{/match}}{{#match @custom.typography "sans-serif"}}{{/match}}';
             const parsed = ASTLinter.parse(source);
             const messages = localLinter.verify({
                 parsed: parsed,
