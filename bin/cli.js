@@ -62,6 +62,9 @@ prettyCLI
     .boolean('--verbose', {
         desc: 'Output check details'
     })
+    .array('--labs', {
+        desc: 'a list of labs flags'
+    })
     .parseAndExit()
     .then((argv) => {
         if (argv.v1) {
@@ -80,6 +83,14 @@ prettyCLI
 
         cliOptions.verbose = argv.verbose;
         cliOptions.onlyFatalErrors = argv.fatal;
+
+        if (argv.labs) {
+            cliOptions.labs = {};
+
+            argv.labs.forEach((flag) => {
+                cliOptions.labs[flag] = true;
+            });
+        }
 
         if (cliOptions.onlyFatalErrors) {
             ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
