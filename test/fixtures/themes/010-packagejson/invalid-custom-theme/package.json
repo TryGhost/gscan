@@ -39,7 +39,10 @@
       "too_many_settings0": {
         "type": "color"
       },
-      "too_many_settings1": {},
+      "too_many_settings1": {
+        "type": "image",
+        "default": "test"
+      },
       "too_many_settings2": {},
       "too_many_settings3": {},
       "too_many_settings4": {},

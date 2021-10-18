@@ -195,7 +195,7 @@ describe('Format', function () {
             checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
                 theme = format(theme);
 
-                theme.results.error.length.should.eql(34);
+                theme.results.error.length.should.eql(35);
                 theme.results.error[0].fatal.should.eql(true);
                 // theme.results.error[1].fatal.should.eql(true);
                 // theme.results.error[2].fatal.should.eql(true);
@@ -233,14 +233,14 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(5);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(34);
+                theme.results.error.all.length.should.eql(35);
 
                 // 1 rule has file references
                 theme.results.error.byFiles['author.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['page.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(17);
+                theme.results.error.byFiles['package.json'].length.should.eql(18);
 
                 done();
             }).catch(done);
@@ -255,7 +255,7 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(3);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(106);
+                theme.results.error.all.length.should.eql(107);
                 theme.results.warning.all.length.should.eql(9);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
