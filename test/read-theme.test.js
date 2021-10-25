@@ -174,7 +174,7 @@ describe('Read theme', function () {
     it('can extract custom settings from package.json', function (done) {
         const options = {labs: {customThemeSettings: true}};
 
-        readTheme(themePath('theme-with-custom-settings-packagejson'), options).then((theme) => {
+        readTheme(themePath('theme-with-custom-settings'), options).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             should.exist(theme.customSettings);
@@ -189,5 +189,17 @@ describe('Read theme', function () {
 
             done();
         }).catch(done);
+    });
+
+    it('can handle missing config in package.json', async function () {
+        const options = {labs: {customThemeSettings: true}};
+
+        const theme = await readTheme(themePath('010-packagejson/no-config'), options);
+
+        theme.should.be.a.ValidThemeObject();
+
+        should.exist(theme.customSettings);
+
+        theme.customSettings.should.deepEqual({});
     });
 });
