@@ -48,7 +48,7 @@ describe('Read theme', function () {
             fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
             fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
-            theme.should.not.have.key('customSettings');
+            theme.customSettings.should.be.empty();
 
             done();
         }).catch(done);
@@ -172,9 +172,7 @@ describe('Read theme', function () {
     });
 
     it('can extract custom settings from package.json', function (done) {
-        const options = {labs: {customThemeSettings: true}};
-
-        readTheme(themePath('theme-with-custom-settings'), options).then((theme) => {
+        readTheme(themePath('theme-with-custom-settings')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             should.exist(theme.customSettings);
