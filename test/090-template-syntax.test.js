@@ -50,5 +50,16 @@ describe('090 Template syntax', function () {
                 done();
             }).catch(done);
         });
+
+        it('should parse partials', function (done) {
+            utils.testCheck(thisCheck, '090-template-syntax/theme-with-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys('GS090-NO-IMG-URL-IN-CONDITIONALS');
+                output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS'].should.be.a.ValidFailObject();
+
+                done();
+            }).catch(done);
+        });
     });
 });
