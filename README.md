@@ -18,7 +18,7 @@ In addition, an **error** can be marked as **fatal**. A **fatal error** means, l
 
 In Ghost, we call GScan on boot. If any fatal errors are detected, the blog will not boot. In Ghost(Pro) and in Ghost-CLI we call GScan as part of major upgrades. The upgrade will not be allowed to continue if any fatal errors are detected.
 
-Errors are only be marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
+Errors are only marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
 
 ### Tooling
 When developing new rules or testing gscan following tools are great to have in the toolbelt:
