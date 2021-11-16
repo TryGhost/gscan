@@ -1,11 +1,11 @@
 const themePath = require('./utils').themePath;
-const checker = require('../lib/checker');
+const {check} = require('../lib/checker');
 
 process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
     it('returns a valid theme when running all checks', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -45,7 +45,7 @@ describe('Checker', function () {
     });
 
     it('checks for v1 version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -81,7 +81,7 @@ describe('Checker', function () {
     });
 
     it('checks for a v2 version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -117,7 +117,7 @@ describe('Checker', function () {
     });
 
     it('checks for a v3 version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -153,7 +153,7 @@ describe('Checker', function () {
     });
 
     it('checks for a latest (v4) version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -188,7 +188,7 @@ describe('Checker', function () {
     });
 
     it('checks for a canary (v4) version if passed', function (done) {
-        checker(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -223,7 +223,7 @@ describe('Checker', function () {
     });
 
     it('should not follow symlinks', function (done) {
-        checker(themePath('030-assets/symlink2')).then((theme) => {
+        check(themePath('030-assets/symlink2')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
             theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined});
             theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');

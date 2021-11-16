@@ -1,9 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
-const checkZip = require('../lib').checkZip;
+const {check, checkZip} = require('../lib');
 const themePath = require('./utils').themePath;
-
-const checker = require('../lib/checker');
 
 process.env.NODE_ENV = 'testing';
 
@@ -23,7 +21,7 @@ describe('Check zip', function () {
         });
 
         it('Don\'t remove files if theme not in tmp directory', function () {
-            return checker(themePath('030-assets/ignored'), {checkVersion: 'v1'})
+            return check(themePath('030-assets/ignored'), {checkVersion: 'v1'})
                 .then((theme) => {
                     theme.files.length.should.eql(1);
                     theme.files[0].file.should.match(/default\.hbs/);

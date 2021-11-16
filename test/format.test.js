@@ -1,5 +1,5 @@
 const themePath = require('./utils').themePath;
-const checker = require('../lib/checker');
+const {check} = require('../lib/checker');
 
 const format = require('../lib/format');
 
@@ -8,7 +8,7 @@ describe('Format', function () {
         const options = {checkVersion: 'v2'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(26);
@@ -23,7 +23,7 @@ describe('Format', function () {
         });
 
         it('assert sorting in empty theme', function (done) {
-            checker(themePath('is-empty'), options).then((theme) => {
+            check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -38,7 +38,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/v2/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true, checkVersion: 'v2'});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -63,7 +63,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            checker(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
+            check(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true, checkVersion: 'v2'});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -85,7 +85,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return checker(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli', checkVersion: 'v2'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
@@ -100,7 +100,7 @@ describe('Format', function () {
         const options = {checkVersion: 'v3'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/v3/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v3/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(27);
@@ -115,7 +115,7 @@ describe('Format', function () {
         });
 
         it('assert sorting in empty theme', function (done) {
-            checker(themePath('is-empty'), options).then((theme) => {
+            check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -130,7 +130,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/v3/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v3/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true, checkVersion: 'v3'});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -155,7 +155,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            checker(themePath('001-deprecations/v3/invalid_all'), options).then((theme) => {
+            check(themePath('001-deprecations/v3/invalid_all'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true, checkVersion: 'v3'});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -177,7 +177,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return checker(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli', checkVersion: 'v3'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
@@ -192,7 +192,7 @@ describe('Format', function () {
         const options = {checkVersion: 'canary'};
 
         it('assert sorting in invalid theme', function (done) {
-            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
+            check(themePath('005-compile/canary/invalid'), options).then((theme) => {
                 theme = format(theme);
 
                 theme.results.error.length.should.eql(35);
@@ -207,7 +207,7 @@ describe('Format', function () {
         });
 
         it('assert sorting in empty theme', function (done) {
-            checker(themePath('is-empty'), options).then((theme) => {
+            check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -222,7 +222,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            checker(themePath('005-compile/canary/invalid'), options).then((theme) => {
+            check(themePath('005-compile/canary/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -247,7 +247,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            checker(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -271,7 +271,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return checker(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');

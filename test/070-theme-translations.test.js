@@ -2,7 +2,7 @@ const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/070-theme-translations');
 
-const checker = require('../lib/checker');
+const {check} = require('../lib/checker');
 const format = require('../lib/format');
 
 describe('070 Theme Translations', function () {
@@ -32,7 +32,7 @@ describe('070 Theme Translations', function () {
 
     it('should fail when a theme has invalid locales', function (done) {
         const options = {checkVersion: 'canary'};
-        checker(utils.themePath('070-theme-translations/invalid'), options).then((theme) => {
+        check(utils.themePath('070-theme-translations/invalid'), options).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.be.an.Array().not.with.keys('GS070-VALID-TRANSLATIONS');
