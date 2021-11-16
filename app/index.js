@@ -1,9 +1,10 @@
 const express = require('express');
-const debug = require('ghost-ignition').debug('app');
+const debug = require('@tryghost/debug')('app');
 const hbs = require('express-hbs');
 const multer = require('multer');
-const server = require('ghost-ignition').server;
-const errors = require('ghost-ignition').errors;
+const server = require('@tryghost/server');
+const config = require('@tryghost/config');
+const errors = require('@tryghost/ignition-errors');
 const gscan = require('../lib');
 const fs = require('fs-extra');
 const logRequest = require('./middlewares/log-request');
@@ -109,4 +110,4 @@ app.use(function (err, req, res, next) {
     res.render(template, {message: err.message, stack: err.stack, details: err.errorDetails, context: err.context});
 });
 
-server.start(app);
+server.start(app, config.get('port'));

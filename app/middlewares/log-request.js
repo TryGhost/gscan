@@ -1,5 +1,5 @@
 var uuid = require('uuid'),
-    logging = require('../logging');
+    logging = require('@tryghost/logging');
 
 /**
  * @TODO:

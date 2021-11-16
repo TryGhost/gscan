@@ -1,7 +1,7 @@
 // NOTE: this middleware was extracted from Ghost core validation for theme uploads
 //       might be useful to unify this logic in the future if it's extracted to separate module
 const path = require('path');
-const errors = require('ghost-ignition').errors;
+const errors = require('@tryghost/ignition-errors');
 
 const checkFileExists = function checkFileExists(fileData) {
     return !!(fileData.mimetype && fileData.path);

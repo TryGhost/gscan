@@ -1,6 +1,6 @@
-const debug = require('ghost-ignition').debug('ghost-version');
+const debug = require('@tryghost/debug')('ghost-version');
 const exec = require('child_process').exec;
-const config = require('ghost-ignition').config();
+const config = require('@tryghost/config');
 
 let ttl;
 let ghostVersion;
