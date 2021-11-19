@@ -189,10 +189,10 @@
   dependencies:
     long-timeout "^0.1.1"
 
-"@tryghost/config@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.0.tgz#2de5afec7866e9277f8fc044c4009a2167e3490a"
-  integrity sha512-8s2NZOzufDYiAmOGCT0aIXrmdSbHTY1kybNYIcyjPI1/UuF7WMCMhMfRvRgrOl8UROep9fVgdRhDGTn41W+5ZA==
+"@tryghost/config@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.1.tgz#49cac52281d9cc05fdb22033e5378989ed0923ce"
+  integrity sha512-VQVMjjgqEoDX3jtb1wsr/p8I0+lnt6Xo5WDVcuiHAQePBLIP79fZcnq7UkdexAjiotWW2OwbYwIxfFNxQAsdWA==
   dependencies:
     "@tryghost/root-utils" "^0.3.7"
     nconf "^0.11.3"
