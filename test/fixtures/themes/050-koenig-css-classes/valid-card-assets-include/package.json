@@ -1,0 +1,8 @@
+{
+  "config": {
+    "card_assets": {
+      "include": ["bookmark"],
+      "exclude": ["bookmark", "gallery"]
+    }
+  }
+}

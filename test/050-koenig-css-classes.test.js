@@ -254,5 +254,41 @@ describe('050 Koenig CSS classes', function () {
                 done();
             }).catch(done);
         });
+
+        it('[success] should pass theme when CSS classes are present and card-asset is true', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present and card-asset uses include', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present and card-asset uses exclude', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
     });
 });
