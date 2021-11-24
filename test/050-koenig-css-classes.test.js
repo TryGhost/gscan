@@ -19,8 +19,10 @@ describe('050 Koenig CSS classes', function () {
     });
 
     describe('v2:', function () {
+        const options = {checkVersion: 'v2'};
+
         it('[failure] should invalidate theme when .css file is missing', function (done) {
-            utils.testCheck(thisCheck, 'is-empty').then(function (output) {
+            utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().which.is.empty();
@@ -50,7 +52,7 @@ describe('050 Koenig CSS classes', function () {
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function (done) {
-            utils.testCheck(thisCheck, '050-koenig-css-classes/missing').then(function (output) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().which.is.empty();
@@ -68,7 +70,7 @@ describe('050 Koenig CSS classes', function () {
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function (done) {
-            utils.testCheck(thisCheck, '050-koenig-css-classes/mixed').then(function (output) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(2);
@@ -84,7 +86,7 @@ describe('050 Koenig CSS classes', function () {
         });
 
         it('[success] should pass theme when CSS classes are present', function (done) {
-            utils.testCheck(thisCheck, '050-koenig-css-classes/valid').then(function (output) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(15);
