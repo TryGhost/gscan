@@ -230,7 +230,7 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.warning.all.length.should.eql(17);
+                theme.results.warning.all.length.should.eql(5);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(35);
@@ -256,7 +256,7 @@ describe('Format', function () {
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(107);
-                theme.results.warning.all.length.should.eql(21);
+                theme.results.warning.all.length.should.eql(9);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(17);
