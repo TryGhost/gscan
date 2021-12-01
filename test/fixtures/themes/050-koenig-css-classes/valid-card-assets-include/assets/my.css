@@ -27,3 +27,9 @@
 .kg-nft-logo {}
 .kg-nft-creator {}
 .kg-nft-description {}
+
+.kg-button-card {}
+.kg-button-card.kg-align-left {}
+.kg-button-card.kg-align-center {}
+.kg-btn {}
+.kg-btn-accent {}
