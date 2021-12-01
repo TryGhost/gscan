@@ -5,18 +5,18 @@
 .kg-gallery-row {}
 .kg-gallery-image {}
 
-.kg-card-callout {}
-.kg-card-callout-emoji {}
-.kg-card-callout-text {}
-.kg-card-callout-background-grey {}
-.kg-card-callout-background-white {}
-.kg-card-callout-background-blue {}
-.kg-card-callout-background-green {}
-.kg-card-callout-background-yellow {}
-.kg-card-callout-background-red {}
-.kg-card-callout-background-pink {}
-.kg-card-callout-background-purple {}
-.kg-card-callout-background-accent {}
+.kg-callout-card {}
+.kg-callout-card-emoji {}
+.kg-callout-card-text {}
+.kg-callout-card-background-grey {}
+.kg-callout-card-background-white {}
+.kg-callout-card-background-blue {}
+.kg-callout-card-background-green {}
+.kg-callout-card-background-yellow {}
+.kg-callout-card-background-red {}
+.kg-callout-card-background-pink {}
+.kg-callout-card-background-purple {}
+.kg-callout-card-background-accent {}
 
 .kg-nft-card {}
 .kg-nft-card-container {}
