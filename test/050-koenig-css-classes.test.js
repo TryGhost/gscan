@@ -273,7 +273,7 @@ describe('050 Koenig CSS classes', function () {
             utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(31);
+                output.results.pass.should.be.an.Array().with.lengthOf(36);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
