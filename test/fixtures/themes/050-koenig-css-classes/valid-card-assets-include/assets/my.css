@@ -41,3 +41,21 @@
 .kg-btn-accent {}
 
 .kg-blockquote-alt {}
+
+.kg-audio-card {}
+.kg-audio-thumbnail {}
+.kg-audio-thumbnail.placeholder {}
+.kg-player-container {}
+.kg-audio-title {}
+.kg-player {}
+.kg-player-container {}
+.kg-audio-current-time {}
+.kg-audio-time {}
+.kg-audio-duration {}
+.kg-audio-play-icon
+.kg-audio-pause-icon {}
+.kg-audio-seek-slider {}
+.kg-audio-playback-rate {}
+.kg-audio-mute-icon
+.kg-audio-unmute-icon {}
+.kg-audio-volume-slider {}
