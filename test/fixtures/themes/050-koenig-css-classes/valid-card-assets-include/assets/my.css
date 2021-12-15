@@ -71,3 +71,26 @@
 .kg-product-card-rating-star {}
 .kg-product-card-title {}
 .kg-product-card-title-container {}
+
+.kg-video-card {}
+.kg-video-hide {}
+.kg-video-container {}
+.kg-video-overlay {}
+.kg-video-large-play-icon {}
+.kg-video-thumbnail {}
+.kg-video-thumbnail.placeholder {}
+.kg-video-player-container {}
+.kg-video-title {}
+.kg-video-player {}
+.kg-video-player-container {}
+.kg-video-current-time {}
+.kg-video-time {}
+.kg-video-duration {}
+.kg-video-play-icon
+.kg-video-pause-icon {}
+.kg-video-seek-slider {}
+.kg-video-playback-rate {}
+.kg-video-mute-icon
+.kg-video-unmute-icon {}
+.kg-video-volume-slider {}
+
