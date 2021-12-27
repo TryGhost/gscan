@@ -31,9 +31,9 @@
     js-tokens "^4.0.0"
 
 "@elastic/elasticsearch@^7.15.0":
-  version "7.15.0"
-  resolved "https://registry.yarnpkg.com/@elastic/elasticsearch/-/elasticsearch-7.15.0.tgz#4b009a87e0b11b8cfd2e4f378f0292574bc17300"
-  integrity sha512-FUKvjV2IKtIiWsvBy7D+wLbSEONsmNR15RRN7P/Sb30g4ObZRHH2qGOP5PPnzxdntEkzZ8HzY7nKKXFS+3Du1g==
+  version "7.16.0"
+  resolved "https://registry.yarnpkg.com/@elastic/elasticsearch/-/elasticsearch-7.16.0.tgz#c1c64b6f0343c0f5ca6893fb77ceecd763455024"
+  integrity sha512-lMY2MFZZFG3om7QNHninxZZOXYx3NdIUwEISZxqaI9dXPoL3DNhU31keqjvx1gN6T74lGXAzrRNP4ag8CJ/VXw==
   dependencies:
     debug "^4.3.1"
     hpagent "^0.1.1"
@@ -312,9 +312,9 @@
     fs-extra "^9.1.0"
 
 "@types/node@*":
-  version "16.11.11"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.11.11.tgz#6ea7342dfb379ea1210835bada87b3c512120234"
-  integrity sha512-KB0sixD67CeecHC33MYn+eYARkqTheIRNuu97y2XMjR7Wu3XibO1vaY6VBV6O/a89SPI81cEUIYT87UqUWlZNw==
+  version "17.0.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-17.0.5.tgz#57ca67ec4e57ad9e4ef5a6bab48a15387a1c83e0"
+  integrity sha512-w3mrvNXLeDYV1GKTZorGJQivK6XLCoGwpnyJFbJVK/aTBQUxOCaa/GlFAAN3OTDFcb7h5tiFG+YXCO2By+riZw==
 
 "@types/yauzl@^2.9.1":
   version "2.9.2"
@@ -3663,9 +3663,9 @@ typedarray@^0.0.6:
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
 uglify-js@^3.1.4:
-  version "3.14.4"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.4.tgz#68756f17d1b90b9d289341736cb9a567d6882f90"
-  integrity sha512-AbiSR44J0GoCeV81+oxcy/jDOElO2Bx3d0MfQCUShq7JRXaM4KtQopZsq2vFv8bCq2yMaGrw1FgygUd03RyRDA==
+  version "3.14.5"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.14.5.tgz#cdabb7d4954231d80cb4a927654c4655e51f4859"
+  integrity sha512-qZukoSxOG0urUTvjc2ERMTcAy+BiFh3weWAkeurLwjrCba73poHmG3E36XEjd/JGukMzwTL7uCxZiAexj8ppvQ==
 
 undefsafe@^2.0.3:
   version "2.0.5"
