@@ -46,7 +46,7 @@
     "@tryghost/ignition-errors": "0.1.8",
     "@tryghost/logging": "2.0.0",
     "@tryghost/pretty-cli": "1.2.22",
-    "@tryghost/server": "0.1.0",
+    "@tryghost/server": "0.1.3",
     "@tryghost/zip": "1.1.18",
     "bluebird": "3.7.2",
     "chalk": "4.1.2",
