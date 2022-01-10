@@ -1,2 +1,18 @@
+{{! partial}}
 {{> "mypartial"}}
+
+{{! partial block is allowed everywhere}}
 {{> @partial-block }}
+
+{{! inline partial}}
+{{#*inline "myInlinePartial"}}
+  My Content
+{{/inline}}
+{{> myInlinePartial}}
+
+{{#> mypartial}}
+  {{> stuff}}
+  {{#*inline "stuff"}}
+    My Content
+  {{/inline}}
+{{/mypartial}}

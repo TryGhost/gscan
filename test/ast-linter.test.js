@@ -88,6 +88,27 @@ describe('ast-linter', function () {
         });
     });
 
+    describe('Inline partial extraction', function () {
+        it('extracts a simple inline partial', function () {
+            const localLinter = new ASTLinter();
+            const source = '{{#*inline "myInlinePartial"}}My Content{{/inline}}';
+            const parsed = ASTLinter.parse(source);
+            localLinter.verify({
+                parsed: parsed,
+                rules: [
+                    require('../lib/ast-linter/rules/mark-declared-inline-partials')
+                ],
+                source: source,
+                moduleId: 'index.hbs'
+            });
+
+            localLinter.inlinePartials.length.should.eql(1);
+            localLinter.inlinePartials[0].node.should.eql('myInlinePartial');
+            localLinter.inlinePartials[0].parents.length.should.eql(1);
+            localLinter.inlinePartials[0].parents[0].type.should.eql('Program');
+        });
+    });
+
     describe('Custom theme settings extraction', function () {
         it('extracts a simple custom theme settings', function () {
             const localLinter = new ASTLinter({
