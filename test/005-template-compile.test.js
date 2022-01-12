@@ -328,6 +328,33 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
+        it('theme with inlined dynamic partial', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-dynamic-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+                output.results.fail['GS005-TPL-ERR'].failures.length.should.be.eql(1);
+                output.results.fail['GS005-TPL-ERR'].failures[0].ref.should.be.eql('post.hbs');
+                output.results.fail['GS005-TPL-ERR'].failures[0].message.should.containEql('Inlined dynamic partials');
+
+                done();
+            }).catch(done);
+        });
+
+        it('theme with bloc dynamic partial', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/valid-with-dynamic-partials', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                output.results.pass.should.containEql('GS005-TPL-ERR');
+
+                done();
+            }).catch(done);
+        });
+
         it('theme with partials and known helper', function (done) {
             utils.testCheck(thisCheck, '005-compile/canary/valid-with-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
