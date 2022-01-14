@@ -314,7 +314,7 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
-        it('theme with inline partials', function (done) {
+        it('theme with invalid inline partials', function (done) {
             utils.testCheck(thisCheck, '005-compile/canary/invalid-with-inline-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -323,6 +323,17 @@ describe('005 Template compile', function () {
                 output.results.fail['GS005-TPL-ERR'].failures.length.should.be.eql(1);
                 output.results.fail['GS005-TPL-ERR'].failures[0].ref.should.be.eql('index.hbs');
                 output.results.fail['GS005-TPL-ERR'].failures[0].message.should.containEql('myInlinePartial');
+
+                done();
+            }).catch(done);
+        });
+
+        it('theme with invalid inline partial', function (done) {
+            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-inline-partials-2', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
                 done();
             }).catch(done);
