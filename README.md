@@ -1,7 +1,13 @@
-# GScan
+<p align="center">
+  <a href="https://gscan.ghost.org/">
+    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/app/public/logo-gscan-black.png" width="216px" alt="Ghost" />
+  </a>
+</p>
 
 GScan is a tool for validating Ghost themes. It produces detailed reports of issues where themes need to be modified in order to be compatible with a specific version.
-GScan is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v3, v2 and v1).
+
+It is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v4, v3, v2 and v1).
+
 GScan works on a system of rules. Each rule has a way to check whether it passes or fails and has help content which describes how to fix it. Each rule is also marked with an error level:
 
 - **recommendation** = these are things the dev might want to know about
@@ -12,7 +18,11 @@ In addition, an **error** can be marked as **fatal**. A **fatal error** means, l
 
 In Ghost, we call GScan on boot. If any fatal errors are detected, the blog will not boot. In Ghost(Pro) and in Ghost-CLI we call GScan as part of major upgrades. The upgrade will not be allowed to continue if any fatal errors are detected.
 
-Errors are only be marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
+Errors are only marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
+
+### Tooling
+When developing new rules or testing gscan following tools are great to have in the toolbelt:
+- [astexplorer](https://astexplorer.net) - absolutely awesome Handlebars AST fiddler, helpful when testing out new ideas and exploring what's possible through AST parser;
 
 ## Usage
 
@@ -104,4 +114,4 @@ gscan.checkZip({
 
 # Copyright & License
 
-Copyright (c) 2013-2021 Ghost Foundation - Released under the [MIT license](LICENSE). Ghost and the Ghost Logo are trademarks of Ghost Foundation Ltd. Please see our [trademark policy](https://ghost.org/trademark/) for info on acceptable usage.
+Copyright (c) 2013-2022 Ghost Foundation - Released under the [MIT license](LICENSE). Ghost and the Ghost Logo are trademarks of Ghost Foundation Ltd. Please see our [trademark policy](https://ghost.org/trademark/) for info on acceptable usage.

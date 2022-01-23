@@ -1,15 +1,20 @@
 <section class="gh-section report">
     <div class="inner">
         <header>
-            <h1 class="report-heading">
+            <div class="report-heading">
                 <div class="result-summary">
-                    <span class="title">Result {{#if name}}for <strong>"{{name}} {{version}}"</strong>{{/if}}</span>
+                    <p>Theme compatibility</p>
+                    <div class="title">{{#if name}}<strong>{{name}} {{version}}</strong>{{/if}} for Ghost version <span>{{checkedVersion}}</span></div>
                 </div>
-                <a href="/" class="gh-btn gh-btn-blue"><span>Start Over</span></a>
-            </h1>
-            <div class="health-meter {{results.score.level}}">
-                <h4>Theme compatibility for Ghost version {{checkedVersion}}</h4>
-                <span class="score {{results.score.level}}">{{results.score.value}} / 100</span>
+                <div class="health-meter {{results.score.level}}">
+                    <span class="score"><strong>{{results.score.value}}</strong> / 100</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-value {{results.score.level}}"style="width: {{results.score.value}}%">.</div>
+            </div>
+            <div>
+                <a href="/" class="gh-btn gh-btn-link"><span>Start over &rarr;</span></a>
             </div>
         </header>
     </div>

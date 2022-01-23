@@ -48,6 +48,8 @@ describe('Read theme', function () {
             fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
             fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
+            theme.customSettings.should.be.empty();
+
             done();
         }).catch(done);
     });
@@ -65,22 +67,18 @@ describe('Read theme', function () {
             theme.files[0].file.should.eql('assets/ignoreme.hbs');
             theme.files[0].ext.should.eql('.hbs');
             theme.files[0].content.should.eql('ignoreme');
-            should.exist(theme.files[0].compiled);
 
             theme.files[1].file.should.eql('assets/styles.css');
             theme.files[1].ext.should.eql('.css');
             theme.files[1].content.should.eql('.some-class {\n    border: 0;\n}\n');
-            should.not.exist(theme.files[1].compiled);
 
             theme.files[2].file.should.eql('custom/test.hbs');
             theme.files[2].ext.should.eql('.hbs');
             theme.files[2].content.should.eql('test');
-            should.exist(theme.files[2].compiled);
 
             theme.files[3].file.should.eql('custom-My-Post.hbs');
             theme.files[3].ext.should.eql('.hbs');
             theme.files[3].content.should.eql('content');
-            should.exist(theme.files[2].compiled);
 
             theme.templates.all.should.eql([
                 'custom/test',
@@ -171,5 +169,35 @@ describe('Read theme', function () {
                 result.partials.should.eql(['mypartial', 'subfolder\\test']);
                 done();
             }).catch(done);
+    });
+
+    it('can extract custom settings from package.json', function (done) {
+        readTheme(themePath('theme-with-custom-settings')).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            should.exist(theme.customSettings);
+
+            theme.customSettings.should.deepEqual({
+                test_select: {
+                    type: 'select',
+                    options: ['one', 'two'],
+                    default: 'two'
+                }
+            });
+
+            done();
+        }).catch(done);
+    });
+
+    it('can handle missing config in package.json', async function () {
+        const options = {labs: {customThemeSettings: true}};
+
+        const theme = await readTheme(themePath('010-packagejson/no-config'), options);
+
+        theme.should.be.a.ValidThemeObject();
+
+        should.exist(theme.customSettings);
+
+        theme.customSettings.should.deepEqual({});
     });
 });

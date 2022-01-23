@@ -1,0 +1,109 @@
+.kg-width-wide {}
+.kg-width-full {}
+
+.kg-gallery-container {}
+.kg-gallery-row {}
+.kg-gallery-image {}
+
+.kg-callout-card {}
+.kg-callout-card-emoji {}
+.kg-callout-card-text {}
+.kg-callout-card-background-grey {}
+.kg-callout-card-background-white {}
+.kg-callout-card-background-blue {}
+.kg-callout-card-background-green {}
+.kg-callout-card-background-yellow {}
+.kg-callout-card-background-red {}
+.kg-callout-card-background-pink {}
+.kg-callout-card-background-purple {}
+.kg-callout-card-background-accent {}
+
+.kg-nft-card {}
+.kg-nft-card-container {}
+.kg-nft-metadata {}
+.kg-nft-image {}
+.kg-nft-header {}
+.kg-nft-title {}
+.kg-nft-logo {}
+.kg-nft-creator {}
+.kg-nft-description {}
+
+.kg-toggle-card {}
+.kg-toggle-heading {}
+.kg-toggle-heading-text {}
+.kg-toggle-card-icon {}
+.kg-toggle-content {}
+
+.kg-button-card {}
+.kg-button-card.kg-align-left {}
+.kg-button-card.kg-align-center {}
+.kg-btn {}
+.kg-btn-accent {}
+
+.kg-blockquote-alt {}
+
+.kg-audio-card {}
+.kg-audio-thumbnail {}
+.kg-audio-thumbnail.placeholder {}
+.kg-audio-player-container {}
+.kg-audio-title {}
+.kg-audio-player {}
+.kg-audio-player-container {}
+.kg-audio-current-time {}
+.kg-audio-time {}
+.kg-audio-duration {}
+.kg-audio-play-icon
+.kg-audio-pause-icon {}
+.kg-audio-seek-slider {}
+.kg-audio-playback-rate {}
+.kg-audio-mute-icon
+.kg-audio-unmute-icon {}
+.kg-audio-volume-slider {}
+
+.kg-product-card {}
+.kg-product-card-btn-accent {}
+.kg-product-card-button {}
+.kg-product-card-container {}
+.kg-product-card-description {}
+.kg-product-card-image {}
+.kg-product-card-rating {}
+.kg-product-card-rating-active {}
+.kg-product-card-rating-star {}
+.kg-product-card-title {}
+.kg-product-card-title-container {}
+
+.kg-video-card {}
+.kg-video-hide {}
+.kg-video-container {}
+.kg-video-overlay {}
+.kg-video-large-play-icon {}
+.kg-video-thumbnail {}
+.kg-video-thumbnail.placeholder {}
+.kg-video-player-container {}
+.kg-video-title {}
+.kg-video-player {}
+.kg-video-player-container {}
+.kg-video-current-time {}
+.kg-video-time {}
+.kg-video-duration {}
+.kg-video-play-icon
+.kg-video-pause-icon {}
+.kg-video-seek-slider {}
+.kg-video-playback-rate {}
+.kg-video-mute-icon
+.kg-video-unmute-icon {}
+.kg-video-volume-slider {}
+
+.kg-before-after-card {}
+.kg-before-after-card-image-before {}
+.kg-before-after-card-image-after {}
+
+.kg-file-card {}
+.kg-file-card-container {}
+.kg-file-card-contents {}
+.kg-file-card-title {}
+.kg-file-card-caption {}
+.kg-file-card-filename {}
+.kg-file-card-filesize {}
+.kg-file-card-medium {}
+.kg-file-card-small {}

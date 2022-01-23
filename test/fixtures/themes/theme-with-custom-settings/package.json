@@ -1,0 +1,11 @@
+{
+  "config": {
+    "custom": {
+      "test_select": {
+        "type": "select",
+        "options": ["one", "two"],
+        "default": "two"
+      }
+    }
+  }
+}

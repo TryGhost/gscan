@@ -1,0 +1,7 @@
+{
+  "config": {
+    "card_assets": {
+      "exclude": ["gallery"]
+    }
+  }
+}

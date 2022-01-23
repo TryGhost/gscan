@@ -1,5 +1,5 @@
 (function ($) {
-    $(document).ready(function ($) {
+    $(document).ready(function () {
         if ($('#theme')[0]) {
             $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
         }

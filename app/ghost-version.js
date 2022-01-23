@@ -1,12 +1,11 @@
-var debug = require('ghost-ignition').debug('ghost-version'),
-    exec = require('child_process').exec,
-    config = require('ghost-ignition').config(),
-    fetchGhostVersion,
-    middleware,
-    ghostVersion,
-    ttl;
+const debug = require('@tryghost/debug')('ghost-version');
+const exec = require('child_process').exec;
+const config = require('@tryghost/config');
 
-fetchGhostVersion = function fetchGhostVersion() {
+let ttl;
+let ghostVersion;
+
+const fetchGhostVersion = function fetchGhostVersion() {
     debug('Ghost version not set or ttl expired');
     exec('npm show ghost version', function (err, stdout, stderr) {
         if (err) {
@@ -25,7 +24,7 @@ fetchGhostVersion = function fetchGhostVersion() {
     });
 };
 
-middleware = function middleware(req, res, next) {
+const middleware = function middleware(req, res, next) {
     if (!ghostVersion || ttl && ttl < Date.now()) {
         fetchGhostVersion();
     }

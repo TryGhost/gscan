@@ -1,0 +1,56 @@
+{
+  "name": "my-theme",
+  "version": "0.0.1",
+  "author": {
+    "email": "theme@example.org"
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "engines": {
+    "ghost-api": "v3"
+  },
+  "config": {
+    "posts_per_page": 3,
+    "custom": {
+      "Not snake case": {},
+      "unkown": {
+        "type": "unkown type!",
+        "group": "unkown group!"
+      },
+      "typography": {
+        "type": "boolean"
+      },
+      "faulty_select": {
+        "type": "select",
+        "options": []
+      },
+      "faulty_select2": {
+        "type": "select",
+        "options": "oops it should have been an array 🤷"
+      },
+      "no_default": {
+        "type": "select",
+        "options": ["one", "two"],
+        "default": "three"
+      },
+      "too_many_settings0": {
+        "type": "color"
+      },
+      "too_many_settings1": {
+        "type": "image",
+        "default": "test"
+      },
+      "too_many_settings2": {},
+      "too_many_settings3": {},
+      "too_many_settings4": {},
+      "too_many_settings5": {},
+      "too_many_settings6": {},
+      "too_many_settings7": {},
+      "too_many_settings8": {},
+      "too_many_settings9": {}
+    }
+  }
+}

@@ -15,7 +15,8 @@ const ASTLinter = require('./lib/ast-linter'); // adapt path as needed
 
 const linter = new ASTLinter();
 const template = fs.readFileSync('some/path/to/template.hbs', {encoding: 'utf8'});
-const results = linter.verify({source: template, moduleId: 'template.hbs'});
+const parsed = ASTLinter.parse(template);
+const results = linter.verify({parsed, moduleId: 'template.hbs', source: template});
 ```
 
 `results` will be an array of objects which have the following properties:
