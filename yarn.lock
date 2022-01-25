@@ -238,7 +238,15 @@
     "@tryghost/root-utils" "^0.3.8"
     nconf "^0.11.3"
 
-"@tryghost/debug@0.1.10", "@tryghost/debug@^0.1.10":
+"@tryghost/debug@0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.11.tgz#cc21e55ac610190426c366a7c69067c5d53117ad"
+  integrity sha512-42jLmgfswgcxcEwFz3Y7iwqUDCLjZ9CavWuF68PHmhnZvsGgSjJdQSUZH0/lDoz1qEkAE4+g94/mw+TzLgyVow==
+  dependencies:
+    "@tryghost/root-utils" "^0.3.9"
+    debug "^4.3.1"
+
+"@tryghost/debug@^0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.10.tgz#26d67921c3edd562c7d2bee136d04faefa99bb3c"
   integrity sha512-OihGnKm/lGVB5wNDyykev7IbufmtxTGmiDMAttaG4d5jz1eK9f/1VQ9Zq+lIs0sIG3EM6q9J1iQq0BCCGGRGfg==
