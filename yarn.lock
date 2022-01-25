@@ -228,7 +228,15 @@
     "@tryghost/root-utils" "^0.3.8"
     nconf "^0.11.3"
 
-"@tryghost/debug@0.1.10", "@tryghost/debug@^0.1.10":
+"@tryghost/debug@0.1.11":
+  version "0.1.11"
+  resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.11.tgz#cc21e55ac610190426c366a7c69067c5d53117ad"
+  integrity sha512-42jLmgfswgcxcEwFz3Y7iwqUDCLjZ9CavWuF68PHmhnZvsGgSjJdQSUZH0/lDoz1qEkAE4+g94/mw+TzLgyVow==
+  dependencies:
+    "@tryghost/root-utils" "^0.3.9"
+    debug "^4.3.1"
+
+"@tryghost/debug@^0.1.10":
   version "0.1.10"
   resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.10.tgz#26d67921c3edd562c7d2bee136d04faefa99bb3c"
   integrity sha512-OihGnKm/lGVB5wNDyykev7IbufmtxTGmiDMAttaG4d5jz1eK9f/1VQ9Zq+lIs0sIG3EM6q9J1iQq0BCCGGRGfg==
@@ -289,6 +297,14 @@
   version "0.3.8"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.8.tgz#41327ea11fb6882c74fea145692aeae7a28482de"
   integrity sha512-/BSrsd3SAbVvRIkUhCT0NeAgl0+CELFoERrvghzl093ZO9R/P7BESvIXUOugGUviZfUUgJI52bcdq2xhW9APcw==
+  dependencies:
+    caller "^1.0.1"
+    find-root "^1.1.0"
+
+"@tryghost/root-utils@^0.3.9":
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.9.tgz#5b18970cd2554bcb8cc533d7b4d32dd8f88b11bf"
+  integrity sha512-YxM/fZMMyCDgGJA0tzSHHCBnwu2zTWqks/smiiiFE8SEZ1IitY2XOReXfs/+LGKKl/I/o/DMIsLqi+K0yvjbQA==
   dependencies:
     caller "^1.0.1"
     find-root "^1.1.0"
