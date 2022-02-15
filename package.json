@@ -40,7 +40,7 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "@sentry/node": "6.17.7",
+    "@sentry/node": "6.17.8",
     "@tryghost/config": "0.2.2",
     "@tryghost/debug": "0.1.11",
     "@tryghost/ignition-errors": "0.1.8",
