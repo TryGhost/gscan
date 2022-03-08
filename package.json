@@ -49,7 +49,7 @@
     "@tryghost/server": "0.1.4",
     "@tryghost/zip": "1.1.20",
     "bluebird": "3.7.2",
-    "chalk": "4.1.2",
+    "chalk": "5.0.1",
     "common-tags": "1.8.2",
     "express": "4.17.3",
     "express-hbs": "2.4.0",
