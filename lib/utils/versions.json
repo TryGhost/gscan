@@ -11,9 +11,13 @@
     "major": "3.x",
     "docs": "3.0.0"
   },
-  "canary": {
+  "v4": {
     "major": "4.x",
     "docs": "4.0.0"
   },
-  "default": "canary"
+  "canary": {
+    "major": "5.x",
+    "docs": "5.0.0"
+  },
+  "default": "v4"
 }
