@@ -53,6 +53,9 @@ prettyCLI
     .boolean('-4, --v4', {
         desc: 'Check theme for Ghost 4.0 compatibility'
     })
+    .boolean('-5, --v5', {
+        desc: 'Check theme for Ghost 4.0 compatibility'
+    })
     .boolean('-c, --canary', {
         desc: 'Check theme for upcoming Ghost version compatibility'
     })
@@ -75,6 +78,8 @@ prettyCLI
             cliOptions.checkVersion = 'v3';
         } else if (argv.v4) {
             cliOptions.checkVersion = 'v4';
+        } else if (argv.v5) {
+            cliOptions.checkVersion = 'v5';
         } else if (argv.canary) {
             cliOptions.checkVersion = 'canary';
         } else {
