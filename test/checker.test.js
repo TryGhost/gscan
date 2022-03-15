@@ -153,7 +153,7 @@ describe('Checker', function () {
     });
 
     it('checks for a latest (v4) version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -188,7 +188,7 @@ describe('Checker', function () {
     });
 
     it('checks for a canary (v4) version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -218,6 +218,46 @@ describe('Checker', function () {
             );
 
             theme.checkedVersion.should.equal('4.x');
+            done();
+        }).catch(done);
+    });
+
+    it('checks for a latest (v5) version if passed', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(108);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+
+            theme.results.fail.should.be.an.Object().with.keys(
+            );
+
+            theme.checkedVersion.should.equal('5.x');
+            done();
+        }).catch(done);
+    });
+
+    it('checks for a canary (v5) version if passed', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', ext: '.gitkeep'},
+                {file: 'README.md', ext: '.md'}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(108);
+            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+
+            theme.results.fail.should.be.an.Object().with.keys(
+            );
+
+            theme.checkedVersion.should.equal('5.x');
             done();
         }).catch(done);
     });
