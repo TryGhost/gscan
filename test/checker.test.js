@@ -152,7 +152,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest (v4) version if passed', function (done) {
+    it('checks for a v4 version if passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -187,8 +187,8 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a canary (v4) version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
+    it('checks for a v5 version if passed', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'v5'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -217,12 +217,12 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('4.x');
+            theme.checkedVersion.should.equal('5.x');
             done();
         }).catch(done);
     });
 
-    it('checks for a latest (v5) version if passed', function (done) {
+    it('checks for a latest (v5) version if canary is passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 

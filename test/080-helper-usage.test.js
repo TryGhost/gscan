@@ -39,11 +39,11 @@ describe('080 Usage tests', function () {
         }).catch(done);
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4:', function () {
+        const options = {checkVersion: 'v4'};
 
         it('[success] should show no error if helpers usage is correct', function (done) {
-            utils.testCheck(thisCheck, '080-helper-usage/canary/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '080-helper-usage/v4/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -54,7 +54,7 @@ describe('080 Usage tests', function () {
         });
 
         it('[failure] theme is invalid', function (done) {
-            utils.testCheck(thisCheck, '080-helper-usage/canary/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '080-helper-usage/v4/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(

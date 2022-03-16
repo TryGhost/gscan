@@ -65,8 +65,8 @@ describe('060 JS API USAGE', function () {
         });
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4:', function () {
+        const options = {checkVersion: 'v4'};
 
         it('[failure] should invalidate theme when ghost.url.api is present in JS files', function (done) {
             utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {

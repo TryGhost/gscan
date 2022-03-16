@@ -247,8 +247,8 @@ describe('005 Template compile', function () {
         });
     });
 
-    describe('canary', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4', function () {
+        const options = {checkVersion: 'v4'};
 
         it('should output empty array for a theme with no templates', function (done) {
             utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
@@ -263,7 +263,7 @@ describe('005 Template compile', function () {
         });
 
         it('should output empty array for a theme with valid templates', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -276,7 +276,7 @@ describe('005 Template compile', function () {
         });
 
         it('should output errors for a theme with invalid templates', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
                 output.results.pass.should.be.an.Array().which.is.empty();
 
@@ -304,7 +304,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with partials and unknown helper', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-with-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
@@ -315,7 +315,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with invalid inline partials', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-inline-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-with-inline-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
@@ -329,7 +329,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with invalid inline partial', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-inline-partials-2', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-with-inline-partials-2', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
@@ -340,7 +340,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with inlined dynamic partial', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid-with-dynamic-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-with-dynamic-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
@@ -354,7 +354,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with bloc dynamic partial', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/valid-with-dynamic-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/valid-with-dynamic-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -367,7 +367,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with partials and known helper', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/valid-with-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/valid-with-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -389,7 +389,7 @@ describe('005 Template compile', function () {
         });
 
         it('Detects missing partials in code flows', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/missing-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/missing-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
                 output.results.pass.should.be.an.Array().which.is.empty();
 
@@ -408,7 +408,7 @@ describe('005 Template compile', function () {
         });
 
         it('Lists but not wastes time on processing unused partials', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/unused-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -424,7 +424,7 @@ describe('005 Template compile', function () {
         });
 
         it('Ignores self referencing partials', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/recursive-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/recursive-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -440,7 +440,7 @@ describe('005 Template compile', function () {
         });
 
         it('lists used helpers', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/unused-partials', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/unused-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();

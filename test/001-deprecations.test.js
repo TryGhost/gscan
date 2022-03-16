@@ -174,7 +174,7 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('v2 version:', function () {
+    describe('v2:', function () {
         const options = {checkVersion: 'v2'};
 
         it('[failure] theme is completely invalid', function (done) {
@@ -1529,11 +1529,11 @@ describe('001 Deprecations', function () {
         });
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4:', function () {
+        const options = {checkVersion: 'v4'};
 
         it('[failure] theme is completely invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/canary/invalid_all', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v4/invalid_all', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
@@ -1913,7 +1913,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[failure] theme is invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/canary/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v4/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
@@ -2167,7 +2167,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[success] should show no error if no deprecated helpers used', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/canary/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v4/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -2178,7 +2178,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/canary/mixed', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v4/mixed', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(

@@ -3,8 +3,8 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     thisCheck = require('../lib/checks/090-template-syntax');
 
 describe('090 Template syntax', function () {
-    describe('canary', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4', function () {
+        const options = {checkVersion: 'v4'};
 
         it('should output empty array for a theme with no templates', function (done) {
             utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
@@ -18,7 +18,7 @@ describe('090 Template syntax', function () {
         });
 
         it('should output empty array for a theme with valid templates', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -30,7 +30,7 @@ describe('090 Template syntax', function () {
         });
 
         it('should output empty array for a theme with invalid templates', function (done) {
-            utils.testCheck(thisCheck, '005-compile/canary/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();

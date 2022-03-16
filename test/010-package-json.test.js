@@ -365,8 +365,8 @@ describe('010 package.json', function () {
         });
     });
 
-    describe('canary:', function () {
-        const options = {checkVersion: 'canary'};
+    describe('v4:', function () {
+        const options = {checkVersion: 'v4'};
 
         it('valid fields', function (done) {
             utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {

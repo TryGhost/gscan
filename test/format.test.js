@@ -177,7 +177,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli', checkVersion: 'v3'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
@@ -192,7 +192,7 @@ describe('Format', function () {
         const options = {checkVersion: 'canary'};
 
         it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/canary/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v4/invalid'), options).then((theme) => {
                 theme = format(theme);
 
                 theme.results.error.length.should.eql(35);
@@ -222,7 +222,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/canary/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v4/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -247,7 +247,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -271,7 +271,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return check(themePath('001-deprecations/canary/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
