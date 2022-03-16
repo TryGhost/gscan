@@ -635,4 +635,272 @@ describe('010 package.json', function () {
             }).catch(done);
         });
     });
+
+    describe('v5:', function () {
+        const options = {checkVersion: 'v5'};
+
+        it('valid fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                theme.results.fail.should.be.an.Object().which.is.empty();
+                done();
+            }).catch(done);
+        });
+
+        it('invalid fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                Object.keys(theme.results.fail).should.eql([
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-GHOST-API-PRESENT',
+                    'GS010-PJ-GHOST-API-V01'
+                ]);
+
+                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+
+                done();
+            }).catch(done);
+        });
+
+        it('missing fields', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-KEYWORDS'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('deprecated ghost-api v0.1', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-GHOST-API-V01'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('deprecated ghost-api v2', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v2', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-GHOST-API-V2'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('deprecated ghost-api use', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-GHOST-API-PRESENT'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('correctly flags invalid custom themes', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2'
+                ]);
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('correctly validates custom themes', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.pass.should.eql([
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CONF-PPP',
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
+                    'GS010-PJ-GHOST-API-V01',
+                    'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
+                ]);
+
+                done();
+            }).catch(done);
+        });
+    });
 });
