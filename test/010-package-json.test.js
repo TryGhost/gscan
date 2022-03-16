@@ -299,14 +299,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                Object.keys(theme.results.fail).should.eql([
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
                     'GS010-PJ-NAME-HY',
                     'GS010-PJ-VERSION-SEM',
                     'GS010-PJ-AUT-EM-VAL',
-                    'GS010-PJ-CONF-PPP-INT',
-                    'GS010-PJ-KEYWORDS'
-                );
+                    'GS010-PJ-GHOST-API-V01'
+                ]);
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
@@ -427,14 +428,16 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                Object.keys(theme.results.fail).should.eql([
+                    'GS010-PJ-CONF-PPP-INT',
+                    'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
                     'GS010-PJ-NAME-HY',
                     'GS010-PJ-VERSION-SEM',
                     'GS010-PJ-AUT-EM-VAL',
-                    'GS010-PJ-CONF-PPP-INT',
-                    'GS010-PJ-KEYWORDS'
-                );
+                    'GS010-PJ-GHOST-API-PRESENT',
+                    'GS010-PJ-GHOST-API-V01'
+                ]);
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
