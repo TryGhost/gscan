@@ -260,7 +260,7 @@ describe('010 package.json', function () {
         const options = {checkVersion: 'v3'};
 
         it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid-v3', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -385,9 +385,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V01',
                     'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
@@ -415,7 +415,6 @@ describe('010 package.json', function () {
                     'GS010-PJ-VERSION-REQ',
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-CONF-PPP',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V2',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
@@ -452,6 +451,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-V01',
                     'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
@@ -492,7 +492,6 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V2',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
@@ -530,7 +529,6 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V01',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
@@ -545,6 +543,18 @@ describe('010 package.json', function () {
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-V2'
+                );
+
+                done();
+            }).catch(done);
+        });
+
+        it('deprecated ghost-api use', function (done) {
+            utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
+                theme.should.be.a.ValidThemeObject();
+
+                theme.results.fail.should.be.an.Object().with.keys(
+                    'GS010-PJ-GHOST-API-PRESENT'
                 );
 
                 done();
@@ -568,7 +578,6 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V01',
                     'GS010-PJ-GHOST-API-V2'
                 ]);
@@ -603,9 +612,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP',
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
-                    'GS010-PJ-GHOST-API',
                     'GS010-PJ-GHOST-API-V01',
                     'GS010-PJ-GHOST-API-V2',
+                    'GS010-PJ-GHOST-API-PRESENT',
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',

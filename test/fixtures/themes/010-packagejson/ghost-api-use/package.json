@@ -2,13 +2,15 @@
   "name": "my-theme",
   "version": "0.0.1",
   "author": {
+    "name": "Ivan Ivanenko",
     "email": "theme@example.org"
   },
   "keywords": [
-    "ghost",
-    "theme",
     "ghost-theme"
   ],
+  "engines": {
+    "ghost-api": "v4"
+  },
   "config": {
     "posts_per_page": 3
   }
