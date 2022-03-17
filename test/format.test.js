@@ -353,8 +353,9 @@ describe('Format', function () {
                 // theme.results.error[10].fatal.should.eql(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
+                fatalErrors.length.should.eql(2);
                 fatalErrors.map(e => e.code).should.eql([
+                    'GS001-DEPR-BLOG',
                     'GS005-TPL-ERR'
                 ]);
 
@@ -400,8 +401,9 @@ describe('Format', function () {
                 theme.results.error.all.length.should.eql(36);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
+                fatalErrors.length.should.eql(2);
                 fatalErrors.map(e => e.code).should.eql([
+                    'GS001-DEPR-BLOG',
                     'GS005-TPL-ERR'
                 ]);
 
@@ -430,7 +432,7 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(8);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(23);
+                fatalErrors.length.should.eql(24);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -454,6 +456,7 @@ describe('Format', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
+                    'GS001-DEPR-BLOG',
                     'GS005-TPL-ERR'
                 ]);
 
