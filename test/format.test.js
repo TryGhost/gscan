@@ -202,6 +202,12 @@ describe('Format', function () {
                 theme.results.error[3].fatal.should.eql(false);
                 // theme.results.error[10].fatal.should.eql(false);
 
+                const fatalErrors = theme.results.error.filter(error => error.fatal);
+                fatalErrors.length.should.eql(1);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS005-TPL-ERR'
+                ]);
+
                 done();
             }).catch(done);
         });
@@ -216,6 +222,13 @@ describe('Format', function () {
                 theme.results.error[10].fatal.should.eql(false);
                 theme.results.error[11].fatal.should.eql(false);
                 theme.results.error[12].fatal.should.eql(false);
+
+                const fatalErrors = theme.results.error.filter(error => error.fatal);
+                fatalErrors.length.should.eql(2);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS020-INDEX-REQ',
+                    'GS020-POST-REQ'
+                ]);
 
                 done();
             }).catch(done);
@@ -234,6 +247,12 @@ describe('Format', function () {
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(35);
+
+                const fatalErrors = theme.results.error.all.filter(error => error.fatal);
+                fatalErrors.length.should.eql(1);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS005-TPL-ERR'
+                ]);
 
                 // 1 rule has file references
                 theme.results.error.byFiles['author.hbs'].length.should.eql(1);
@@ -263,6 +282,34 @@ describe('Format', function () {
                 theme.results.error.byFiles['post.hbs'].length.should.eql(54);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(9);
+
+                const fatalErrors = theme.results.error.all.filter(error => error.fatal);
+                fatalErrors.length.should.eql(23);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS001-DEPR-PURL',
+                    'GS001-DEPR-IMG',
+                    'GS001-DEPR-COV',
+                    'GS001-DEPR-AIMG',
+                    'GS001-DEPR-PIMG',
+                    'GS001-DEPR-BC',
+                    'GS001-DEPR-AC',
+                    'GS001-DEPR-TIMG',
+                    'GS001-DEPR-PAIMG',
+                    'GS001-DEPR-PAC',
+                    'GS001-DEPR-PTIMG',
+                    'GS001-DEPR-TSIMG',
+                    'GS001-DEPR-CON-IMG',
+                    'GS001-DEPR-CON-COV',
+                    'GS001-DEPR-CON-BC',
+                    'GS001-DEPR-CON-AC',
+                    'GS001-DEPR-CON-AIMG',
+                    'GS001-DEPR-CON-PAC',
+                    'GS001-DEPR-CON-PAIMG',
+                    'GS001-DEPR-CON-TIMG',
+                    'GS001-DEPR-CON-PTIMG',
+                    'GS001-DEPR-CON-TSIMG',
+                    'GS005-TPL-ERR'
+                ]);
 
                 theme.results.warning.byFiles['index.hbs'].length.should.eql(1);
 
@@ -296,6 +343,12 @@ describe('Format', function () {
                 theme.results.error[3].fatal.should.eql(false);
                 // theme.results.error[10].fatal.should.eql(false);
 
+                const fatalErrors = theme.results.error.filter(error => error.fatal);
+                fatalErrors.length.should.eql(1);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS005-TPL-ERR'
+                ]);
+
                 done();
             }).catch(done);
         });
@@ -311,12 +364,19 @@ describe('Format', function () {
                 theme.results.error[11].fatal.should.eql(false);
                 theme.results.error[12].fatal.should.eql(false);
 
+                const fatalErrors = theme.results.error.filter(error => error.fatal);
+                fatalErrors.length.should.eql(2);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS020-INDEX-REQ',
+                    'GS020-POST-REQ'
+                ]);
+
                 done();
             }).catch(done);
         });
 
         it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v4/invalid'), options).then((theme) => {
+            check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -328,6 +388,12 @@ describe('Format', function () {
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(35);
+
+                const fatalErrors = theme.results.error.all.filter(error => error.fatal);
+                fatalErrors.length.should.eql(1);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS005-TPL-ERR'
+                ]);
 
                 // 1 rule has file references
                 theme.results.error.byFiles['author.hbs'].length.should.eql(1);
@@ -341,7 +407,7 @@ describe('Format', function () {
         });
 
         it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
+            check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
                 theme = format(theme, {sortByFiles: true});
 
                 theme.results.hasFatalErrors.should.be.true();
@@ -351,6 +417,34 @@ describe('Format', function () {
 
                 theme.results.error.all.length.should.eql(107);
                 theme.results.warning.all.length.should.eql(9);
+
+                const fatalErrors = theme.results.error.all.filter(error => error.fatal);
+                fatalErrors.length.should.eql(23);
+                fatalErrors.map(e => e.code).should.eql([
+                    'GS001-DEPR-PURL',
+                    'GS001-DEPR-IMG',
+                    'GS001-DEPR-COV',
+                    'GS001-DEPR-AIMG',
+                    'GS001-DEPR-PIMG',
+                    'GS001-DEPR-BC',
+                    'GS001-DEPR-AC',
+                    'GS001-DEPR-TIMG',
+                    'GS001-DEPR-PAIMG',
+                    'GS001-DEPR-PAC',
+                    'GS001-DEPR-PTIMG',
+                    'GS001-DEPR-TSIMG',
+                    'GS001-DEPR-CON-IMG',
+                    'GS001-DEPR-CON-COV',
+                    'GS001-DEPR-CON-BC',
+                    'GS001-DEPR-CON-AC',
+                    'GS001-DEPR-CON-AIMG',
+                    'GS001-DEPR-CON-PAC',
+                    'GS001-DEPR-CON-PAIMG',
+                    'GS001-DEPR-CON-TIMG',
+                    'GS001-DEPR-CON-PTIMG',
+                    'GS001-DEPR-CON-TSIMG',
+                    'GS005-TPL-ERR'
+                ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(17);
@@ -365,7 +459,7 @@ describe('Format', function () {
         });
 
         it('formats for CLI output', function () {
-            return check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
+            return check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
                 theme = format(theme, {format: 'cli'});
 
                 theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
