@@ -1,0 +1,11 @@
+{{> "mypartial"}}
+{{> @partial-block }}
+
+{{! this partial doesn't exist, because the inline partial are scoped to their block}}
+{{> myInlinePartial}}
+
+{{#> myPartial}}
+  {{#*inline "myInlinePartial"}}
+    My Content
+  {{/inline}}
+{{/myPartial}}
