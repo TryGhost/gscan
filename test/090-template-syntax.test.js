@@ -47,6 +47,7 @@ describe('090 Template syntax', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS090-NO-IMG-URL-IN-CONDITIONALS');
                 output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS'].should.be.a.ValidFailObject();
 
+                Object.keys(output.results.fail).should.be.an.Array().with.lengthOf(1);
                 done();
             }).catch(done);
         });
@@ -58,6 +59,7 @@ describe('090 Template syntax', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS090-NO-IMG-URL-IN-CONDITIONALS');
                 output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS'].should.be.a.ValidFailObject();
 
+                Object.keys(output.results.fail).should.be.an.Array().with.lengthOf(1);
                 done();
             }).catch(done);
         });
