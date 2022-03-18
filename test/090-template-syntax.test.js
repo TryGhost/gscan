@@ -69,7 +69,7 @@ describe('090 Template syntax', function () {
         const options = {checkVersion: 'v5'};
 
         it('should fail when {{author}} helper is used in post context', async function () {
-            const output = utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
             output.should.be.a.ValidThemeObject();
 
             Object.keys(output.results.fail).should.eql([
