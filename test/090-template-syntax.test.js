@@ -68,27 +68,21 @@ describe('090 Template syntax', function () {
     describe('v5', function () {
         const options = {checkVersion: 'v5'};
 
-        it('should fail when {{author}} helper is used in post context', function (done) {
-            utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+        it('should fail when {{author}} helper is used in post context', async function () {
+            const output = utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
+            output.should.be.a.ValidThemeObject();
 
-                Object.keys(output.results.fail).should.eql([
-                    'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
-                ]);
-                output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'].should.be.a.ValidFailObject();
-
-                done();
-            }).catch(done);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
+            ]);
+            output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'].should.be.a.ValidFailObject();
         });
 
-        it('should NOT fail when {{author}} helper is used OUTSIDE post context', function (done) {
-            utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/no-post-context', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+        it('should NOT fail when {{author}} helper is used OUTSIDE post context', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/no-post-context', options);
+            output.should.be.a.ValidThemeObject();
 
-                Object.keys(output.results.fail).should.eql([]);
-
-                done();
-            }).catch(done);
+            Object.keys(output.results.fail).should.eql([]);
         });
     });
 });
