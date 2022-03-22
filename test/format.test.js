@@ -432,7 +432,7 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(8);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(25);
+                fatalErrors.length.should.eql(57);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -456,6 +456,38 @@ describe('Format', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
+                    'GS001-DEPR-AUTH-ID',
+                    'GS001-DEPR-AUTH-SLUG',
+                    'GS001-DEPR-AUTH-MAIL',
+                    'GS001-DEPR-AUTH-MT',
+                    'GS001-DEPR-AUTH-MD',
+                    'GS001-DEPR-AUTH-NAME',
+                    'GS001-DEPR-AUTH-BIO',
+                    'GS001-DEPR-AUTH-LOC',
+                    'GS001-DEPR-AUTH-WEB',
+                    'GS001-DEPR-AUTH-TW',
+                    'GS001-DEPR-AUTH-FB',
+                    'GS001-DEPR-AUTH-PIMG',
+                    'GS001-DEPR-AUTH-CIMG',
+                    'GS001-DEPR-AUTH-URL',
+                    'GS001-DEPR-PAUTH',
+                    'GS001-DEPR-PAUTH-ID',
+                    'GS001-DEPR-PAUTH-SLUG',
+                    'GS001-DEPR-PAUTH-MAIL',
+                    'GS001-DEPR-PAUTH-MT',
+                    'GS001-DEPR-PAUTH-MD',
+                    'GS001-DEPR-PAUTH-NAME',
+                    'GS001-DEPR-PAUTH-BIO',
+                    'GS001-DEPR-PAUTH-LOC',
+                    'GS001-DEPR-PAUTH-WEB',
+                    'GS001-DEPR-PAUTH-TW',
+                    'GS001-DEPR-PAUTH-FB',
+                    'GS001-DEPR-PAUTH-PIMG',
+                    'GS001-DEPR-PAUTH-CIMG',
+                    'GS001-DEPR-PAUTH-URL',
+                    'GS001-DEPR-PAID',
+                    'GS001-DEPR-NAUTH',
+                    'GS001-DEPR-IUA',
                     'GS001-DEPR-BLOG',
                     'GS005-TPL-ERR',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
