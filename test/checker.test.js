@@ -222,7 +222,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest (v5) version if canary is passed', function (done) {
+    it('checks for a latest (v4) version if canary is passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -237,12 +237,12 @@ describe('Checker', function () {
             theme.results.fail.should.be.an.Object().with.keys(
             );
 
-            theme.checkedVersion.should.equal('5.x');
+            theme.checkedVersion.should.equal('4.x');
             done();
         }).catch(done);
     });
 
-    it('checks for a canary (v5) version if passed', function (done) {
+    it('checks for a canary (v4) version if passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -257,7 +257,7 @@ describe('Checker', function () {
             theme.results.fail.should.be.an.Object().with.keys(
             );
 
-            theme.checkedVersion.should.equal('5.x');
+            theme.checkedVersion.should.equal('4.x');
             done();
         }).catch(done);
     });

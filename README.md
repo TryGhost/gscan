@@ -51,8 +51,8 @@ By default, GScan scans themes for the latest Ghost version compatibility. You c
 `--v1` or `-1`  
 `--v2` or `-2`  
 `--v3` or `-3`  
-`--v4` or `-4`
-`--v5` or `-5` or `--canary`
+`--v4` or `-4` or `--canary`
+`--v5` or `-5`  
 
 Use the `--canary` parameter to check for the upcoming Ghost version.
 
