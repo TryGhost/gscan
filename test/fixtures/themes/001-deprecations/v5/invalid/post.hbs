@@ -8,7 +8,7 @@
 
     {{#if author}}{{/if}}
     {{#if author.email}}{{/if}}
-    
+
     {{#../author}}{{/../author}}
     {{#if ../author}}{{/if}}
     {{../author}}
@@ -16,12 +16,12 @@
 
     {{!-- Usage should not be invalid --}}
     {{#has author="count:>1"}}
-    {{/has}} 
-    
+    {{/has}}
+
     {{#foreach authors}}
         <li>
             <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
-        </li>  
+        </li>
     {{/foreach}}
 {{/post}}
 
@@ -65,3 +65,5 @@
 {{post.author.profile_image}}
 {{post.author.cover_image}}
 {{post.author.url}}
+
+{{products}}

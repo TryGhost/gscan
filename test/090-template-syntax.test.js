@@ -11,7 +11,7 @@ describe('090 Template syntax', function () {
                 output.should.be.a.ValidThemeObject();
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(3);
+                output.results.pass.should.be.an.Array().with.lengthOf(4);
 
                 done();
             }).catch(done);
@@ -23,7 +23,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(3);
+                output.results.pass.should.be.an.Array().with.lengthOf(4);
 
                 done();
             }).catch(done);
@@ -35,7 +35,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(3);
+                output.results.pass.should.be.an.Array().with.lengthOf(4);
                 done();
             }).catch(done);
         });
@@ -80,6 +80,22 @@ describe('090 Template syntax', function () {
 
         it('should NOT fail when {{author}} helper is used OUTSIDE post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/no-post-context', options);
+            output.should.be.a.ValidThemeObject();
+
+            Object.keys(output.results.fail).should.eql([]);
+        });
+
+        it('should fail when {{products}} helper is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/with-products-helper', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRODUCTS-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-PRODUCTS-HELPER'].should.be.a.ValidFailObject();
+        });
+
+        it('should NOT fail when {{products}} helper is NOT used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/no-products-helper', options);
             output.should.be.a.ValidThemeObject();
 
             Object.keys(output.results.fail).should.eql([]);
