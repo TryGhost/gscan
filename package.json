@@ -43,7 +43,7 @@
     "@sentry/node": "6.19.2",
     "@tryghost/config": "0.2.2",
     "@tryghost/debug": "0.1.11",
-    "@tryghost/ignition-errors": "0.1.8",
+    "@tryghost/errors": "1.2.6",
     "@tryghost/logging": "2.1.0",
     "@tryghost/pretty-cli": "1.2.24",
     "@tryghost/server": "0.1.4",
