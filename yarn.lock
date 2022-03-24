@@ -337,14 +337,14 @@
     "@tryghost/root-utils" "^0.3.12"
     semver "^7.3.5"
 
-"@tryghost/zip@1.1.20":
-  version "1.1.20"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.20.tgz#58b214f3ddbef89f2ea966c6d9c8f02c083372ff"
-  integrity sha512-vjk0lZEcFJTFPIjlpkMuy3IHvXOFCxFzTHtTV/nTaE+SSnJy6FktqCOquViloqFT6i7H+nFp2aNx/vW4Rnk4kA==
+"@tryghost/zip@1.1.21":
+  version "1.1.21"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.21.tgz#52be26305351fd02460f21d8d813ba6321e6a583"
+  integrity sha512-/FAka9iiWB8k3GUR0VAekkPS/N9D7cxnhNOnPbiCt5kZ9Ytf27ivEkD8oWOAta5SWXx0dma968i2dHxVdyh7vw==
   dependencies:
     archiver "^4.0.2"
     bluebird "^3.7.2"
-    extract-zip "2.0.1"
+    extract-zip "^2.0.1"
     fs-extra "^9.1.0"
 
 "@types/node@*":
@@ -1607,7 +1607,7 @@ external-editor@^3.0.3:
     iconv-lite "^0.4.24"
     tmp "^0.0.33"
 
-extract-zip@2.0.1:
+extract-zip@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extract-zip/-/extract-zip-2.0.1.tgz#663dca56fe46df890d5f131ef4a06d22bb8ba13a"
   integrity sha512-GDhU9ntwuKyGXdZBUgTIe+vXnWj0fppUEtMDL0+idd5Sta8TGpHssn/eusA9mrPr9qNDym6SxAYZjNvCn/9RBg==
