@@ -233,13 +233,13 @@
     "@elastic/elasticsearch" "7.17.0"
     "@tryghost/debug" "^0.1.14"
 
-"@tryghost/errors@1.2.6", "@tryghost/errors@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-1.2.6.tgz#4cb15ec63de4e0fe632ce6fa84191e42c708371c"
-  integrity sha512-9kNE9z9CIKjXKNWS03/pH8w9y1bTaLDTt1gIUQmBNlyS3zP56F1uJkz88Y5ySdp1Rbuee1UG+Kc8/L2NJQxsBg==
+"@tryghost/errors@1.2.7", "@tryghost/errors@^1.2.6":
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-1.2.7.tgz#f2da9deadb6139167a9e967e1212a66064c5abce"
+  integrity sha512-VNqUKiiy4jSOQGBxcwNYMPzf76m1VZ1rnF2gvqwzGIyjrzIGfTs/iNC98n9F6JKROFuOhWS8Ehiuk69/ZAukWg==
   dependencies:
     lodash "^4.17.21"
-    utils-copy-error "1.0.1"
+    utils-copy-error "^1.0.1"
     uuid "^8.3.2"
 
 "@tryghost/http-stream@^0.1.1":
@@ -3844,7 +3844,7 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-utils-copy-error@1.0.1, utils-copy-error@^1.0.0:
+utils-copy-error@^1.0.0, utils-copy-error@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/utils-copy-error/-/utils-copy-error-1.0.1.tgz#791de393c0f09890afd59f3cbea635f079a94fa5"
   integrity sha1-eR3jk8DwmJCv1Z88vqY18HmpT6U=
