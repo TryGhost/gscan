@@ -11,7 +11,7 @@ describe('090 Template syntax', function () {
                 output.should.be.a.ValidThemeObject();
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(4);
+                output.results.pass.should.be.an.Array().with.lengthOf(6);
 
                 done();
             }).catch(done);
@@ -23,7 +23,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(4);
+                output.results.pass.should.be.an.Array().with.lengthOf(6);
 
                 done();
             }).catch(done);
@@ -35,7 +35,7 @@ describe('090 Template syntax', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(4);
+                output.results.pass.should.be.an.Array().with.lengthOf(6);
                 done();
             }).catch(done);
         });
@@ -99,6 +99,24 @@ describe('090 Template syntax', function () {
             output.should.be.a.ValidThemeObject();
 
             Object.keys(output.results.fail).should.eql([]);
+        });
+
+        it('should fail when {{@product}} data helper is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-product-data-helper', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRODUCT-DATA-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-PRODUCT-DATA-HELPER'].should.be.a.ValidFailObject();
+        });
+
+        it('should fail when {{@products}} data helper is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-data-helper', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRODUCTS-DATA-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
         });
     });
 });
