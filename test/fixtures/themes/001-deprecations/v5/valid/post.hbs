@@ -19,7 +19,7 @@
 
     {{!-- Usage should not be invalid --}}
     {{#has author="count:>1"}}
-    {{/has}}    
+    {{/has}}
 {{/post}}
 
 {{#if post.primary_author}}{{/if}}
@@ -32,7 +32,7 @@
     {{#foreach authors}}
         <li>
             <a href="{{url}}" title="{{name}}" class="author author-{{id}} {{slug}}">{{name}}</a>
-        </li>  
+        </li>
     {{/foreach}}
     </ul>
 {{/if}}
