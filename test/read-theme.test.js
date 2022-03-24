@@ -21,8 +21,8 @@ describe('Read theme', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep'},
-                {file: 'README.md', ext: '.md'}
+                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', ext: '.md', symlink: false}
             ]);
             done();
         }).catch(done);
