@@ -345,12 +345,7 @@ describe('Format', function () {
             check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(36);
-                theme.results.error[0].fatal.should.eql(true);
-                // theme.results.error[1].fatal.should.eql(true);
-                // theme.results.error[2].fatal.should.eql(true);
-                theme.results.error[3].fatal.should.eql(false);
-                // theme.results.error[10].fatal.should.eql(false);
+                theme.results.error.length.should.eql(35);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -395,10 +390,10 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.warning.all.length.should.eql(4);
+                theme.results.warning.all.length.should.eql(3);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(36);
+                theme.results.error.all.length.should.eql(35);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -412,7 +407,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['page.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(19);
+                theme.results.error.byFiles['package.json'].length.should.eql(18);
 
                 done();
             }).catch(done);
@@ -428,8 +423,8 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(110);
-                theme.results.warning.all.length.should.eql(8);
+                theme.results.error.all.length.should.eql(109);
+                theme.results.warning.all.length.should.eql(7);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(64);
