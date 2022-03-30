@@ -432,7 +432,7 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(8);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(58);
+                fatalErrors.length.should.eql(64);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -456,6 +456,12 @@ describe('Format', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
+                    'GS001-DEPR-AUTH-INCL',
+                    'GS001-DEPR-AUTH-FIELD',
+                    'GS001-DEPR-AUTH-FILT',
+                    'GS001-DEPR-AUTHBL',
+                    'GS001-DEPR-CON-AUTH',
+                    'GS001-DEPR-CON-PAUTH',
                     'GS001-DEPR-AUTH-ID',
                     'GS001-DEPR-AUTH-SLUG',
                     'GS001-DEPR-AUTH-MAIL',
