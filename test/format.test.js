@@ -423,11 +423,11 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(109);
-                theme.results.warning.all.length.should.eql(7);
+                theme.results.error.all.length.should.eql(111);
+                theme.results.warning.all.length.should.eql(6);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(64);
+                fatalErrors.length.should.eql(71);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -451,6 +451,7 @@ describe('Format', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
+                    'GS001-DEPR-USER-GET',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
                     'GS001-DEPR-AUTH-FILT',
@@ -490,18 +491,22 @@ describe('Format', function () {
                     'GS001-DEPR-NAUTH',
                     'GS001-DEPR-IUA',
                     'GS001-DEPR-BLOG',
+                    'GS001-DEPR-BPL',
+                    'GS001-DEPR-SPL',
+                    'GS001-DEPR-SGH',
+                    'GS001-DEPR-SGF',
+                    'GS001-DEPR-LANG',
+                    'GS001-DEPR-SITE-LANG',
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
                 ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(17);
+                theme.results.error.byFiles['default.hbs'].length.should.eql(19);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(56);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(9);
-
-                theme.results.warning.byFiles['index.hbs'].length.should.eql(1);
+                theme.results.error.byFiles['index.hbs'].length.should.eql(10);
 
                 done();
             }).catch(done);

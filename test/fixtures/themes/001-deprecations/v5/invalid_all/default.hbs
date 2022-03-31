@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
     {{ghost_head}}
     {{@site.ghost_head}}
+    {{@site.permalinks}}
 </head>
 <body>
     {{pageUrl 'lol'}}
@@ -14,6 +15,8 @@
     {{author.image}}
 
     {{cover}}
+
+    <p>This site is using {{@site.lang}} language</p>
 
     {{#if @labs.members}}
         <h1>Hi Member!</h1>
