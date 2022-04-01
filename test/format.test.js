@@ -427,7 +427,7 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(6);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(72);
+                fatalErrors.length.should.eql(73);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -496,6 +496,7 @@ describe('Format', function () {
                     'GS001-DEPR-SGH',
                     'GS001-DEPR-SGF',
                     'GS001-DEPR-LANG',
+                    'GS001-DEPR-ESC',
                     'GS001-DEPR-CURR-SYM',
                     'GS001-DEPR-SITE-LANG',
                     'GS005-TPL-ERR',
