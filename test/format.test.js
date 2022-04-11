@@ -13,10 +13,7 @@ describe('Format', function () {
 
                 theme.results.error.length.should.eql(26);
                 theme.results.error[0].fatal.should.eql(true);
-                // theme.results.error[1].fatal.should.eql(true);
-                // theme.results.error[2].fatal.should.eql(true);
                 theme.results.error[3].fatal.should.eql(false);
-                // theme.results.error[10].fatal.should.eql(false);
 
                 done();
             }).catch(done);
@@ -108,10 +105,7 @@ describe('Format', function () {
 
                 theme.results.error.length.should.eql(27);
                 theme.results.error[0].fatal.should.eql(true);
-                // theme.results.error[1].fatal.should.eql(true);
-                // theme.results.error[2].fatal.should.eql(true);
                 theme.results.error[3].fatal.should.eql(false);
-                // theme.results.error[10].fatal.should.eql(false);
 
                 done();
             }).catch(done);
@@ -203,10 +197,7 @@ describe('Format', function () {
 
                 theme.results.error.length.should.eql(35);
                 theme.results.error[0].fatal.should.eql(true);
-                // theme.results.error[1].fatal.should.eql(true);
-                // theme.results.error[2].fatal.should.eql(true);
                 theme.results.error[3].fatal.should.eql(false);
-                // theme.results.error[10].fatal.should.eql(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 fatalErrors.length.should.eql(1);
