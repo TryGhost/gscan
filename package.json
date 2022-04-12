@@ -59,7 +59,7 @@
     "multer": "1.4.4",
     "pluralize": "8.0.0",
     "require-dir": "1.2.0",
-    "semver": "7.3.6",
+    "semver": "7.3.7",
     "uuid": "8.3.2",
     "validator": "13.0.0"
   },
