@@ -44,7 +44,7 @@
     "@tryghost/config": "0.2.2",
     "@tryghost/debug": "0.1.11",
     "@tryghost/errors": "1.2.11",
-    "@tryghost/logging": "2.1.6",
+    "@tryghost/logging": "2.1.7",
     "@tryghost/pretty-cli": "1.2.24",
     "@tryghost/server": "0.1.4",
     "@tryghost/zip": "1.1.22",
