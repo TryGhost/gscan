@@ -414,11 +414,11 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(112);
+                theme.results.error.all.length.should.eql(113);
                 theme.results.warning.all.length.should.eql(6);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(72);
+                fatalErrors.length.should.eql(73);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -491,12 +491,13 @@ describe('Format', function () {
                     'GS001-DEPR-CURR-SYM',
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
-                    'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
+                    'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
+                    'GS090-NO-PRICE-DATA-HELPER'
                 ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(19);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(57);
+                theme.results.error.byFiles['post.hbs'].length.should.eql(58);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(10);
 

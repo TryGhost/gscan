@@ -127,5 +127,14 @@ describe('090 Template syntax', function () {
 
             output.results.fail['GS090-NO-MEMBER-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
         });
+
+        it('should fail when {{@price}} data helper is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-helper', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRICE-DATA-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-PRICE-DATA-HELPER'].should.be.a.ValidFailObject();
+        });
     });
 });
