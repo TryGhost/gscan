@@ -414,8 +414,8 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(113);
-                theme.results.warning.all.length.should.eql(6);
+                theme.results.error.all.length.should.eql(114);
+                theme.results.warning.all.length.should.eql(5);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(73);
@@ -496,7 +496,7 @@ describe('Format', function () {
                 ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(19);
+                theme.results.error.byFiles['default.hbs'].length.should.eql(20);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(58);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(10);
