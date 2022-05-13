@@ -2236,7 +2236,7 @@ describe('001 Deprecations', function () {
         const options = {checkVersion: 'v5'};
 
         it('[failure] theme is completely invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v4/invalid_all', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v5/invalid_all', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 Object.keys(output.results.fail).should.eql([
@@ -2310,12 +2310,14 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-IUA',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-BPL',
+                    'GS001-DEPR-SPL',
                     'GS001-DEPR-SGH',
                     'GS001-DEPR-SGF',
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-ESC',
                     'GS001-DEPR-LABS-MEMBERS',
+                    'GS001-DEPR-CURR-SYM',
                     'GS001-DEPR-SITE-LANG'
                 ]);
 
@@ -2606,17 +2608,17 @@ describe('001 Deprecations', function () {
 
                 // {{@site.lang}} helper usage warning
                 output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(18);
+                output.results.pass.length.should.eql(16);
 
                 done();
             }).catch(done);
         });
 
         it('[failure] theme is invalid', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v4/invalid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v5/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
@@ -2870,7 +2872,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[success] should show no error if no deprecated helpers used', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v4/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v5/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
@@ -2881,7 +2883,7 @@ describe('001 Deprecations', function () {
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v4/mixed', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v5/mixed', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().with.keys(
