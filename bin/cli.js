@@ -131,12 +131,17 @@ function outputResult(result, options) {
     if (result.failures && result.failures.length) {
         if (options.verbose) {
             ui.log(''); // extra line-break
-            ui.log(`${chalk.bold('Files:')}`);
+            ui.log(`${chalk.bold('Affected Files:')}`);
             result.failures.forEach((failure) => {
-                ui.log(`${failure.ref} - ${failure.message}`);
+                let message = failure.ref;
+
+                if (failure.message) {
+                    message += `- ${failure.message}`;
+                }
+                ui.log(message);
             });
         } else {
-            ui.log(`${chalk.bold('Files:')} ${_.map(result.failures, 'ref')}`);
+            ui.log(`${chalk.bold('Affected Files:')} ${_.map(result.failures, 'ref')}`);
         }
     }
 
