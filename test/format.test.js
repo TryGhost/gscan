@@ -336,7 +336,7 @@ describe('Format', function () {
             check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(35);
+                theme.results.error.length.should.eql(22);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -384,7 +384,7 @@ describe('Format', function () {
                 theme.results.warning.all.length.should.eql(3);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(35);
+                theme.results.error.all.length.should.eql(22);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -414,7 +414,7 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(114);
+                theme.results.error.all.length.should.eql(101);
                 theme.results.warning.all.length.should.eql(5);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
