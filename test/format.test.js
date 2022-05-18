@@ -336,7 +336,7 @@ describe('Format', function () {
             check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(22);
+                theme.results.error.length.should.eql(21);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -381,10 +381,10 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.warning.all.length.should.eql(3);
+                theme.results.warning.all.length.should.eql(4);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(22);
+                theme.results.error.all.length.should.eql(21);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(2);
@@ -398,7 +398,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['page.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(18);
+                theme.results.error.byFiles['package.json'].length.should.eql(17);
 
                 done();
             }).catch(done);
@@ -414,8 +414,8 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(101);
-                theme.results.warning.all.length.should.eql(5);
+                theme.results.error.all.length.should.eql(100);
+                theme.results.warning.all.length.should.eql(6);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(73);
