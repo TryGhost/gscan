@@ -136,7 +136,7 @@ function outputResult(result, options) {
                 let message = failure.ref;
 
                 if (failure.message) {
-                    message += `- ${failure.message}`;
+                    message += ` - ${failure.message}`;
                 }
                 ui.log(message);
             });
