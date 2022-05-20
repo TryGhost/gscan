@@ -8,7 +8,7 @@
     "validator",
     "lint"
   ],
-  "homepage": "https://ghost.org",
+  "homepage": "https://ghost.org/",
   "repository": {
     "type": "git",
     "url": "git@github.com:TryGhost/gscan.git"
@@ -22,7 +22,7 @@
   "author": {
     "name": "Ghost Foundation",
     "email": "hello@ghost.org",
-    "web": "https://ghost.org"
+    "web": "https://ghost.org/"
   },
   "main": "lib",
   "license": "MIT",
