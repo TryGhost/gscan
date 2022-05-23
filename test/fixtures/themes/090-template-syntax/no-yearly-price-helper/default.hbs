@@ -4,8 +4,8 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 <body>
-    {{#get "tiers" as |tier|}}
-        {{monthly_price.currency}}
+    {{#get "tiers"}}
+        {{yearly_price.amount}}
     {{/get}}
 </body>
 </html>

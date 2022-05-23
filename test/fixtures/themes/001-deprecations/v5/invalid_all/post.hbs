@@ -1,6 +1,10 @@
 {{content words="0"}}
 {{@price.currency_symbol}}
 
+{{#get "tiers" as |tier|}}
+    {{monthly_price.amount}}
+{{/get}}
+
 {{#if post.author.image}}
     {{post.author.image}}
 {{/if}}
