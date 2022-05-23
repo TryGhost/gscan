@@ -19,5 +19,5 @@
     "major": "5.x",
     "docs": "5.0.0"
   },
-  "default": "v4"
+  "default": "v5"
 }
