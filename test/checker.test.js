@@ -420,7 +420,7 @@ describe('Checker', function () {
                 'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                 'GS090-NO-MEMBER-PRODUCTS-DATA-HELPER',
                 'GS090-NO-PRICE-DATA-HELPER',
-                'GS090-NO-MONTHLY-PRICE-HELPER'
+                'GS090-NO-TIER-PRICE-AS-OBJECT'
             ]);
 
             theme.results.fail.should.be.an.Object().with.keys(
