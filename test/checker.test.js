@@ -306,7 +306,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(113);
+            theme.results.pass.should.be.an.Array().with.lengthOf(114);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -420,7 +420,8 @@ describe('Checker', function () {
                 'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                 'GS090-NO-MEMBER-PRODUCTS-DATA-HELPER',
                 'GS090-NO-PRICE-DATA-HELPER',
-                'GS090-NO-TIER-PRICE-AS-OBJECT'
+                'GS090-NO-TIER-PRICE-AS-OBJECT',
+                'GS090-NO-TIER-BENEFIT-AS-OBJECT'
             ]);
 
             theme.results.fail.should.be.an.Object().with.keys(
