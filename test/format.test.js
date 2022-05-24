@@ -417,6 +417,40 @@ describe('Format', function () {
                 theme.results.error.all.length.should.eql(100);
                 theme.results.warning.all.length.should.eql(6);
 
+                const errorErrors = theme.results.error.all
+                    .filter(error => (error.level === 'error') && !error.fatal);
+
+                errorErrors.length.should.eql(27);
+                errorErrors.map(e => e.code).should.eql([
+                    'GS001-DEPR-MD',
+                    'GS001-DEPR-PPP',
+                    'GS001-DEPR-C0H',
+                    'GS001-DEPR-CSS-AT',
+                    'GS001-DEPR-CSS-PATS',
+                    'GS001-DEPR-AUTH',
+                    'GS001-DEPR-LABS-MEMBERS',
+                    'GS001-DEPR-SITE-LANG',
+                    'GS010-PJ-REQ',
+                    'GS010-PJ-PARSE',
+                    'GS010-PJ-NAME-REQ',
+                    'GS010-PJ-NAME-LC',
+                    'GS010-PJ-NAME-HY',
+                    'GS010-PJ-VERSION-SEM',
+                    'GS010-PJ-VERSION-REQ',
+                    'GS010-PJ-AUT-EM-VAL',
+                    'GS010-PJ-AUT-EM-REQ',
+                    'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-CASE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
+                    'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
+                    'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
+                    'GS050-CSS-KGWW',
+                    'GS050-CSS-KGWF'
+                ]);
+
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(73);
                 fatalErrors.map(e => e.code).should.eql([
