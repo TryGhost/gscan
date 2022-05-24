@@ -1,5 +1,12 @@
 {{content words="0"}}
 {{@price.currency_symbol}}
+{{@price.currency}}
+{{@price.monthly}}
+{{@price.yearly}}
+
+{{#foreach @member.subscriptions}}
+    {{price @price.currency}}
+{{/foreach}}
 
 {{#get "tiers" as |tier|}}
     {{monthly_price.amount}}

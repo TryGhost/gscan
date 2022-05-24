@@ -4,9 +4,7 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
 </head>
 <body>
-    {{#foreach @member.subscriptions}}
-        {{price currency=@price.currency}}
-        {{price currency=@price.currency}}
-    {{/foreach}}
+    {{@price.monthly}}
+    {{@price.yearly}}
 </body>
 </html>

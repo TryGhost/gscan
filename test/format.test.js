@@ -414,7 +414,7 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(101);
+                theme.results.error.all.length.should.eql(103);
                 theme.results.warning.all.length.should.eql(7);
 
                 const errorErrors = theme.results.error.all
@@ -452,7 +452,7 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(74);
+                fatalErrors.length.should.eql(76);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -527,12 +527,14 @@ describe('Format', function () {
                     'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                     'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
+                    'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
+                    'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                     'GS090-NO-TIER-PRICE-AS-OBJECT'
                 ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(20);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(59);
+                theme.results.error.byFiles['post.hbs'].length.should.eql(61);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(10);
 

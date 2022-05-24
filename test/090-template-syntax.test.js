@@ -173,6 +173,24 @@ describe('090 Template syntax', function () {
             output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
         });
 
+        it('should fail when {{@price.monthly}} is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/global', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
+            ]);
+
+            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+        });
+
+        it('should fail when {{price @price.monthly}} is used', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/price-helper', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
+            ]);
+
+            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+        });
+
         it('should fail when {{monthly_price.*}} is used in tiers', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-monthly-price-helper', options);
             Object.keys(output.results.fail).should.eql([
