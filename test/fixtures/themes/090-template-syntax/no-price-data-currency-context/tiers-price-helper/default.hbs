@@ -1,0 +1,14 @@
+<html>
+<head>
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+<body>
+    {{#get "tiers" include="monthly_price,yearly_price,benefits" limit="1" as |tiers|}}
+        {{#foreach tiers}}
+            {{price @price.monthly currency=@price.currency}}
+            {{price @price.yearly currency=@price.currency}}
+        {{/foreach}}
+    {{/get}}
+</body>
+</html>

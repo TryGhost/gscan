@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+<body>
+    {{#foreach @member.subscriptions}}
+        {{price @price.monthly currency=@price.currency}}
+        {{price @price.yearly currency=@price.currency}}
+    {{/foreach}}
+</body>
+</html>

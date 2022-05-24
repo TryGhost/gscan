@@ -526,7 +526,7 @@ describe('Format', function () {
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
-                    'GS090-NO-PRICE-DATA-HELPER',
+                    'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
                     'GS090-NO-TIER-PRICE-AS-OBJECT'
                 ]);
 
