@@ -9,6 +9,7 @@
     "ghost-api": "v0.1"
   },
   "config": {
-    "posts_per_page": "something"
+    "posts_per_page": "something",
+    "card_assets": "something_else"
   }
 }
