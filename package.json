@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@sentry/node": "6.19.7",
-    "@tryghost/config": "0.2.2",
+    "@tryghost/config": "0.2.9",
     "@tryghost/debug": "0.1.11",
     "@tryghost/errors": "1.2.13",
     "@tryghost/logging": "2.2.2",
