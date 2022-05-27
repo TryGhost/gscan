@@ -217,5 +217,14 @@ describe('090 Template syntax', function () {
 
             output.results.fail['GS090-NO-TIER-BENEFIT-AS-OBJECT'].should.be.a.ValidFailObject();
         });
+
+        it('should fail when {{@price.currency}} is used in partial loaded from folder', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/partial', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
+            ]);
+
+            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+        });
     });
 });

@@ -1,0 +1,25 @@
+<html>
+<head>
+
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="{{asset "css/styles.css"}}">
+    {{ghost_head}}
+</head>
+<body>
+    {{page_url 'lol'}}
+    {{@config.posts_per_page}}
+
+    {{primary_author.profile_image}}
+
+    {{#get "posts" include="tags,authors" filter="authors:{{primary_author.slug}}+id:-{{id}}" fields="authors"}}
+
+    {{/get}}
+
+    {{!-- invalid usage of author property. Will not be detected. --}}
+    {{author_profile_image}}
+
+    {{authors[0].cover}}
+    {{error.statusCode}}
+</body>
+    {{ghost_foot}}
+</html>
