@@ -53,6 +53,22 @@ describe('080 Usage tests', function () {
             }).catch(done);
         });
 
+        it('[failure] should show error if helper usage is incorrect in subfolders', function (done) {
+            utils.testCheck(thisCheck, '080-helper-usage/v4/invalid-folder', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys(
+                    'GS080-FEACH-PV'
+                );
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
+
+                output.results.fail['GS080-FEACH-PV'].should.be.a.ValidFailObject();
+                output.results.fail['GS080-FEACH-PV'].failures.length.should.eql(1);
+
+                done();
+            }).catch(done);
+        });
+
         it('[failure] theme is invalid', function (done) {
             utils.testCheck(thisCheck, '080-helper-usage/v4/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();

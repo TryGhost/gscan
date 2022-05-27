@@ -303,6 +303,63 @@ describe('005 Template compile', function () {
             }).catch(done);
         });
 
+        it('should output errors for a theme with invalid partials', function (done) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-partial', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+
+                failures.length.should.eql(1);
+
+                failures[0].ref.should.eql('partials/invalid-partial.hbs');
+                failures[0].message.should.match(/^Missing helper: "my-helper"/);
+
+                done();
+            }).catch(done);
+        });
+
+        it('should output errors for a theme with invalid folder partials', function (done) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-partial-folder', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+
+                failures.length.should.eql(1);
+
+                failures[0].ref.should.eql('partials/folder/invalid-partial.hbs');
+                failures[0].message.should.match(/^Missing helper: "my-helper"/);
+
+                done();
+            }).catch(done);
+        });
+
+        it('should output errors for a theme in subfolders', function (done) {
+            utils.testCheck(thisCheck, '005-compile/v4/invalid-folder', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
+                output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
+
+                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+
+                failures.length.should.eql(1);
+
+                failures[0].ref.should.eql('folder/invalid-template.hbs');
+                failures[0].message.should.match(/^Missing helper: "my-helper"/);
+
+                done();
+            }).catch(done);
+        });
+
         it('theme with partials and unknown helper', function (done) {
             utils.testCheck(thisCheck, '005-compile/v4/invalid-with-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();

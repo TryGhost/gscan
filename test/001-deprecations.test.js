@@ -2882,6 +2882,19 @@ describe('001 Deprecations', function () {
             }).catch(done);
         });
 
+        it('[failure] should show deprecations in partials', function (done) {
+            utils.testCheck(thisCheck, '001-deprecations/v5/invalid_partial', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                Object.keys(output.results.fail).should.eql([
+                    'GS001-DEPR-PURL'
+                ]);
+                output.results.pass.should.be.an.Array().with.lengthOf(94);
+
+                done();
+            }).catch(done);
+        });
+
         it('[mixed] should pass and fail when some rules pass and others fail', function (done) {
             utils.testCheck(thisCheck, '001-deprecations/v5/mixed', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
