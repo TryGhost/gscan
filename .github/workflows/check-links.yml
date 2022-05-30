@@ -1,0 +1,24 @@
+name: Check Links
+on:
+  workflow_dispatch: # Manual checks
+  schedule:
+    - cron: 31 13 * * 2 # 13:31 on Tuesdays
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: 1
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v2
+        env:
+          FORCE_COLOR: 0
+        with:
+          node-version: lts/*
+          cache: yarn
+
+      - run: yarn
+      - run: node test/valid-doc-links.js
