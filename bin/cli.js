@@ -54,7 +54,7 @@ prettyCLI
         desc: 'Check theme for Ghost 4.0 compatibility'
     })
     .boolean('-5, --v5', {
-        desc: 'Check theme for Ghost 4.0 compatibility'
+        desc: 'Check theme for Ghost 5.0 compatibility'
     })
     .boolean('-c, --canary', {
         desc: 'Check theme for upcoming Ghost version compatibility'
