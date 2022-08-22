@@ -349,9 +349,9 @@
     fs-extra "^10.0.0"
 
 "@types/node@*":
-  version "18.7.3"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.3.tgz#432c89796eab539b7a30b7b8801a727b585238a4"
-  integrity sha512-LJgzOEwWuMTBxHzgBR/fhhBOWrvBjvO+zPteUgbbuQi80rYIZHrk1mNbRUqPZqSLP2H7Rwt1EFLL/tNLD1Xx/w==
+  version "18.7.9"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.9.tgz#180bfc495c91dc62573967edf047e15dbdce1491"
+  integrity sha512-0N5Y1XAdcl865nDdjbO0m3T6FdmQ4ijE89/urOHLREyTXbpMWbSafx9y7XIsgWGtwUP2iYTinLyyW3FatAxBLQ==
 
 "@types/yauzl@^2.9.1":
   version "2.10.0"
@@ -1732,9 +1732,9 @@ flatted@^2.0.0:
   integrity sha512-r5wGx7YeOwNWNlCA0wQ86zKyDLMQr+/RB8xy74M4hTphfmjlijTSSXGuH8rnvKZnfT9i+75zmd8jcKdMR4O6jA==
 
 flatted@^3.1.0:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.6.tgz#022e9218c637f9f3fc9c35ab9c9193f05add60b2"
-  integrity sha512-0sQoMh9s0BYsm+12Huy/rkKxVu4R1+r96YX5cG44rHV0pQ6iC3Q+mkoMFaGWObMFYQxCVT+ssG1ksneA2MI9KQ==
+  version "3.2.7"
+  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.7.tgz#609f39207cb614b89d0765b477cb2d437fbf9787"
+  integrity sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==
 
 forever-agent@~0.6.1:
   version "0.6.1"
@@ -2277,9 +2277,9 @@ istanbul@0.4.5:
     wordwrap "^1.0.0"
 
 js-beautify@^1.13.11:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.14.5.tgz#d544e3ac94371af3a4eadec0dea9fc1cd15743b9"
-  integrity sha512-P2BfZBhXchh10uZ87qMKpM2tfcDXLA+jDiWU/OV864yWdTGzLUGNAdp9Y1ID5ubpNVGls3cZ1UMcO8myUB+UyA==
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.14.6.tgz#b23ca5d74a462c282c7711bb51150bcc97f2b507"
+  integrity sha512-GfofQY5zDp+cuHc+gsEXKPpNw2KbPddreEo35O6jT6i0RVK6LhsoYBhq5TvK4/n74wnA0QbK8gGd+jUZwTMKJw==
   dependencies:
     config-chain "^1.1.13"
     editorconfig "^0.15.3"
@@ -3817,9 +3817,9 @@ typedarray@^0.0.6:
   integrity sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==
 
 uglify-js@^3.1.4:
-  version "3.16.3"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.16.3.tgz#94c7a63337ee31227a18d03b8a3041c210fd1f1d"
-  integrity sha512-uVbFqx9vvLhQg0iBaau9Z75AxWJ8tqM9AV890dIZCLApF4rTcyHwmAvLeEdYRs+BzYWu8Iw81F79ah0EfTXbaw==
+  version "3.17.0"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.17.0.tgz#55bd6e9d19ce5eef0d5ad17cd1f587d85b180a85"
+  integrity sha512-aTeNPVmgIMPpm1cxXr2Q/nEbvkmV8yq66F3om7X3P/cvOXQ0TMQ64Wk63iyT1gPlmdmGzjGpyLh1f3y8MZWXGg==
 
 undefsafe@^2.0.3:
   version "2.0.5"
@@ -3827,9 +3827,9 @@ undefsafe@^2.0.3:
   integrity sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA==
 
 undici@^5.1.1:
-  version "5.8.2"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-5.8.2.tgz#071fc8a6a5d24db0ad510ad442f607d9b09d5eec"
-  integrity sha512-3KLq3pXMS0Y4IELV045fTxqz04Nk9Ms7yfBBHum3yxsTR4XNn+ZCaUbf/mWitgYDAhsplQ0B1G4S5D345lMO3A==
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.9.1.tgz#fc9fd85dd488f965f153314a63d9426a11f3360b"
+  integrity sha512-6fB3a+SNnWEm4CJbgo0/CWR8RGcOCQP68SF4X0mxtYTq2VNN8T88NYrWVBAeSX+zb7bny2dx2iYhP3XHi00omg==
 
 unique-string@^2.0.0:
   version "2.0.0"
