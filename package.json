@@ -60,7 +60,7 @@
     "pluralize": "8.0.0",
     "require-dir": "1.2.0",
     "semver": "7.3.8",
-    "uuid": "8.3.2",
+    "uuid": "9.0.0",
     "validator": "13.0.0"
   },
   "devDependencies": {
