@@ -41,11 +41,11 @@ describe('050 Koenig CSS classes', function () {
                 output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
                 output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing styles or stylesheets');
+                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
 
                 done();
             }).catch(done);
@@ -121,11 +121,11 @@ describe('050 Koenig CSS classes', function () {
                 output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
                 output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing styles or stylesheets');
+                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
 
                 done();
             }).catch(done);
@@ -201,11 +201,11 @@ describe('050 Koenig CSS classes', function () {
                 output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
                 output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing styles or stylesheets');
+                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
 
                 done();
             }).catch(done);
@@ -311,8 +311,8 @@ describe('050 Koenig CSS classes', function () {
                 output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
                 output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing styles or stylesheets');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing styles or stylesheets');
+                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
+                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('Missing stylesheets with required class styles');
 
                 done();
             }).catch(done);
