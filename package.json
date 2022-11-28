@@ -72,7 +72,7 @@
     "nodemon": "2.0.7",
     "rewire": "6.0.0",
     "should": "13.2.3",
-    "sinon": "14.0.0"
+    "sinon": "15.0.0"
   },
   "files": [
     "lib",
