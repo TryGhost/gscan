@@ -47,7 +47,7 @@
     "@tryghost/logging": "2.3.5",
     "@tryghost/pretty-cli": "1.2.32",
     "@tryghost/server": "0.1.28",
-    "@tryghost/zip": "1.1.29",
+    "@tryghost/zip": "1.1.30",
     "bluebird": "3.7.2",
     "chalk": "4.1.2",
     "common-tags": "1.8.2",
