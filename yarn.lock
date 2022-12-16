@@ -670,10 +670,10 @@
     "@tryghost/root-utils" "^0.3.19"
     semver "^7.3.5"
 
-"@tryghost/zip@1.1.30":
-  version "1.1.30"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.30.tgz#3c291c7b5da58485b2a5f53980290b002cd38259"
-  integrity sha512-zxXLGIdWfyLsjTw8qjRw3wJDYzdUCmEahwY8x9JPmAU4YaW0lWBcQ+h/yP4RU68buhHZIAJa5D2l2SPyq+cbeQ==
+"@tryghost/zip@1.1.31":
+  version "1.1.31"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.31.tgz#a85097d20bebe0caf19b380742763f0453268100"
+  integrity sha512-1gaCUATzTBBV7tVGnblPiaAxWe9FJlMpxrtKxlOkObrAzzV03uWIUEkZaF+rXBv7QcIplITpQZip/1v6criVIQ==
   dependencies:
     archiver "^5.0.0"
     bluebird "^3.7.2"
