@@ -418,7 +418,7 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(30);
+                errorErrors.length.should.eql(31);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-PPP',
@@ -428,6 +428,7 @@ describe('Format', function () {
                     'GS001-DEPR-AUTH',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-LABS-MEMBERS',
+                    'GS001-DEPR-CURR-SYM',
                     'GS001-DEPR-SITE-LANG',
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
@@ -453,7 +454,7 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(73);
+                fatalErrors.length.should.eql(72);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -522,7 +523,6 @@ describe('Format', function () {
                     'GS001-DEPR-SGF',
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-ESC',
-                    'GS001-DEPR-CURR-SYM',
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
