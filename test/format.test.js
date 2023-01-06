@@ -418,7 +418,7 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(33);
+                errorErrors.length.should.eql(34);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-PPP',
@@ -452,11 +452,12 @@ describe('Format', function () {
                     'GS050-CSS-KGWW',
                     'GS050-CSS-KGWF',
                     'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
+                    'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(70);
+                fatalErrors.length.should.eql(69);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -526,7 +527,6 @@ describe('Format', function () {
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
-                    'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-TIER-PRICE-AS-OBJECT'
                 ]);
 
