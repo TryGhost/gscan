@@ -418,7 +418,7 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(66);
+                errorErrors.length.should.eql(67);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
@@ -481,6 +481,7 @@ describe('Format', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
                     'GS050-CSS-KGWW',
                     'GS050-CSS-KGWF',
+                    'GS090-NO-PRODUCTS-HELPER',
                     'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                     'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
                     'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
@@ -489,7 +490,7 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(37);
+                fatalErrors.length.should.eql(36);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -526,8 +527,7 @@ describe('Format', function () {
                     'GS001-DEPR-SPL',
                     'GS001-DEPR-SGH',
                     'GS001-DEPR-SGF',
-                    'GS005-TPL-ERR',
-                    'GS090-NO-PRODUCTS-HELPER'
+                    'GS005-TPL-ERR'
                 ]);
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
