@@ -418,7 +418,7 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(64);
+                errorErrors.length.should.eql(65);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
@@ -433,6 +433,7 @@ describe('Format', function () {
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
                     'GS001-DEPR-CSS-PATS',
+                    'GS001-DEPR-USER-GET',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
                     'GS001-DEPR-AUTH-FILT',
@@ -487,7 +488,7 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(39);
+                fatalErrors.length.should.eql(38);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -503,7 +504,6 @@ describe('Format', function () {
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
-                    'GS001-DEPR-USER-GET',
                     'GS001-DEPR-PAUTH',
                     'GS001-DEPR-PAUTH-ID',
                     'GS001-DEPR-PAUTH-SLUG',
