@@ -418,13 +418,27 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(48);
+                errorErrors.length.should.eql(64);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
+                    'GS001-DEPR-AIMG',
+                    'GS001-DEPR-AC',
+                    'GS001-DEPR-PAIMG',
+                    'GS001-DEPR-PAC',
+                    'GS001-DEPR-CON-AC',
+                    'GS001-DEPR-CON-AIMG',
+                    'GS001-DEPR-CON-PAC',
+                    'GS001-DEPR-CON-PAIMG',
                     'GS001-DEPR-PPP',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
                     'GS001-DEPR-CSS-PATS',
+                    'GS001-DEPR-AUTH-INCL',
+                    'GS001-DEPR-AUTH-FIELD',
+                    'GS001-DEPR-AUTH-FILT',
+                    'GS001-DEPR-AUTHBL',
+                    'GS001-DEPR-CON-AUTH',
+                    'GS001-DEPR-CON-PAUTH',
                     'GS001-DEPR-AUTH',
                     'GS001-DEPR-AUTH-ID',
                     'GS001-DEPR-AUTH-SLUG',
@@ -440,6 +454,7 @@ describe('Format', function () {
                     'GS001-DEPR-AUTH-PIMG',
                     'GS001-DEPR-AUTH-CIMG',
                     'GS001-DEPR-AUTH-URL',
+                    'GS001-DEPR-IUA',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-ESC',
@@ -465,43 +480,30 @@ describe('Format', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
                     'GS050-CSS-KGWW',
                     'GS050-CSS-KGWF',
+                    'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                     'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
                     'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(55);
+                fatalErrors.length.should.eql(39);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-COV',
-                    'GS001-DEPR-AIMG',
                     'GS001-DEPR-PIMG',
                     'GS001-DEPR-BC',
-                    'GS001-DEPR-AC',
                     'GS001-DEPR-TIMG',
-                    'GS001-DEPR-PAIMG',
-                    'GS001-DEPR-PAC',
                     'GS001-DEPR-PTIMG',
                     'GS001-DEPR-TSIMG',
                     'GS001-DEPR-CON-IMG',
                     'GS001-DEPR-CON-COV',
                     'GS001-DEPR-CON-BC',
-                    'GS001-DEPR-CON-AC',
-                    'GS001-DEPR-CON-AIMG',
-                    'GS001-DEPR-CON-PAC',
-                    'GS001-DEPR-CON-PAIMG',
                     'GS001-DEPR-CON-TIMG',
                     'GS001-DEPR-CON-PTIMG',
                     'GS001-DEPR-CON-TSIMG',
                     'GS001-DEPR-USER-GET',
-                    'GS001-DEPR-AUTH-INCL',
-                    'GS001-DEPR-AUTH-FIELD',
-                    'GS001-DEPR-AUTH-FILT',
-                    'GS001-DEPR-AUTHBL',
-                    'GS001-DEPR-CON-AUTH',
-                    'GS001-DEPR-CON-PAUTH',
                     'GS001-DEPR-PAUTH',
                     'GS001-DEPR-PAUTH-ID',
                     'GS001-DEPR-PAUTH-SLUG',
@@ -519,14 +521,12 @@ describe('Format', function () {
                     'GS001-DEPR-PAUTH-URL',
                     'GS001-DEPR-PAID',
                     'GS001-DEPR-NAUTH',
-                    'GS001-DEPR-IUA',
                     'GS001-DEPR-BPL',
                     'GS001-DEPR-SPL',
                     'GS001-DEPR-SGH',
                     'GS001-DEPR-SGF',
                     'GS005-TPL-ERR',
                     'GS090-NO-PRODUCTS-HELPER',
-                    'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
                     'GS090-NO-TIER-PRICE-AS-OBJECT'
                 ]);
 
