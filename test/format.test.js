@@ -418,7 +418,7 @@ describe('Format', function () {
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(34);
+                errorErrors.length.should.eql(48);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-PPP',
@@ -426,6 +426,20 @@ describe('Format', function () {
                     'GS001-DEPR-CSS-AT',
                     'GS001-DEPR-CSS-PATS',
                     'GS001-DEPR-AUTH',
+                    'GS001-DEPR-AUTH-ID',
+                    'GS001-DEPR-AUTH-SLUG',
+                    'GS001-DEPR-AUTH-MAIL',
+                    'GS001-DEPR-AUTH-MT',
+                    'GS001-DEPR-AUTH-MD',
+                    'GS001-DEPR-AUTH-NAME',
+                    'GS001-DEPR-AUTH-BIO',
+                    'GS001-DEPR-AUTH-LOC',
+                    'GS001-DEPR-AUTH-WEB',
+                    'GS001-DEPR-AUTH-TW',
+                    'GS001-DEPR-AUTH-FB',
+                    'GS001-DEPR-AUTH-PIMG',
+                    'GS001-DEPR-AUTH-CIMG',
+                    'GS001-DEPR-AUTH-URL',
                     'GS001-DEPR-BLOG',
                     'GS001-DEPR-LANG',
                     'GS001-DEPR-ESC',
@@ -457,7 +471,7 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(69);
+                fatalErrors.length.should.eql(55);
                 fatalErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
@@ -488,20 +502,6 @@ describe('Format', function () {
                     'GS001-DEPR-AUTHBL',
                     'GS001-DEPR-CON-AUTH',
                     'GS001-DEPR-CON-PAUTH',
-                    'GS001-DEPR-AUTH-ID',
-                    'GS001-DEPR-AUTH-SLUG',
-                    'GS001-DEPR-AUTH-MAIL',
-                    'GS001-DEPR-AUTH-MT',
-                    'GS001-DEPR-AUTH-MD',
-                    'GS001-DEPR-AUTH-NAME',
-                    'GS001-DEPR-AUTH-BIO',
-                    'GS001-DEPR-AUTH-LOC',
-                    'GS001-DEPR-AUTH-WEB',
-                    'GS001-DEPR-AUTH-TW',
-                    'GS001-DEPR-AUTH-FB',
-                    'GS001-DEPR-AUTH-PIMG',
-                    'GS001-DEPR-AUTH-CIMG',
-                    'GS001-DEPR-AUTH-URL',
                     'GS001-DEPR-PAUTH',
                     'GS001-DEPR-PAUTH-ID',
                     'GS001-DEPR-PAUTH-SLUG',
