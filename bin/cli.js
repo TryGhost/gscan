@@ -113,8 +113,10 @@ prettyCLI
             gscan.check(argv.themePath, cliOptions)
                 .then(theme => outputResults(theme, cliOptions))
                 .catch((err) => {
-                    ui.log(`\n${chalk.red(err.message)}`);
-                    err.code === 'ENOTDIR' && ui.log('Did you mean to add the -z flag to read a zip file?');
+                    ui.log(err.message);
+                    if (err.code === 'ENOTDIR') {
+                        ui.log('Did you mean to add the -z flag to read a zip file?');
+                    }
                 });
         }
     });
