@@ -112,11 +112,11 @@ prettyCLI
         } else {
             gscan.check(argv.themePath, cliOptions)
                 .then(theme => outputResults(theme, cliOptions))
-                .catch(function ENOTDIRPredicate(err) {
-                    return err.code === 'ENOTDIR';
-                }, function (err) {
+                .catch((err) => {
                     ui.log(err.message);
-                    ui.log('Did you mean to add the -z flag to read a zip file?');
+                    if (err.code === 'ENOTDIR') {
+                        ui.log('Did you mean to add the -z flag to read a zip file?');
+                    }
                 });
         }
     });
