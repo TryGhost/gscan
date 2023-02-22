@@ -45,7 +45,7 @@
     "@tryghost/debug": "0.1.21",
     "@tryghost/errors": "1.2.21",
     "@tryghost/logging": "2.4.1",
-    "@tryghost/pretty-cli": "1.2.33",
+    "@tryghost/pretty-cli": "1.2.34",
     "@tryghost/server": "0.1.30",
     "@tryghost/zip": "1.1.31",
     "bluebird": "3.7.2",
