@@ -611,10 +611,10 @@
     json-stringify-safe "^5.0.1"
     lodash "^4.17.21"
 
-"@tryghost/pretty-cli@1.2.35":
-  version "1.2.35"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.35.tgz#8f1cd9339ec5d9ac8278f6898b3943bfc9d57a59"
-  integrity sha512-SnIOrFW/v7fV9SNpl8HUFKr8pm9BqOztc5NZYMMW7xoN6IO9/O88voZ46TdoDzuh/MFD+HhGgQIiOuJoa9Pvww==
+"@tryghost/pretty-cli@1.2.36":
+  version "1.2.36"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.36.tgz#ea4466214bb99c5d192e40bfa947448d3b058cb1"
+  integrity sha512-Bxnzou/BiMS+Kz3SaRwcVrxbnbqu3XYkXjAorZKy9eKJ26OXQ4F1TC8oLS1aByOLz1QgqjOgzTytwjSxNyfXAQ==
   dependencies:
     chalk "^4.1.0"
     sywac "^1.3.0"
