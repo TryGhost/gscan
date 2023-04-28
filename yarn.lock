@@ -1137,12 +1137,12 @@
   dependencies:
     long-timeout "^0.1.1"
 
-"@tryghost/config@0.2.14":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.14.tgz#dbb0294787c4e00c3679a96d705afc682a1c9f16"
-  integrity sha512-sgMlAB/HzEp2oIi4lL7e5g5sQQX9lMaERiDV8chxPjE2h1o41MJfPviy0ORmaL+ftJp0T8iFJoGqZWyy419vYQ==
+"@tryghost/config@0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.17.tgz#b9b12b84913dd7f7897cfcb223ede6b605d793c0"
+  integrity sha512-k8HX2LEkUEZrKwVfuzWug8ZkpW/KVhm+yGAUm3CNB55soO2pkQHu1sgwZu+QooodbJauDyX7z8nXTU9XvPkmmQ==
   dependencies:
-    "@tryghost/root-utils" "^0.3.20"
+    "@tryghost/root-utils" "^0.3.23"
     nconf "^0.12.0"
 
 "@tryghost/debug@0.1.21":
@@ -1232,7 +1232,7 @@
     got "9.6.0"
     lodash "^4.17.21"
 
-"@tryghost/root-utils@^0.3.19", "@tryghost/root-utils@^0.3.20", "@tryghost/root-utils@^0.3.23":
+"@tryghost/root-utils@^0.3.19", "@tryghost/root-utils@^0.3.23":
   version "0.3.23"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.23.tgz#4b25fa2a906b3cd00f323b1c087828a299cdd161"
   integrity sha512-Z29qgTOiDlgHkgVQNIQG3VufrpAREB736p0xbMruJPjYFhsO9WNmid9dpKHAJlgLb0pW3SumGEIsZi6yWEQ7EQ==
