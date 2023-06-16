@@ -31,7 +31,8 @@
         "default": "one"
       },
       "title": {
-        "type": "text"
+        "type": "text",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam, voluptatem."
       }
     }
   }
