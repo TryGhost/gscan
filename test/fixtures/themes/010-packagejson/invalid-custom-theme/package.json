@@ -36,21 +36,22 @@
         "options": ["one", "two"],
         "default": "three"
       },
-      "too_many_settings0": {
-        "type": "color"
+      "description_too_long": {
+        "type": "color",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
       },
-      "too_many_settings1": {
+      "too_many_settings0": {
         "type": "image",
         "default": "test"
       },
+      "too_many_settings1": {},
       "too_many_settings2": {},
       "too_many_settings3": {},
       "too_many_settings4": {},
       "too_many_settings5": {},
       "too_many_settings6": {},
       "too_many_settings7": {},
-      "too_many_settings8": {},
-      "too_many_settings9": {}
+      "too_many_settings8": {}
     }
   }
 }
