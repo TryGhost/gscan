@@ -1,0 +1,18 @@
+<html>
+
+<head>
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+
+<body>
+    {{#match @page.show_title_and_feature_image}}
+        <p>@page.show_title_and_feature_image matched</p>
+    {{/match}}
+
+    {{#match @page.not_known}}
+        <p>@page.not_known matched</p>
+    {{/match}}
+</body>
+
+</html>
