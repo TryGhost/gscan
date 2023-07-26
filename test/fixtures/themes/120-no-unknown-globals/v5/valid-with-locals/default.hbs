@@ -1,0 +1,19 @@
+
+{{#if @member.paid}}
+
+    {{!-- Logged in, paying member: Show account info --}}
+    <div class="subscriber-box">
+
+        {{#foreach @member.subscriptions}}
+            <div class="subscription subscription-status-{{status}}">
+                <div class="subscriber-header">
+                    <div class="subscription-title">
+                        {{#if @first}}
+                            <h1>Your account</h1>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        {{/foreach}}
+    </div>
+{{/if}}

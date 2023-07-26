@@ -306,7 +306,7 @@ describe('Checker', function () {
                 {file: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(116);
+            theme.results.pass.should.be.an.Array().with.lengthOf(117);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -423,7 +423,8 @@ describe('Checker', function () {
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                 'GS090-NO-TIER-PRICE-AS-OBJECT',
-                'GS090-NO-TIER-BENEFIT-AS-OBJECT'
+                'GS090-NO-TIER-BENEFIT-AS-OBJECT',
+                'GS120-NO-UNKNOWN-GLOBALS'
             ]);
 
             theme.results.fail.should.be.an.Object().with.keys(
