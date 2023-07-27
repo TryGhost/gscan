@@ -6,7 +6,7 @@ describe('120 No unknown globals', function () {
     describe('v5', function () {
         const options = {checkVersion: 'v5'};
 
-        it.only('should detect unknown globals', function (done) {
+        it('should detect unknown globals', function (done) {
             utils.testCheck(thisCheck, '120-no-unknown-globals/v5/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
