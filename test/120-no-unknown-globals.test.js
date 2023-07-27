@@ -7,7 +7,7 @@ describe('120 No unknown globals', function () {
         const options = {checkVersion: 'v5'};
 
         it('should detect unknown globals', function (done) {
-            utils.testCheck(thisCheck, '120-no-unknown-globals/v5/invalid-with-globals', options).then(function (output) {
+            utils.testCheck(thisCheck, '120-no-unknown-globals/v5/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 // should be a warning about unused globals
@@ -29,7 +29,7 @@ describe('120 No unknown globals', function () {
             }).catch(done);
         });
 
-        it('should pass specific locals {{@first}}', function (done) {
+        it('should pass specific data variables like {{@first}}', function (done) {
             utils.testCheck(thisCheck, '120-no-unknown-globals/v5/valid-with-locals', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
