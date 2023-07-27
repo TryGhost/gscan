@@ -9,7 +9,16 @@
                 <div class="subscriber-header">
                     <div class="subscription-title">
                         {{#if @first}}
-                            <h1>Your account</h1>
+                            <h1>First</h1>
+                        {{/if}}
+                        {{#if @last}}
+                            <h2>Last</h2>
+                        {{/if}}
+                        {{#if @even}}
+                            <h3>Even</h3>
+                        {{/if}}
+                        {{#if @odd}}
+                            <h4>Odd</h4>
                         {{/if}}
                     </div>
                 </div>
