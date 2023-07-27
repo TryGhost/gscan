@@ -11,8 +11,8 @@ describe('120 No unknown globals', function () {
                 output.should.be.a.ValidThemeObject();
 
                 // should be a warning about unused globals
-                output.results.fail.should.be.an.Object().with.keys('GS120-TPL-ERR');
-                output.results.fail['GS120-TPL-ERR'].should.be.a.ValidFailObject();
+                output.results.fail.should.be.an.Object().with.keys('GS120-NO-UNKNOWN-GLOBALS');
+                output.results.fail['GS120-NO-UNKNOWN-GLOBALS'].should.be.a.ValidFailObject();
 
                 done();
             }).catch(done);
@@ -23,19 +23,18 @@ describe('120 No unknown globals', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS120-TPL-ERR');
+                output.results.pass.should.containEql('GS120-NO-UNKNOWN-GLOBALS');
 
                 done();
             }).catch(done);
         });
 
-        it.only('should pass locals {{@first}}', function (done) {
+        it('should pass specific locals {{@first}}', function (done) {
             utils.testCheck(thisCheck, '120-no-unknown-globals/v5/valid-with-locals', options).then(function (output) {
-                console.log(`output`,output.results.fail['GS120-NO-UNKNOWN-GLOBALS'].failures);
                 output.should.be.a.ValidThemeObject();
 
-                // output.results.pass.should.be.an.Array().with.lengthOf(1);
-                // output.results.pass.should.containEql('GS120-TPL-ERR');
+                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                output.results.pass.should.containEql('GS120-NO-UNKNOWN-GLOBALS');
 
                 done();
             }).catch(done);
