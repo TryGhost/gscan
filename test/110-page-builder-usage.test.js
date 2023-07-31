@@ -14,7 +14,11 @@ describe('110 Page-builder usage', function () {
             ]);
 
             output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures.should.eql([
-                {ref: '@page.show_title_and_feature_image', rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'}
+                {
+                    ref: 'page.hbs',
+                    message: '@page.show_title_and_feature_image is not used',
+                    rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
+                }
             ]);
         });
 
