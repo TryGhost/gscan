@@ -336,7 +336,7 @@ describe('Format', function () {
             check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(22);
+                theme.results.error.length.should.eql(23);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 fatalErrors.length.should.eql(1);
@@ -380,10 +380,10 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.warning.all.length.should.eql(7);
+                theme.results.warning.all.length.should.eql(6);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(22);
+                theme.results.error.all.length.should.eql(23);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 fatalErrors.length.should.eql(1);
@@ -394,7 +394,7 @@ describe('Format', function () {
                 // two rules have file references
                 theme.results.error.byFiles['author.hbs'].length.should.eql(1);
                 // page.hbs uses @blog which is deprecated and triggers the second rule failure
-                theme.results.error.byFiles['page.hbs'].length.should.eql(2);
+                theme.results.error.byFiles['page.hbs'].length.should.eql(3);
                 theme.results.error.byFiles['post.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(17);
@@ -413,13 +413,13 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.error.all.length.should.eql(104);
-                theme.results.warning.all.length.should.eql(9);
+                theme.results.error.all.length.should.eql(105);
+                theme.results.warning.all.length.should.eql(8);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(68);
+                errorErrors.length.should.eql(69);
                 errorErrors.map(e => e.code).should.eql([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
@@ -488,6 +488,7 @@ describe('Format', function () {
                     'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                     'GS090-NO-TIER-PRICE-AS-OBJECT',
+                    'GS110-NO-MISSING-PAGE-BUILDER-USAGE',
                     'GS120-NO-UNKNOWN-GLOBALS'
                 ]);
 
