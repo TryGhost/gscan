@@ -667,7 +667,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
                     'GS010-PJ-GHOST-CARD-ASSETS-NOT-PRESENT',
-                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH'
+                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-SYNTAX',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
@@ -696,7 +698,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
                     'GS010-PJ-GHOST-CARD-ASSETS-NOT-PRESENT',
-                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH'
+                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-SYNTAX',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
                 Object.keys(theme.results.fail).should.eql([
@@ -732,7 +736,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
-                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH'
+                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-SYNTAX',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
                 theme.results.fail.should.be.an.Object().with.keys(
@@ -786,7 +792,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
                     'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
                     'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT',
-                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH'
+                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-SYNTAX',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 );
 
                 done();
@@ -820,7 +828,9 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-BOOLEAN-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT',
-                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH'
+                    'GS010-PJ-CUST-THEME-SETTINGS-DESCRIPTION-LENGTH',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-SYNTAX',
+                    'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
                 done();

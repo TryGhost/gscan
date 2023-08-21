@@ -46,6 +46,7 @@
     "@tryghost/errors": "1.2.26",
     "@tryghost/logging": "2.4.6",
     "@tryghost/pretty-cli": "1.2.38",
+    "@tryghost/nql": "0.11.0",
     "@tryghost/server": "0.1.36",
     "@tryghost/zip": "1.1.37",
     "chalk": "4.1.2",
