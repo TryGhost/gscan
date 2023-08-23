@@ -2501,10 +2501,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
 
-express-hbs@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.4.0.tgz#b91ad28a35319ec08be9350db65169904bc69490"
-  integrity sha512-CruS8DA6m8i20MTjWpE6X8zu6q0rbQJbQyIp7V7NoYD1znf0krnCHQ8tVB7I9pJSZYnOPj/VPSByNU3sVDxJfw==
+express-hbs@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.4.1.tgz#e9957c9611bc7f6580d8f0f680943eda349ee12b"
+  integrity sha512-a+gcjKVp44wGU+UxWUbVrKB0ZXLIPgo76lz4o/sodTMWuyhNywOOBbjw64xDprNB7NL4WKx8okOWtqKdjyiUUA==
   dependencies:
     bluebird "^3.5.3"
     handlebars "^4.7.7"
