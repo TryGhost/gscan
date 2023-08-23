@@ -156,7 +156,7 @@ describe('ast-linter', function () {
     });
 
     describe('Custom theme select settings usage in match', function () {
-        it('errors out when an unkown value is found', function () {
+        it('errors out when an unknown value is found', function () {
             const localLinter = new ASTLinter({
                 partials: [],
                 helpers: [],

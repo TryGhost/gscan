@@ -12,12 +12,12 @@
   "config": {
     "posts_per_page": 3,
     "custom": {
-      "unkown": {
+      "unknown": {
         "type": "color",
         "group": "post",
         "default": "#FFffFF"
       },
-      "unkown2": {
+      "unknown2": {
         "type": "image",
         "group": "homepage"
       },

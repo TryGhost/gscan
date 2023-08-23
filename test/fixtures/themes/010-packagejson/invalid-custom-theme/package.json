@@ -16,9 +16,9 @@
     "posts_per_page": 3,
     "custom": {
       "Not snake case": {},
-      "unkown": {
-        "type": "unkown type!",
-        "group": "unkown group!"
+      "unknown": {
+        "type": "unknown type!",
+        "group": "unknown group!"
       },
       "typography": {
         "type": "boolean"
