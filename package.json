@@ -48,7 +48,6 @@
     "@tryghost/pretty-cli": "1.2.38",
     "@tryghost/server": "0.1.36",
     "@tryghost/zip": "1.1.37",
-    "bluebird": "3.7.2",
     "chalk": "4.1.2",
     "common-tags": "1.8.2",
     "express": "4.18.2",
