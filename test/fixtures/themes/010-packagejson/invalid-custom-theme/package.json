@@ -40,6 +40,16 @@
         "type": "color",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
       },
+      "visibility_invalid_syntax": {
+        "type": "boolean",
+        "default": true,
+        "visibility": "faulty_select:[this should, fail]"
+      },
+      "visibility_invalid_value": {
+        "type": "boolean",
+        "default": true,
+        "visibility": "some_random_key:should_fail"
+      },
       "too_many_settings0": {
         "type": "image",
         "default": "test"
