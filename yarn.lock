@@ -1616,11 +1616,6 @@ bl@^4.0.3:
     inherits "^2.0.4"
     readable-stream "^3.4.0"
 
-bluebird@^3.5.3:
-  version "3.7.2"
-  resolved "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz"
-  integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
-
 body-parser@1.20.1:
   version "1.20.1"
   resolved "https://registry.npmjs.org/body-parser/-/body-parser-1.20.1.tgz"
@@ -2555,12 +2550,11 @@ etag@~1.8.1:
   resolved "https://registry.npmjs.org/etag/-/etag-1.8.1.tgz"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
 
-express-hbs@2.4.1:
-  version "2.4.1"
-  resolved "https://registry.npmjs.org/express-hbs/-/express-hbs-2.4.1.tgz"
-  integrity sha512-a+gcjKVp44wGU+UxWUbVrKB0ZXLIPgo76lz4o/sodTMWuyhNywOOBbjw64xDprNB7NL4WKx8okOWtqKdjyiUUA==
+express-hbs@2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/express-hbs/-/express-hbs-2.4.2.tgz#9bc18a08d89eea2aaea94b2e5c38859e86a99019"
+  integrity sha512-lFtWrsAGprvzPrVlfNE6WGJnyE+o/UxsTpl2CWcJt1CRYaUwht9+BkfKOWqs+xG0zhhRAm/bsYEyQ4EwA+ovSw==
   dependencies:
-    bluebird "^3.5.3"
     handlebars "^4.7.7"
     lodash "^4.17.21"
     readdirp "^3.6.0"
