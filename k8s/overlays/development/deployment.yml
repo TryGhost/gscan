@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gscan
+  labels:
+    app: gscan
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: gscan
+        image: gscan:latest
+        imagePullPolicy: Never
+        env:
+        - name: NODE_ENV
+          value: development

@@ -1,0 +1,19 @@
+# Ignore the node_modules directory
+node_modules/
+
+# Ignore config
+config.*.json
+!config.example.json
+
+# Ignore local environment files
+.env
+.env.local
+
+# Ignore version control and CI/CD configuration
+.git/
+.gitignore
+.dockerignore
+.github/
+
+# Ignore IDE specific files
+.vscode/

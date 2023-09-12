@@ -1270,6 +1270,13 @@
     moment "^2.29.1"
     prettyjson "^1.2.5"
 
+"@tryghost/pro-ship@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.0.6.tgz#5420a399af8beb697600baee0e673b8a1f5b5121"
+  integrity sha512-r1toCW5krT5PdqhnxQeVR/dSxKqHQ28drNl77QUNFlCjwXDTkQD4rkSYyDio8KGDbpxC1qDaWtHVxM+zUGx1Rg==
+  dependencies:
+    "@tryghost/root-utils" "0.3.24"
+
 "@tryghost/request@^0.1.41":
   version "0.1.41"
   resolved "https://registry.yarnpkg.com/@tryghost/request/-/request-0.1.41.tgz#1198fb0919f3516116ecd9de73c40176729a44e0"
@@ -1281,7 +1288,7 @@
     got "9.6.0"
     lodash "^4.17.21"
 
-"@tryghost/root-utils@^0.3.24":
+"@tryghost/root-utils@0.3.24", "@tryghost/root-utils@^0.3.24":
   version "0.3.24"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.24.tgz#91653fbadc882fb8510844f163a2231c87f30fab"
   integrity sha512-EzYM3dR/3xyvJHm37RumiIzeGEBRwnnQtQzswXpzn46Rooz7PA7NSjUbLZ8j2K3t0ee+CsPNuyzmzZl+Ih1P2g==

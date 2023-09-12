@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gscan
+  labels:
+    app: gscan
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: gscan
+  template:
+    metadata:
+      labels:
+        app: gscan
+    spec:
+      containers:
+      - name: gscan
+        image: europe-west4-docker.pkg.dev/stg-pro-397609/pro-containers/gscan:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - secretRef:
+            name: gscan-secret
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"

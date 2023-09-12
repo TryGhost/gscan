@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gscan
+  labels:
+    app: gscan
+spec:
+  template:
+    spec:
+      containers:
+      - name: gscan
+        image: europe-west4-docker.pkg.dev/stg-pro-397609/pro-containers/gscan:latest
+        env:
+        - name: NODE_ENV
+          value: staging

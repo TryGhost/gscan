@@ -1,0 +1,20 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'renovate/*'
+jobs:
+  test:
+    uses: tryghost/actions/.github/workflows/test.yml@main
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+  build:
+    needs: test
+    uses: tryghost/actions/.github/workflows/build-image.yml@main
+    secrets: inherit
+  deploy:
+    needs: build
+    uses: tryghost/actions/.github/workflows/deploy.yml@main
+    secrets: inherit
