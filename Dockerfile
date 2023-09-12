@@ -30,7 +30,7 @@ RUN ln -s /config/config.json /app/config.development.json && \
     ln -s /config/config.json /app/config.production.json
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 2369
 
 # Run your application
 CMD ["yarn", "start"]
