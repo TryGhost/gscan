@@ -34,7 +34,8 @@
     "posttest": "yarn lint",
     "coverage": "NODE_ENV=testing istanbul cover --dir test/coverage _mocha -- $(find test -name '*.test.js')",
     "preship": "yarn test",
-    "ship": "pro-ship"
+    "ship": "pro-ship",
+    "postship": "npm publish"
   },
   "bin": {
     "gscan": "./bin/cli.js"
