@@ -21,7 +21,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           name: ${{ env.NAME }}
-          dockerfile: .github/deploy/Dockerfile
+          dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,${{ env.IMAGE_VERSION }}"
