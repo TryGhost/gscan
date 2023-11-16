@@ -9,8 +9,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(96);
@@ -49,8 +49,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(33);
@@ -85,8 +85,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(96);
@@ -121,8 +121,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(99);
@@ -157,8 +157,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(109);
@@ -302,8 +302,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(117);
@@ -455,8 +455,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(109);
@@ -475,8 +475,8 @@ describe('Checker', function () {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
-                {file: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', ext: '.md', symlink: false}
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             theme.results.pass.should.be.an.Array().with.lengthOf(109);
@@ -493,7 +493,7 @@ describe('Checker', function () {
     it('should not follow symlinks', function (done) {
         check(themePath('030-assets/symlink2')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
-            theme.files.should.containEql({file: 'assets/mysymlink', ext: undefined, symlink: true});
+            theme.files.should.containEql({file: 'assets/mysymlink', normalizedFile: 'assets/mysymlink', ext: undefined, symlink: true});
             theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
 
             done();
