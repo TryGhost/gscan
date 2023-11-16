@@ -83,5 +83,14 @@
     "lib",
     "bin",
     "app"
-  ]
+  ],
+  "renovate": {
+    "extends": [
+      "@tryghost:quietJS",
+      "@tryghost:automergeDevDependencies"
+    ],
+    "ignoreDeps": [
+      "validator"
+    ]
+  }
 }

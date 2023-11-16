@@ -1,9 +1,0 @@
-{
-  "extends": [
-    "@tryghost:quietJS",
-    "@tryghost:automergeDevDependencies"
-  ],
-  "ignoreDeps": [
-    "validator"
-  ]
-}
