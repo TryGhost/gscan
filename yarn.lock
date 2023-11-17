@@ -1368,11 +1368,11 @@
     semver "^7.3.5"
 
 "@tryghost/zip@^1.1.38":
-  version "1.1.38"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.38.tgz#fe1ead4aa6188d8bdb8e18c520fb3918ae6c75cd"
-  integrity sha512-cJIsmoeVJau0TUUa70xml91I0/13uAJLsMSAGlwzblDY7cCZu2/deTw36YdNP1oQtXHOZKDRZpqYX3NZ7uXgIQ==
+  version "1.1.39"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.39.tgz#bfd3ac05f2ad3b968a6b4511776dd412175902c8"
+  integrity sha512-UentcPGgtyGYdJiwKk7Av827Ut59msF8MMh8oRyopZLNYAZv6v9EXEOjAVgtCNoJ1Bfpk7sjkmUjqoIrOyxTZQ==
   dependencies:
-    "@tryghost/errors" "^1.2.26"
+    "@tryghost/errors" "^1.2.27"
     archiver "^5.0.0"
     extract-zip "^2.0.1"
 
@@ -1382,9 +1382,9 @@
   integrity sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==
 
 "@types/node@*":
-  version "20.9.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.0.tgz#bfcdc230583aeb891cf51e73cfdaacdd8deae298"
-  integrity sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==
+  version "20.9.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.1.tgz#9d578c610ce1e984adda087f685ace940954fe19"
+  integrity sha512-HhmzZh5LSJNS5O8jQKpJ/3ZcrrlG6L70hpGqMIAoM9YVD0YBRNWYsfwcXq8VnSjlNpCpgLzMXdiPo+dxcvSmiA==
   dependencies:
     undici-types "~5.26.4"
 
