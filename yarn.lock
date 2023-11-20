@@ -1191,11 +1191,11 @@
     long-timeout "^0.1.1"
 
 "@tryghost/config@^0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.18.tgz#8b52d2fae21f4085f0652a385657b7bf0b23e7ee"
-  integrity sha512-QL7SoABsAVJEMdlAcj1t2133W2ptH5MbYo31jSTRnsh5As4t1qpZS+y0lCRxEv+ACQahF6DKugsWL6NgtIyXRw==
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.19.tgz#664d3cafa2e05e5fdcd8ffa40a1fc72a4f46fb24"
+  integrity sha512-fIilA4//4BoS6LFQh3pCr95ucPqwnz98wZ+1DJfZ+MJVQP+ES52Tjf0qSpWD4yPsdDmTJpDzm7M+RCwfmFh9ag==
   dependencies:
-    "@tryghost/root-utils" "^0.3.24"
+    "@tryghost/root-utils" "^0.3.25"
     nconf "^0.12.0"
 
 "@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.27":
@@ -1232,7 +1232,7 @@
     "@tryghost/errors" "^1.2.27"
     "@tryghost/request" "^1.0.1"
 
-"@tryghost/logging@^2.4.7", "@tryghost/logging@^2.4.8":
+"@tryghost/logging@^2.4.7", "@tryghost/logging@^2.4.9":
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.9.tgz#b44de65796c486726e0a359676025058a91491c8"
   integrity sha512-W6ePQueYnbZuamPXC1sp1iXpADc99Nsu/ImI6WKnhftbr+HLPy4cY966+mtiPBwH0KM4xyk7I3rlton9jn+JBg==
@@ -1325,7 +1325,7 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/root-utils@^0.3.24", "@tryghost/root-utils@^0.3.25":
+"@tryghost/root-utils@^0.3.25":
   version "0.3.25"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.25.tgz#d6e289004d2ee990f0baa337c007aba8eb6cc2c5"
   integrity sha512-UvqoDFo64rWEvZTqP7P4PfB7a4AuE8V3KpN/IbEIBbZw4wG7lnINn67r6EdOXQA4U7fB4lIw9Z82ZZwVT5MkPg==
@@ -1334,12 +1334,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.38"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.38.tgz#90afbb704e6e103d1fd17936f5d8e6d32831d531"
-  integrity sha512-1T0KQfVxUG6pfb20jfDKV+iMiqlpl2/Dnh+sgrBudigyxxrRPk+uFDJ9omQruhJauUja/vQxvEVuWQGL6ag8gA==
+  version "0.1.39"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.39.tgz#680257a083421ad20cf36d251151a11da32ee59e"
+  integrity sha512-8TAvx60twGj4fnchStA+8lo91J6/M2aaismI8c1htNv7oCglcy2xxVi1lhrB8awu0pzsMDolev0hiOVXFC9Pcw==
   dependencies:
-    "@tryghost/debug" "^0.1.26"
-    "@tryghost/logging" "^2.4.8"
+    "@tryghost/debug" "^0.1.27"
+    "@tryghost/logging" "^2.4.9"
 
 "@tryghost/tpl@^0.1.27":
   version "0.1.27"
@@ -1382,9 +1382,9 @@
   integrity sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==
 
 "@types/node@*":
-  version "20.9.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.1.tgz#9d578c610ce1e984adda087f685ace940954fe19"
-  integrity sha512-HhmzZh5LSJNS5O8jQKpJ/3ZcrrlG6L70hpGqMIAoM9YVD0YBRNWYsfwcXq8VnSjlNpCpgLzMXdiPo+dxcvSmiA==
+  version "20.9.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.2.tgz#002815c8e87fe0c9369121c78b52e800fadc0ac6"
+  integrity sha512-WHZXKFCEyIUJzAwh3NyyTHYSR35SevJ6mZ1nWwJafKtiQbqRTIKSRcw3Ma3acqgsent3RRDqeVwpHntMk+9irg==
   dependencies:
     undici-types "~5.26.4"
 
@@ -3276,9 +3276,9 @@ ignore@^4.0.6:
   integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
 
 ignore@^5.2.0:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.2.4.tgz#a291c0c6178ff1b960befe47fcdec301674a6324"
-  integrity sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.3.0.tgz#67418ae40d34d6999c95ff56016759c718c82f78"
+  integrity sha512-g7dmpshy+gD7mh88OC9NwSGTKoc3kyLAZQRU1mt53Aw/vnvfXnbC+F/7F7QoYVKbV+KNvJx8wArewKy1vXMtlg==
 
 import-fresh@^3.0.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -3748,11 +3748,9 @@ lru-cache@^6.0.0:
     yallist "^4.0.0"
 
 "lru-cache@^9.1.1 || ^10.0.0":
-  version "10.0.2"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.2.tgz#34504678cc3266b09b8dfd6fab4e1515258271b7"
-  integrity sha512-Yj9mA8fPiVgOUpByoTZO5pNrcl5Yk37FcSHsUINpAsaBIEZIuqcCclDZJCVxqQShDsmYX8QG63svJiTbOATZwg==
-  dependencies:
-    semver "^7.3.5"
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.0.3.tgz#b40014d7d2d16d94130b87297a04a1f24874ae7c"
+  integrity sha512-B7gr+F6MkqB3uzINHXNctGieGsRTMwIBgxkp0yq/5BwcuDzD4A8wQpHQW6vDAm1uKSLQghmRdD9sKqf2vJ1cEg==
 
 make-dir@^3.0.0:
   version "3.1.0"
