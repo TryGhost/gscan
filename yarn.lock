@@ -37,9 +37,9 @@
     js-tokens "^4.0.0"
 
 "@babel/runtime@^7.21.0":
-  version "7.23.5"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.5.tgz#11edb98f8aeec529b82b211028177679144242db"
-  integrity sha512-NdUTHcPe4C99WxPub+K9l9tK5/lV4UXIoaHSYgzco9BCyjKAAwzdBI+wWtYqHt7LJdbo74ZjRPJgzVweq1sz0w==
+  version "7.23.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.23.6.tgz#c05e610dc228855dc92ef1b53d07389ed8ab521d"
+  integrity sha512-zHd0eUrf5GZoOWVCXp6koAKQTfZV07eit6bGPmJgnZdnSAvvZee6zniW2XMF7Cmc4ISOOnPy3QaSiIJGJkVEDQ==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -52,9 +52,9 @@
     tslib "^2.4.0"
 
 "@elastic/transport@^8.3.4":
-  version "8.3.4"
-  resolved "https://registry.yarnpkg.com/@elastic/transport/-/transport-8.3.4.tgz#43c852e848dc8502bbd7f23f2d61bd5665cded99"
-  integrity sha512-+0o8o74sbzu3BO7oOZiP9ycjzzdOt4QwmMEjFc1zfO7M0Fh7QX1xrpKqZbSd8vBwihXNlSq/EnMPfgD2uFEmFg==
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/@elastic/transport/-/transport-8.4.0.tgz#e1ec05f7a2857162c161e2c97008f9b21301a673"
+  integrity sha512-Yb3fDa7yGD0ca3uMbL64M3vM1cE5h5uHmBcTjkdB4VpCasRNKSd09iDpwqX8zX1tbBtxcaKYLceKthWvPeIxTw==
   dependencies:
     debug "^4.3.4"
     hpagent "^1.0.0"
@@ -1231,7 +1231,7 @@
     "@tryghost/errors" "^1.3.0"
     "@tryghost/request" "^1.0.2"
 
-"@tryghost/logging@^2.4.7", "@tryghost/logging@^2.4.9":
+"@tryghost/logging@^2.4.10", "@tryghost/logging@^2.4.7":
   version "2.4.10"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.10.tgz#2e5b56c53364be330c1e6f2ffa33e3c30b7bac8e"
   integrity sha512-l356vLSQmszY14y7ef5YxY4CZ3418NXn5+LvFdlweeTRk0ilWx1mVUoXi8IlVh90rIVbemv+pXi1dusJB6peQA==
@@ -1333,12 +1333,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.39"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.39.tgz#680257a083421ad20cf36d251151a11da32ee59e"
-  integrity sha512-8TAvx60twGj4fnchStA+8lo91J6/M2aaismI8c1htNv7oCglcy2xxVi1lhrB8awu0pzsMDolev0hiOVXFC9Pcw==
+  version "0.1.40"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.40.tgz#037dbf5d1174b9a7d7660ef1097c5b9abe4ab070"
+  integrity sha512-api8tRMwhqs+kCWALj2paoJBlouOEFND8H+eyeOyq0R1Gcih9DVbnVChAd+q2BkpJjSCNu4YYdIqflh0JaF10Q==
   dependencies:
     "@tryghost/debug" "^0.1.27"
-    "@tryghost/logging" "^2.4.9"
+    "@tryghost/logging" "^2.4.10"
 
 "@tryghost/tpl@^0.1.27":
   version "0.1.27"
@@ -1381,9 +1381,9 @@
   integrity sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==
 
 "@types/node@*":
-  version "20.10.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.4.tgz#b246fd84d55d5b1b71bf51f964bd514409347198"
-  integrity sha512-D08YG6rr8X90YB56tSIuBaddy/UXAA9RKJoFvrsnogAum/0pmjkgi4+2nx96A330FmioegBWmEYQ+syqCFaveg==
+  version "20.10.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.10.5.tgz#47ad460b514096b7ed63a1dae26fad0914ed3ab2"
+  integrity sha512-nNPsNE65wjMxEKI93yOP+NPGGBJz/PoN3kZsVLee0XMiJolxSekEVD8wRwBUBqkwc7UWop0edW50yrCQW4CyRw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -4442,9 +4442,9 @@ readdirp@^3.6.0, readdirp@~3.6.0:
     picomatch "^2.2.1"
 
 regenerator-runtime@^0.14.0:
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.0.tgz#5e19d68eb12d486f797e15a3c6a918f7cec5eb45"
-  integrity sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz#356ade10263f685dda125100cd862c1db895327f"
+  integrity sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==
 
 regexpp@^2.0.1:
   version "2.0.1"
