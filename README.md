@@ -10,29 +10,26 @@ It is actively capable of dealing with the current and last major versions of Gh
 
 GScan works on a system of rules. Each rule has a way to check whether it passes or fails and has help content which describes how to fix it. Each rule is also marked with an error level:
 
-- **recommendation** = these are things the dev might want to know about
-- **warning** = usually used for deprecations, things that will be errors in the next version
-- **error** = anything that makes the theme invalid or incompatible with the current version of Ghost
+- Errors: issues that will cause your theme to not work properly. These must be fixed.
+- Warnings: these are usually related to deprecated features. These should be fixed.
+- Recommendations: these are advisories about best practice. Fixing these will improve your theme.
+- Features: detected features which may impact on compatibility. Nothing to do!
 
 In addition, an **error** can be marked as **fatal**. A **fatal error** means, left unchecked a Ghost publication would throw 500 errors on certain pages because of the detected out-of-date or erroneous code.
 
-In Ghost, we call GScan on boot. If any fatal errors are detected in Ghost(Pro) and in Ghost-CLI we call GScan as part of major upgrades. The upgrade will not be allowed to continue if any fatal errors are detected.
-
-Errors are only marked as **fatal errors** if they would cause errors, and therefore should block a boot or an upgrade.
-
-### Tooling
-When developing new rules or testing gscan following tools are great to have in the toolbelt:
-- [astexplorer](https://astexplorer.net) - absolutely awesome Handlebars AST fiddler, helpful when testing out new ideas and exploring what's possible through AST parser;
-
 ## Usage
 
-There are 3 ways to use gscan to validate your theme:
+There are 4 ways to use gscan to validate your theme:
 
-### 1. Web usage
+### 1. Inside Ghost
+
+Gscan is pre-installed in Ghost. If there are theme errors, Ghost will show them on boot in the console logs and in the UI (Ghost Admin).
+
+### 2. Web usage
 
 Visit https://gscan.ghost.org and upload your zip to our online version of Gscan.
 
-### 2. CLI usage
+### 3. CLI usage
 
 Install using yarn / npm:
 
@@ -48,21 +45,21 @@ To run a local zip file through the checks:
 
 By default, GScan scans themes for the latest Ghost version compatibility. You can also specify a Ghost version by using the following parameters (for Ghost 1.0, 2.0, 3.0, 4.0 and 5.0):
 
-`--v1` or `-1`  
-`--v2` or `-2`  
-`--v3` or `-3`  
+`--v1` or `-1`
+`--v2` or `-2`
+`--v3` or `-3`
 `--v4` or `-4` or `--canary`
-`--v5` or `-5`  
+`--v5` or `-5`
 
 Use the `--canary` parameter to check for the upcoming Ghost version.
 
 Examples:
 
-`gscan /path/to/theme.zip -z1` - scan a theme in a zip file for Ghost 1.0 compatibility  
-`gscan /path/to/theme/directory --v2` - can a theme in a directory for Ghost 2.0 compatibility  
-`gscan /path/to/theme/directory --canary` - scan a theme for the upcoming version of Ghost  
+`gscan /path/to/theme.zip -z1` - scan a theme in a zip file for Ghost 1.0 compatibility
+`gscan /path/to/theme/directory --v2` - can a theme in a directory for Ghost 2.0 compatibility
+`gscan /path/to/theme/directory --canary` - scan a theme for the upcoming version of Ghost
 
-### 3. Lib usage
+### 4. Lib usage
 
 Install using yarn/npm and then:
 
@@ -98,14 +95,11 @@ gscan.checkZip({
 
 - `yarn ship`
 
-## Result types:
+### Tools
+When developing new rules or testing gscan following tools are great to have in the toolbelt:
+- [astexplorer](https://astexplorer.net) - absolutely awesome Handlebars AST fiddler, helpful when testing out new ideas and exploring what's possible through AST parser;
 
-- Errors: these are issues which will cause your theme to not work properly. These must be fixed.
-- Warnings: these are usually related to deprecated features. These should be fixed.
-- Recommendations: these are advisories about best practice. Fixing these will improve your theme.
-- Features: detected features which may impact on compatibility. Nothing to do :)
-
-## Still To Do:
+## To Do
 
 - Support for running the checks against a GitHub repository
 - Many, many more checks
