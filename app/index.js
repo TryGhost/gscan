@@ -60,7 +60,10 @@ app.post('/',
             .then(function processResult(theme) {
                 debug('Checked: ' + zip.name);
                 res.theme = theme;
-
+            }).catch(function (error) {
+                debug('Calling next with error');
+                return next(error);
+            }).finally(() => {
                 debug('attempting to remove: ' + req.file.path);
                 fs.remove(req.file.path)
                     .then(function () {
@@ -72,9 +75,6 @@ app.post('/',
                         debug('Calling next');
                         return next();
                     });
-            }).catch(function (error) {
-                debug('Calling next with error');
-                return next(error);
             });
     },
     function doRender(req, res) {
