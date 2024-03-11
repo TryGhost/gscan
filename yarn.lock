@@ -1190,11 +1190,11 @@
     long-timeout "^0.1.1"
 
 "@tryghost/config@^0.2.18":
-  version "0.2.19"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.19.tgz#664d3cafa2e05e5fdcd8ffa40a1fc72a4f46fb24"
-  integrity sha512-fIilA4//4BoS6LFQh3pCr95ucPqwnz98wZ+1DJfZ+MJVQP+ES52Tjf0qSpWD4yPsdDmTJpDzm7M+RCwfmFh9ag==
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.20.tgz#6eb8efd9d1b0a84208d032fc326e2fc61cdfec13"
+  integrity sha512-C8CrUOyWRSy668E5JXZxLlidQYm10kj2d715W3VCSBbSt6ePqGW3mEm1fZUwPDuzOIaEd0dnq7iZXCOcTGjt9g==
   dependencies:
-    "@tryghost/root-utils" "^0.3.25"
+    "@tryghost/root-utils" "^0.3.26"
     nconf "^0.12.0"
 
 "@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.27":
@@ -1323,10 +1323,10 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/root-utils@^0.3.25":
-  version "0.3.25"
-  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.25.tgz#d6e289004d2ee990f0baa337c007aba8eb6cc2c5"
-  integrity sha512-UvqoDFo64rWEvZTqP7P4PfB7a4AuE8V3KpN/IbEIBbZw4wG7lnINn67r6EdOXQA4U7fB4lIw9Z82ZZwVT5MkPg==
+"@tryghost/root-utils@^0.3.25", "@tryghost/root-utils@^0.3.26":
+  version "0.3.26"
+  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.26.tgz#26e626706b67dddd13f59812826a806c45722122"
+  integrity sha512-akbI+mmnU6mlwbVAEy8Ay1MYbMEocKEVP+QHbYCKk3d++2TM2lmSZm6CFIP5+10NeFiP2Em6jSaGXBpaalR9VQ==
   dependencies:
     caller "^1.0.1"
     find-root "^1.1.0"
