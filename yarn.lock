@@ -1231,9 +1231,9 @@
     "@tryghost/request" "^1.0.3"
 
 "@tryghost/logging@^2.4.11", "@tryghost/logging@^2.4.7":
-  version "2.4.12"
-  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.12.tgz#414a4710e400eb1d023052314437c3872f993b7b"
-  integrity sha512-nfGIT6T8PjBD8LWWLM2I09goAxDfzwVHwPX1HtYRoJWyPrZnRvxg+XiXvkoMpIDd9ynNC2nogbUrEVQfMRk6gg==
+  version "2.4.13"
+  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.13.tgz#61a6ab80d6367d8344e8779e67cb490ebd050f3f"
+  integrity sha512-BuYV1Wufds6TEeb+muRYJURD3YN216ZJBSZnOAFTWE4oC0q58o21VvQNFk8B/FJP9xnDF1Me6gOuutKQMWhSMg==
   dependencies:
     "@tryghost/bunyan-rotating-filestream" "^0.0.7"
     "@tryghost/elasticsearch" "^3.0.17"
