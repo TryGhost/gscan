@@ -1230,10 +1230,10 @@
     "@tryghost/errors" "^1.3.1"
     "@tryghost/request" "^1.0.3"
 
-"@tryghost/logging@^2.4.11", "@tryghost/logging@^2.4.7":
-  version "2.4.12"
-  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.12.tgz#414a4710e400eb1d023052314437c3872f993b7b"
-  integrity sha512-nfGIT6T8PjBD8LWWLM2I09goAxDfzwVHwPX1HtYRoJWyPrZnRvxg+XiXvkoMpIDd9ynNC2nogbUrEVQfMRk6gg==
+"@tryghost/logging@^2.4.13", "@tryghost/logging@^2.4.7":
+  version "2.4.13"
+  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.13.tgz#61a6ab80d6367d8344e8779e67cb490ebd050f3f"
+  integrity sha512-BuYV1Wufds6TEeb+muRYJURD3YN216ZJBSZnOAFTWE4oC0q58o21VvQNFk8B/FJP9xnDF1Me6gOuutKQMWhSMg==
   dependencies:
     "@tryghost/bunyan-rotating-filestream" "^0.0.7"
     "@tryghost/elasticsearch" "^3.0.17"
@@ -1332,12 +1332,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.41"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.41.tgz#da434acc2062ff92954c6cf5391f5247e726a8a6"
-  integrity sha512-c5SSju0A9nb53i0a1I2TsDv7UmlXVz9uoKMMz+jZufe1L9+w8V2DFl9o59OjKqZDXUPIInkICJ8qhBnfC6lHog==
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.43.tgz#ab10a0877304f1ee2e015cc25008b6d07dda626c"
+  integrity sha512-Jm/s+iKcntxFif1HjOBltCOON3AVyu4L48CjOdR20uErEOlJJxJQ5R2hvciLlOlnjWL8nYubM9VjgYecyj2bWQ==
   dependencies:
     "@tryghost/debug" "^0.1.28"
-    "@tryghost/logging" "^2.4.11"
+    "@tryghost/logging" "^2.4.13"
 
 "@tryghost/tpl@^0.1.28":
   version "0.1.28"
