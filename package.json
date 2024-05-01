@@ -52,7 +52,7 @@
     "@tryghost/nql": "^0.12.0",
     "@tryghost/pretty-cli": "^1.2.38",
     "@tryghost/server": "^0.1.37",
-    "@tryghost/zip": "^1.1.38",
+    "@tryghost/zip": "^1.1.42",
     "chalk": "^4.1.2",
     "common-tags": "^1.8.2",
     "express": "^4.18.2",
