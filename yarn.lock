@@ -1277,9 +1277,9 @@
     date-fns "^2.28.0"
 
 "@tryghost/nql@^0.12.0":
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.12.2.tgz#e2f4d53a6025a5cb1b1dac570388349ad6e924f8"
-  integrity sha512-CfVm+wXznAPoPfZqUMjxSdkZAIaw2svx5mG3DnQwm2zuBOSY4WMG9LLIyokCa8TkgHmqyJoE7H0NxZmrOI4lcA==
+  version "0.12.3"
+  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.12.3.tgz#260f0aed0c3bee85b046fcd8ee24dd567b5ed451"
+  integrity sha512-bG0U+RMLixLTFkLM4DaL9uDhPCoTlxyMzZOIibZnBHmxi1lMM5cgUEGV38IwD92laIfS2t5BvAONKGhsGoVVVg==
   dependencies:
     "@tryghost/mongo-knex" "^0.9.0"
     "@tryghost/mongo-utils" "^0.6.2"
