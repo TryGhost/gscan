@@ -1192,14 +1192,14 @@
     long-timeout "^0.1.1"
 
 "@tryghost/config@^0.2.18":
-  version "0.2.22"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.22.tgz#763dd7f5003516ed1425dc4c11ec020b9eea32e0"
-  integrity sha512-Ubj9UKql41IXPdidYTc6wSH+lzZ7o1Eosu76bTS1BF694bdXvQK9+RxHMvgyemUD/ebJ04GDJf6+h1bRVt2xGQ==
+  version "0.2.23"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.23.tgz#2e7841a81181e9a26751fac97c1ed8640f629db8"
+  integrity sha512-moR4YyU55PMQiHys6HX8bd8E+J5U1wKLB+/NI/GWjSWCDNjE2TDFR5sH2rs3lTilQdCNbqqgnkuWtlYmqDJnxQ==
   dependencies:
-    "@tryghost/root-utils" "^0.3.28"
+    "@tryghost/root-utils" "^0.3.29"
     nconf "^0.12.0"
 
-"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.30", "@tryghost/debug@^0.1.31":
+"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.31":
   version "0.1.31"
   resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.31.tgz#242fff08b1380dc711e27134d48de2cc07042761"
   integrity sha512-h2uYaAsr71oUvHHBaBWq3pY9ej/0jYnx8i4AhcTwAnEFxmPF0yEB14Hb3oxYhYKnlm5rD7u64CvoCtoM3vmyew==
@@ -1232,7 +1232,7 @@
     "@tryghost/errors" "^1.3.3"
     "@tryghost/request" "^1.0.6"
 
-"@tryghost/logging@^2.4.15", "@tryghost/logging@^2.4.7":
+"@tryghost/logging@^2.4.16", "@tryghost/logging@^2.4.7":
   version "2.4.16"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.16.tgz#d723d38134e7a29a824d9de6bf31f5004f6dcaa0"
   integrity sha512-HqnrFAfcP1m8ZPArwNyoKofkkWdwSN7bFmeKvDg3alDw6bxHwYoYbpxNBTWO1DJJDr5E2VH/STPC2GAoabElEQ==
@@ -1325,7 +1325,7 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/root-utils@^0.3.28", "@tryghost/root-utils@^0.3.29":
+"@tryghost/root-utils@^0.3.29":
   version "0.3.29"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.29.tgz#d6e941b586da8d14f3fbb82e44e20503377f8cf6"
   integrity sha512-IM/Yt0iR+y4a6t7Lt5QQrgonlTXxocmAOQN9IOge4BmRlCwXL3RzTJo2jIqVxMHWlMpaK65jVL4frWQ+ROBUxw==
@@ -1334,12 +1334,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.45"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.45.tgz#dbe375f01a72f3ab928906b5f03eb62ca19c11f9"
-  integrity sha512-kssWEstKGe9NcOpp96ceNvSwIy4rbENRu4aN0KgKyAECnTUC3ZRD6I6eqgLXRLKy7kIghCX9Z3jSdYvzFLzwog==
+  version "0.1.46"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.46.tgz#5bc1a2298c4acfb8425b64a3cf9d1840d7e92f1c"
+  integrity sha512-qB6i5OsKnwMgd65Q+QoHDRn0Tgcapt/vj37/EXhAvl+mlStcxSTIvjEMkilcQNDYrf7ssL/w0RdpnNniCbFIkA==
   dependencies:
-    "@tryghost/debug" "^0.1.30"
-    "@tryghost/logging" "^2.4.15"
+    "@tryghost/debug" "^0.1.31"
+    "@tryghost/logging" "^2.4.16"
 
 "@tryghost/tpl@^0.1.31":
   version "0.1.31"
@@ -3789,9 +3789,9 @@ lowercase-keys@^3.0.0:
   integrity sha512-ozCC6gdQ+glXOQsveKD0YsDy8DSQFjDTz4zyzEHNV5+JP5D62LmfDZ6o1cycFx9ouG940M5dE8C8CTewdj2YWQ==
 
 lru-cache@^10.2.0:
-  version "10.2.2"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.2.tgz#48206bc114c1252940c41b25b41af5b545aca878"
-  integrity sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==
+  version "10.3.0"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.3.0.tgz#4a4aaf10c84658ab70f79a85a9a3f1e1fb11196b"
+  integrity sha512-CQl19J/g+Hbjbv4Y3mFNNXFEL/5t/KCg8POCuUqd4rMKjGG+j1ybER83hxV58zL+dFI1PTkt3GNFSHRt+d8qEQ==
 
 make-dir@^3.0.0:
   version "3.1.0"
@@ -3886,9 +3886,9 @@ minimatch@^5.0.1, minimatch@^5.1.0:
     brace-expansion "^2.0.1"
 
 minimatch@^9.0.4:
-  version "9.0.4"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.4.tgz#8e49c731d1749cbec05050ee5145147b32496a51"
-  integrity sha512-KqWh+VchfxcMNRAJjj2tnsSJdNbHsVgnkBhTNrW7AjVo6OvLtxw8zfT9oLw1JSohlFzJ8jCoTgaoXvJ+kHt6fw==
+  version "9.0.5"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.5.tgz#d74f9dd6b57d83d8e98cfb82133b03978bc929e5"
+  integrity sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==
   dependencies:
     brace-expansion "^2.0.1"
 
