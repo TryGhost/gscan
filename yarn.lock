@@ -1121,7 +1121,7 @@
     "@tryghost/debug" "^0.1.31"
     split2 "4.2.0"
 
-"@tryghost/errors@^1.2.26", "@tryghost/errors@^1.3.3", "@tryghost/errors@^1.3.4":
+"@tryghost/errors@^1.2.26", "@tryghost/errors@^1.3.4":
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-1.3.4.tgz#50d6d0214fc343f41d151e4fd171f0f8a4adb530"
   integrity sha512-4f2hFFnIiUonz2dS324OALRYR8+HoCpcKGhOY+UO0ymq+6DtMQtXa0CWciRl+t4sd9BBjJr5oX2zQyUprF0OFA==
@@ -1273,11 +1273,11 @@
     semver "^7.3.5"
 
 "@tryghost/zip@^1.1.42":
-  version "1.1.44"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.44.tgz#56343780301033a62b1c74e779f3fd5c8e67147f"
-  integrity sha512-MDrfghfSyKoLLBeFDDG3QSkbjmf19h1ImASrvMZX+O1J2RZc5z6W34II3PmDqNFaeJ5d5YUPIf6/zk0XDQrbcQ==
+  version "1.1.45"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-1.1.45.tgz#22a1462c10d617ca2f8919d3cbc7b7c08ea0a0f1"
+  integrity sha512-bKu5tJjXrWzizLmuwj9pyGe26FxDpT2gPjWgxycBiKBo0UdEw6yfCEu+H3pQnbxbQSw3El3IYGag6zSTbkbaBg==
   dependencies:
-    "@tryghost/errors" "^1.3.3"
+    "@tryghost/errors" "^1.3.4"
     archiver "^5.0.0"
     extract-zip "^2.0.1"
 
