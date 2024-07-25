@@ -1,0 +1,11 @@
+{{!-- invalid usage of t helper. Should be detected --}}
+{{ t ”” }}
+
+{{primary_author.cover_image}}
+
+{{!-- invalid usage of author property. Will not be detected. --}}
+{{author_cover_image}}
+
+{{#if primary_author}}
+    {{cover_image}}
+{{/if}}
