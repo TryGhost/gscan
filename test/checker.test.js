@@ -306,7 +306,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(117);
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -411,6 +411,7 @@ describe('Checker', function () {
                 'GS080-FEACH-POSTS',
                 'GS080-CARD-LAST4',
                 'GS080-FEACH-PV',
+                'GS080-NO-EMPTY-TRANSLATIONS',
                 'GS090-NO-IMG-URL-IN-CONDITIONALS',
                 'GS090-NO-UNKNOWN-CUSTOM-THEME-SETTINGS',
                 'GS090-NO-UNKNOWN-CUSTOM-THEME-SELECT-VALUE-IN-MATCH',
