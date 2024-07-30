@@ -1,5 +1,5 @@
 # ---- Base Node with Alpine ----
-FROM node:18.20.3-alpine3.18 AS base
+FROM node:20.13.1-alpine3.18 AS base
 # Set working directory in the container
 WORKDIR /app
 # Copy package.json and yarn.lock files to the workspace
@@ -16,7 +16,7 @@ RUN cp -R node_modules prod_node_modules
 RUN yarn install --frozen-lockfile
 
 # ---- Release ----
-FROM node:18.20.3-alpine3.18 AS release
+FROM node:20.13.1-alpine3.18 AS release
 # Set working directory
 WORKDIR /app
 # Copy production node_modules
