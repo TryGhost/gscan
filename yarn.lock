@@ -1101,7 +1101,7 @@
     "@tryghost/root-utils" "^0.3.30"
     nconf "^0.12.0"
 
-"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.32", "@tryghost/debug@^0.1.33":
+"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.33":
   version "0.1.33"
   resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.33.tgz#d824ab20d2dffc6ee6c4ec090a79f3804b8acb79"
   integrity sha512-aYmfmrXDI974G8ahyT4bPHMthpqiEDXgTXGJ685ZKNB5S2ak/6R0pvhOA6c/QhHihocJG40K2ylzlPqcQq/oWg==
@@ -1134,7 +1134,7 @@
     "@tryghost/errors" "^1.3.6"
     "@tryghost/request" "^1.0.9"
 
-"@tryghost/logging@^2.4.18", "@tryghost/logging@^2.4.7":
+"@tryghost/logging@^2.4.19", "@tryghost/logging@^2.4.7":
   version "2.4.19"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.19.tgz#8aab372486268b6fc8e31615b6e79d59b299a44f"
   integrity sha512-NCCElue4AqvfhLnJLjDDR1uXBXQwfDOuGZTSI9/relqj+cfxwezQuPGG66EkPEB29ZAdtnHLOqMJTF2k6/s/hw==
@@ -1236,12 +1236,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.48"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.48.tgz#f13ac00427ae8047bb159a193a891d446b2b1486"
-  integrity sha512-lH1lL3fvUyR1IMLDEHzlXIAtKl5395UqKkYwGT2Jb6HYsokU/X/89Z/d+qctm/peNfaoQum3Lq5RufFBREXLdQ==
+  version "0.1.49"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.49.tgz#d4e23d046f26a45a3f4cd86f6e7daf8c30a0d7fc"
+  integrity sha512-uoGj/qMudVXrhROGoFMnVMEsbXas8f3m7fwsgFVlW+Ue61dCvzStgbo75PelFTP6TcyTxips/1e0n6RfGlqFlw==
   dependencies:
-    "@tryghost/debug" "^0.1.32"
-    "@tryghost/logging" "^2.4.18"
+    "@tryghost/debug" "^0.1.33"
+    "@tryghost/logging" "^2.4.19"
 
 "@tryghost/tpl@^0.1.33":
   version "0.1.33"
