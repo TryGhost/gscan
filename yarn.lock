@@ -1094,11 +1094,11 @@
     long-timeout "^0.1.1"
 
 "@tryghost/config@^0.2.18":
-  version "0.2.24"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.24.tgz#8fb0d9714aafaa45058fc32d716d82b693fa88f3"
-  integrity sha512-khwAE0tej0ZaScERzkIkA3+FbrGb8zJtlcQhoJwCgnjOnsRHxopXKFLKqnlhq7T7wu8R6f6WVAOx6ihh2hrm6Q==
+  version "0.2.25"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.25.tgz#10aa6affad99224957c06ec345f9f776b93542c3"
+  integrity sha512-xo+JD2EjjxZ6WR+7Js4PtIT576IolZt2ABG/6FNQUL3t+RkKuqBDQJ0db/qypOdZ1gGAGrjLGoa1ZOexNM85hg==
   dependencies:
-    "@tryghost/root-utils" "^0.3.30"
+    "@tryghost/root-utils" "^0.3.31"
     nconf "^0.12.0"
 
 "@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.32":
@@ -1227,10 +1227,10 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/root-utils@^0.3.30":
-  version "0.3.30"
-  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.30.tgz#766818cd4394b683338f4d9fccc52c435f77b0b5"
-  integrity sha512-Pg9d0Igl3OGGKZ5RrCe6Wq8qAW9ABIjbn31WKlsO6OLLwRlH2ruNZXU8GBjNL3qrPEZwyI2FyNNDjSR+5gKXag==
+"@tryghost/root-utils@^0.3.30", "@tryghost/root-utils@^0.3.31":
+  version "0.3.31"
+  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.31.tgz#68d17b6813970b9c1b32e4fb5b142fea29dfe6cd"
+  integrity sha512-6TKu40lh7Gyxwm3jE3nrfT7mZyUb9rN6q8IgeXqhndRV4CSBZLlVgbTgHpdrWo3mSVuMPU+kzoYyMT6yDWrB/A==
   dependencies:
     caller "^1.0.1"
     find-root "^1.1.0"
@@ -1516,9 +1516,9 @@ async@1.x:
   integrity sha512-nSVgobk4rv61R9PUSDtYt7mPVB2olxNR5RWJcAsH676/ef11bUZwvu7+RGYrYauVdDPcO519v68wRhXQtxsV9w==
 
 async@^3.0.0, async@^3.2.4:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/async/-/async-3.2.5.tgz#ebd52a8fdaf7a2289a24df399f8d8485c8a46b66"
-  integrity sha512-baNZyqaaLhyLVKm/DlvdW051MSgO6b8eVfIezl9E5PqWxFgzLm/wQntEW4zOytVburDEr0JlALEpdOFwvErLsg==
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/async/-/async-3.2.6.tgz#1b0728e14929d51b85b449b7f06e27c1145e38ce"
+  integrity sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==
 
 asynckit@^0.4.0:
   version "0.4.0"
