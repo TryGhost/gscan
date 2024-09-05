@@ -49,7 +49,7 @@
     "@tryghost/debug": "^0.1.26",
     "@tryghost/errors": "^1.2.26",
     "@tryghost/logging": "^2.4.7",
-    "@tryghost/nql": "^0.12.0",
+    "@tryghost/nql": "^0.12.5",
     "@tryghost/pretty-cli": "^1.2.38",
     "@tryghost/server": "^0.1.37",
     "@tryghost/zip": "^1.1.42",
