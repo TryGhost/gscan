@@ -4,6 +4,22 @@ const {check} = require('../lib/checker');
 process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
+    it('can read theme but skip checks', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'canary', skipChecks: true}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(0);
+            theme.results.fail.should.be.an.Object().with.keys();
+
+            done();
+        }).catch(done);
+    });
+
     it('returns a valid theme when running all checks', function (done) {
         check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
