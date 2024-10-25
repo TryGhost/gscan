@@ -83,11 +83,16 @@ gscan.checkZip({
 
 ## Development
 
-### Run
+### Run in browser (for zip uploads)
 
 - Either dev mode: `yarn dev`
 - Or standard server: `yarn start`
 - View: http://localhost:2369
+
+### Run on command line
+
+- zip file: `./bin/cli.js -z /path/to/your/theme.zip`
+- directory: `./bin/cli.js /path/to/directory`
 
 ### Publish
 
