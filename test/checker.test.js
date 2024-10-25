@@ -4,6 +4,22 @@ const {check} = require('../lib/checker');
 process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
+    it('can read theme but skip checks', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'canary', skipChecks: true}).then((theme) => {
+            theme.should.be.a.ValidThemeObject();
+
+            theme.files.should.eql([
+                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
+                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
+            ]);
+
+            theme.results.pass.should.be.an.Array().with.lengthOf(0);
+            theme.results.fail.should.be.an.Object().with.keys();
+
+            done();
+        }).catch(done);
+    });
+
     it('returns a valid theme when running all checks', function (done) {
         check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
@@ -306,7 +322,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(117);
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -411,6 +427,7 @@ describe('Checker', function () {
                 'GS080-FEACH-POSTS',
                 'GS080-CARD-LAST4',
                 'GS080-FEACH-PV',
+                'GS080-NO-EMPTY-TRANSLATIONS',
                 'GS090-NO-IMG-URL-IN-CONDITIONALS',
                 'GS090-NO-UNKNOWN-CUSTOM-THEME-SETTINGS',
                 'GS090-NO-UNKNOWN-CUSTOM-THEME-SELECT-VALUE-IN-MATCH',

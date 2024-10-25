@@ -2,6 +2,9 @@ var should = require('should'), // eslint-disable-line no-unused-vars
     utils = require('./utils'),
     thisCheck = require('../lib/checks/010-package-json');
 
+const fs = require('fs').promises;
+const path = require('path');
+
 describe('010 package.json', function () {
     describe('v1:', function () {
         const options = {checkVersion: 'v1'};
@@ -32,32 +35,47 @@ describe('010 package.json', function () {
             }).catch(done);
         });
 
-        it('should output error for invalid package.json (parsing)', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/parse-error', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+        it('should output error for invalid package.json (parsing)', async function () {
+            const output = await utils.testCheck(thisCheck, '010-packagejson/parse-error', options);
+            output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+            output.results.pass.should.be.an.Array().with.lengthOf(0);
 
-                // can't parse package.json and all fields are missing + invalid
-                output.results.fail.should.be.an.Object().with.keys(
-                    'GS010-PJ-PARSE',
-                    'GS010-PJ-NAME-REQ',
-                    'GS010-PJ-NAME-LC',
-                    'GS010-PJ-NAME-HY',
-                    'GS010-PJ-VERSION-SEM',
-                    'GS010-PJ-VERSION-REQ',
-                    'GS010-PJ-AUT-EM-VAL',
-                    'GS010-PJ-AUT-EM-REQ',
-                    'GS010-PJ-CONF-PPP'
-                );
+            // can't parse package.json and all fields are missing + invalid
+            output.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP'
+            );
 
-                output.results.fail['GS010-PJ-PARSE'].should.be.a.ValidFailObject();
-                output.results.fail['GS010-PJ-PARSE'].failures.length.should.eql(1);
-                output.results.fail['GS010-PJ-PARSE'].failures[0].ref.should.eql('package.json');
-                output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.containEql('Unexpected token');
+            output.results.fail['GS010-PJ-PARSE'].should.be.a.ValidFailObject();
+            output.results.fail['GS010-PJ-PARSE'].failures.length.should.eql(1);
+            output.results.fail['GS010-PJ-PARSE'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            // to check the message, we should compare it against the actual error from JSON.parse
+            // we can't just use a hardcoded string because it differs between versions (Node 18 + 20)
+
+            const packageJsonContents = await fs.readFile(path.join(__dirname, './fixtures/themes/010-packagejson/parse-error/package.json'), 'utf8');
+
+            let expectedErrMessage;
+            try {
+                JSON.parse(packageJsonContents);
+            } catch (err) {
+                expectedErrMessage = err.message;
+            }
+
+            if (!expectedErrMessage) {
+                // This should never happen - because the package.json is invalid
+                throw new Error('This should never happen');
+            }
+
+            output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.eql(expectedErrMessage);
         });
 
         it('valid fields', function (done) {
