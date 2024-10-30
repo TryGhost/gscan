@@ -11,10 +11,9 @@ describe('051 custom fonts CSS properties', function () {
 
             output.results.pass.should.be.an.Array().which.is.empty();
 
-            output.results.fail.should.be.an.Object().with.keys('GS051-CUSTOM-FONT-HEADING', 'GS051-CUSTOM-FONT-BODY');
+            output.results.fail.should.be.an.Object().with.keys('GS051-CUSTOM-FONTS');
 
-            output.results.fail['GS051-CUSTOM-FONT-HEADING'].should.be.a.ValidFailObject();
-            output.results.fail['GS051-CUSTOM-FONT-BODY'].should.be.a.ValidFailObject();
+            output.results.fail['GS051-CUSTOM-FONTS'].should.be.a.ValidFailObject();
 
             done();
         }).catch(done);
@@ -24,8 +23,8 @@ describe('051 custom fonts CSS properties', function () {
         utils.testCheck(thisCheck, '051-custom-fonts-css-properties/valid', options).then((output) => {
             output.should.be.a.ValidThemeObject();
 
-            output.results.pass.should.be.an.Array().with.lengthOf(2);
-            output.results.pass.should.containEql('GS051-CUSTOM-FONT-HEADING', 'GS051-CUSTOM-FONT-BODY');
+            output.results.pass.should.be.an.Array().with.lengthOf(1);
+            output.results.pass.should.containEql('GS051-CUSTOM-FONTS');
 
             output.results.fail.should.be.an.Object().which.is.empty();
 
