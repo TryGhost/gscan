@@ -380,7 +380,7 @@ describe('Format', function () {
                 theme.results.recommendation.all.length.should.eql(2);
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
-                theme.results.warning.all.length.should.eql(6);
+                theme.results.warning.all.length.should.eql(7);
                 theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(23);
@@ -414,7 +414,7 @@ describe('Format', function () {
                 theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
 
                 theme.results.error.all.length.should.eql(105);
-                theme.results.warning.all.length.should.eql(8);
+                theme.results.warning.all.length.should.eql(9);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
