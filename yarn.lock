@@ -34,9 +34,9 @@
     picocolors "^1.0.0"
 
 "@babel/runtime@^7.21.0":
-  version "7.26.7"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.7.tgz#f4e7fe527cd710f8dc0618610b61b4b060c3c341"
-  integrity sha512-AOPI3D+a8dXnja+iwsUqGRjr1BbZIe771sXdapOtYI531gSqpi92vXivKcq2asu/DFpdl1ceFAKZyRzK2PCVcQ==
+  version "7.26.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.26.9.tgz#aa4c6facc65b9cb3f87d75125ffd47781b475433"
+  integrity sha512-aA63XwOkcl4xxQa3HjPMqOP6LiK0ZDv3mUPYEFXkpHbaFjtGggE1A61FjFzJnB+p7/oy2gA8E+rcBNl/zC1tMg==
   dependencies:
     regenerator-runtime "^0.14.0"
 
@@ -1088,14 +1088,14 @@
     long-timeout "^0.1.1"
 
 "@tryghost/config@^0.2.18":
-  version "0.2.25"
-  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.25.tgz#10aa6affad99224957c06ec345f9f776b93542c3"
-  integrity sha512-xo+JD2EjjxZ6WR+7Js4PtIT576IolZt2ABG/6FNQUL3t+RkKuqBDQJ0db/qypOdZ1gGAGrjLGoa1ZOexNM85hg==
+  version "0.2.26"
+  resolved "https://registry.yarnpkg.com/@tryghost/config/-/config-0.2.26.tgz#1d7dcbe6d188291cf63a4c84631ef8456ff06fdd"
+  integrity sha512-GNmf0/BpR7w2kNxcwDUd/aw3/WlksmCh3UgU0GQBU08KNo8SmkFB6QZ2NeRk4ZIX9rIGV6eF+nWBW8IUkcrW5w==
   dependencies:
-    "@tryghost/root-utils" "^0.3.31"
+    "@tryghost/root-utils" "^0.3.32"
     nconf "^0.12.0"
 
-"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.33", "@tryghost/debug@^0.1.34":
+"@tryghost/debug@^0.1.26", "@tryghost/debug@^0.1.34":
   version "0.1.34"
   resolved "https://registry.yarnpkg.com/@tryghost/debug/-/debug-0.1.34.tgz#cac7100b092b358e54637ed620dc9cd9ac76355c"
   integrity sha512-TuTI/BCktv3NY+QhJWrcDBRN6qxgy7zgKHj18MzCZEqPVRXdzYdsd8ldO/Q7jSNgHjf0UHuwDTc5VFuNzCUABA==
@@ -1128,7 +1128,7 @@
     "@tryghost/errors" "^1.3.7"
     "@tryghost/request" "^1.0.10"
 
-"@tryghost/logging@^2.4.19", "@tryghost/logging@^2.4.7":
+"@tryghost/logging@^2.4.20", "@tryghost/logging@^2.4.7":
   version "2.4.20"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.4.20.tgz#251cff0911014829816d865667104fcd4ac25b7f"
   integrity sha512-7fpg8xuJHrgAgGhtJjY9nH5vAj8RY2SvcPLkOvD/7leou47ZdSu15l+bUBNFAsx9mAI7AdozDRCAv3WuTkV7cw==
@@ -1221,7 +1221,7 @@
     caller "^1.0.1"
     find-root "^1.1.0"
 
-"@tryghost/root-utils@^0.3.31", "@tryghost/root-utils@^0.3.32":
+"@tryghost/root-utils@^0.3.32":
   version "0.3.32"
   resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-0.3.32.tgz#686acf0aa4e1ab4b2578fc0acf9fe552d51f73f1"
   integrity sha512-fR//LmG+5iapR6sHsh727nD5xu0cLPtEhPpsI8cy/chaBADmJyWMr6ewzq/HenjKxyOH6LIT7Bdmv+kEUvu+Fg==
@@ -1230,12 +1230,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.49"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.49.tgz#d4e23d046f26a45a3f4cd86f6e7daf8c30a0d7fc"
-  integrity sha512-uoGj/qMudVXrhROGoFMnVMEsbXas8f3m7fwsgFVlW+Ue61dCvzStgbo75PelFTP6TcyTxips/1e0n6RfGlqFlw==
+  version "0.1.50"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.50.tgz#bf834bd399d8a6fe865c89c08cba56e0f903df25"
+  integrity sha512-/8QNSR93xPkB3RY4LQ8nbyG7dT2YNy8q9TAsy8sEu3cHio+d71tSqFtlSG4aMZBNHROKYjolYh67bhqMmMRGqg==
   dependencies:
-    "@tryghost/debug" "^0.1.33"
-    "@tryghost/logging" "^2.4.19"
+    "@tryghost/debug" "^0.1.34"
+    "@tryghost/logging" "^2.4.20"
 
 "@tryghost/tpl@^0.1.34":
   version "0.1.34"
@@ -1278,9 +1278,9 @@
   integrity sha512-1m0bIFVc7eJWyve9S0RnuRgcQqF/Xd5QsUZAZeQFr1Q3/p9JWoQQEqmVy+DPTNpGXwhgIetAoYF8JSc33q29QA==
 
 "@types/node@*":
-  version "22.13.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.13.2.tgz#6f401c5ccadac75354f5652128e9fcc3b0cf23b7"
-  integrity sha512-Z+r8y3XL9ZpI2EY52YYygAFmo2/oWfNSj4BCpAXE2McAexDk8VcnBMGC9Djn9gTKt4d2T/hhXqmPzo4hfIXtTg==
+  version "22.13.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.13.4.tgz#3fe454d77cd4a2d73c214008b3e331bfaaf5038a"
+  integrity sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg==
   dependencies:
     undici-types "~6.20.0"
 
@@ -1700,9 +1700,9 @@ cacheable-request@^6.0.0:
     responselike "^1.0.2"
 
 call-bind-apply-helpers@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.1.tgz#32e5892e6361b29b0b545ba6f7763378daca2840"
-  integrity sha512-BhYE+WDaywFg2TBWYNXAE+8B1ATnThNBqXHP5nQu0jWJdVvY2hvkpyB3qOmtmDePiS5/BDQ8wASEWGMWRG148g==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/call-bind-apply-helpers/-/call-bind-apply-helpers-1.0.2.tgz#4b5428c222be985d79c3d82657479dbe0b59b2d6"
+  integrity sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==
   dependencies:
     es-errors "^1.3.0"
     function-bind "^1.1.2"
@@ -2939,7 +2939,7 @@ glob-parent@^6.0.1:
   dependencies:
     is-glob "^4.0.3"
 
-glob@^10.4.5:
+glob@^10.4.2, glob@^10.4.5:
   version "10.4.5"
   resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
@@ -2950,18 +2950,6 @@ glob@^10.4.5:
     minipass "^7.1.2"
     package-json-from-dist "^1.0.0"
     path-scurry "^1.11.1"
-
-glob@^11.0.0:
-  version "11.0.1"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-11.0.1.tgz#1c3aef9a59d680e611b53dcd24bb8639cef064d9"
-  integrity sha512-zrQDm8XPnYEKawJScsnM0QzobJxlT/kHOOlRTio8IH/GrmxRE5fjllkzdaHclIuNjUQTJYH2xHNIGfdpJkDJUw==
-  dependencies:
-    foreground-child "^3.1.0"
-    jackspeak "^4.0.1"
-    minimatch "^10.0.0"
-    minipass "^7.1.2"
-    package-json-from-dist "^1.0.0"
-    path-scurry "^2.0.0"
 
 glob@^5.0.15:
   version "5.0.15"
@@ -3415,21 +3403,14 @@ jackspeak@^3.1.2:
   optionalDependencies:
     "@pkgjs/parseargs" "^0.11.0"
 
-jackspeak@^4.0.1:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/jackspeak/-/jackspeak-4.0.2.tgz#11f9468a3730c6ff6f56823a820d7e3be9bef015"
-  integrity sha512-bZsjR/iRjl1Nk1UkjGpAzLNfQtzuijhn2g+pbZb98HQ1Gk8vM9hfbxeMBP+M2/UUdwj0RqGG3mlvk2MsAqwvEw==
-  dependencies:
-    "@isaacs/cliui" "^8.0.2"
-
 js-beautify@^1.13.11:
-  version "1.15.2"
-  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.15.2.tgz#9b1e6471bcfded2052e6a4af784c15718b1bd522"
-  integrity sha512-mcG6CHJxxih+EFAbd5NEBwrosIs6MoJmiNLFYN6kj5SeJMf7n29Ii/H4lt6zGTvmdB9AApuj5cs4zydjuLeqjw==
+  version "1.15.3"
+  resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.15.3.tgz#25ef18e9a0fda0b7fd5896b28bfb6ce0e642643c"
+  integrity sha512-rKKGuyTxGNlyN4EQKWzNndzXpi0bOl8Gl8YQAW1as/oMz0XhD6sHJO1hTvoBDOSzKuJb9WkwoAb34FfdkKMv2A==
   dependencies:
     config-chain "^1.1.13"
     editorconfig "^1.0.4"
-    glob "^11.0.0"
+    glob "^10.4.2"
     js-cookie "^3.0.5"
     nopt "^8.0.0"
 
@@ -3697,11 +3678,6 @@ lru-cache@^10.2.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
-lru-cache@^11.0.0:
-  version "11.0.2"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.0.2.tgz#fbd8e7cf8211f5e7e5d91905c415a3f55755ca39"
-  integrity sha512-123qHRfJBmo2jXDbo/a5YOQrJoHF/GNQTLzQ5+IdK5pWpceK17yRc6ozlWd25FxvGKQbIUs91fDFkXmDHTKcyA==
-
 make-dir@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-3.1.0.tgz#415e967046b3a7f1d185277d84aa58203726a13f"
@@ -3782,13 +3758,6 @@ minimatch@9.0.1:
   version "9.0.1"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.1.tgz#8a555f541cf976c622daf078bb28f29fb927c253"
   integrity sha512-0jWhJpD/MdhPXwPuiRkCbfYfSKp2qnn2eOc279qI7f+osl/l+prKSrvhg157zSYvx/1nmgn2NqdT6k2Z7zSH9w==
-  dependencies:
-    brace-expansion "^2.0.1"
-
-minimatch@^10.0.0:
-  version "10.0.1"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-10.0.1.tgz#ce0521856b453c86e25f2c4c0d03e6ff7ddc440b"
-  integrity sha512-ethXTt3SGGR+95gudmqJ1eNhRO7eGEGIgYA9vnPatK4/etz2MEVDno5GMCibdMTuBMyElzIlgxMna3K94XDIDQ==
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -4174,14 +4143,6 @@ path-scurry@^1.11.1:
   dependencies:
     lru-cache "^10.2.0"
     minipass "^5.0.0 || ^6.0.2 || ^7.0.0"
-
-path-scurry@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/path-scurry/-/path-scurry-2.0.0.tgz#9f052289f23ad8bf9397a2a0425e7b8615c58580"
-  integrity sha512-ypGJsmGtdXUOeM5u93TyeIEfEhM6s+ljAhrk5vAvSx8uyY/02OvrZnA0YNGUrPXfpJMgI1ODd3nwz8Npx4O4cg==
-  dependencies:
-    lru-cache "^11.0.0"
-    minipass "^7.1.2"
 
 path-to-regexp@0.1.12:
   version "0.1.12"
