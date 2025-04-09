@@ -68,7 +68,7 @@
     "validator": "^13.0.0"
   },
   "devDependencies": {
-    "@tryghost/pro-ship": "1.0.6",
+    "@tryghost/pro-ship": "1.0.7",
     "eslint": "8.1.0",
     "eslint-plugin-ghost": "2.1.0",
     "istanbul": "0.4.5",

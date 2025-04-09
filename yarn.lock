@@ -1189,10 +1189,10 @@
     lodash "^4.17.21"
     prettyjson "^1.2.5"
 
-"@tryghost/pro-ship@1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.0.6.tgz#5420a399af8beb697600baee0e673b8a1f5b5121"
-  integrity sha512-r1toCW5krT5PdqhnxQeVR/dSxKqHQ28drNl77QUNFlCjwXDTkQD4rkSYyDio8KGDbpxC1qDaWtHVxM+zUGx1Rg==
+"@tryghost/pro-ship@1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.0.7.tgz#cd2b5f0f52774d20129a4026441ad16391d2a0c2"
+  integrity sha512-sWmfGE1eC4HEhtjEpnfqFhD2n8cb0H2mxagtFkL0OzlOLXeL6cWOgSVUNwXL2eIJiIGLIeAz69xaRG2hK1CZqQ==
   dependencies:
     "@tryghost/root-utils" "0.3.24"
 
