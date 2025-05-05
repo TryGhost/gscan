@@ -141,7 +141,7 @@ function outputResult(result, options) {
                 ui.log(message);
             });
         } else {
-            ui.log(`${chalk.bold('Affected Files:')} ${_.map(result.failures, 'ref')}`);
+            ui.log(`${chalk.bold('Affected Files:')} ${_.uniq(_.map(result.failures, 'ref')).join(', ')}`);
         }
     }
 
