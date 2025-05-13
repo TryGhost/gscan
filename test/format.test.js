@@ -535,7 +535,7 @@ describe('Format', function () {
 
                 theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
                 theme.results.error.byFiles['default.hbs'].length.should.eql(21);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(65);
+                theme.results.error.byFiles['post.hbs'].length.should.eql(66);
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(14);
 
