@@ -72,7 +72,7 @@
     "eslint": "8.1.0",
     "eslint-plugin-ghost": "2.1.0",
     "istanbul": "0.4.5",
-    "mocha": "11.3.0",
+    "mocha": "11.4.0",
     "node-fetch": "3.3.2",
     "nodemon": "2.0.7",
     "rewire": "6.0.0",
