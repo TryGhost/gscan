@@ -1171,9 +1171,9 @@
     mingo "^2.2.2"
 
 "@tryghost/pretty-cli@^1.2.38":
-  version "1.2.46"
-  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.46.tgz#6054fba6f6d9bc6d90b01a9225b1da8c7bd2ec01"
-  integrity sha512-PKq4BT7NVO5MBjlvF7lcN6fdaDHsiV3JoE6Kflms77McKA0PyXISVGia3b3GgEsLxsv5AJQ2cAsgDsFb/xWBPw==
+  version "1.2.47"
+  resolved "https://registry.yarnpkg.com/@tryghost/pretty-cli/-/pretty-cli-1.2.47.tgz#314f06b12c486ecdd6547f0ffaf2274e02047531"
+  integrity sha512-Pcnq8q+ZxOHuaapxKs4Tvv/0HwilTLzI2YsF2hK4ganjsQbUBYJdHcb5O4+hTc3p5OIwfhjbmpl3XiLQAjWM2Q==
   dependencies:
     chalk "^4.1.0"
     sywac "^1.3.0"
