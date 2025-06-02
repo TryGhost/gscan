@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
     it('can read theme but skip checks', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary', skipChecks: true}).then((theme) => {
+        check(themePath('is-empty'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -467,7 +467,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest (v4) version if canary is passed', function (done) {
+    it('checks for a v5 version if canary is passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -476,33 +476,9 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
-
-            theme.results.fail.should.be.an.Object().with.keys(
-            );
-
-            theme.checkedVersion.should.equal('4.x');
-            done();
-        }).catch(done);
-    });
-
-    it('checks for a canary (v4) version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
-
-            theme.files.should.eql([
-                {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
-                {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
-            ]);
-
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
-
-            theme.results.fail.should.be.an.Object().with.keys(
-            );
-
-            theme.checkedVersion.should.equal('4.x');
+            // Short version of test above
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
+            theme.checkedVersion.should.equal('5.x');
             done();
         }).catch(done);
     });

@@ -57,7 +57,7 @@ prettyCLI
         desc: 'Check theme for Ghost 5.0 compatibility'
     })
     .boolean('-c, --canary', {
-        desc: 'Check theme for upcoming Ghost version compatibility'
+        desc: 'Check theme for Ghost 5.0 compatibility (alias for --v5)'
     })
     .boolean('-f, --fatal', {
         desc: 'Only show fatal errors that prevent upgrading Ghost'
@@ -81,7 +81,7 @@ prettyCLI
         } else if (argv.v5) {
             cliOptions.checkVersion = 'v5';
         } else if (argv.canary) {
-            cliOptions.checkVersion = 'canary';
+            cliOptions.checkVersion = ghostVersions.canary;
         } else {
             cliOptions.checkVersion = ghostVersions.default;
         }

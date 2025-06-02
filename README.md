@@ -48,16 +48,15 @@ By default, GScan scans themes for the latest Ghost version compatibility. You c
 `--v1` or `-1`
 `--v2` or `-2`
 `--v3` or `-3`
-`--v4` or `-4` or `--canary`
-`--v5` or `-5`
+`--v4` or `-4` or `--v5` or `-5` or `--canary`
 
-Use the `--canary` parameter to check for the upcoming Ghost version.
+To check for a specific Ghost version, use the `--v1`, `--v2`, `--v3`, `--v4`, or `--v5` parameters. Use the `--canary` parameter to check for Ghost 5.0 compatibility (this is an alias for `--v5`).
 
 Examples:
 
 `gscan /path/to/theme.zip -z1` - scan a theme in a zip file for Ghost 1.0 compatibility
 `gscan /path/to/theme/directory --v2` - can a theme in a directory for Ghost 2.0 compatibility
-`gscan /path/to/theme/directory --canary` - scan a theme for the upcoming version of Ghost
+`gscan /path/to/theme/directory --v5` - scan a theme for Ghost 5.0 compatibility
 
 ### 4. Lib usage
 
@@ -70,7 +69,7 @@ gscan.checkZip({
     path: 'path-to-zip',
     // if you need to check the theme for a different
     // major Ghost version, you can pass it. Currently
-    // v1, v2, v3, v4 and canary (v5) are supported. Default is
+    // v1, v2, v3, v4 and v5 are supported. Default is
     // the latest Ghost version 4.0:
     // checkVersion: 'v4',
     name: 'my-theme'
