@@ -6,7 +6,7 @@
 
 GScan is a tool for validating Ghost themes. It produces detailed reports of issues where themes need to be modified in order to be compatible with a specific version.
 
-It is actively capable of dealing with the current and last major versions of Ghost (so at the time of writing v4, v3, v2 and v1).
+It is actively capable of dealing with the current and last major versions of Ghost.
 
 GScan works on a system of rules. Each rule has a way to check whether it passes or fails and has help content which describes how to fix it. Each rule is also marked with an error level:
 
@@ -48,8 +48,9 @@ By default, GScan scans themes for the latest Ghost version compatibility. You c
 `--v1` or `-1`
 `--v2` or `-2`
 `--v3` or `-3`
-`--v4` or `-4` or `--canary`
+`--v4` or `-4`
 `--v5` or `-5`
+`--v6` or `-6` or `--canary`
 
 Use the `--canary` parameter to check for the upcoming Ghost version.
 
@@ -70,9 +71,9 @@ gscan.checkZip({
     path: 'path-to-zip',
     // if you need to check the theme for a different
     // major Ghost version, you can pass it. Currently
-    // v1, v2, v3, v4 and canary (v5) are supported. Default is
-    // the latest Ghost version 4.0:
-    // checkVersion: 'v4',
+    // v1, v2, v3, v4, v5 and v6 (canary) are supported. Default is
+    // the latest Ghost version 5.0:
+    // checkVersion: 'v5',
     name: 'my-theme'
 }).then(function (result) {
     console.log(result);

@@ -467,8 +467,8 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('checks for a latest (v4) version if canary is passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+    it('checks for a v6 version if passed', function (done) {
+        check(themePath('is-empty'), {checkVersion: 'v6'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -476,18 +476,152 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
+            theme.results.pass.should.eql([
+                'GS001-DEPR-PURL',
+                'GS001-DEPR-MD',
+                'GS001-DEPR-IMG',
+                'GS001-DEPR-COV',
+                'GS001-DEPR-AIMG',
+                'GS001-DEPR-PIMG',
+                'GS001-DEPR-BC',
+                'GS001-DEPR-AC',
+                'GS001-DEPR-TIMG',
+                'GS001-DEPR-PAIMG',
+                'GS001-DEPR-PAC',
+                'GS001-DEPR-PTIMG',
+                'GS001-DEPR-TSIMG',
+                'GS001-DEPR-CON-IMG',
+                'GS001-DEPR-CON-COV',
+                'GS001-DEPR-CON-BC',
+                'GS001-DEPR-CON-AC',
+                'GS001-DEPR-CON-AIMG',
+                'GS001-DEPR-CON-PAC',
+                'GS001-DEPR-CON-PAIMG',
+                'GS001-DEPR-CON-TIMG',
+                'GS001-DEPR-CON-PTIMG',
+                'GS001-DEPR-CON-TSIMG',
+                'GS001-DEPR-PPP',
+                'GS001-DEPR-C0H',
+                'GS001-DEPR-CSS-AT',
+                'GS001-DEPR-CSS-PATS',
+                'GS001-DEPR-EACH',
+                'GS001-DEPR-USER-GET',
+                'GS001-DEPR-AUTH-INCL',
+                'GS001-DEPR-AUTH-FIELD',
+                'GS001-DEPR-AUTH-FILT',
+                'GS001-DEPR-AUTHBL',
+                'GS001-DEPR-CON-AUTH',
+                'GS001-DEPR-CON-PAUTH',
+                'GS001-DEPR-AUTH',
+                'GS001-DEPR-AUTH-ID',
+                'GS001-DEPR-AUTH-SLUG',
+                'GS001-DEPR-AUTH-MAIL',
+                'GS001-DEPR-AUTH-MT',
+                'GS001-DEPR-AUTH-MD',
+                'GS001-DEPR-AUTH-NAME',
+                'GS001-DEPR-AUTH-BIO',
+                'GS001-DEPR-AUTH-LOC',
+                'GS001-DEPR-AUTH-WEB',
+                'GS001-DEPR-AUTH-TW',
+                'GS001-DEPR-AUTH-FB',
+                'GS001-DEPR-AUTH-PIMG',
+                'GS001-DEPR-AUTH-CIMG',
+                'GS001-DEPR-AUTH-URL',
+                'GS001-DEPR-PAUTH',
+                'GS001-DEPR-PAUTH-ID',
+                'GS001-DEPR-PAUTH-SLUG',
+                'GS001-DEPR-PAUTH-MAIL',
+                'GS001-DEPR-PAUTH-MT',
+                'GS001-DEPR-PAUTH-MD',
+                'GS001-DEPR-PAUTH-NAME',
+                'GS001-DEPR-PAUTH-BIO',
+                'GS001-DEPR-PAUTH-LOC',
+                'GS001-DEPR-PAUTH-WEB',
+                'GS001-DEPR-PAUTH-TW',
+                'GS001-DEPR-PAUTH-FB',
+                'GS001-DEPR-PAUTH-PIMG',
+                'GS001-DEPR-PAUTH-CIMG',
+                'GS001-DEPR-PAUTH-URL',
+                'GS001-DEPR-PAID',
+                'GS001-DEPR-NAUTH',
+                'GS001-DEPR-IUA',
+                'GS001-DEPR-BLOG',
+                'GS001-DEPR-BPL',
+                'GS001-DEPR-SPL',
+                'GS001-DEPR-SGH',
+                'GS001-DEPR-SGF',
+                'GS001-DEPR-LANG',
+                'GS001-DEPR-CSS-KGMD',
+                'GS001-DEPR-AC-2',
+                'GS001-DEPR-AC-3',
+                'GS001-DEPR-AIMG-2',
+                'GS001-DEPR-AIMG-3',
+                'GS001-DEPR-PAC-2',
+                'GS001-DEPR-PAC-3',
+                'GS001-DEPR-PAIMG-2',
+                'GS001-DEPR-PAIMG-3',
+                'GS001-DEPR-CON-AC-2',
+                'GS001-DEPR-CON-AC-3',
+                'GS001-DEPR-CON-AIMG-2',
+                'GS001-DEPR-CON-AIMG-3',
+                'GS001-DEPR-CON-PAC-2',
+                'GS001-DEPR-CON-PAC-3',
+                'GS001-DEPR-CON-PAIMG-2',
+                'GS001-DEPR-CON-PAIMG-3',
+                'GS001-DEPR-ESC',
+                'GS001-DEPR-LABS-MEMBERS',
+                'GS001-DEPR-CURR-SYM',
+                'GS001-DEPR-SITE-LANG',
+                'GS005-TPL-ERR',
+                'GS030-ASSET-REQ',
+                'GS030-ASSET-SYM',
+                'GS060-JS-GUA',
+                'GS070-VALID-TRANSLATIONS',
+                'GS080-FEACH-POSTS',
+                'GS080-CARD-LAST4',
+                'GS080-FEACH-PV',
+                'GS080-NO-EMPTY-TRANSLATIONS',
+                'GS090-NO-IMG-URL-IN-CONDITIONALS',
+                'GS090-NO-UNKNOWN-CUSTOM-THEME-SETTINGS',
+                'GS090-NO-UNKNOWN-CUSTOM-THEME-SELECT-VALUE-IN-MATCH',
+                'GS090-NO-PRODUCTS-HELPER',
+                'GS090-NO-PRODUCT-DATA-HELPER',
+                'GS090-NO-PRODUCTS-DATA-HELPER',
+                'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT',
+                'GS090-NO-MEMBER-PRODUCTS-DATA-HELPER',
+                'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL',
+                'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
+                'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
+                'GS090-NO-TIER-PRICE-AS-OBJECT',
+                'GS090-NO-TIER-BENEFIT-AS-OBJECT',
+                'GS120-NO-UNKNOWN-GLOBALS'
+            ]);
 
             theme.results.fail.should.be.an.Object().with.keys(
+                'GS010-PJ-REQ',
+                'GS010-PJ-PARSE',
+                'GS010-PJ-NAME-REQ',
+                'GS010-PJ-NAME-LC',
+                'GS010-PJ-NAME-HY',
+                'GS010-PJ-VERSION-SEM',
+                'GS010-PJ-VERSION-REQ',
+                'GS010-PJ-AUT-EM-VAL',
+                'GS010-PJ-AUT-EM-REQ',
+                'GS010-PJ-CONF-PPP',
+                'GS020-INDEX-REQ',
+                'GS020-POST-REQ',
+                'GS020-DEF-REC',
+                'GS040-GH-REQ',
+                'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('4.x');
+            theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
     });
 
-    it('checks for a canary (v4) version if passed', function (done) {
+    it('checks for a latest (v6) version if canary is passed', function (done) {
         check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -496,13 +630,9 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
-
-            theme.results.fail.should.be.an.Object().with.keys(
-            );
-
-            theme.checkedVersion.should.equal('4.x');
+            // Short version of assertions, this is currently the same as v6
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
+            theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
     });
