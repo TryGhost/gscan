@@ -1,0 +1,11 @@
+{
+  "all": true,
+  "src": [
+    "lib/**/*.js",
+    "bin/*.js"
+  ],
+  "reporter": [
+    "html-spa",
+    "text-summary"
+  ]
+}
