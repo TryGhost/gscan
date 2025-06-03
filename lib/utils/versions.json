@@ -19,6 +19,10 @@
     "major": "5.x",
     "docs": "5.0.0"
   },
+  "v6": {
+    "major": "6.x",
+    "docs": "6.0.0"
+  },
   "default": "v5",
-  "canary": "v5"
+  "canary": "v6"
 }

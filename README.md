@@ -43,13 +43,14 @@ To run a local zip file through the checks:
 
 `gscan /path/to/theme.zip -z`
 
-By default, GScan scans themes for the latest Ghost version compatibility. You can also specify a Ghost version by using the following parameters (for Ghost 1.0, 2.0, 3.0, 4.0 and 5.0):
+By default, GScan scans themes for the latest Ghost version compatibility. You can also specify a Ghost version by using the following parameters (for Ghost 1.0, 2.0, 3.0, 4.0, 5.0 and 6.0):
 
-`--v1` or `-1`  
-`--v2` or `-2`  
-`--v3` or `-3`  
-`--v4` or `-4`  
-`--v5` or `-5` or `--canary` (defult)
+`--v1` or `-1`
+`--v2` or `-2`
+`--v3` or `-3`
+`--v4` or `-4`
+`--v5` or `-5` (default)
+`--v6` or `-6` or `--canary`
 
 Examples:
 
@@ -66,9 +67,10 @@ var gscan = require('gscan');
 
 gscan.checkZip({
     path: 'path-to-zip',
+    // Pass in a folder to check
     // if you need to check the theme for a different
     // major Ghost version, you can pass it. Currently
-    // v1, v2, v3, v4 and v5 are supported. Default is
+    // v1, v2, v3, v4, v5 and v6 are supported. Default is
     // the latest Ghost version 5.0:
     // checkVersion: 'v5',
     name: 'my-theme'

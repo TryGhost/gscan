@@ -131,4 +131,41 @@ describe('080 Usage tests', function () {
             }).catch(done);
         });
     });
+
+    describe('v6:', function () {
+        const options = {checkVersion: 'v6'};
+
+        it('[success] should not show an error if helpers usage is correct', function (done) {
+            utils.testCheck(thisCheck, '080-helper-usage/v5/valid', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+                output.results.pass.should.be.an.Array().with.lengthOf(4);
+
+                done();
+            }).catch(done);
+        });
+
+        it('[failure] should show an error if translate helper is used without a key', function (done) {
+            utils.testCheck(thisCheck, '080-helper-usage/v5/invalid-no-empty-translations', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(3);
+
+                output.results.fail.should.be.an.Object().with.keys(
+                    'GS080-NO-EMPTY-TRANSLATIONS'
+                );
+
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].should.be.a.ValidFailObject();
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures.length.should.eql(5);
+
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures[0].ref.should.eql('default.hbs');
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures[1].ref.should.eql('error.hbs');
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures[2].ref.should.eql('index.hbs');
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures[3].ref.should.eql('partials/mypartial.hbs');
+                output.results.fail['GS080-NO-EMPTY-TRANSLATIONS'].failures[4].ref.should.eql('post.hbs');
+                done();
+            }).catch(done);
+        });
+    });
 });
