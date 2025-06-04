@@ -395,4 +395,106 @@ describe('050 Koenig CSS classes', function () {
             }).catch(done);
         });
     });
+
+    describe('v6:', function () {
+        const options = {checkVersion: 'v6'};
+
+        it('[failure] should invalidate theme when .css file is missing', function (done) {
+            utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+
+                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+
+                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
+                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
+
+                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
+                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
+
+                done();
+            }).catch(done);
+        });
+
+        it('[failure] should invalidate theme when CSS classes are missing', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().which.is.empty();
+
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+
+                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
+                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(1);
+
+                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF');
+
+                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present and card-asset is true', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(2);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present and card-asset uses include', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(96);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when CSS classes are present and card-asset uses exclude', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+    });
 });
