@@ -444,15 +444,15 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
 
-"@sentry/core@9.28.1":
-  version "9.28.1"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.28.1.tgz#257003b70b7b05d95545e620b55800d8c7b84393"
-  integrity sha512-6q59r/71MeE+4StkvwdKAAyhBBNpWcii0HeiWBZ3l1gaFYQlb6bChjZJRZmxSzF5dnvkdF4duQbAC3JmjeIbPA==
+"@sentry/core@9.29.0":
+  version "9.29.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.29.0.tgz#99932718454c381dc16bb4240ea35d60c25563e6"
+  integrity sha512-wDyNe45PM+RCGtUn1tK7LzJ08ksv8i8KRUHrst7lsinEfRm83YH+wbWrPmwkVNEngUZvYkHwGLbNXM7xgFUuDQ==
 
 "@sentry/node@^9.0.0":
-  version "9.28.1"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.28.1.tgz#21d65c8180b20e995f52ae3ebbe6534248ec5d36"
-  integrity sha512-1bC8ywFPs1EIKzRlUhLoreTR/fUU45O+ezVNvOu0I6JURMwjyC8uT23f0Xkiolx4WjKZXER+d0el3HojPaYkYw==
+  version "9.29.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.29.0.tgz#0462d9edc544cb271d8a84464fddc264ab8a60dd"
+  integrity sha512-oABipgC/fClRuvyMeK43rigv9F+OAaoR84UaMKB7aPXN6iz634wBRVsaoZAwiR3xLL+R7MafEPPA/s9XqlG7ag==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/context-async-hooks" "^1.30.1"
@@ -484,17 +484,17 @@
     "@opentelemetry/sdk-trace-base" "^1.30.1"
     "@opentelemetry/semantic-conventions" "^1.34.0"
     "@prisma/instrumentation" "6.8.2"
-    "@sentry/core" "9.28.1"
-    "@sentry/opentelemetry" "9.28.1"
+    "@sentry/core" "9.29.0"
+    "@sentry/opentelemetry" "9.29.0"
     import-in-the-middle "^1.13.1"
     minimatch "^9.0.0"
 
-"@sentry/opentelemetry@9.28.1":
-  version "9.28.1"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.28.1.tgz#e03f2a17d53c6bdc1b56e6c6fe262eadfb965e67"
-  integrity sha512-1xxriB2diNSlNpkMosdgIKzPOPwAiyFg7XgEWKpLtDYWj7WVbLNyLkUWriFr4JgU40uZp3LW+sGgnshA48/zQQ==
+"@sentry/opentelemetry@9.29.0":
+  version "9.29.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.29.0.tgz#8aa2cd9149a9a8106b2f1acee8ee5d95cd140dac"
+  integrity sha512-QTUmre8i5+832RjzQW+g8IQ3UmBe5fbQXGbCF5hQ0UNuHle9r3Z8UZcIff5W8tm5AXMxPqvptTnDEZUUXHgBiA==
   dependencies:
-    "@sentry/core" "9.28.1"
+    "@sentry/core" "9.29.0"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -3535,9 +3535,9 @@ import-fresh@^3.0.0, import-fresh@^3.2.1:
     resolve-from "^4.0.0"
 
 import-in-the-middle@^1.13.1, import-in-the-middle@^1.8.1:
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.14.0.tgz#c9b6cd3400718ff0acbbf5c870adf708bbf5ef39"
-  integrity sha512-g5zLT0HaztRJWysayWYiUq/7E5H825QIiecMD2pI5QO7Wzr847l6GDvPvmZaDIdrDtS2w7qRczywxiK6SL5vRw==
+  version "1.14.2"
+  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.14.2.tgz#283661625a88ff7c0462bd2984f77715c3bc967c"
+  integrity sha512-5tCuY9BV8ujfOpwtAGgsTx9CGUapcFMEEyByLv1B+v2+6DhAcw+Zr0nhQT7uwaZ7DiourxFEscghOR8e1aPLQw==
   dependencies:
     acorn "^8.14.0"
     acorn-import-attributes "^1.9.5"
