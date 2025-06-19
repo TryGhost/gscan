@@ -7,20 +7,25 @@ COPY package.json yarn.lock ./
 
 # ---- Dependencies ----
 FROM base AS dependencies
-# Install production dependencies
+# Install production library dependencies
 RUN yarn install --production --frozen-lockfile
 # Copy only the production node_modules for later use
 RUN cp -R node_modules prod_node_modules
 
-# Install all dependencies, including 'devDependencies'
+# Install all library dependencies, including 'devDependencies'
 RUN yarn install --frozen-lockfile
+
+# Install app dependencies
+RUN yarn install --cwd app/ --frozen-lockfile
 
 # ---- Release ----
 FROM node:22.2.0-alpine3.18 AS release
 # Set working directory
 WORKDIR /app
-# Copy production node_modules
+# Copy production library node_modules
 COPY --from=dependencies /app/prod_node_modules ./node_modules
+# Copy app node_modules
+COPY --from=dependencies /app/app/node_modules ./app/node_modules
 # Copy your source code
 COPY . .
 # Link the config file (from any possible location)

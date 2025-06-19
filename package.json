@@ -43,27 +43,20 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "@sentry/node": "^9.0.0",
-    "@tryghost/config": "^0.2.18",
     "@tryghost/debug": "^0.1.26",
     "@tryghost/errors": "^1.2.26",
-    "@tryghost/logging": "^2.4.7",
     "@tryghost/nql": "^0.12.5",
     "@tryghost/pretty-cli": "^1.2.38",
-    "@tryghost/server": "^0.1.37",
     "@tryghost/zip": "^1.1.42",
     "chalk": "^4.1.2",
     "common-tags": "^1.8.2",
-    "express": "^4.18.2",
-    "express-hbs": "^2.4.2",
     "fs-extra": "^11.1.1",
     "glob": "^8.1.0",
+    "handlebars": "^4.7.8",
     "lodash": "^4.17.21",
-    "multer": "^2.0.0",
     "pluralize": "^8.0.0",
     "require-dir": "^1.2.0",
     "semver": "^7.5.4",
-    "uuid": "^9.0.1",
     "validator": "^13.0.0"
   },
   "devDependencies": {
