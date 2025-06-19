@@ -1,6 +1,5 @@
 test/**
 .git*
-.travis.yml
-Gruntfile.js
+.github
 node_modules/**
 app/uploads/**
