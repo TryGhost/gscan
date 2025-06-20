@@ -1,3 +1,8 @@
+// Init Sentry middleware
+require('./middlewares/sentry');
+const sentry = require('@sentry/node');
+
+// Require rest of the modules
 const express = require('express');
 const debug = require('@tryghost/debug')('app');
 const hbs = require('express-hbs');
@@ -9,15 +14,12 @@ const gscan = require('../lib');
 const fs = require('fs-extra');
 const logRequest = require('./middlewares/log-request');
 const uploadValidation = require('./middlewares/upload-validation');
-const sentry = require('./middlewares/sentry');
 const ghostVer = require('./ghost-version');
 const pkgJson = require('../package.json');
 const ghostVersions = require('../lib/utils').versions;
 const upload = multer({dest: __dirname + '/uploads/'});
 const app = express();
 const scanHbs = hbs.create();
-
-app.use(sentry.requestHandler);
 
 // Configure express
 app.set('x-powered-by', false);
@@ -89,8 +91,6 @@ app.post('/',
     }
 );
 
-app.use(sentry.errorHandler);
-
 app.use(function (req, res, next) {
     next(new errors.NotFoundError({message: 'Page not found'}));
 });
@@ -109,5 +109,7 @@ app.use(function (err, req, res, next) {
 
     res.render(template, {message: err.message, stack: err.stack, details: err.errorDetails, context: err.context});
 });
+
+sentry.setupExpressErrorHandler(app);
 
 server.start(app, config.get('port'));
