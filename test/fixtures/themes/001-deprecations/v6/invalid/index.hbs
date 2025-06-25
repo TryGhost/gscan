@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>{{meta_title}}</title>
+  {{ghost_head}}
+</head>
+
+<body>
+  <main>
+    {{#foreach posts}}
+    <article>
+      <h2><a href="{{url}}">{{title}}</a></h2>
+      {{excerpt}}
+    </article>
+    {{/foreach}}
+  </main>
+  {{ghost_foot}}
+</body>
+
+</html>

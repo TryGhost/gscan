@@ -573,6 +573,7 @@ describe('Checker', function () {
                 'GS001-DEPR-LABS-MEMBERS',
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
+                'GS001-DEPR-AMP-TEMPLATE',
                 'GS005-TPL-ERR',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',

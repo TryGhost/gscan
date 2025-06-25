@@ -3329,7 +3329,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(16);
+                output.results.pass.length.should.eql(17);
 
                 done();
             }).catch(done);
@@ -3583,7 +3583,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(47);
+                output.results.pass.should.be.an.Array().with.lengthOf(48);
 
                 done();
             }).catch(done);
@@ -3594,7 +3594,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(95);
+                output.results.pass.should.be.an.Array().with.lengthOf(96);
 
                 done();
             }).catch(done);
@@ -3607,7 +3607,7 @@ describe('001 Deprecations', function () {
                 Object.keys(output.results.fail).should.eql([
                     'GS001-DEPR-PURL'
                 ]);
-                output.results.pass.should.be.an.Array().with.lengthOf(94);
+                output.results.pass.should.be.an.Array().with.lengthOf(95);
 
                 done();
             }).catch(done);
@@ -3661,7 +3661,23 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(61);
+                output.results.pass.should.be.an.Array().with.lengthOf(62);
+
+                done();
+            }).catch(done);
+        });
+
+        it('[failure] should detect AMP templates', function (done) {
+            utils.testCheck(thisCheck, '001-deprecations/v6/invalid', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys(
+                    'GS001-DEPR-AMP-TEMPLATE'
+                );
+
+                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(1);
+                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures[0].ref.should.eql('amp.hbs');
 
                 done();
             }).catch(done);
