@@ -3676,8 +3676,28 @@ describe('001 Deprecations', function () {
                 );
 
                 output.results.fail['GS001-DEPR-AMP-TEMPLATE'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(1);
-                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures[0].ref.should.eql('amp.hbs');
+                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(4);
+                
+                // Check all AMP template files are detected
+                const ampFiles = output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.map(f => f.ref).sort();
+                ampFiles.should.eql([
+                    'amp-lightning-with-attrs.hbs',
+                    'amp-lightning.hbs', 
+                    'amp-with-class.hbs',
+                    'amp.hbs'
+                ]);
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should not detect false positive AMP templates', function (done) {
+            utils.testCheck(thisCheck, '001-deprecations/v6/valid', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                // Should not contain AMP template failures for themes that mention "amp" but aren't actually AMP
+                output.results.fail.should.not.have.key('GS001-DEPR-AMP-TEMPLATE');
+                output.results.pass.should.containEql('GS001-DEPR-AMP-TEMPLATE');
 
                 done();
             }).catch(done);
