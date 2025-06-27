@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Test Theme</title>
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+</head>
+<body>
+    {{#get "posts" limit="10"}}
+        {{#foreach posts}}
+            <article>
+                <h2>{{title}}</h2>
+                <p>{{excerpt}}</p>
+            </article>
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "pages" limit="5" include="tags"}}
+        {{#foreach pages}}
+            <div class="page">
+                <h3>{{title}}</h3>
+            </div>
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "tags"}}
+        {{#foreach tags}}
+            <span class="tag">{{name}}</span>
+        {{/foreach}}
+    {{/get}}
+</body>
+</html>
