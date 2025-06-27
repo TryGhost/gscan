@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html class="theme-class" data-example="some example text here">
+
+<head>
+  <meta charset="utf-8">
+  <title>{{meta_title}}</title>
+  {{ghost_head}}
+</head>
+
+<body>
+  {{#post}}
+  <article>
+    <h1>{{title}}</h1>
+    <div>{{content}}</div>
+    <p>This is a regular template, not AMP.</p>
+  </article>
+  {{/post}}
+  {{ghost_foot}}
+</body>
+
+</html>
