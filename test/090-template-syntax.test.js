@@ -405,5 +405,21 @@ describe('090 Template syntax', function () {
 
             Object.keys(output.results.fail).should.eql([]);
         });
+
+        it('should fail when limit values greater than 100 are used in {{#get}} helper', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-over-100-in-get-helper/with-limit-over-100', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-LIMIT-OVER-100-IN-GET-HELPER'].should.be.a.ValidFailObject();
+        });
+
+        it('should NOT fail when limit values 100 or lower are used in {{#get}} helper', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-over-100-in-get-helper/without-limit-over-100', options);
+            output.should.be.a.ValidThemeObject();
+
+            Object.keys(output.results.fail).should.eql([]);
+        });
     });
 });
