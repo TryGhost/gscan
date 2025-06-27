@@ -389,5 +389,21 @@ describe('090 Template syntax', function () {
 
             output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
         });
+
+        it('should fail when limit="all" is used in {{#get}} helper', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-all-in-get-helper/with-limit-all', options);
+            Object.keys(output.results.fail).should.eql([
+                'GS090-NO-LIMIT-ALL-IN-GET-HELPER'
+            ]);
+
+            output.results.fail['GS090-NO-LIMIT-ALL-IN-GET-HELPER'].should.be.a.ValidFailObject();
+        });
+
+        it('should NOT fail when limit="all" is NOT used in {{#get}} helper', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-all-in-get-helper/without-limit-all', options);
+            output.should.be.a.ValidThemeObject();
+
+            Object.keys(output.results.fail).should.eql([]);
+        });
     });
 });
