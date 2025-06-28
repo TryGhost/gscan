@@ -444,15 +444,15 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
 
-"@sentry/core@9.32.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.32.0.tgz#8f5f2d5859d076f8313f794286f6270007ecaae0"
-  integrity sha512-1wAXMMmeY4Ny2MJBCuri3b4LMVPjqXdgbVgTxxipGW+gzPsjv+8+LCSnJAR/cRBr8JoXV+qGC2tE06rI1XDj3A==
+"@sentry/core@9.33.0":
+  version "9.33.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.33.0.tgz#34870c1c5248639e2b1453be57ad7cdb039e9d3a"
+  integrity sha512-0mtJAU+x10+q5aV/txyeuPjJ0TmObcD701R0tY0s71yJJOltqqMrmgNpqyuMI/VOASuzTZesiMYdbG6xb3zeSw==
 
 "@sentry/node@^9.0.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.32.0.tgz#afc162849025c1899a96faef221f7b43157d5989"
-  integrity sha512-R9yK8M/x4cL/RWMmWz0PshKQM2OxLyhbjwR3ybFIBtC0l/9piCIgZpYaSQGv3yHxA+ZoMdL6aDG6rQHNZVoISw==
+  version "9.33.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.33.0.tgz#6f8eab71e2842d2926872d56b471970dbe100ff9"
+  integrity sha512-LkofyN1Ig+z8jXtm7eGpXga7sVMY/R42I+aJhwYtOgVkfQorDj3653ZF+IlemBZgb15vo2z3oJpeAjtqbm2rDg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/context-async-hooks" "^1.30.1"
@@ -484,17 +484,17 @@
     "@opentelemetry/sdk-trace-base" "^1.30.1"
     "@opentelemetry/semantic-conventions" "^1.34.0"
     "@prisma/instrumentation" "6.10.1"
-    "@sentry/core" "9.32.0"
-    "@sentry/opentelemetry" "9.32.0"
+    "@sentry/core" "9.33.0"
+    "@sentry/opentelemetry" "9.33.0"
     import-in-the-middle "^1.14.2"
     minimatch "^9.0.0"
 
-"@sentry/opentelemetry@9.32.0":
-  version "9.32.0"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.32.0.tgz#079490bf3ef9a2eb3ffade59e77544a09b90ef46"
-  integrity sha512-eItRNLPNnAulnynC1wxdIv55XWKfj57N1zND3zFidigte69Ykrrps4BMt0UOPTcvYVu9UL2GOhKL4HYt6EZItg==
+"@sentry/opentelemetry@9.33.0":
+  version "9.33.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.33.0.tgz#737e340c73136338795c30b7270b303065bdae98"
+  integrity sha512-AYOYEvZd0XBIh+0kROq3ka7nE06pax0wezB6kXsyHlrP48N1x3+jO3rTLmbXfmU97CkVnHHfqi4MY4dBwWxW5g==
   dependencies:
-    "@sentry/core" "9.32.0"
+    "@sentry/core" "9.33.0"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -1593,9 +1593,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "24.0.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.4.tgz#dbae889912bda33a7f57669fb8587c1a56bc0c1f"
-  integrity sha512-ulyqAkrhnuNq9pB76DRBTkcS6YsmDALy6Ua63V8OhrOBgbcYt6IOdzpw5P1+dyRIyMerzLkeYWBeOXPpA9GMAA==
+  version "24.0.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-24.0.6.tgz#d483f1407d022ef2a12118f7c02074ca218346c3"
+  integrity sha512-ZOyn+gOs749xU7ovp+Ibj0g1o3dFRqsfPnT22C2t5JzcRvgsEDpGawPbCISGKLudJk9Y0wiu9sYd6kUh0pc9TA==
   dependencies:
     undici-types "~7.8.0"
 
@@ -4479,9 +4479,9 @@ pg-int8@1.0.1:
   integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
 
 pg-protocol@*:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.10.2.tgz#76a07dd7f13ce67d7f9cf162dca181923b6641fa"
-  integrity sha512-Ci7jy8PbaWxfsck2dwZdERcDG2A0MG8JoQILs+uZNjABFuBuItAZCWUNz8sXRDMoui24rJw7WlXqgpMdBSN/vQ==
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/pg-protocol/-/pg-protocol-1.10.3.tgz#ac9e4778ad3f84d0c5670583bab976ea0a34f69f"
+  integrity sha512-6DIBgBQaTKDJyxnXaLiLR8wBpQQcGWuAESkRBX/t6OwA8YsqP+iVSiond2EDy6Y/dsGk8rh/jtax3js5NeV7JQ==
 
 pg-types@^2.2.0:
   version "2.2.0"
