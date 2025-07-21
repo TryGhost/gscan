@@ -50,7 +50,7 @@ By default, GScan scans themes for the latest Ghost version compatibility. You c
 `--v3` or `-3`
 `--v4` or `-4`
 `--v5` or `-5`
-`--v6` or `-6` or `--canary` (default)
+`--v6` or `-6` (default) or `--canary`
 
 Examples:
 
