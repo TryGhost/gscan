@@ -23,6 +23,6 @@
     "major": "6.x",
     "docs": "6.0.0"
   },
-  "default": "v5",
+  "default": "v6",
   "canary": "v6"
 }

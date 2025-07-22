@@ -640,7 +640,7 @@ describe('Checker', function () {
         }).catch(done);
     });
 
-    it('should default to v5 when no version is provided', function (done) {
+    it('should default to v6 when no version is provided', function (done) {
         check(themePath('is-empty')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
@@ -649,9 +649,9 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            // Should default to v5 behavior
-            theme.results.pass.should.be.an.Array().with.lengthOf(118);
-            theme.checkedVersion.should.equal('5.x');
+            // Should default to v6 behavior
+            theme.results.pass.should.be.an.Array().with.lengthOf(121);
+            theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
     });
