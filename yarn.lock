@@ -444,24 +444,24 @@
   dependencies:
     "@opentelemetry/instrumentation" "^0.52.0 || ^0.53.0 || ^0.54.0 || ^0.55.0 || ^0.56.0 || ^0.57.0"
 
-"@sentry/core@9.43.0":
-  version "9.43.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.43.0.tgz#884b489007fa90897d690e3d95b317e324287ed9"
-  integrity sha512-xuvERSUkSNBAldIlgihX3fz+JkcaAPvg0HulPtv3BH9qrKqvataeQ8TiTnqiRC7kWzF7EcxhQJ6WJRl/r3aH3w==
+"@sentry/core@9.44.0":
+  version "9.44.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-9.44.0.tgz#99be002aada90d70afb4f0293b1a8e186294cdca"
+  integrity sha512-U+KBNGgq/eXIj226CPtRk+n5dx0q1xGVvbLbyfAyeek9C/wxQ3f+mvqeVqF9cx8FfrWIOeDM1F8ISH5uRkjjQg==
 
-"@sentry/node-core@9.43.0":
-  version "9.43.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-9.43.0.tgz#266a084f285bccf533c2d9d80439fc6cb7b9c2f4"
-  integrity sha512-d8FuVwVPAFpSTIdAsENWk5adq1Etw14/r6clFIwa7G4zZ1ddu9lX1s9/dmrmgeT84Tm2nRlx+HOqrQ4IRPnJxw==
+"@sentry/node-core@9.44.0":
+  version "9.44.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-9.44.0.tgz#d918f2275a33b4c3896cbbe9dd7bbbbc7422853f"
+  integrity sha512-M6HOcA73WWzRuhqw4Fd2dqv9zEsvMteSNYOguTexIQCT2pzk1srACrt4uFfLY01s9FIKjw+tjrQfTbni2adv7Q==
   dependencies:
-    "@sentry/core" "9.43.0"
-    "@sentry/opentelemetry" "9.43.0"
+    "@sentry/core" "9.44.0"
+    "@sentry/opentelemetry" "9.44.0"
     import-in-the-middle "^1.14.2"
 
 "@sentry/node@^9.0.0":
-  version "9.43.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.43.0.tgz#da029b36316abd897322c9d8d4b5cff79fe07257"
-  integrity sha512-cARRKL8QIeO8Rt80sXkpdYCD1wiV52iVk3pQp7fYMg7+T6xjmUArrYtORrgYFqNOc5jNfm9jo9ZZTjjKD8fP1A==
+  version "9.44.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-9.44.0.tgz#b9952dd3a16b4e360358042f525dc9840cc7a280"
+  integrity sha512-rU96Q7q7hL4s328z9zFS+ZRK6eHnLFjYbH8XHCxAxGFDLyg9kpkR5to9PjoI+QVPZ/LYAE+Xw0wStoMjWMCFsA==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@opentelemetry/context-async-hooks" "^1.30.1"
@@ -493,18 +493,18 @@
     "@opentelemetry/sdk-trace-base" "^1.30.1"
     "@opentelemetry/semantic-conventions" "^1.34.0"
     "@prisma/instrumentation" "6.11.1"
-    "@sentry/core" "9.43.0"
-    "@sentry/node-core" "9.43.0"
-    "@sentry/opentelemetry" "9.43.0"
+    "@sentry/core" "9.44.0"
+    "@sentry/node-core" "9.44.0"
+    "@sentry/opentelemetry" "9.44.0"
     import-in-the-middle "^1.14.2"
     minimatch "^9.0.0"
 
-"@sentry/opentelemetry@9.43.0":
-  version "9.43.0"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.43.0.tgz#94499db1e2648c666dbe56a209dc93cbeab14b21"
-  integrity sha512-qVBedlEsMrZeBCAmWipBeB0usBNlGTHD/BJ4m6FfjAqeTD6QrpmIdPa9j6WSP74enB7Ok+juszFILvg6Z93kNg==
+"@sentry/opentelemetry@9.44.0":
+  version "9.44.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-9.44.0.tgz#cc8bcb4162d224e5f1604dd875efeecda4b8baf2"
+  integrity sha512-OeMiVoLqEXtpYE2VBAGmhK4GfbUa5ivDtL+AF4B+cR+NZkqZFlnA7ItquVfAa2Jd45TIyueEK8yjan5hluQYJQ==
   dependencies:
-    "@sentry/core" "9.43.0"
+    "@sentry/core" "9.44.0"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
