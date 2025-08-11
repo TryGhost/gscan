@@ -322,7 +322,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(118);
+            theme.results.pass.should.be.an.Array().with.lengthOf(120);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -419,6 +419,8 @@ describe('Checker', function () {
                 'GS001-DEPR-LABS-MEMBERS',
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
+                'GS001-DEPR-TWITTER-URL',
+                'GS001-DEPR-FACEBOOK-URL',
                 'GS005-TPL-ERR',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',
@@ -476,7 +478,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(121);
+            theme.results.pass.should.be.an.Array().with.lengthOf(123);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -573,6 +575,8 @@ describe('Checker', function () {
                 'GS001-DEPR-LABS-MEMBERS',
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
+                'GS001-DEPR-TWITTER-URL',
+                'GS001-DEPR-FACEBOOK-URL',
                 'GS001-DEPR-AMP-TEMPLATE',
                 'GS005-TPL-ERR',
                 'GS030-ASSET-REQ',
@@ -634,7 +638,7 @@ describe('Checker', function () {
             ]);
 
             // Short version of test above
-            theme.results.pass.should.be.an.Array().with.lengthOf(121);
+            theme.results.pass.should.be.an.Array().with.lengthOf(123);
             theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
@@ -650,7 +654,7 @@ describe('Checker', function () {
             ]);
 
             // Should default to v6 behavior
-            theme.results.pass.should.be.an.Array().with.lengthOf(121);
+            theme.results.pass.should.be.an.Array().with.lengthOf(123);
             theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
