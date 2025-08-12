@@ -3702,5 +3702,37 @@ describe('001 Deprecations', function () {
                 done();
             }).catch(done);
         });
+
+        it('[failure] should detect deprecated facebook and twitter helper usage', function (done) {
+            utils.testCheck(thisCheck, '001-deprecations/v6/invalid/fb-twitter-helpers', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys(
+                    'GS001-DEPR-FACEBOOK-URL',
+                    'GS001-DEPR-TWITTER-URL'
+                );
+
+                output.results.fail['GS001-DEPR-FACEBOOK-URL'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.length.should.eql(3);
+
+                output.results.fail['GS001-DEPR-TWITTER-URL'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-TWITTER-URL'].failures.length.should.eql(3);
+
+                const facebookFiles = output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.map(f => f.ref).sort();
+                facebookFiles.should.eql([
+                    'fb-pattern-1.hbs',
+                    'fb-pattern-2.hbs',
+                    'fb-pattern-3.hbs'
+                ]);
+                const twitterFiles = output.results.fail['GS001-DEPR-TWITTER-URL'].failures.map(f => f.ref).sort();
+                twitterFiles.should.eql([
+                    'twitter-pattern-1.hbs',
+                    'twitter-pattern-2.hbs',
+                    'twitter-pattern-3.hbs'
+                ]);
+
+                done();
+            }).catch(done);
+        });
     });
 });
