@@ -2611,7 +2611,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(18);
+                output.results.pass.length.should.eql(16);
 
                 done();
             }).catch(done);
@@ -2876,7 +2876,7 @@ describe('001 Deprecations', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(97);
+                output.results.pass.should.be.an.Array().with.lengthOf(95);
 
                 done();
             }).catch(done);
@@ -2889,7 +2889,7 @@ describe('001 Deprecations', function () {
                 Object.keys(output.results.fail).should.eql([
                     'GS001-DEPR-PURL'
                 ]);
-                output.results.pass.should.be.an.Array().with.lengthOf(96);
+                output.results.pass.should.be.an.Array().with.lengthOf(94);
 
                 done();
             }).catch(done);
@@ -2943,7 +2943,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(63);
+                output.results.pass.should.be.an.Array().with.lengthOf(61);
 
                 done();
             }).catch(done);
@@ -3713,10 +3713,7 @@ describe('001 Deprecations', function () {
                 );
 
                 output.results.fail['GS001-DEPR-FACEBOOK-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.length.should.eql(3);
-
                 output.results.fail['GS001-DEPR-TWITTER-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TWITTER-URL'].failures.length.should.eql(3);
 
                 const facebookFiles = output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.map(f => f.ref).sort();
                 facebookFiles.should.eql([

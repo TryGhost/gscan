@@ -322,7 +322,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(120);
+            theme.results.pass.should.be.an.Array().with.lengthOf(118);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -419,8 +419,6 @@ describe('Checker', function () {
                 'GS001-DEPR-LABS-MEMBERS',
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
-                'GS001-DEPR-TWITTER-URL',
-                'GS001-DEPR-FACEBOOK-URL',
                 'GS005-TPL-ERR',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',
