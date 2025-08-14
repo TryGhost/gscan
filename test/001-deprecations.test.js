@@ -3583,7 +3583,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(48);
+                output.results.pass.should.be.an.Array().with.lengthOf(50);
 
                 done();
             }).catch(done);
@@ -3677,12 +3677,12 @@ describe('001 Deprecations', function () {
 
                 output.results.fail['GS001-DEPR-AMP-TEMPLATE'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(4);
-                
+
                 // Check all AMP template files are detected
                 const ampFiles = output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.map(f => f.ref).sort();
                 ampFiles.should.eql([
                     'amp-lightning-with-attrs.hbs',
-                    'amp-lightning.hbs', 
+                    'amp-lightning.hbs',
                     'amp-with-class.hbs',
                     'amp.hbs'
                 ]);
