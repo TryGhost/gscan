@@ -1,22 +1,6 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <title>{{meta_title}}</title>
-  {{ghost_head}}
-</head>
-
-<body>
-  <main>
-    {{#foreach posts}}
-    <article>
-      <h2><a href="{{url}}">{{title}}</a></h2>
-      {{excerpt}}
-    </article>
-    {{/foreach}}
-  </main>
-  {{ghost_foot}}
-</body>
-
-</html>
+{{twitter_url}}
+{{twitter_url @site.twitter}}
+{{twitter_url "myfavouritepage"}}
+{{facebook_url}}
+{{facebook_url @site.facebook}}
+{{facebook_url "myfavouritepage"}}

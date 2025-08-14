@@ -3329,7 +3329,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(17);
+                output.results.pass.length.should.eql(19);
 
                 done();
             }).catch(done);
@@ -3583,18 +3583,18 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(48);
+                output.results.pass.should.be.an.Array().with.lengthOf(50);
 
                 done();
             }).catch(done);
         });
 
         it('[success] should show no error if no deprecated helpers used', function (done) {
-            utils.testCheck(thisCheck, '001-deprecations/v5/valid', options).then(function (output) {
+            utils.testCheck(thisCheck, '001-deprecations/v6/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(96);
+                output.results.pass.should.be.an.Array().with.lengthOf(98);
 
                 done();
             }).catch(done);
@@ -3607,7 +3607,7 @@ describe('001 Deprecations', function () {
                 Object.keys(output.results.fail).should.eql([
                     'GS001-DEPR-PURL'
                 ]);
-                output.results.pass.should.be.an.Array().with.lengthOf(95);
+                output.results.pass.should.be.an.Array().with.lengthOf(97);
 
                 done();
             }).catch(done);
@@ -3661,7 +3661,7 @@ describe('001 Deprecations', function () {
                 output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(62);
+                output.results.pass.should.be.an.Array().with.lengthOf(64);
 
                 done();
             }).catch(done);
@@ -3677,12 +3677,12 @@ describe('001 Deprecations', function () {
 
                 output.results.fail['GS001-DEPR-AMP-TEMPLATE'].should.be.a.ValidFailObject();
                 output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(4);
-                
+
                 // Check all AMP template files are detected
                 const ampFiles = output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.map(f => f.ref).sort();
                 ampFiles.should.eql([
                     'amp-lightning-with-attrs.hbs',
-                    'amp-lightning.hbs', 
+                    'amp-lightning.hbs',
                     'amp-with-class.hbs',
                     'amp.hbs'
                 ]);
@@ -3698,6 +3698,35 @@ describe('001 Deprecations', function () {
                 // Should not contain AMP template failures for themes that mention "amp" but aren't actually AMP
                 output.results.fail.should.not.have.key('GS001-DEPR-AMP-TEMPLATE');
                 output.results.pass.should.containEql('GS001-DEPR-AMP-TEMPLATE');
+
+                done();
+            }).catch(done);
+        });
+
+        it('[failure] should detect deprecated facebook and twitter helper usage', function (done) {
+            utils.testCheck(thisCheck, '001-deprecations/v6/invalid/fb-twitter-helpers', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.fail.should.be.an.Object().with.keys(
+                    'GS001-DEPR-FACEBOOK-URL',
+                    'GS001-DEPR-TWITTER-URL'
+                );
+
+                output.results.fail['GS001-DEPR-FACEBOOK-URL'].should.be.a.ValidFailObject();
+                output.results.fail['GS001-DEPR-TWITTER-URL'].should.be.a.ValidFailObject();
+
+                const facebookFiles = output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.map(f => f.ref).sort();
+                facebookFiles.should.eql([
+                    'fb-pattern-1.hbs',
+                    'fb-pattern-2.hbs',
+                    'fb-pattern-3.hbs'
+                ]);
+                const twitterFiles = output.results.fail['GS001-DEPR-TWITTER-URL'].failures.map(f => f.ref).sort();
+                twitterFiles.should.eql([
+                    'twitter-pattern-1.hbs',
+                    'twitter-pattern-2.hbs',
+                    'twitter-pattern-3.hbs'
+                ]);
 
                 done();
             }).catch(done);
