@@ -29,7 +29,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(96);
+            theme.results.pass.should.be.an.Array().with.lengthOf(97);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -69,7 +69,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(33);
+            theme.results.pass.should.be.an.Array().with.lengthOf(34);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -105,7 +105,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(96);
+            theme.results.pass.should.be.an.Array().with.lengthOf(97);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -141,7 +141,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(99);
+            theme.results.pass.should.be.an.Array().with.lengthOf(100);
             theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM', 'GS080-FEACH-POSTS', 'GS080-CARD-LAST4');
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -177,7 +177,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
+            theme.results.pass.should.be.an.Array().with.lengthOf(110);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -287,7 +287,8 @@ describe('Checker', function () {
                 'GS090-NO-UNKNOWN-CUSTOM-THEME-SELECT-VALUE-IN-MATCH',
                 'GS090-NO-PRODUCTS-HELPER',
                 'GS090-NO-PRODUCT-DATA-HELPER',
-                'GS090-NO-PRODUCTS-DATA-HELPER'
+                'GS090-NO-PRODUCTS-DATA-HELPER',
+                'GS091-RECURSIVE-PARTIAL'
             ]);
 
             theme.results.fail.should.be.an.Object().with.keys(
@@ -322,7 +323,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(118);
+            theme.results.pass.should.be.an.Array().with.lengthOf(119);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -441,6 +442,7 @@ describe('Checker', function () {
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                 'GS090-NO-TIER-PRICE-AS-OBJECT',
                 'GS090-NO-TIER-BENEFIT-AS-OBJECT',
+                'GS091-RECURSIVE-PARTIAL',
                 'GS120-NO-UNKNOWN-GLOBALS'
             ]);
 
@@ -476,7 +478,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
+            theme.results.pass.should.be.an.Array().with.lengthOf(124);
             theme.results.pass.should.eql([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -600,6 +602,7 @@ describe('Checker', function () {
                 'GS090-NO-TIER-BENEFIT-AS-OBJECT',
                 'GS090-NO-LIMIT-ALL-IN-GET-HELPER',
                 'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER',
+                'GS091-RECURSIVE-PARTIAL',
                 'GS120-NO-UNKNOWN-GLOBALS'
             ]);
 
@@ -636,7 +639,7 @@ describe('Checker', function () {
             ]);
 
             // Short version of test above
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
+            theme.results.pass.should.be.an.Array().with.lengthOf(124);
             theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
@@ -652,7 +655,7 @@ describe('Checker', function () {
             ]);
 
             // Should default to v6 behavior
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
+            theme.results.pass.should.be.an.Array().with.lengthOf(124);
             theme.checkedVersion.should.equal('6.x');
             done();
         }).catch(done);
