@@ -1,0 +1,5 @@
+<div>
+    <h2>Partial A</h2>
+    {{!-- This creates circular dependency: A -> B -> C -> A --}}
+    {{> "partial-b"}}
+</div>
