@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{@site.title}}</title>
+</head>
+<body>
+    <h1>Authors</h1>
+
+    {{#get "authors" limit="9" filter="slug:[{{@custom.authors_list}}]" include="count.posts" order="last_seen_at desc"}}
+        <ul>
+        {{#foreach authors}}
+            <li>{{name}} - {{count.posts}} posts</li>
+        {{/foreach}}
+        </ul>
+    {{/get}}
+</body>
+</html>

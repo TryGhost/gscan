@@ -63,5 +63,20 @@ describe('100 custom template settings usage', function () {
                 done();
             }).catch(done);
         });
+       
+        // This test currently fails because the AST parser doesn't detect PathExpressions
+        // inside StringLiteral values. When @custom.authors_list is used within a string
+        // like filter="slug:[{{@custom.authors_list}}]", Handlebars treats the entire
+        // attribute value as a StringLiteral, and the nested {{@custom.authors_list}}
+        // is not parsed as a PathExpression.
+        it('should detect custom settings used in filter attributes', function (done) {
+            utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
+                output.should.be.a.ValidThemeObject();
+
+                Object.keys(output.results.fail).should.eql([]);
+
+                done();
+            }).catch(done);
+        }); 
     });
 });
