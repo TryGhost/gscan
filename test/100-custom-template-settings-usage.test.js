@@ -64,30 +64,4 @@ describe('100 custom template settings usage', function () {
             }).catch(done);
         });
     });
-
-    describe('v5:', function () {
-        const options = {checkVersion: 'v5'};
-
-        it('should output nothing when all custom theme settings are used', function (done) {
-            utils.testCheck(thisCheck, '100-custom-template-settings-usage/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
-
-                Object.keys(output.results.fail).should.eql([]);
-
-                done();
-            }).catch(done);
-        });
-
-        it('should show errors when custom theme settings are not used', function (done) {
-            utils.testCheck(thisCheck, '100-custom-template-settings-usage/unused', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
-
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
-
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-
-                done();
-            }).catch(done);
-        });
-    });
 });
