@@ -1,0 +1,17 @@
+{
+  "name": "custom-settings-with-partials",
+  "version": "1.0.0",
+  "config": {
+    "custom": {
+      "header_style": {
+        "type": "select",
+        "options": ["simple", "fancy"],
+        "default": "simple"
+      },
+      "footer_text": {
+        "type": "text",
+        "default": "Copyright 2024"
+      }
+    }
+  }
+}

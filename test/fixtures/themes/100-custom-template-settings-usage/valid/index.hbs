@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{@site.title}}</title>
+</head>
+<body class="{{@custom.color_scheme}}">
+    {{#if @custom.show_logo}}
+        <img src="{{@site.logo}}" alt="{{@site.title}}">
+    {{/if}}
+
+    <h1>Welcome</h1>
+
+    {{#foreach posts}}
+        <article>
+            <h2>{{title}}</h2>
+        </article>
+    {{/foreach}}
+</body>
+</html>
