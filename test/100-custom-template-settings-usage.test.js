@@ -63,7 +63,7 @@ describe('100 custom template settings usage', function () {
                 done();
             }).catch(done);
         });
-       
+
         it('should detect custom settings used in filter attributes', function (done) {
             utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
                 output.should.be.a.ValidThemeObject();
@@ -72,7 +72,20 @@ describe('100 custom template settings usage', function () {
 
                 done();
             }).catch(done);
-        }); 
+        });
+
+        it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function (done) {
+            utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
+                output.should.be.a.ValidThemeObject();
+
+                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+
+                done();
+            }).catch(done);
+        });
     });
 
     describe('v5:', function () {
@@ -135,7 +148,7 @@ describe('100 custom template settings usage', function () {
                 done();
             }).catch(done);
         });
-       
+
         it('should detect custom settings used in filter attributes', function (done) {
             utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
                 output.should.be.a.ValidThemeObject();
@@ -144,7 +157,20 @@ describe('100 custom template settings usage', function () {
 
                 done();
             }).catch(done);
-        }); 
+        });
+
+        it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function (done) {
+            utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
+                output.should.be.a.ValidThemeObject();
+
+                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+
+                done();
+            }).catch(done);
+        });
     });
 
     describe('v6:', function () {
@@ -207,7 +233,7 @@ describe('100 custom template settings usage', function () {
                 done();
             }).catch(done);
         });
-       
+
         it('should detect custom settings used in filter attributes', function (done) {
             utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
                 output.should.be.a.ValidThemeObject();
@@ -216,6 +242,19 @@ describe('100 custom template settings usage', function () {
 
                 done();
             }).catch(done);
-        }); 
+        });
+
+        it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function (done) {
+            utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
+                output.should.be.a.ValidThemeObject();
+
+                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
+                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+
+                done();
+            }).catch(done);
+        });
     });
 });

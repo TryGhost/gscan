@@ -1,0 +1,12 @@
+{
+  "name": "custom-settings-filter-attribute-uppercase",
+  "version": "1.0.0",
+  "config": {
+    "custom": {
+      "authors_list": {
+        "type": "text",
+        "default": "author-1,author-2"
+      }
+    }
+  }
+}
