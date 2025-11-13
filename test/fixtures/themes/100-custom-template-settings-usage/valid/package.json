@@ -1,0 +1,17 @@
+{
+  "name": "custom-settings-valid",
+  "version": "1.0.0",
+  "config": {
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": ["light", "dark"],
+        "default": "light"
+      },
+      "show_logo": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

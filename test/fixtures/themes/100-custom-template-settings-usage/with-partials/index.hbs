@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{@site.title}}</title>
+</head>
+<body>
+    {{> header}}
+
+    <h1>Welcome</h1>
+
+    {{#foreach posts}}
+        <article>
+            <h2>{{title}}</h2>
+        </article>
+    {{/foreach}}
+
+    {{> footer}}
+</body>
+</html>

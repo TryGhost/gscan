@@ -1,0 +1,17 @@
+{
+  "name": "custom-settings-partial",
+  "version": "1.0.0",
+  "config": {
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": ["light", "dark"],
+        "default": "light"
+      },
+      "unused_setting": {
+        "type": "text",
+        "default": "unused"
+      }
+    }
+  }
+}
