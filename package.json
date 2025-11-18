@@ -54,7 +54,7 @@
     "@tryghost/zip": "^1.1.42",
     "chalk": "^4.1.2",
     "common-tags": "^1.8.2",
-    "express": "^4.18.2",
+    "express": "^5.0.0",
     "express-hbs": "^2.4.2",
     "fs-extra": "^11.1.1",
     "glob": "^8.1.0",
