@@ -1433,7 +1433,7 @@
     "@tryghost/errors" "^1.3.8"
     "@tryghost/request" "^1.0.12"
 
-"@tryghost/logging@^2.4.23", "@tryghost/logging@^2.4.7":
+"@tryghost/logging@^2.4.7", "@tryghost/logging@^2.5.0":
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-2.5.0.tgz#239fc3518cba48ff18794dfa24be44c5d2ba7a45"
   integrity sha512-fLPWNbghbdsUIH/7+CPmhT8l1MhZPI6za1Zm65rcwjGpaX+1Cr1ehcj22rMm91sl4A8AVe8vpYofRKM3UL8GIQ==
@@ -1535,12 +1535,12 @@
     find-root "^1.1.0"
 
 "@tryghost/server@^0.1.37":
-  version "0.1.53"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.53.tgz#2620de48b2f882070a3bd57f3e4a496ab8d32d3a"
-  integrity sha512-rIonEt42M1acgerVspilIfL7aQzfDQsEVaIJzwwRySJj3Guryw6nhqYwI6EnWUDGzi7FdHzDWF4eZ5AuEsOU/Q==
+  version "0.1.54"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-0.1.54.tgz#c95e02848f9f5d80c9d2ee45cef38d2321c03c0b"
+  integrity sha512-IOQwPor5TywdLvIQSVPgWP0Elbl9XbnMzZdvVNvIVy2nbVwsTgVYRaoN1WJ78saTbZqVQ3uxDc2zn+OI64MoDA==
   dependencies:
     "@tryghost/debug" "^0.1.35"
-    "@tryghost/logging" "^2.4.23"
+    "@tryghost/logging" "^2.5.0"
 
 "@tryghost/tpl@^0.1.35":
   version "0.1.35"
@@ -3298,9 +3298,9 @@ glob-parent@^6.0.1:
     is-glob "^4.0.3"
 
 glob@^10.4.2, glob@^10.4.5:
-  version "10.4.5"
-  resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
-  integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==
+  version "10.5.0"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-10.5.0.tgz#8ec0355919cd3338c28428a23d4f24ecc5fe738c"
+  integrity sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==
   dependencies:
     foreground-child "^3.1.0"
     jackspeak "^3.1.2"
