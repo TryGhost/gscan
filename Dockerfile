@@ -8,12 +8,12 @@ COPY package.json yarn.lock ./
 # ---- Dependencies ----
 FROM base AS dependencies
 # Install production dependencies
-RUN yarn install --production --frozen-lockfile
+RUN yarn install --ignore-scripts --production --frozen-lockfile
 # Copy only the production node_modules for later use
 RUN cp -R node_modules prod_node_modules
 
 # Install all dependencies, including 'devDependencies'
-RUN yarn install --frozen-lockfile
+RUN yarn install --ignore-scripts --frozen-lockfile
 
 # ---- Release ----
 FROM node:22.13.1-alpine3.21 AS release
