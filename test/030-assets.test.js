@@ -62,6 +62,20 @@ describe('030 Assets', function () {
         }).catch(done);
     });
 
+    it('should pass for external URLs containing /assets/', function (done) {
+        utils.testCheck(thisCheck, '030-assets/absolute-url', options).then(function (output) {
+            output.should.be.a.ValidThemeObject();
+
+            output.results.fail.should.be.an.Object().which.is.empty();
+
+            output.results.pass.should.be.an.Array().with.lengthOf(2);
+            output.results.pass.should.containEql('GS030-ASSET-REQ');
+            output.results.pass.should.containEql('GS030-ASSET-SYM');
+
+            done();
+        }).catch(done);
+    });
+
     it('should show error when symlink is present', function (done) {
         utils.testCheck(thisCheck, '030-assets/symlink', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
