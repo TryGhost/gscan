@@ -53,5 +53,30 @@ describe('Check zip', function () {
             }
         });
     });
+
+    describe('cleanup extracted directory', function () {
+        it('removes extracted directory by default', function () {
+            return checkZip(themePath('030-assets/ignored.zip'), {checkVersion: 'v1'})
+                .then((theme) => {
+                    theme.should.be.a.ValidThemeObject();
+                    return fs.pathExists(theme.path);
+                })
+                .then(function (exists) {
+                    exists.should.eql(false);
+                });
+        });
+
+        it('keeps extracted directory when keepExtractedDir is true', function () {
+            return checkZip(themePath('030-assets/ignored.zip'), {keepExtractedDir: true, checkVersion: 'v1'})
+                .then((theme) => {
+                    theme.should.be.a.ValidThemeObject();
+                    return fs.pathExists(theme.path)
+                        .then(function (exists) {
+                            exists.should.eql(true);
+                            return fs.remove(theme.path);
+                        });
+                });
+        });
+    });
 });
 
