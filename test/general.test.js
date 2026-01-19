@@ -66,6 +66,19 @@ describe('Check zip', function () {
                 });
         });
 
+        // Nested zips extract to /tmp/abc123/example/ - verify parent is also removed
+        it('removes entire temp directory for nested zips', function () {
+            return checkZip(themePath('example.zip'), {checkVersion: 'v1'})
+                .then((theme) => {
+                    theme.should.be.a.ValidThemeObject();
+                    const parentDir = path.dirname(theme.path);
+                    return fs.pathExists(parentDir);
+                })
+                .then(function (exists) {
+                    exists.should.eql(false);
+                });
+        });
+
         it('keeps extracted directory when keepExtractedDir is true', function () {
             return checkZip(themePath('030-assets/ignored.zip'), {keepExtractedDir: true, checkVersion: 'v1'})
                 .then((theme) => {
