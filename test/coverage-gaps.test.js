@@ -108,6 +108,15 @@ describe('Coverage gaps', function () {
         });
     });
 
+    it('handles missing stats levels when calculating score', function () {
+        calcScore({}, {
+            error: 1
+        }).should.deepEqual({
+            value: 100,
+            level: 'passing'
+        });
+    });
+
     it('handles object card_assets values when validating package.json', function () {
         const basePackageJSON = {
             name: 'theme-name',
