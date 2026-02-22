@@ -273,7 +273,7 @@ describe('050 Koenig CSS classes', function () {
             utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(96);
+                output.results.pass.should.be.an.Array().with.lengthOf(93);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -286,6 +286,18 @@ describe('050 Koenig CSS classes', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(14);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -375,7 +387,7 @@ describe('050 Koenig CSS classes', function () {
             utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(96);
+                output.results.pass.should.be.an.Array().with.lengthOf(93);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -388,6 +400,18 @@ describe('050 Koenig CSS classes', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(14);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -477,7 +501,7 @@ describe('050 Koenig CSS classes', function () {
             utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
-                output.results.pass.should.be.an.Array().with.lengthOf(96);
+                output.results.pass.should.be.an.Array().with.lengthOf(93);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
@@ -490,6 +514,18 @@ describe('050 Koenig CSS classes', function () {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(5);
+
+                output.results.fail.should.be.an.Object().which.is.empty();
+
+                done();
+            }).catch(done);
+        });
+
+        it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function (done) {
+            utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
+                output.should.be.a.ValidThemeObject();
+
+                output.results.pass.should.be.an.Array().with.lengthOf(14);
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 

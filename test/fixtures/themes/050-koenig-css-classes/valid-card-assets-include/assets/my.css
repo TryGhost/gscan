@@ -6,17 +6,17 @@
 .kg-gallery-image {}
 
 .kg-callout-card {}
-.kg-callout-card-emoji {}
-.kg-callout-card-text {}
-.kg-callout-card-background-grey {}
-.kg-callout-card-background-white {}
-.kg-callout-card-background-blue {}
-.kg-callout-card-background-green {}
-.kg-callout-card-background-yellow {}
-.kg-callout-card-background-red {}
-.kg-callout-card-background-pink {}
-.kg-callout-card-background-purple {}
-.kg-callout-card-background-accent {}
+.kg-callout-emoji {}
+.kg-callout-text {}
+.kg-callout-card-grey {}
+.kg-callout-card-white {}
+.kg-callout-card-blue {}
+.kg-callout-card-green {}
+.kg-callout-card-yellow {}
+.kg-callout-card-red {}
+.kg-callout-card-pink {}
+.kg-callout-card-purple {}
+.kg-callout-card-accent {}
 
 .kg-nft-card {}
 .kg-nft-card-container {}
@@ -24,7 +24,7 @@
 .kg-nft-image {}
 .kg-nft-header {}
 .kg-nft-title {}
-.kg-nft-logo {}
+.kg-nft-opensea-logo {}
 .kg-nft-creator {}
 .kg-nft-description {}
 
