@@ -33,9 +33,7 @@ describe('Read theme', function () {
 
             theme.files.should.be.an.Array().with.lengthOf(7);
 
-            const fileNames = theme.files.map((file) => {
-                return Object.fromEntries(Object.entries(file).filter(([key]) => key === 'file' || key === 'ext'));
-            });
+            const fileNames = theme.files.map(({file, ext}) => ({file, ext}));
 
             fileNames.should.containEql({file: 'index.hbs', ext: '.hbs'});
             fileNames.should.containEql({file: 'package.json', ext: '.json'});
