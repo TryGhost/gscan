@@ -153,11 +153,14 @@ function outputResult(result, options) {
     ui.log(''); // extra line-break
 }
 
+function formatCount(word, count) {
+    return `${count} ${count === 1 ? word : `${word}s`}`;
+}
+
 function getSummary(theme, options) {
     let summaryText = '';
     const errorCount = theme.results.error.length;
     const warnCount = theme.results.warning.length;
-    const pluralize = require('pluralize');
     const checkSymbol = '\u2713';
 
     if (errorCount === 0 && warnCount === 0) {
@@ -170,7 +173,7 @@ function getSummary(theme, options) {
         summaryText = `Your theme has`;
 
         if (!_.isEmpty(theme.results.error)) {
-            summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
+            summaryText += chalk.red.bold(` ${formatCount('error', theme.results.error.length)}`);
         }
 
         if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
@@ -178,7 +181,7 @@ function getSummary(theme, options) {
         }
 
         if (!_.isEmpty(theme.results.warning)) {
-            summaryText += chalk.yellow.bold(` ${pluralize('warning', theme.results.warning.length, true)}`);
+            summaryText += chalk.yellow.bold(` ${formatCount('warning', theme.results.warning.length)}`);
         }
 
         summaryText += '!';
