@@ -83,6 +83,56 @@ describe('Check zip', function () {
             extractedThemePathExists.should.eql(false);
         });
 
+        it('removes extracted directory when checks fail', async function () {
+            const readThemePath = require.resolve('../lib/read-theme');
+            const originalReadTheme = require(readThemePath);
+            const removeSpy = sinon.spy(fs, 'remove');
+
+            require.cache[readThemePath].exports = async function () {
+                throw new Error('forced check failure');
+            };
+
+            try {
+                await checkZip(themePath('030-assets/ignored.zip'), {checkVersion: 'v1'});
+                should.fail(checkZip, 'Should have errored');
+            } catch (err) {
+                should.exist(err);
+                should.equal(err.errorType, 'ValidationError');
+                should.equal(err.message, 'Failed theme files check');
+            } finally {
+                require.cache[readThemePath].exports = originalReadTheme;
+                removeSpy.restore();
+            }
+
+            removeSpy.calledOnce.should.eql(true);
+            const removedPath = removeSpy.firstCall.args[0];
+            should.exist(removedPath);
+
+            const extractedThemePathExists = await fs.pathExists(removedPath);
+            extractedThemePathExists.should.eql(false);
+        });
+
+        it('removes entire temp directory for nested zips', async function () {
+            const theme = await checkZip(themePath('example.zip'), {checkVersion: 'v1'});
+
+            theme.files.length.should.be.above(0);
+
+            const extractedParentPathExists = await fs.pathExists(path.dirname(theme.path));
+            extractedParentPathExists.should.eql(false);
+        });
+
+        it('keeps extracted directory when keepExtractedDir is true', async function () {
+            const theme = await checkZip(themePath('030-assets/ignored.zip'), {keepExtractedDir: true, checkVersion: 'v1'});
+
+            theme.files.length.should.eql(1);
+            theme.files[0].file.should.match(/default\.hbs/);
+
+            const extractedThemePathExists = await fs.pathExists(theme.path);
+            extractedThemePathExists.should.eql(true);
+
+            await fs.remove(theme.path);
+        });
+
         it('accepts an object zip input', async function () {
             const theme = await checkZip({
                 path: themePath('030-assets/ignored.zip'),
@@ -91,6 +141,8 @@ describe('Check zip', function () {
 
             theme.files.length.should.eql(1);
             theme.files[0].file.should.match(/default\.hbs/);
+
+            await fs.remove(theme.path);
         });
     });
 });
