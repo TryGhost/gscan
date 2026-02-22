@@ -61,7 +61,6 @@
     "lodash": "4.17.23",
     "multer": "2.0.2",
     "pluralize": "8.0.0",
-    "require-dir": "1.2.0",
     "semver": "7.7.4",
     "validator": "^13.0.0"
   },
