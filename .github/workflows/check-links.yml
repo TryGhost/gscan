@@ -17,7 +17,7 @@ jobs:
         env:
           FORCE_COLOR: 0
         with:
-          node-version: 22 # TODO: return to lts/* once 1) we're back to passing runs and 2) 24 is added to package.json
+          node-version: 24 # TODO: return to lts/* once 1) we're back to passing runs and 2) 24 is added to package.json
           cache: yarn
 
       - run: yarn
