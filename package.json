@@ -33,7 +33,7 @@
     "start": "node app/index.js",
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
     "lint": "eslint . --ext .js --cache",
-    "test": "NODE_ENV=testing c8 --check-coverage --branches 95 --functions 95 --lines 95 --statements 95 mocha test/*.test.js",
+    "test": "NODE_ENV=testing c8 --check-coverage --branches 95 --functions 95 --lines 95 --statements 95 mocha \"test/*.test.js\" \"test/unit/*.test.js\"",
     "posttest": "yarn lint",
     "preship": "yarn test",
     "ship": "pro-ship",

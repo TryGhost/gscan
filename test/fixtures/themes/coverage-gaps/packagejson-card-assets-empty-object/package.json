@@ -1,0 +1,14 @@
+{
+  "name": "coverage-gaps-theme",
+  "version": "1.0.0",
+  "author": {
+    "email": "theme@example.org"
+  },
+  "keywords": [
+    "ghost-theme"
+  ],
+  "config": {
+    "posts_per_page": 10,
+    "card_assets": {}
+  }
+}
