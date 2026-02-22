@@ -5,35 +5,70 @@ const sentry = require('@sentry/node');
 // Require rest of the modules
 const express = require('express');
 const debug = require('@tryghost/debug')('app');
-const hbs = require('express-hbs');
+const {create} = require('express-handlebars');
 const multer = require('multer');
 const server = require('@tryghost/server');
 const config = require('@tryghost/config');
 const errors = require('@tryghost/errors');
 const gscan = require('../lib');
 const fs = require('fs-extra');
+const path = require('path');
 const logRequest = require('./middlewares/log-request');
 const uploadValidation = require('./middlewares/upload-validation');
 const ghostVer = require('./ghost-version');
-const pkgJson = require('../package.json');
 const ghostVersions = require('../lib/utils').versions;
 const upload = multer({dest: __dirname + '/uploads/'});
 const app = express();
-const scanHbs = hbs.create();
+const viewsDir = path.join(__dirname, 'tpl');
+const scanHbs = create({
+    extname: '.hbs',
+    partialsDir: path.join(viewsDir, 'partials'),
+    layoutsDir: path.join(viewsDir, 'layouts'),
+    defaultLayout: 'default',
+    helpers: {
+        block(name, options) {
+            const root = options.data && options.data.root;
+
+            if (!root) {
+                return typeof options.fn === 'function' ? options.fn(this) : '';
+            }
+
+            const blockCache = root.blockCache || {};
+            let val = blockCache[name];
+
+            if (val === undefined && typeof options.fn === 'function') {
+                val = options.fn(this);
+            }
+
+            if (Array.isArray(val)) {
+                val = val.join('\n');
+            }
+
+            return val;
+        },
+        contentFor(name, options) {
+            const root = options.data && options.data.root;
+
+            if (!root) {
+                return '';
+            }
+
+            const blockCache = root.blockCache || (root.blockCache = {});
+            const block = blockCache[name] || (blockCache[name] = []);
+            block.push(options.fn(this));
+            return '';
+        }
+    }
+});
 
 // Configure express
 app.set('x-powered-by', false);
 app.set('query parser', false);
 
-app.engine('hbs', scanHbs.express4({
-    partialsDir: __dirname + '/tpl/partials',
-    layoutsDir: __dirname + '/tpl/layouts',
-    defaultLayout: __dirname + '/tpl/layouts/default',
-    templateOptions: {data: {version: pkgJson.version}}
-}));
+app.engine('hbs', scanHbs.engine);
 
 app.set('view engine', 'hbs');
-app.set('views', __dirname + '/tpl');
+app.set('views', viewsDir);
 
 app.use(logRequest);
 app.use(express.static(__dirname + '/public'));
