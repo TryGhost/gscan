@@ -124,7 +124,7 @@ describe('Coverage gaps', function () {
         });
     });
 
-    it('handles object card_assets values when validating package.json', function () {
+    it('handles object card_assets values when validating package.json', async function () {
         const basePackageJSON = {
             name: 'theme-name',
             version: '1.0.0',
@@ -148,7 +148,7 @@ describe('Coverage gaps', function () {
             }
         });
 
-        const emptyObjectResult = checkPackageJSON(createTheme({
+        const emptyObjectResult = await checkPackageJSON(createTheme({
             ...basePackageJSON,
             config: {
                 ...basePackageJSON.config,
@@ -158,7 +158,7 @@ describe('Coverage gaps', function () {
 
         should.exist(emptyObjectResult.results.fail['GS010-PJ-GHOST-CARD-ASSETS-NOT-PRESENT']);
 
-        const nonEmptyObjectResult = checkPackageJSON(createTheme({
+        const nonEmptyObjectResult = await checkPackageJSON(createTheme({
             ...basePackageJSON,
             config: {
                 ...basePackageJSON.config,
