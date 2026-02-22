@@ -1,4 +1,4 @@
-const assert = require('assert');
+const assert = require('node:assert/strict');
 const calculateScore = require('../../lib/utils/score-calculator');
 
 describe('Score calculator', function () {
