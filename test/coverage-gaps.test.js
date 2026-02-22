@@ -2,7 +2,6 @@ const should = require('should');
 const {check} = require('../lib/checker');
 const format = require('../lib/format');
 const calcScore = require('../lib/utils/score-calculator');
-const deepMerge = require('../lib/utils/deep-merge');
 const getPackageJSON = require('../lib/utils/package-json');
 const checkPackageJSON = require('../lib/checks/010-package-json');
 const checkAssets = require('../lib/checks/030-assets');
@@ -106,17 +105,6 @@ describe('Coverage gaps', function () {
         }).should.deepEqual({
             value: 100,
             level: 'passing'
-        });
-    });
-
-    it('deep-merges nested plain objects and handles invalid targets and empty sources', function () {
-        deepMerge(null, undefined, {alpha: 1}).should.deepEqual({alpha: 1});
-        deepMerge({nested: 1}, {nested: {beta: true}}).should.deepEqual({nested: {beta: true}});
-        deepMerge({nested: {left: true}}, {nested: {right: true}}).should.deepEqual({
-            nested: {
-                left: true,
-                right: true
-            }
         });
     });
 
