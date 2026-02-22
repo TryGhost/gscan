@@ -58,25 +58,29 @@ app.post('/',
         debug('Uploaded: ' + zip.name + ' to ' + zip.path);
         debug('Version to check: ' + options.checkVersion);
 
+        let checkError;
+
         gscan.checkZip(zip, options)
             .then(function processResult(theme) {
                 debug('Checked: ' + zip.name);
                 res.theme = theme;
-
+            }).catch(function (error) {
+                checkError = error;
+            }).finally(function () {
                 debug('attempting to remove: ' + req.file.path);
                 fs.remove(req.file.path)
-                    .then(function () {
-                        debug('Calling next');
-                        return next();
+                    .catch(function (removeError) {
+                        debug('failed to remove uploaded file', removeError);
                     })
-                    .catch(function () {
-                        // NOTE: transform to `.finally(...) once package is compatible with node >=10
+                    .then(function () {
+                        if (checkError) {
+                            debug('Calling next with error');
+                            return next(checkError);
+                        }
+
                         debug('Calling next');
                         return next();
                     });
-            }).catch(function (error) {
-                debug('Calling next with error');
-                return next(error);
             });
     },
     function doRender(req, res) {
