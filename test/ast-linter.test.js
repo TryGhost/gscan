@@ -249,4 +249,69 @@ describe('ast-linter', function () {
             name.should.eql('test/testing');
         });
     });
+
+    describe('helpers utility functions', function () {
+        it('getNodeName handles program and path-expression variants', function () {
+            should.equal(helpers.getNodeName({type: 'Program'}), undefined);
+            helpers.getNodeName({type: 'PathExpression', data: true, parts: ['custom', 'color']}).should.eql('@custom.color');
+            helpers.getNodeName({type: 'PathExpression', data: false, parts: ['author', 'name']}).should.eql('author');
+            helpers.getNodeName({type: 'Unknown', name: {parts: ['fallback']}}).should.eql('fallback');
+            helpers.getNodeName({type: 'Unknown', name: {original: 'raw-name'}}).should.eql('raw-name');
+        });
+
+        it('logNode uses inverse and block prefixes correctly', function () {
+            helpers.logNode({
+                type: 'BlockStatement',
+                path: {data: false, parts: ['if']},
+                inverse: {},
+                program: null
+            }).should.eql('{{^if}}');
+
+            helpers.logNode({
+                type: 'BlockStatement',
+                path: {data: false, parts: ['if']},
+                program: {}
+            }).should.eql('{{#if}}');
+        });
+
+        it('classifyNode handles helper, ambiguous, knownHelpersOnly and block params', function () {
+            const ambiguousNode = ASTLinter.parse('{{foo}}').ast.body[0];
+
+            helpers.classifyNode(ambiguousNode, {
+                knownHelpers: [],
+                knownHelpersOnly: false,
+                blockParams: []
+            }).should.eql('ambiguous');
+
+            helpers.classifyNode(ambiguousNode, {
+                knownHelpers: ['foo'],
+                knownHelpersOnly: false,
+                blockParams: []
+            }).should.eql('helper');
+
+            helpers.classifyNode(ambiguousNode, {
+                knownHelpers: [],
+                knownHelpersOnly: true,
+                blockParams: []
+            }).should.eql('simple');
+
+            helpers.classifyNode(ambiguousNode, {
+                knownHelpers: [],
+                knownHelpersOnly: false,
+                blockParams: [['foo']]
+            }).should.eql('simple');
+        });
+
+        it('transformLiteralToPath converts literal paths and skips existing path expressions', function () {
+            const literalNode = ASTLinter.parse('{{"pagination"}}').ast.body[0];
+            helpers.transformLiteralToPath(literalNode);
+            literalNode.path.parts.should.eql(['pagination']);
+            literalNode.path.original.should.eql('pagination');
+
+            const pathNode = ASTLinter.parse('{{pagination}}').ast.body[0];
+            const existingPath = pathNode.path;
+            helpers.transformLiteralToPath(pathNode);
+            pathNode.path.should.equal(existingPath);
+        });
+    });
 });

@@ -200,4 +200,50 @@ describe('Read theme', function () {
 
         theme.customSettings.should.deepEqual({});
     });
+
+    it('extractTemplates ignores partials and assets templates', function () {
+        const extractTemplates = readTheme.__get__('extractTemplates');
+        const templates = extractTemplates([
+            {file: 'partials/author-card.hbs'},
+            {file: 'partials\\post-card.hbs'},
+            {file: 'assets/ignoreme.hbs'},
+            {file: 'post.hbs'},
+            {file: 'custom-about.hbs'},
+            {file: 'notes.txt'}
+        ]);
+
+        templates.should.eql(['post', 'custom-about']);
+    });
+
+    it('extractCustomTemplates handles supported names and ignores nested templates', function () {
+        const extractCustomTemplates = readTheme.__get__('extractCustomTemplates');
+        const templates = extractCustomTemplates([
+            'post-featured',
+            'page-contact',
+            'custom-long-form',
+            'custom/nested',
+            'index'
+        ]);
+
+        templates.should.eql([
+            {
+                filename: 'post-featured',
+                name: 'Featured',
+                for: ['post'],
+                slug: 'featured'
+            },
+            {
+                filename: 'page-contact',
+                name: 'Contact',
+                for: ['page'],
+                slug: 'contact'
+            },
+            {
+                filename: 'custom-long-form',
+                name: 'Long Form',
+                for: ['page', 'post'],
+                slug: null
+            }
+        ]);
+    });
 });
