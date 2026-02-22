@@ -3,7 +3,6 @@
 const path = require('path');
 const glob = require('glob');
 const chalk = require('chalk');
-const {default: fetch} = require('node-fetch');
 
 const checkIds = process.env.GSCAN_DOC_CHECK_IDS !== 'false';
 
