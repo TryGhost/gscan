@@ -1,4 +1,4 @@
-var uuid = require('uuid'),
+var randomUUID = require('crypto').randomUUID,
     logging = require('@tryghost/logging');
 
 /**
@@ -7,7 +7,7 @@ var uuid = require('uuid'),
  */
 module.exports = function logRequest(req, res, next) {
     var startTime = Date.now(),
-        requestId = uuid.v1();
+        requestId = randomUUID();
 
     function logResponse() {
         res.responseTime = (Date.now() - startTime) + 'ms';
