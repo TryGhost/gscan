@@ -1,5 +1,7 @@
 const path = require('path');
 const fs = require('fs-extra');
+const sinon = require('sinon');
+const errors = require('@tryghost/errors');
 const {check, checkZip} = require('../lib');
 const themePath = require('./utils').themePath;
 
@@ -52,6 +54,43 @@ describe('Check zip', function () {
                 should.equal(err.help, 'Your zip file might be corrupted, try unzipping and zipping again.');
             }
         });
+
+        it('wraps non-ghost errors as a check-zip validation error', async function () {
+            const isGhostErrorStub = sinon.stub(errors.utils, 'isGhostError').returns(false);
+
+            try {
+                await checkZip(themePath('030-assets/do_not_exist.zip'));
+                should.fail(checkZip, 'Should have errored');
+            } catch (err) {
+                should.exist(err);
+                should.equal(err.errorType, 'ValidationError');
+                should.equal(err.message, 'Failed to check zip file');
+                should.equal(err.context, 'do_not_exist');
+            } finally {
+                isGhostErrorStub.restore();
+            }
+        });
+    });
+
+    describe('successful zip checking', function () {
+        it('removes extracted directory by default', async function () {
+            const theme = await checkZip(themePath('030-assets/ignored.zip'), {checkVersion: 'v1'});
+
+            theme.files.length.should.eql(1);
+            theme.files[0].file.should.match(/default\.hbs/);
+
+            const extractedThemePathExists = await fs.pathExists(theme.path);
+            extractedThemePathExists.should.eql(false);
+        });
+
+        it('accepts an object zip input', async function () {
+            const theme = await checkZip({
+                path: themePath('030-assets/ignored.zip'),
+                name: 'ignored.zip'
+            }, {keepExtractedDir: true, checkVersion: 'v1'});
+
+            theme.files.length.should.eql(1);
+            theme.files[0].file.should.match(/default\.hbs/);
+        });
     });
 });
-
