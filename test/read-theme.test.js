@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const fs = require('fs-extra');
 const sinon = require('sinon');
 const rewire = require('rewire');
@@ -34,10 +33,8 @@ describe('Read theme', function () {
 
             theme.files.should.be.an.Array().with.lengthOf(7);
 
-            const fileNames = _.map(theme.files, function (file) {
-                return _.pickBy(file, function (value, key) {
-                    return key === 'file' || key === 'ext';
-                });
+            const fileNames = theme.files.map((file) => {
+                return Object.fromEntries(Object.entries(file).filter(([key]) => key === 'file' || key === 'ext'));
             });
 
             fileNames.should.containEql({file: 'index.hbs', ext: '.hbs'});
@@ -93,7 +90,7 @@ describe('Read theme', function () {
                 'post'
             ]);
 
-            _.map(theme.templates.custom, 'filename').should.eql([
+            theme.templates.custom.map(template => template.filename).should.eql([
                 'custom-My-Post',
                 'custom-about',
                 'page-1',

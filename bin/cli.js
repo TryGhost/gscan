@@ -5,10 +5,17 @@ process.removeAllListeners('warning');
 
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
-const _ = require('lodash');
-const chalk = require('chalk');
+const chalk = require('chalk').default;
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
+
+const capitalize = (value) => {
+    if (!value) {
+        return '';
+    }
+
+    return value[0].toUpperCase() + value.slice(1).toLowerCase();
+};
 
 const levels = {
     error: chalk.red,
@@ -127,7 +134,7 @@ prettyCLI
     });
 
 function outputResult(result, options) {
-    ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
+    ui.log(levels[result.level](`- ${capitalize(result.level)}:`), result.rule);
 
     if (options.verbose) {
         ui.log(`${chalk.bold('\nDetails:')} ${result.details}`);
@@ -146,7 +153,8 @@ function outputResult(result, options) {
                 ui.log(message);
             });
         } else {
-            ui.log(`${chalk.bold('Affected Files:')} ${_.uniq(_.map(result.failures, 'ref')).join(', ')}`);
+            const affectedFiles = Array.from(new Set(result.failures.map(failure => failure.ref)));
+            ui.log(`${chalk.bold('Affected Files:')} ${affectedFiles.join(', ')}`);
         }
     }
 
@@ -169,15 +177,15 @@ function getSummary(theme, options) {
     } else {
         summaryText = `Your theme has`;
 
-        if (!_.isEmpty(theme.results.error)) {
+        if (theme.results.error.length > 0) {
             summaryText += chalk.red.bold(` ${pluralize('error', theme.results.error.length, true)}`);
         }
 
-        if (!_.isEmpty(theme.results.error) && !_.isEmpty(theme.results.warning)) {
+        if (theme.results.error.length > 0 && theme.results.warning.length > 0) {
             summaryText += ' and';
         }
 
-        if (!_.isEmpty(theme.results.warning)) {
+        if (theme.results.warning.length > 0) {
             summaryText += chalk.yellow.bold(` ${pluralize('warning', theme.results.warning.length, true)}`);
         }
 
@@ -186,7 +194,7 @@ function getSummary(theme, options) {
         // NOTE: had to subtract the number of 'invisible' formating symbols
         //       needs update if formatting above changes
         const hiddenSymbols = 38;
-        summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
+        summaryText += '\n' + '-'.repeat(Math.max(0, summaryText.length - hiddenSymbols));
     }
 
     return summaryText;
@@ -204,26 +212,26 @@ function outputResults(theme, options) {
 
     ui.log('\n' + getSummary(theme, options));
 
-    if (!_.isEmpty(theme.results.error)) {
+    if (theme.results.error.length > 0) {
         ui.log(chalk.red.bold('\nErrors'));
         ui.log(chalk.red.bold('------'));
         ui.log(chalk.red('Important to fix, functionality may be degraded.\n'));
 
-        _.each(theme.results.error, rule => outputResult(rule, options));
+        theme.results.error.forEach(rule => outputResult(rule, options));
     }
 
-    if (!_.isEmpty(theme.results.warning)) {
+    if (theme.results.warning.length > 0) {
         ui.log(chalk.yellow.bold('\nWarnings'));
         ui.log(chalk.yellow.bold('--------'));
 
-        _.each(theme.results.warning, rule => outputResult(rule, options));
+        theme.results.warning.forEach(rule => outputResult(rule, options));
     }
 
-    if (!_.isEmpty(theme.results.recommendation)) {
+    if (theme.results.recommendation.length > 0) {
         ui.log(chalk.yellow.bold('\nRecommendations'));
         ui.log(chalk.yellow.bold('---------------'));
 
-        _.each(theme.results.recommendation, rule => outputResult(rule, options));
+        theme.results.recommendation.forEach(rule => outputResult(rule, options));
     }
 
     ui.log(`\nGet more help at ${chalk.cyan.underline('https://ghost.org/docs/themes/')}`);

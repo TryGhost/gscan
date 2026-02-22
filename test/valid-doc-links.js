@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const path = require('path');
 const glob = require('glob');
-const chalk = require('chalk');
+const chalk = require('chalk').default;
 const {default: fetch} = require('node-fetch');
 
 const checkIds = process.env.GSCAN_DOC_CHECK_IDS !== 'false';

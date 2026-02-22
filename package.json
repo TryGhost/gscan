@@ -58,7 +58,6 @@
     "express-hbs": "2.5.0",
     "fs-extra": "11.3.3",
     "glob": "13.0.6",
-    "lodash": "4.17.23",
     "multer": "2.0.2",
     "pluralize": "8.0.0",
     "require-dir": "1.2.0",
