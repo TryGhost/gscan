@@ -96,9 +96,12 @@ gscan.checkZip({
 
 ### Publish
 
-(Core team only)
+Ghost core team only
 
-- `yarn ship`
+1. run `yarn ship` - this bumps the version, commits, tags and pushes to `main`
+2. npm publishing is handled by GitHub Actions in `.github/workflows/publish.yml`
+
+Manual preview is available via workflow dispatch with `dry-run: true`
 
 ### Tools
 When developing new rules or testing gscan following tools are great to have in the toolbelt:

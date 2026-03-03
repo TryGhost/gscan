@@ -1,0 +1,103 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Preview what would be published without actually publishing'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      FORCE_COLOR: 1
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: 24
+          cache: yarn
+      - run: yarn --frozen-lockfile --prefer-offline
+      - run: yarn test
+
+  publish:
+    name: Publish to npm
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.repository == 'TryGhost/gscan'
+    concurrency:
+      group: publish-npm-${{ github.ref }}
+      cancel-in-progress: false
+
+    permissions:
+      id-token: write
+      contents: read
+
+    env:
+      FORCE_COLOR: 1
+      CI: true
+      NPM_CONFIG_PROVENANCE: true
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: 24
+          registry-url: 'https://registry.npmjs.org'
+
+      # npm 11+ is required for npm Trusted Publishing (OIDC).
+      - name: Install npm 11
+        run: npm install -g npm@11
+
+      - name: Install dependencies
+        run: yarn --prefer-offline --ignore-scripts --frozen-lockfile
+
+      - name: Compare local and npm versions
+        id: version_check
+        shell: bash
+        run: |
+          local_version=$(node -p "require('./package.json').version")
+          npm_version=$(npm view gscan version 2>/dev/null || true)
+
+          echo "local_version=$local_version" >> "$GITHUB_OUTPUT"
+          echo "npm_version=$npm_version" >> "$GITHUB_OUTPUT"
+
+          if [[ -z "$npm_version" || "$local_version" != "$npm_version" ]]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+            echo "reason=version-diff" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+            echo "reason=same-version" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to npm (dry run)
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true'
+        run: yarn ship:ci
+        env:
+          NPM_CONFIG_DRY_RUN: true
+
+      - name: Publish to npm
+        if: steps.version_check.outputs.should_publish == 'true' && (github.event_name != 'workflow_dispatch' || github.event.inputs['dry-run'] != 'true')
+        run: yarn ship:ci
+
+      - name: Skip publish summary
+        if: steps.version_check.outputs.should_publish != 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true')
+        run: |
+          echo "Publish not executed."
+          echo "Version check: ${{ steps.version_check.outputs.reason || 'not-run' }}"
+          echo "Dry run: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true' }}"
+
+      - uses: tryghost/actions/actions/slack-build@main
+        if: failure() && secrets.SLACK_WEBHOOK_URL != ''
+        with:
+          status: ${{ job.status }}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

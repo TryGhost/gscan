@@ -36,7 +36,11 @@ yarn lint
 yarn lint --fix
 
 # Full release process (core team)
+# 1) bump version + commit/tag/push
 yarn ship
+
+# 2) npm publish is handled in CI by .github/workflows/publish.yml
+# Manual preview is available via workflow_dispatch with dry-run=true
 ```
 
 ### CLI Usage
