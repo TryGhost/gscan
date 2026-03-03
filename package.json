@@ -37,7 +37,7 @@
     "posttest": "yarn lint",
     "preship": "yarn test",
     "ship": "pro-ship",
-    "postship": "npm publish"
+    "ship:ci": "npm publish"
   },
   "bin": {
     "gscan": "./bin/cli.js"

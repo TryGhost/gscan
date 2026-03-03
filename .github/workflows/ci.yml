@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - 'renovate/*'
+  workflow_call:
 jobs:
   test:
     name: Test (Node ${{ matrix.node-version }})
