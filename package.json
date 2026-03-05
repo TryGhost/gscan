@@ -58,7 +58,7 @@
     "fs-extra": "11.3.3",
     "glob": "13.0.6",
     "lodash": "4.17.23",
-    "multer": "2.1.0",
+    "multer": "2.1.1",
     "semver": "7.7.4",
     "validator": "^13.0.0"
   },
