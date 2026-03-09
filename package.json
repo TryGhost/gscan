@@ -67,7 +67,7 @@
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.0.7",
     "c8": "11.0.0",
-    "eslint": "10.0.2",
+    "eslint": "10.0.3",
     "eslint-plugin-ghost": "3.5.0",
     "mocha": "11.7.5",
     "nodemon": "3.1.14",
