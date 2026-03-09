@@ -232,6 +232,8 @@ function outputResults(theme, options, deps = {}) {
     } catch (err) {
         uiImpl.log.error('Error formatting result, some results may be missing.');
         uiImpl.log.error(err);
+        processImpl.exit(1);
+        return;
     }
 
     let errorCount = theme.results.error.length;

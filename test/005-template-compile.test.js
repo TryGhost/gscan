@@ -387,7 +387,7 @@ describe('005 Template compile', function () {
             });
         });
 
-        it('theme with bloc dynamic partial', function () {
+        it('theme with block dynamic partial', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/valid-with-dynamic-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
@@ -411,7 +411,7 @@ describe('005 Template compile', function () {
             });
         });
 
-        it('theme with invalid block partials', function () {
+        it('theme with block partials', function () {
             return utils.testCheck(thisCheck, 'theme-with-block-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
