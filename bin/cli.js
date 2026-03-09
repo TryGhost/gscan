@@ -6,7 +6,7 @@ process.removeAllListeners('warning');
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
-const chalk = require('chalk');
+const {default: chalk} = require('chalk');
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
 
