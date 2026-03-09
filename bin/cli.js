@@ -6,7 +6,8 @@ process.removeAllListeners('warning');
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
-const chalk = require('chalk');
+const chalkModule = require('chalk');
+const chalk = chalkModule.default || chalkModule;
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
 
@@ -16,6 +17,7 @@ const levels = {
     recommendation: chalk.yellow,
     feature: chalk.green
 };
+const ansiPattern = new RegExp(`${String.fromCharCode(27)}\\[[0-9;]*m`, 'g');
 
 function configureCLI(cli = prettyCLI) {
     return cli
@@ -76,21 +78,24 @@ function buildCliOptions(argv) {
         verbose: argv.verbose,
         onlyFatalErrors: argv.fatal
     };
+    const selectedVersions = [
+        ['v1', 'v1'],
+        ['v2', 'v2'],
+        ['v3', 'v3'],
+        ['v4', 'v4'],
+        ['v5', 'v5'],
+        ['v6', 'v6'],
+        ['canary', ghostVersions.canary]
+    ].filter(([flag]) => argv[flag]);
 
-    if (argv.v1) {
-        cliOptions.checkVersion = 'v1';
-    } else if (argv.v2) {
-        cliOptions.checkVersion = 'v2';
-    } else if (argv.v3) {
-        cliOptions.checkVersion = 'v3';
-    } else if (argv.v4) {
-        cliOptions.checkVersion = 'v4';
-    } else if (argv.v5) {
-        cliOptions.checkVersion = 'v5';
-    } else if (argv.v6) {
-        cliOptions.checkVersion = 'v6';
-    } else if (argv.canary) {
-        cliOptions.checkVersion = ghostVersions.canary;
+    if (selectedVersions.length > 1) {
+        const err = new Error(`Please specify only one compatibility flag: ${selectedVersions.map(([flag]) => `--${flag}`).join(', ')}`);
+        err.code = 'CONFLICTING_FLAGS';
+        throw err;
+    }
+
+    if (selectedVersions.length === 1) {
+        cliOptions.checkVersion = selectedVersions[0][1];
     } else {
         cliOptions.checkVersion = ghostVersions.default;
     }
@@ -112,7 +117,15 @@ function handleCli(argv, deps = {}) {
     const outputResultsFn = deps.outputResults || outputResults;
     const processImpl = deps.process || process;
     const uiImpl = deps.ui || ui;
-    const cliOptions = buildCliOptions(argv);
+    let cliOptions;
+
+    try {
+        cliOptions = buildCliOptions(argv);
+    } catch (err) {
+        uiImpl.log(err.message);
+        processImpl.exit(1);
+        return;
+    }
 
     if (cliOptions.onlyFatalErrors) {
         uiImpl.log(chalkImpl.bold('\nChecking theme compatibility (fatal issues only)...'));
@@ -215,10 +228,8 @@ function getSummary(theme, options, deps = {}) {
 
         summaryText += '!';
 
-        // NOTE: had to subtract the number of 'invisible' formating symbols
-        //       needs update if formatting above changes
-        const hiddenSymbols = 38;
-        summaryText += '\n' + lodashImpl.repeat('-', (summaryText.length - hiddenSymbols));
+        const plainSummaryText = summaryText.replace(ansiPattern, '');
+        summaryText += '\n' + lodashImpl.repeat('-', plainSummaryText.length);
     }
 
     return summaryText;

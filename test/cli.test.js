@@ -114,6 +114,13 @@ describe('CLI', function () {
         });
     });
 
+    it('rejects conflicting version flags', function () {
+        (() => cli.buildCliOptions({
+            v1: true,
+            v6: true
+        })).should.throw(/Please specify only one compatibility flag: --v1, --v6/);
+    });
+
     it('configures the pretty-cli parser chain', function () {
         const calls = [];
         const fakeCLI = {
@@ -205,6 +212,18 @@ describe('CLI', function () {
         logSpy.calledWith(zipError).should.eql(true);
     });
 
+    it('exits non-zero when conflicting version flags are provided', async function () {
+        await cli.handleCli({
+            themePath: '/tmp/theme',
+            v1: true,
+            v6: true
+        }, deps);
+
+        logSpy.calledWith('Please specify only one compatibility flag: --v1, --v6').should.eql(true);
+        exitSpy.calledWith(1).should.eql(true);
+        checkStub.called.should.eql(false);
+    });
+
     it('formats singular and plural counts and summaries', function () {
         cli.formatCount('error', 1).should.eql('1 error');
         cli.formatCount('warning', 2).should.eql('2 warnings');
@@ -242,6 +261,24 @@ describe('CLI', function () {
                 warning: [{code: 'B'}]
             }
         }, {}, deps).should.match(/1 warning/);
+
+        const warningSummary = cli.getSummary({
+            results: {
+                error: [],
+                warning: [{code: 'B'}]
+            }
+        }, {}, deps);
+        const [warningText, warningDivider] = warningSummary.split('\n');
+        warningDivider.length.should.eql(warningText.length);
+
+        const errorSummary = cli.getSummary({
+            results: {
+                error: [{code: 'A'}],
+                warning: []
+            }
+        }, {}, deps);
+        const [errorText, errorDivider] = errorSummary.split('\n');
+        errorDivider.length.should.eql(errorText.length);
     });
 
     it('outputs verbose and compact rule details', function () {

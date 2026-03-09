@@ -2,7 +2,8 @@
 /* eslint-disable no-console */
 const path = require('path');
 const glob = require('glob');
-const chalk = require('chalk');
+const chalkModule = require('chalk');
+const chalk = chalkModule.default || chalkModule;
 
 const checkIds = process.env.GSCAN_DOC_CHECK_IDS !== 'false';
 
