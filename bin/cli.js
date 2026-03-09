@@ -110,6 +110,7 @@ function handleCli(argv, deps = {}) {
     const chalkImpl = deps.chalk || chalk;
     const gscanImpl = deps.gscan || gscan;
     const outputResultsFn = deps.outputResults || outputResults;
+    const processImpl = deps.process || process;
     const uiImpl = deps.ui || ui;
     const cliOptions = buildCliOptions(argv);
 
@@ -124,6 +125,8 @@ function handleCli(argv, deps = {}) {
             .then(theme => outputResultsFn(theme, cliOptions, deps))
             .catch((error) => {
                 uiImpl.log(error);
+                processImpl.exit(1);
+                return;
             });
     }
 
@@ -134,6 +137,8 @@ function handleCli(argv, deps = {}) {
             if (err.code === 'ENOTDIR') {
                 uiImpl.log('Did you mean to add the -z flag to read a zip file?');
             }
+            processImpl.exit(1);
+            return;
         });
 }
 
