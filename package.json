@@ -68,7 +68,7 @@
     "@tryghost/pro-ship": "1.0.7",
     "c8": "11.0.0",
     "eslint": "10.0.2",
-    "eslint-plugin-ghost": "3.4.4",
+    "eslint-plugin-ghost": "3.5.0",
     "mocha": "11.7.5",
     "nodemon": "3.1.14",
     "rewire": "9.0.1",
