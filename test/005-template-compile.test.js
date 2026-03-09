@@ -67,7 +67,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with block partials', function () {
-            return utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
+            return utils.testCheck(thisCheck, 'theme-with-block-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.empty();
@@ -140,7 +140,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with block partials', function () {
-            return utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
+            return utils.testCheck(thisCheck, 'theme-with-block-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.empty();
@@ -225,7 +225,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with block partials', function () {
-            return utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
+            return utils.testCheck(thisCheck, 'theme-with-block-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.empty();
@@ -412,7 +412,7 @@ describe('005 Template compile', function () {
         });
 
         it('theme with invalid block partials', function () {
-            return utils.testCheck(thisCheck, 'theme-with-block-partials').then(function (output) {
+            return utils.testCheck(thisCheck, 'theme-with-block-partials', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.fail.should.be.empty();

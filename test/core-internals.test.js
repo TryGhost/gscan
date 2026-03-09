@@ -93,16 +93,23 @@ describe('Core internals', function () {
     });
 
     it('accepts theme objects when checking zip files', async function () {
-        const theme = await checkZip({
-            path: themePath('030-assets/ignored.zip'),
-            name: path.basename(themePath('030-assets/ignored.zip'))
-        }, {
-            keepExtractedDir: true,
-            checkVersion: 'v1'
-        });
+        let theme;
 
-        theme.files.should.have.length(1);
-        theme.checkedVersion.should.eql('1.x');
-        await fs.remove(theme.path);
+        try {
+            theme = await checkZip({
+                path: themePath('030-assets/ignored.zip'),
+                name: path.basename(themePath('030-assets/ignored.zip'))
+            }, {
+                keepExtractedDir: true,
+                checkVersion: 'v1'
+            });
+
+            theme.files.should.have.length(1);
+            theme.checkedVersion.should.eql('1.x');
+        } finally {
+            if (theme && theme.path) {
+                await fs.remove(theme.path);
+            }
+        }
     });
 });

@@ -24,7 +24,7 @@ describe('030 Assets', function () {
     });
 
     it('should show two warning for missing asset helper when an assets are detected in multiple files', function () {
-        return utils.testCheck(thisCheck, '030-assets/twoDefectFiles').then(function (output) {
+        return utils.testCheck(thisCheck, '030-assets/twoDefectFiles', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(1);

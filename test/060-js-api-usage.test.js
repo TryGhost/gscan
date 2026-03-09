@@ -20,7 +20,7 @@ describe('060 JS API USAGE', function () {
     describe('v2:', function () {
         const options = {checkVersion: 'v2'};
 
-        it('[success] should not test for v1', function () {
+        it('[success] should not run check for v2', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 

@@ -335,7 +335,7 @@ describe('CLI', function () {
             }
         }, {}, deps);
 
-        logErrorSpy.calledWith('Error formating result, some results may be missing.').should.eql(true);
+        logErrorSpy.calledWith('Error formatting result, some results may be missing.').should.eql(true);
 
         cli.outputResults({
             checkedVersion: 'v6',

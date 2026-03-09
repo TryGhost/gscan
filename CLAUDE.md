@@ -91,9 +91,10 @@ Located in `lib/specs/v1.js` through `v6.js`:
 ## Testing Strategy
 
 ### Test Structure
-- Tests in `test/*.test.js` map to checks in `lib/checks/*.js`
+- Most tests in `test/*.test.js` map to checks in `lib/checks/*.js`
+- Some suites in `test/*.test.js` cover core and internal behavior directly when there is no single check module boundary
 - Fixtures in `test/fixtures/themes/` contain example themes
-- Each fixture directory corresponds to a check number
+- Each fixture directory corresponds to a check number where fixture-driven check tests are used
 
 ### Test Utilities
 ```javascript

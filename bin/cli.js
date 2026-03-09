@@ -230,7 +230,7 @@ function outputResults(theme, options, deps = {}) {
     try {
         theme = gscanImpl.format(theme, options);
     } catch (err) {
-        uiImpl.log.error('Error formating result, some results may be missing.');
+        uiImpl.log.error('Error formatting result, some results may be missing.');
         uiImpl.log.error(err);
     }
 

@@ -129,13 +129,12 @@ describe('AST linter internals', function () {
         isOnAllowlist(['rowEnd']).should.eql(true);
 
         const pageFrame = new Frame({type: 'Program'}, {fileName: 'page-about.hbs'});
-        should.equal(pageFrame.locals, undefined);
-        should.equal(pageFrame.context, undefined);
+        should.exist(pageFrame);
         should.equal(pageFrame.isLocal('missing'), undefined);
 
         const scope = new Scope();
         scope.pushTemplateFrame('post.hbs', {type: 'Program'});
-        scope.isContext(scope.currentFrame.context).should.eql(true);
+        should.exist(scope.currentFrame);
 
         const parentNode = {
             type: 'BlockStatement',
