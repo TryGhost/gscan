@@ -1,13 +1,13 @@
 const should = require('should');
-const rewire = require('rewire');
 
-const scopeModule = rewire('../lib/ast-linter/rules/internal/scope');
-const Scope = scopeModule.__get__('Scope');
-const Frame = scopeModule.__get__('Frame');
-const helperMap = scopeModule.__get__('helpers');
-const getContext = scopeModule.__get__('getContext');
-const getTemplateContext = scopeModule.__get__('getTemplateContext');
-const isOnAllowlist = scopeModule.__get__('isOnAllowlist');
+const {
+    Scope,
+    Frame,
+    getContext,
+    getTemplateContext,
+    helpers: helperMap,
+    isOnAllowlist
+} = require('../lib/ast-linter/rules/internal/scope')._private;
 
 describe('Scope internals', function () {
     it('supports allowlisted global and data variables', function () {

@@ -21,7 +21,7 @@ describe('ast-linter', function () {
     });
 
     describe('should satisfy the img_url rule', function () {
-        before(function () {
+        beforeAll(function () {
             template = getTemplate('img-url-in-conditional.hbs');
         });
 
@@ -37,7 +37,7 @@ describe('ast-linter', function () {
     });
 
     describe('should satisfy the multi-param-conditional rule', function () {
-        before(function () {
+        beforeAll(function () {
             template = getTemplate('multi-param-conditional.hbs');
         });
 

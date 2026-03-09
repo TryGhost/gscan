@@ -6,33 +6,29 @@ const {check} = require('../lib/checker');
 const format = require('../lib/format');
 
 describe('070 Theme Translations', function () {
-    it('should not run check for v1', function (done) {
+    it('should not run check for v1', function () {
         const options = {checkVersion: 'v1'};
-        utils.testCheck(thisCheck, '070-theme-translations/invalid', options).then(function (output) {
+        return utils.testCheck(thisCheck, '070-theme-translations/invalid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().which.is.empty();
             output.results.fail.should.be.an.Object().which.is.empty();
-
-            done();
-        }).catch(done);
+        });
     });
 
-    it('should not run check for v2', function (done) {
+    it('should not run check for v2', function () {
         const options = {checkVersion: 'v2'};
-        utils.testCheck(thisCheck, '070-theme-translations/invalid', options).then(function (output) {
+        return utils.testCheck(thisCheck, '070-theme-translations/invalid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().which.is.empty();
             output.results.fail.should.be.an.Object().which.is.empty();
-
-            done();
-        }).catch(done);
+        });
     });
 
-    it('should fail when a theme has invalid locales', function (done) {
+    it('should fail when a theme has invalid locales', function () {
         const options = {checkVersion: 'v5'};
-        check(utils.themePath('070-theme-translations/invalid'), options).then((theme) => {
+        return check(utils.themePath('070-theme-translations/invalid'), options).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.results.pass.should.be.an.Array().not.with.keys('GS070-VALID-TRANSLATIONS');
@@ -53,20 +49,16 @@ describe('070 Theme Translations', function () {
 
             error.should.be.an.Object();
             error.fatal.should.be.true;
-
-            done();
-        }).catch(done);
+        });
     });
 
-    it('should pass when a theme has valid locales', function (done) {
+    it('should pass when a theme has valid locales', function () {
         const options = {};
-        utils.testCheck(thisCheck, '070-theme-translations/valid', options).then(function (output) {
+        return utils.testCheck(thisCheck, '070-theme-translations/valid', options).then(function (output) {
             output.should.be.a.ValidThemeObject();
 
             output.results.pass.should.be.an.Array().with.lengthOf(1);
             output.results.pass.should.containEql('GS070-VALID-TRANSLATIONS');
-
-            done();
-        }).catch(done);
+        });
     });
 });

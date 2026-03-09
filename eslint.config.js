@@ -27,7 +27,8 @@ const ghostTestConfig = {
     ...withGhostPlugin(ghostPlugin.configs.test),
     rules: {
         ...ghostPlugin.configs.test.rules,
-        'ghost/ghost-custom/no-native-error': 'off'
+        'ghost/ghost-custom/no-native-error': 'off',
+        'padded-blocks': 'off'
     }
 };
 
@@ -43,7 +44,21 @@ module.exports = [
     ...fixupConfigRules(compat.config(ghostNodeConfig)),
     ...fixupConfigRules(compat.config(ghostTestConfig)).map(config => ({
         ...config,
-        files: ['test/**/*.js']
+        files: ['test/**/*.js'],
+        languageOptions: {
+            ...(config.languageOptions || {}),
+            globals: {
+                ...(config.languageOptions && config.languageOptions.globals ? config.languageOptions.globals : {}),
+                afterAll: 'readonly',
+                afterEach: 'readonly',
+                beforeAll: 'readonly',
+                beforeEach: 'readonly',
+                describe: 'readonly',
+                expect: 'readonly',
+                it: 'readonly',
+                test: 'readonly'
+            }
+        }
     })),
     ...fixupConfigRules(compat.config(ghostBrowserConfig)).map(config => ({
         ...config,

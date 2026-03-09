@@ -1,14 +1,19 @@
 const _ = require('lodash');
 const fs = require('fs-extra');
 const sinon = require('sinon');
-const rewire = require('rewire');
 const themePath = require('./utils').themePath;
-const readTheme = rewire('../lib/read-theme');
+
+const readTheme = require('../lib/read-theme');
+const {
+    extractCustomTemplates,
+    extractTemplates,
+    readFiles
+} = readTheme._private;
 
 describe('Read theme', function () {
     let sandbox;
 
-    before(function () {
+    beforeAll(function () {
         sandbox = sinon.createSandbox();
     });
 
@@ -16,20 +21,19 @@ describe('Read theme', function () {
         sandbox.restore();
     });
 
-    it('returns correct result', function (done) {
-        readTheme(themePath('is-empty')).then((theme) => {
+    it('returns correct result', function () {
+        return readTheme(themePath('is-empty')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
-            done();
-        }).catch(done);
+        });
     });
 
-    it('Can read partials', function (done) {
-        readTheme(themePath('theme-with-partials')).then((theme) => {
+    it('Can read partials', function () {
+        return readTheme(themePath('theme-with-partials')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.be.an.Array().with.lengthOf(7);
@@ -49,13 +53,11 @@ describe('Read theme', function () {
             fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
 
             theme.customSettings.should.be.empty();
-
-            done();
-        }).catch(done);
+        });
     });
 
-    it('Can extract custom templates', function (done) {
-        readTheme(themePath('theme-with-custom-templates')).then((theme) => {
+    it('Can extract custom templates', function () {
+        return readTheme(themePath('theme-with-custom-templates')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.be.an.Array().with.lengthOf(13);
@@ -63,7 +65,6 @@ describe('Read theme', function () {
             theme.templates.all.length.should.eql(10);
             theme.templates.custom.length.should.eql(4);
 
-            // ensure we don't change the structure of theme.files
             theme.files[0].file.should.eql('assets/ignoreme.hbs');
             theme.files[0].ext.should.eql('.hbs');
             theme.files[0].content.should.eql('ignoreme');
@@ -119,13 +120,10 @@ describe('Read theme', function () {
             theme.templates.custom[3].name.should.eql('Welcome Ghost');
             theme.templates.custom[3].for.should.eql(['post']);
             theme.templates.custom[3].slug.should.eql('welcome-ghost');
-
-            done();
-        }).catch(done);
+        });
     });
 
-    it('can read partials with POSIX paths', function (done) {
-        // This roughly matches Example I
+    it('can read partials with POSIX paths', function () {
         const exampleI = [
             {file: 'index.hbs', ext: '.hbs'},
             {file: 'package.json', ext: '.json'},
@@ -137,18 +135,18 @@ describe('Read theme', function () {
 
         sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
 
-        readTheme.__get__('readFiles')({
+        return readFiles({
             files: exampleI,
             path: 'fake/example-i'
+        }, {
+            fs
         }).then((result) => {
             result.partials.should.be.an.Array().with.lengthOf(2);
             result.partials.should.eql(['mypartial', 'subfolder/test']);
-            done();
-        }).catch(done);
+        });
     });
 
-    it('can read partials with windows paths', function (done) {
-        // This matches Example I, but on Windows
+    it('can read partials with windows paths', function () {
         const exampleI = [
             {file: 'index.hbs', ext: '.hbs'},
             {file: 'package.json', ext: '.json'},
@@ -160,19 +158,19 @@ describe('Read theme', function () {
 
         sandbox.stub(fs, 'readFile').returns(Promise.resolve(''));
 
-        readTheme.__get__('readFiles')({
+        return readFiles({
             files: exampleI,
             path: 'fake\\example-i'
-        })
-            .then((result) => {
-                result.partials.should.be.an.Array().with.lengthOf(2);
-                result.partials.should.eql(['mypartial', 'subfolder\\test']);
-                done();
-            }).catch(done);
+        }, {
+            fs
+        }).then((result) => {
+            result.partials.should.be.an.Array().with.lengthOf(2);
+            result.partials.should.eql(['mypartial', 'subfolder\\test']);
+        });
     });
 
-    it('can extract custom settings from package.json', function (done) {
-        readTheme(themePath('theme-with-custom-settings')).then((theme) => {
+    it('can extract custom settings from package.json', function () {
+        return readTheme(themePath('theme-with-custom-settings')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             should.exist(theme.customSettings);
@@ -184,25 +182,20 @@ describe('Read theme', function () {
                     default: 'two'
                 }
             });
-
-            done();
-        }).catch(done);
+        });
     });
 
     it('can handle missing config in package.json', async function () {
         const options = {labs: {customThemeSettings: true}};
-
         const theme = await readTheme(themePath('010-packagejson/no-config'), options);
 
         theme.should.be.a.ValidThemeObject();
 
         should.exist(theme.customSettings);
-
         theme.customSettings.should.deepEqual({});
     });
 
     it('extractTemplates ignores partials and assets templates', function () {
-        const extractTemplates = readTheme.__get__('extractTemplates');
         const templates = extractTemplates([
             {file: 'partials/author-card.hbs'},
             {file: 'partials\\post-card.hbs'},
@@ -216,7 +209,6 @@ describe('Read theme', function () {
     });
 
     it('extractCustomTemplates handles supported names and ignores nested templates', function () {
-        const extractCustomTemplates = readTheme.__get__('extractCustomTemplates');
         const templates = extractCustomTemplates([
             'post-featured',
             'page-contact',

@@ -7,20 +7,19 @@ describe('Format', function () {
     describe('v2', function () {
         const options = {checkVersion: 'v2'};
 
-        it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/v2/invalid'), options).then((theme) => {
+        it('assert sorting in invalid theme', function () {
+            return check(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(26);
                 theme.results.error[0].fatal.should.eql(true);
                 theme.results.error[3].fatal.should.eql(false);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('assert sorting in empty theme', function (done) {
-            check(themePath('is-empty'), options).then((theme) => {
+        it('assert sorting in empty theme', function () {
+            return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -30,12 +29,11 @@ describe('Format', function () {
                 theme.results.error[11].fatal.should.eql(false);
                 theme.results.error[12].fatal.should.eql(false);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v2/invalid'), options).then((theme) => {
+        it('sort by files for invalid theme', function () {
+            return check(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -56,12 +54,11 @@ describe('Format', function () {
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(9);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
+        it('sort by files for invalid_all theme', function () {
+            return check(themePath('001-deprecations/v2/invalid_all'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -79,8 +76,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(9);
 
-                done();
-            }).catch(done);
+            });
         });
 
         it('formats for CLI output', function () {
@@ -99,20 +95,19 @@ describe('Format', function () {
     describe('v3:', function () {
         const options = {checkVersion: 'v3'};
 
-        it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/v3/invalid'), options).then((theme) => {
+        it('assert sorting in invalid theme', function () {
+            return check(themePath('005-compile/v3/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(27);
                 theme.results.error[0].fatal.should.eql(true);
                 theme.results.error[3].fatal.should.eql(false);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('assert sorting in empty theme', function (done) {
-            check(themePath('is-empty'), options).then((theme) => {
+        it('assert sorting in empty theme', function () {
+            return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -122,12 +117,11 @@ describe('Format', function () {
                 theme.results.error[11].fatal.should.eql(false);
                 theme.results.error[12].fatal.should.eql(false);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v3/invalid'), options).then((theme) => {
+        it('sort by files for invalid theme', function () {
+            return check(themePath('005-compile/v3/invalid'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -148,12 +142,11 @@ describe('Format', function () {
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(10);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v3/invalid_all'), options).then((theme) => {
+        it('sort by files for invalid_all theme', function () {
+            return check(themePath('001-deprecations/v3/invalid_all'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -171,8 +164,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(9);
 
-                done();
-            }).catch(done);
+            });
         });
 
         it('formats for CLI output', function () {
@@ -191,8 +183,8 @@ describe('Format', function () {
     describe('v4:', function () {
         const options = {checkVersion: 'v4'};
 
-        it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/v4/invalid'), options).then((theme) => {
+        it('assert sorting in invalid theme', function () {
+            return check(themePath('005-compile/v4/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(35);
@@ -205,12 +197,11 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('assert sorting in empty theme', function (done) {
-            check(themePath('is-empty'), options).then((theme) => {
+        it('assert sorting in empty theme', function () {
+            return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -227,12 +218,11 @@ describe('Format', function () {
                     'GS020-POST-REQ'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v4/invalid'), options).then((theme) => {
+        it('sort by files for invalid theme', function () {
+            return check(themePath('005-compile/v4/invalid'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -259,12 +249,11 @@ describe('Format', function () {
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(18);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
+        it('sort by files for invalid_all theme', function () {
+            return check(themePath('001-deprecations/v4/invalid_all'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -312,8 +301,7 @@ describe('Format', function () {
 
                 theme.results.warning.byFiles['index.hbs'].length.should.eql(1);
 
-                done();
-            }).catch(done);
+            });
         });
 
         it('formats for CLI output', function () {
@@ -332,8 +320,8 @@ describe('Format', function () {
     describe('v5:', function () {
         const options = {checkVersion: 'v5'};
 
-        it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/v5/invalid'), options).then((theme) => {
+        it('assert sorting in invalid theme', function () {
+            return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(23);
@@ -344,12 +332,11 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('assert sorting in empty theme', function (done) {
-            check(themePath('is-empty'), options).then((theme) => {
+        it('assert sorting in empty theme', function () {
+            return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -366,12 +353,11 @@ describe('Format', function () {
                     'GS020-POST-REQ'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v5/invalid'), options).then((theme) => {
+        it('sort by files for invalid theme', function () {
+            return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -399,12 +385,11 @@ describe('Format', function () {
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(17);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
+        it('sort by files for invalid_all theme', function () {
+            return check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -539,8 +524,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(14);
 
-                done();
-            }).catch(done);
+            });
         });
 
         it('formats for CLI output', function () {
@@ -559,8 +543,8 @@ describe('Format', function () {
     describe('v6:', function () {
         const options = {checkVersion: 'v6'};
 
-        it('assert sorting in invalid theme', function (done) {
-            check(themePath('005-compile/v5/invalid'), options).then((theme) => {
+        it('assert sorting in invalid theme', function () {
+            return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error.length.should.eql(23);
@@ -571,12 +555,11 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('assert sorting in empty theme', function (done) {
-            check(themePath('is-empty'), options).then((theme) => {
+        it('assert sorting in empty theme', function () {
+            return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
                 theme.results.error[0].fatal.should.eql(true);
@@ -593,12 +576,11 @@ describe('Format', function () {
                     'GS020-POST-REQ'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid theme', function (done) {
-            check(themePath('005-compile/v5/invalid'), options).then((theme) => {
+        it('sort by files for invalid theme', function () {
+            return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -626,12 +608,11 @@ describe('Format', function () {
                 theme.results.error.byFiles['index.hbs'].length.should.eql(1);
                 theme.results.error.byFiles['package.json'].length.should.eql(17);
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('sort by files for invalid_all theme', function (done) {
-            check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
+        it('sort by files for invalid_all theme', function () {
+            return check(themePath('001-deprecations/v5/invalid_all'), options).then((theme) => {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
@@ -766,8 +747,7 @@ describe('Format', function () {
                 theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
                 theme.results.error.byFiles['index.hbs'].length.should.eql(14);
 
-                done();
-            }).catch(done);
+            });
         });
 
         it('formats for CLI output', function () {
