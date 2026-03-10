@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/090-template-syntax');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/090-template-syntax');
 
 describe('090 Template syntax', function () {
     describe('v4', function () {

@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/060-js-api-usage');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/060-js-api-usage');
 
 describe('060 JS API USAGE', function () {
     describe('v1:', function () {

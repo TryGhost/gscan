@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/050-koenig-css-classes');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/050-koenig-css-classes');
 
 describe('050 Koenig CSS classes', function () {
     describe('v1:', function () {

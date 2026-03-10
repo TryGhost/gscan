@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/010-package-json');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/010-package-json');
 
 const fs = require('fs').promises;
 const path = require('path');

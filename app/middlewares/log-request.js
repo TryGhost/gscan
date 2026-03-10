@@ -1,13 +1,13 @@
-var randomUUID = require('crypto').randomUUID,
-    logging = require('@tryghost/logging');
+const randomUUID = require('crypto').randomUUID;
+const logging = require('@tryghost/logging');
 
 /**
  * @TODO:
  * - move middleware to ignition?
  */
 module.exports = function logRequest(req, res, next) {
-    var startTime = Date.now(),
-        requestId = randomUUID();
+    const startTime = Date.now();
+    const requestId = randomUUID();
 
     function logResponse() {
         res.responseTime = (Date.now() - startTime) + 'ms';

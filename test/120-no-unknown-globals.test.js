@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/120-no-unknown-globals');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/120-no-unknown-globals');
 
 describe('120 No unknown globals', function () {
     describe('v5', function () {
