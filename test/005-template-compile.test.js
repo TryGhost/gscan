@@ -1,6 +1,6 @@
-var should = require('should'), // eslint-disable-line no-unused-vars
-    utils = require('./utils'),
-    thisCheck = require('../lib/checks/005-template-compile');
+const should = require('should'); // eslint-disable-line no-unused-vars
+const utils = require('./utils');
+const thisCheck = require('../lib/checks/005-template-compile');
 
 describe('005 Template compile', function () {
     describe('v1', function () {
@@ -39,7 +39,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(4);
 
@@ -116,7 +116,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(4);
 
@@ -193,7 +193,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(4);
 
@@ -283,7 +283,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(4);
 
@@ -311,7 +311,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(1);
 
@@ -330,7 +330,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(1);
 
@@ -349,7 +349,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(1);
 
@@ -453,7 +453,7 @@ describe('005 Template compile', function () {
                 output.results.fail.should.be.an.Object().with.keys('GS005-TPL-ERR');
                 output.results.fail['GS005-TPL-ERR'].should.be.a.ValidFailObject();
 
-                var failures = output.results.fail['GS005-TPL-ERR'].failures;
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
 
                 failures.length.should.eql(1);
 
@@ -502,7 +502,7 @@ describe('005 Template compile', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                let helperList = Object.keys(output.helpers);
+                const helperList = Object.keys(output.helpers);
                 helperList.should.be.an.Array().with.lengthOf(1);
                 helperList.should.containEql('cancel_link');
 
