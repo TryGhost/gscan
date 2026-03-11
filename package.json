@@ -67,13 +67,13 @@
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.0.7",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "4.0.18",
     "eslint": "10.0.3",
     "eslint-plugin-ghost": "3.5.0",
     "nodemon": "3.1.14",
     "should": "13.2.3",
     "sinon": "21.0.2",
-    "vitest": "^4.0.18"
+    "vitest": "4.0.18"
   },
   "files": [
     "lib",
