@@ -46,8 +46,8 @@ describe('Checker', function () {
         }
     });
 
-    it('can read theme but skip checks', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
+    it('can read theme but skip checks', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -58,12 +58,11 @@ describe('Checker', function () {
             theme.results.pass.should.be.an.Array().with.lengthOf(0);
             theme.results.fail.should.be.an.Object().with.keys();
 
-            done();
-        }).catch(done);
+        });
     });
 
-    it('returns a valid theme when running all checks', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
+    it('returns a valid theme when running all checks', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -98,12 +97,11 @@ describe('Checker', function () {
                 'GS050-CSS-KGGI'
             );
 
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for v1 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
+    it('checks for v1 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -134,12 +132,11 @@ describe('Checker', function () {
 
             theme.checkedVersion.should.equal('1.x');
 
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v2 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
+    it('checks for a v2 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -170,12 +167,11 @@ describe('Checker', function () {
 
             theme.checkedVersion.should.equal('2.x');
 
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v3 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
+    it('checks for a v3 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -206,12 +202,11 @@ describe('Checker', function () {
 
             theme.checkedVersion.should.equal('3.x');
 
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v4 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
+    it('checks for a v4 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -351,12 +346,11 @@ describe('Checker', function () {
             );
 
             theme.checkedVersion.should.equal('4.x');
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v5 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v5'}).then((theme) => {
+    it('checks for a v5 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v5'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -505,12 +499,11 @@ describe('Checker', function () {
             );
 
             theme.checkedVersion.should.equal('5.x');
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v6 version if passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'v6'}).then((theme) => {
+    it('checks for a v6 version if passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'v6'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -664,12 +657,11 @@ describe('Checker', function () {
             );
 
             theme.checkedVersion.should.equal('6.x');
-            done();
-        }).catch(done);
+        });
     });
 
-    it('checks for a v6 version if canary is passed', function (done) {
-        check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
+    it('checks for a v6 version if canary is passed', function () {
+        return check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -680,12 +672,11 @@ describe('Checker', function () {
             // Short version of test above
             theme.results.pass.should.be.an.Array().with.lengthOf(123);
             theme.checkedVersion.should.equal('6.x');
-            done();
-        }).catch(done);
+        });
     });
 
-    it('should default to v6 when no version is provided', function (done) {
-        check(themePath('is-empty')).then((theme) => {
+    it('should default to v6 when no version is provided', function () {
+        return check(themePath('is-empty')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
 
             theme.files.should.eql([
@@ -696,17 +687,15 @@ describe('Checker', function () {
             // Should default to v6 behavior
             theme.results.pass.should.be.an.Array().with.lengthOf(123);
             theme.checkedVersion.should.equal('6.x');
-            done();
-        }).catch(done);
+        });
     });
 
-    it('should not follow symlinks', function (done) {
-        check(themePath('030-assets/symlink2')).then((theme) => {
+    it('should not follow symlinks', function () {
+        return check(themePath('030-assets/symlink2')).then((theme) => {
             theme.should.be.a.ValidThemeObject();
             theme.files.should.containEql({file: 'assets/mysymlink', normalizedFile: 'assets/mysymlink', ext: undefined, symlink: true});
             theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
 
-            done();
-        }).catch(done);
+        });
     });
 });

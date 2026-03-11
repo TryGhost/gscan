@@ -6,38 +6,36 @@ describe('060 JS API USAGE', function () {
     describe('v1:', function () {
         const options = {checkVersion: 'v1'};
 
-        it('[success] should not run check for v1', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[success] should not run check for v1', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().which.is.empty();
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v2:', function () {
         const options = {checkVersion: 'v2'};
 
-        it('[success] should not test for v1', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[success] should not run check for v2', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().which.is.empty();
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v3:', function () {
         const options = {checkVersion: 'v3'};
 
-        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -46,12 +44,11 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('[success] should pass theme when ghost.url.api is not present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
+        it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(1);
@@ -60,16 +57,15 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v4:', function () {
         const options = {checkVersion: 'v4'};
 
-        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -78,12 +74,11 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('[success] should pass theme when ghost.url.api is not present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
+        it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(1);
@@ -92,16 +87,15 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v5:', function () {
         const options = {checkVersion: 'v5'};
 
-        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -110,12 +104,11 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('[success] should pass theme when ghost.url.api is not present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
+        it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(1);
@@ -124,16 +117,15 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v6:', function () {
         const options = {checkVersion: 'v6'};
 
-        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
+        it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -142,12 +134,11 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('[success] should pass theme when ghost.url.api is not present in JS files', function (done) {
-            utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
+        it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
+            return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(1);
@@ -156,8 +147,7 @@ describe('060 JS API USAGE', function () {
 
                 output.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 });

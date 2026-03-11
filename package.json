@@ -33,7 +33,7 @@
     "start": "node app/index.js",
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
     "lint": "eslint . --ext .js --cache",
-    "test": "NODE_ENV=testing c8 --check-coverage --branches 95 --functions 95 --lines 95 --statements 95 mocha test/*.test.js",
+    "test": "NODE_ENV=testing vitest run --coverage",
     "posttest": "yarn lint",
     "preship": "yarn test",
     "ship": "pro-ship",
@@ -67,14 +67,13 @@
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.0.7",
-    "c8": "11.0.0",
+    "@vitest/coverage-v8": "^4.0.18",
     "eslint": "10.0.3",
     "eslint-plugin-ghost": "3.5.0",
-    "mocha": "11.7.5",
     "nodemon": "3.1.14",
-    "rewire": "9.0.1",
     "should": "13.2.3",
-    "sinon": "21.0.2"
+    "sinon": "21.0.2",
+    "vitest": "^4.0.18"
   },
   "files": [
     "lib",

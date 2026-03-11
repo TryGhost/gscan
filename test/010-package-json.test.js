@@ -9,8 +9,8 @@ describe('010 package.json', function () {
     describe('v1:', function () {
         const options = {checkVersion: 'v1'};
 
-        it('should output error for missing package.json', function (done) {
-            utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
+        it('should output error for missing package.json', function () {
+            return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
                 output.should.be.a.ValidThemeObject();
 
                 output.results.pass.should.be.an.Array().with.lengthOf(0);
@@ -31,8 +31,7 @@ describe('010 package.json', function () {
 
                 output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
                 output.results.fail['GS010-PJ-REQ'].failures[0].ref.should.eql('package.json');
-                done();
-            }).catch(done);
+            });
         });
 
         it('should output error for invalid package.json (parsing)', async function () {
@@ -78,8 +77,8 @@ describe('010 package.json', function () {
             output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.eql(expectedErrMessage);
         });
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -97,12 +96,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -124,12 +122,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -144,12 +141,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('bad config (ppp: -3 > 0)', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/bad-config', options).then(function (theme) {
+        it('bad config (ppp: -3 > 0)', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/bad-config', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -168,12 +164,11 @@ describe('010 package.json', function () {
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-CONF-PPP-INT'
                 );
-                done();
-            }).catch(done);
+            });
         });
 
-        it('bad config 2 (ppp: 0 > 0)', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/bad-config-2', options).then(function (theme) {
+        it('bad config 2 (ppp: 0 > 0)', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/bad-config-2', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -192,16 +187,15 @@ describe('010 package.json', function () {
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-CONF-PPP-INT'
                 );
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v2:', function () {
         const options = {checkVersion: 'v2'};
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -220,12 +214,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -248,12 +241,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -269,16 +261,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v3:', function () {
         const options = {checkVersion: 'v3'};
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid-v3', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid-v3', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -299,12 +290,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -329,12 +319,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -351,12 +340,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api v0.1', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
+        it('deprecated ghost-api v0.1', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -379,16 +367,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V01'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v4:', function () {
         const options = {checkVersion: 'v4'};
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -419,12 +406,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -459,12 +445,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -492,12 +477,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api v0.1', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
+        it('deprecated ghost-api v0.1', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -529,12 +513,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V01'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api v2', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v2', options).then(function (theme) {
+        it('deprecated ghost-api v2', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v2', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -566,24 +549,22 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V2'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api use', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
+        it('deprecated ghost-api use', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly flags invalid custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
+        it('correctly flags invalid custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -612,12 +593,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly validates custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
+        it('correctly validates custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -649,16 +629,15 @@ describe('010 package.json', function () {
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v5:', function () {
         const options = {checkVersion: 'v5'};
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -691,12 +670,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -733,12 +711,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -768,24 +745,22 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-CARD-ASSETS-NOT-PRESENT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api use', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
+        it('deprecated ghost-api use', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly flags invalid custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
+        it('correctly flags invalid custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -815,12 +790,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly validates custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
+        it('correctly validates custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -851,16 +825,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
     });
 
     describe('v6:', function () {
         const options = {checkVersion: 'v6'};
 
-        it('valid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
+        it('valid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -893,12 +866,11 @@ describe('010 package.json', function () {
                 ]);
 
                 theme.results.fail.should.be.an.Object().which.is.empty();
-                done();
-            }).catch(done);
+            });
         });
 
-        it('invalid fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
+        it('invalid fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -935,12 +907,11 @@ describe('010 package.json', function () {
 
                 theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('missing fields', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
+        it('missing fields', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -970,24 +941,22 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-CARD-ASSETS-NOT-PRESENT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('deprecated ghost-api use', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
+        it('deprecated ghost-api use', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.fail.should.be.an.Object().with.keys(
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly flags invalid custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
+        it('correctly flags invalid custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -1017,12 +986,11 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 );
 
-                done();
-            }).catch(done);
+            });
         });
 
-        it('correctly validates custom themes', function (done) {
-            utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
+        it('correctly validates custom themes', function () {
+            return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
                 theme.should.be.a.ValidThemeObject();
 
                 theme.results.pass.should.eql([
@@ -1053,8 +1021,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                done();
-            }).catch(done);
+            });
         });
     });
 });

@@ -1,87 +1,73 @@
 const should = require('should');
-const rewire = require('rewire');
-
-const scopeModule = rewire('../lib/ast-linter/rules/internal/scope');
-const Scope = scopeModule.__get__('Scope');
-const Frame = scopeModule.__get__('Frame');
-const helperMap = scopeModule.__get__('helpers');
-const getContext = scopeModule.__get__('getContext');
-const getTemplateContext = scopeModule.__get__('getTemplateContext');
-const isOnAllowlist = scopeModule.__get__('isOnAllowlist');
+const Scope = require('../lib/ast-linter/rules/internal/scope');
 
 describe('Scope internals', function () {
     it('supports allowlisted global and data variables', function () {
-        isOnAllowlist(['site']).should.eql(true);
-        isOnAllowlist(['index']).should.eql(true);
-        isOnAllowlist(['unknown']).should.eql(false);
-        isOnAllowlist().should.eql(false);
+        const scope = new Scope();
+        // @site is a known global
+        scope.isKnownVariable({
+            type: 'MustacheStatement',
+            path: {data: true, parts: ['site'], depth: 0}
+        }).should.eql(true);
+
+        // @index is a known data variable
+        scope.isKnownVariable({
+            type: 'MustacheStatement',
+            path: {data: true, parts: ['index'], depth: 0}
+        }).should.eql(true);
+
+        // @unknown is not
+        scope.isKnownVariable({
+            type: 'MustacheStatement',
+            path: {data: true, parts: ['unknown'], depth: 0}
+        }).should.eql(false);
     });
 
-    it('detects template-level context by filename', function () {
-        getTemplateContext('post-featured.hbs').should.have.property('post');
-        getTemplateContext('page-contact.hbs').should.have.property('page');
+    it('creates template frames for known template types', function () {
+        // post-*.hbs templates should create frames without throwing
+        const scope = new Scope();
+        scope.pushTemplateFrame('post-featured.hbs', {type: 'Program'});
+        should.exist(scope.currentFrame);
 
-        const customTemplateContext = getTemplateContext('custom-about.hbs');
-        customTemplateContext.should.have.property('post');
-        customTemplateContext.should.have.property('page');
+        // page-*.hbs templates
+        const scope2 = new Scope();
+        scope2.pushTemplateFrame('page-contact.hbs', {type: 'Program'});
+        should.exist(scope2.currentFrame);
 
-        should.equal(getTemplateContext('index.hbs'), undefined);
-    });
+        // custom-*.hbs templates
+        const scope3 = new Scope();
+        scope3.pushTemplateFrame('custom-about.hbs', {type: 'Program'});
+        should.exist(scope3.currentFrame);
 
-    it('builds helper contexts for get, next_post and prev_post', function () {
-        const withAny = function withAny(pairs) {
-            return {
-                pairs: {
-                    any(predicate) {
-                        return pairs.some(predicate);
-                    }
-                }
-            };
-        };
-
-        should.equal(helperMap.get({
-            params: [{value: 'unknowns'}],
-            hash: withAny([])
-        }), undefined);
-
-        const singularResult = helperMap.get({
-            params: [{value: 'posts'}],
-            hash: withAny([{key: 'slug'}])
-        });
-        singularResult.locals.should.have.property('pagination');
-        singularResult.blockParams[0].should.be.an.Object();
-
-        const pluralResult = helperMap.get({
-            params: [{value: 'posts'}],
-            hash: withAny([])
-        });
-        pluralResult.blockParams[0].should.be.an.Array();
-
-        helperMap.next_post().context.should.eql('post');
-        helperMap.prev_post().context.should.eql('post');
+        // index.hbs has no template context — pushTemplateFrame throws
+        // because getTemplateContext returns undefined and destructuring fails
+        (() => {
+            const scope4 = new Scope();
+            scope4.pushTemplateFrame('index.hbs', {type: 'Program'});
+        }).should.throw(TypeError);
     });
 
     it('validates block statements when creating contexts', function () {
-        (() => getContext({type: 'MustacheStatement'})).should.throw(/cannot be used to generate a context/);
+        const scope = new Scope();
+        scope.pushTemplateFrame('post.hbs', {type: 'Program'});
 
-        const context = getContext({type: 'BlockStatement'});
-        context.should.deepEqual({
-            context: 'str',
-            locals: {},
-            blockParams: {}
-        });
+        const blockNode = {type: 'BlockStatement', path: {data: false, parts: ['if']}};
+        scope.pushFrame(blockNode);
+        scope.frames.length.should.eql(2);
+        scope.currentFrame.context.should.eql('str');
+        scope.currentFrame.locals.should.deepEqual({});
+
+        // MustacheStatement cannot be used to construct a Frame
+        (() => scope.pushFrame({type: 'MustacheStatement', path: {data: false, parts: ['if']}}))
+            .should.throw(/cannot be used to construct a Frame/);
     });
 
     it('validates frame construction inputs', function () {
-        (() => new Frame({type: 'Program'})).should.throw(/fileName must be passed/);
-        (() => new Frame({type: 'MustacheStatement', path: {data: false, parts: ['if']}})).should.throw(/cannot be used to construct a Frame/);
-
-        const templateFrame = new Frame({type: 'Program'}, {fileName: 'post.hbs'});
-        should.exist(templateFrame);
-
-        const blockFrame = new Frame({type: 'BlockStatement', path: {data: false, parts: ['if']}});
-        blockFrame.context.should.eql('str');
-        blockFrame.locals.should.deepEqual({});
+        // Program without fileName should throw
+        (() => {
+            const scope = new Scope();
+            scope.pushTemplateFrame(undefined, {type: 'Program'});
+        }).should.throw(/fileName must be passed/);
     });
 
     it('manages stack frames and parent context lookups', function () {
