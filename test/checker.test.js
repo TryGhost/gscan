@@ -1,9 +1,51 @@
 const themePath = require('./utils').themePath;
 const {check} = require('../lib/checker');
+const labsEnabledHelpers = require('../lib/utils/labs-enabled-helpers');
+const spec = require('../lib/specs');
 
 process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
+    it('adds labs-enabled helpers to knownHelpers when flag is set', async function () {
+        labsEnabledHelpers.testHelper = 'testFlag';
+
+        try {
+            await check(themePath('is-empty'), {
+                checkVersion: 'v6',
+                labs: {testFlag: true},
+                skipChecks: true
+            });
+
+            const v6Spec = spec.get(['v6']);
+            v6Spec.knownHelpers.should.containEql('testHelper');
+
+            // Clean up the spec
+            const idx = v6Spec.knownHelpers.indexOf('testHelper');
+            if (idx > -1) {
+                v6Spec.knownHelpers.splice(idx, 1);
+            }
+        } finally {
+            delete labsEnabledHelpers.testHelper;
+        }
+    });
+
+    it('does not add labs-enabled helpers when flag is not set', async function () {
+        labsEnabledHelpers.testHelper = 'testFlag';
+
+        try {
+            await check(themePath('is-empty'), {
+                checkVersion: 'v6',
+                labs: {},
+                skipChecks: true
+            });
+
+            const v6Spec = spec.get(['v6']);
+            v6Spec.knownHelpers.should.not.containEql('testHelper');
+        } finally {
+            delete labsEnabledHelpers.testHelper;
+        }
+    });
+
     it('can read theme but skip checks', function (done) {
         check(themePath('is-empty'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
             theme.should.be.a.ValidThemeObject();
