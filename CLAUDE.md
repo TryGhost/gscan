@@ -14,13 +14,13 @@ GScan is a Ghost theme validation tool that checks themes for compatibility with
 yarn test
 
 # Run specific test file
-NODE_ENV=testing mocha test/010-package-json.test.js
+NODE_ENV=testing npx vitest run test/010-package-json.test.js
 
 # Run specific test pattern
-NODE_ENV=testing mocha test/*.test.js
+NODE_ENV=testing npx vitest run test/030-assets.test.js test/040-ghost-head-foot.test.js
 
 # Debug mode testing
-NODE_ENV=testing DEBUG=gscan:* mocha test/checker.test.js
+NODE_ENV=testing DEBUG=gscan:* npx vitest run test/checker.test.js
 ```
 
 ### Development
@@ -194,11 +194,9 @@ Themes can define custom settings in package.json:
    ```javascript
    const checkSomething = require('../lib/checks/XXX-check-name');
    describe('XXX Check name', function () {
-       it('should detect the issue', function (done) {
-           utils.testCheck(checkSomething, 'XXX-check-name/failing-case').then((output) => {
-               output.results.fail['GSXXX-ERROR-CODE'].should.exist();
-               done();
-           });
+       it('should detect the issue', async function () {
+           const output = await utils.testCheck(checkSomething, 'XXX-check-name/failing-case');
+           output.results.fail['GSXXX-ERROR-CODE'].should.exist();
        });
    });
    ```

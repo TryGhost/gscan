@@ -56,7 +56,8 @@ module.exports = [
                 describe: 'readonly',
                 expect: 'readonly',
                 it: 'readonly',
-                test: 'readonly'
+                test: 'readonly',
+                vi: 'readonly'
             }
         }
     })),
