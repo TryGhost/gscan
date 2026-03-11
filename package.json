@@ -75,6 +75,10 @@
     "sinon": "21.0.2",
     "vitest": "4.0.18"
   },
+  "resolutions": {
+    "node-loggly-bulk": "4.0.2",
+    "node-loggly-bulk/axios": "1.13.5"
+  },
   "files": [
     "lib",
     "bin",
