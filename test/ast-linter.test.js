@@ -88,6 +88,34 @@ describe('ast-linter', function () {
         });
     });
 
+    describe('should satisfy the nested async helpers rule', function () {
+        it('should reject nested async helpers', function () {
+            template = getTemplate('nested-async-helpers.hbs');
+            const parsed = ASTLinter.parse(template);
+            const results = linter
+                .verify({parsed, moduleId: 'index.hbs', source: template})
+                .filter(error => error.rule === 'no-nested-async-helpers');
+            should(results).have.length(1);
+            results[0].message.should.match(/get.*cannot be used inside.*get/);
+            should(results[0].line).eql(2);
+            should(results[0].column).eql(4);
+        });
+    });
+
+    describe('should satisfy the prev/next post outside post context rule', function () {
+        it('should reject prev_post outside post context', function () {
+            template = getTemplate('prev-next-outside-post.hbs');
+            const parsed = ASTLinter.parse(template);
+            const results = linter
+                .verify({parsed, moduleId: 'index.hbs', source: template})
+                .filter(error => error.rule === 'no-prev-next-post-outside-post-context');
+            should(results).have.length(1);
+            results[0].message.should.match(/prev_post.*can only be used in a post context/);
+            should(results[0].line).eql(1);
+            should(results[0].column).eql(0);
+        });
+    });
+
     describe('Inline partial extraction', function () {
         it('extracts a simple inline partial', function () {
             const localLinter = new ASTLinter();
