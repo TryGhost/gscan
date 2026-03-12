@@ -6,6 +6,52 @@ const _ = require('lodash');
 const {default: chalk} = require('chalk');
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
+const stripAnsi = require('strip-ansi');
+
+/**
+ * @typedef {object} CliArgv
+ * @property {string} themePath
+ * @property {boolean} [zip]
+ * @property {boolean} [v1]
+ * @property {boolean} [v2]
+ * @property {boolean} [v3]
+ * @property {boolean} [v4]
+ * @property {boolean} [v5]
+ * @property {boolean} [v6]
+ * @property {boolean} [canary]
+ * @property {boolean} [fatal]
+ * @property {boolean} [verbose]
+ * @property {string[]} [labs]
+ */
+
+/**
+ * @typedef {object} CheckOptions
+ * @property {'cli'} format
+ * @property {string} [checkVersion]
+ * @property {boolean} [verbose]
+ * @property {boolean} [onlyFatalErrors]
+ * @property {Record<string, true>} [labs]
+ */
+
+/**
+ * @typedef {object} ResultFailure
+ * @property {string} ref
+ * @property {string} [message]
+ */
+
+/**
+ * @typedef {object} FormattedResult
+ * @property {'error' | 'warning' | 'recommendation' | 'feature'} level
+ * @property {string} rule
+ * @property {string} details
+ * @property {ResultFailure[]} [failures]
+ */
+
+/**
+ * @typedef {object} FormattedTheme
+ * @property {string} checkedVersion
+ * @property {{error: FormattedResult[], warning: FormattedResult[], recommendation: FormattedResult[]}} results
+ */
 
 const levels = {
     error: chalk.red,
@@ -14,25 +60,19 @@ const levels = {
     feature: chalk.green
 };
 
+/**
+ * @param {CliArgv} argv
+ * @returns {CheckOptions}
+ */
 function resolveOptions(argv) {
+    /** @type {CheckOptions} */
     const options = {format: 'cli'};
 
-    if (argv.v1) {
-        options.checkVersion = 'v1';
-    } else if (argv.v2) {
-        options.checkVersion = 'v2';
-    } else if (argv.v3) {
-        options.checkVersion = 'v3';
-    } else if (argv.v4) {
-        options.checkVersion = 'v4';
-    } else if (argv.v5) {
-        options.checkVersion = 'v5';
-    } else if (argv.v6) {
-        options.checkVersion = 'v6';
-    } else if (argv.canary) {
+    if (argv.canary) {
         options.checkVersion = ghostVersions.canary;
     } else {
-        options.checkVersion = ghostVersions.default;
+        const versionKey = Object.keys(ghostVersions).find(k => k.startsWith('v') && argv[k]);
+        options.checkVersion = versionKey || ghostVersions.default;
     }
 
     options.verbose = argv.verbose;
@@ -49,31 +89,39 @@ function resolveOptions(argv) {
     return options;
 }
 
-function runCheck(argv, options) {
+/**
+ * @param {CliArgv} argv
+ * @param {CheckOptions} options
+ * @returns {Promise<void>}
+ */
+async function runCheck(argv, options) {
     if (options.onlyFatalErrors) {
         ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
     } else {
         ui.log(chalk.bold('\nChecking theme compatibility...'));
     }
 
-    if (argv.zip) {
-        return gscan.checkZip(argv.themePath, options)
-            .then(theme => outputResults(theme, options))
-            .catch((error) => {
-                ui.log(error);
-            });
-    } else {
-        return gscan.check(argv.themePath, options)
-            .then(theme => outputResults(theme, options))
-            .catch((err) => {
-                ui.log(err.message);
-                if (err.code === 'ENOTDIR') {
-                    ui.log('Did you mean to add the -z flag to read a zip file?');
-                }
-            });
+    try {
+        const theme = argv.zip
+            ? await gscan.checkZip(argv.themePath, options)
+            : await gscan.check(argv.themePath, options);
+        outputResults(theme, options);
+    } catch (err) {
+        if (argv.zip) {
+            ui.log(err);
+        } else {
+            ui.log(err.message);
+            if (err.code === 'ENOTDIR') {
+                ui.log('Did you mean to add the -z flag to read a zip file?');
+            }
+        }
     }
 }
 
+/**
+ * @param {FormattedResult} result
+ * @param {CheckOptions} options
+ */
 function outputResult(result, options) {
     ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
 
@@ -101,10 +149,20 @@ function outputResult(result, options) {
     ui.log(''); // extra line-break
 }
 
+/**
+ * @param {string} word
+ * @param {number} count
+ * @returns {string}
+ */
 function formatCount(word, count) {
     return `${count} ${count === 1 ? word : `${word}s`}`;
 }
 
+/**
+ * @param {FormattedTheme} theme
+ * @param {CheckOptions} options
+ * @returns {string}
+ */
 function getSummary(theme, options) {
     let summaryText = '';
     const errorCount = theme.results.error.length;
@@ -132,26 +190,26 @@ function getSummary(theme, options) {
             summaryText += chalk.yellow.bold(` ${formatCount('warning', theme.results.warning.length)}`);
         }
 
-        summaryText += '!';
-
-        // NOTE: had to subtract the number of 'invisible' formating symbols
-        //       needs update if formatting above changes
-        const hiddenSymbols = 38;
-        summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
+        summaryText += `!\n${'-'.repeat(stripAnsi(summaryText).length + 1)}`;
     }
 
     return summaryText;
 }
 
+/**
+ * @param {*} theme - Raw theme object; mutated into FormattedTheme by gscan.format()
+ * @param {CheckOptions} options
+ */
 function outputResults(theme, options) {
     try {
+        /** @type {FormattedTheme} */
         theme = gscan.format(theme, options);
     } catch (err) {
         ui.log.error('Error formating result, some results may be missing.');
         ui.log.error(err);
     }
 
-    let errorCount = theme.results.error.length;
+    const errorCount = theme.results.error.length;
 
     ui.log('\n' + getSummary(theme, options));
 
