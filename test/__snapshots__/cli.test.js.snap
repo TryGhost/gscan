@@ -1,0 +1,93 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CLI > CLI binary (smoke test) > should boot, parse args, check a theme, and exit 1`] = `
+"
+Checking theme compatibility...
+
+Your theme has 20 errors and 7 warnings!
+---
+
+Errors
+---
+Important to fix, functionality may be degraded.
+
+- Error: A template file called post.hbs must be present
+Affected Files: post.hbs
+
+- Error: package.json file can be parsed
+Affected Files: package.json
+
+- Error: package.json property "name" is required
+
+- Error: package.json property "name" must be lowercase
+
+- Error: package.json property "name" must be hyphenated
+
+- Error: package.json property "version" must be semver compliant
+
+- Error: package.json property "version" is required
+
+- Error: package.json property "author.email" must be valid
+
+- Error: package.json property "author.email" is required
+
+- Error: package.json property "config.custom" contains too many settings
+
+- Error: package.json property "config.custom" contains a property that isn't snake-cased
+
+- Error: package.json objects defined in "config.custom" should have a known "type".
+
+- Error: package.json objects defined in "config.custom" of type "select" need to have at least 2 "options".
+
+- Error: package.json objects defined in "config.custom" of type "select" need to have a valid "default".
+
+- Error: package.json objects defined in "config.custom" of type "boolean" need to have a valid "default".
+
+- Error: package.json objects defined in "config.custom" of type "color" need to have a valid "default".
+
+- Error: package.json objects defined in "config.custom" of type "image" can't have a "default" value.
+
+- Error: The .kg-width-wide CSS class is required to appear styled in your theme
+Affected Files: styles
+
+- Error: The .kg-width-full CSS class is required to appear styled in your theme
+Affected Files: styles
+
+- Error: Not all page features are being used
+Affected Files: page.hbs
+
+
+Warnings
+---
+- Warning: package.json property keywords should contain ghost-theme
+
+- Warning: Remove "engines.ghost-api" from package.json
+
+- Warning: "card_assets" will now be included by default, including bookmark and gallery cards.
+
+- Warning: package.json property config.custom contains an entry with a description that is too long
+
+- Warning: The helper {{ghost_head}} should be present
+Affected Files: default.hbs
+
+- Warning: The helper {{ghost_foot}} should be present
+Affected Files: default.hbs
+
+- Warning: Missing support for custom fonts
+Affected Files: styles
+
+
+Recommendations
+---
+- Recommendation: package.json property "config.posts_per_page" is recommended. Otherwise, it falls back to 5
+
+- Recommendation: package.json objects defined in "config.custom" should have a known "group".
+
+- Recommendation: Provide a default layout template called default.hbs
+Affected Files: default.hbs
+
+
+Get more help at https://docs.ghost.org/themes/
+You can also check theme compatibility at https://gscan.ghost.org/
+"
+`;

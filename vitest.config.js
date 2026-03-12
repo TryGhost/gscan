@@ -14,7 +14,7 @@ module.exports = defineConfig({
         },
         coverage: {
             provider: 'v8',
-            include: ['lib/**/*.js'],
+            include: ['lib/**/*.js', 'bin/**/*.js'],
             exclude: ['lib/faker/**'],
             reporter: ['html', 'text-summary'],
             thresholds: {

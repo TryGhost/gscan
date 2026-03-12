@@ -28,6 +28,7 @@ const ghostTestConfig = {
     rules: {
         ...ghostPlugin.configs.test.rules,
         'ghost/ghost-custom/no-native-error': 'off',
+        'ghost/mocha/no-setup-in-describe': 'off',
         'padded-blocks': 'off'
     }
 };
