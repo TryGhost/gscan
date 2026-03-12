@@ -1,6 +1,5 @@
 const path = require('path');
 const {execFileSync} = require('child_process');
-const stripAnsi = require('strip-ansi');
 const prettyCli = require('@tryghost/pretty-cli');
 const gscan = require('../lib');
 
@@ -411,8 +410,11 @@ describe('CLI', function () {
             }
 
             expect(result.exitCode).toBe(1); // fixture has errors
-            // Normalize the dash separator line which varies with chalk's ANSI output
-            const normalized = stripAnsi(result.stdout).replace(/-{2,}/g, '---');
+            // Strip ANSI codes (from chalk and format.js) and normalize dash separators
+            // so the snapshot is deterministic across environments
+            const normalized = result.stdout
+                .replace(new RegExp(String.fromCharCode(27) + '\\[\\d+m', 'g'), '')
+                .replace(/-{2,}/g, '---');
             expect(normalized).toMatchSnapshot();
         });
     });
