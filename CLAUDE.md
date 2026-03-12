@@ -102,15 +102,18 @@ themePath('030-assets/valid')  // Returns fixture path
 testCheck(theme, checkName, expectedFailCodes)  // Validates check results
 ```
 
+### Assertions
+New tests must use vitest's `expect` (available globally via `globals: true` in vitest config). Do not use `should` — it is legacy and being removed from the codebase. Existing tests still use `should` but should not be taken as a pattern to follow.
+
 ### Common Test Patterns
 ```javascript
 // Testing a passing theme
 const theme = await check(themePath('valid-theme'));
-theme.results.pass.should.containEql('GS010-PJ-REQ');
+expect(theme.results.pass).toContain('GS010-PJ-REQ');
 
 // Testing failures
 const theme = await check(themePath('invalid-theme'));
-theme.results.fail['GS010-PJ-NAME-REQ'].should.exist();
+expect(theme.results.fail['GS010-PJ-NAME-REQ']).toBeDefined();
 ```
 
 ## Debugging
@@ -196,13 +199,13 @@ Themes can define custom settings in package.json:
    describe('XXX Check name', function () {
        it('should detect the issue', async function () {
            const output = await utils.testCheck(checkSomething, 'XXX-check-name/failing-case');
-           output.results.fail['GSXXX-ERROR-CODE'].should.exist();
+           expect(output.results.fail['GSXXX-ERROR-CODE']).toBeDefined();
        });
    });
    ```
 
 5. **Update checker test expectations** in `test/checker.test.js`:
-   - Add 1 to the `lengthOf()` count for each version's pass array
+   - Add 1 to the pass array length count for each version
    - Add the new rule code to the exact position in the pass arrays (they're alphabetically sorted)
    - Run tests to see where the rule should be positioned
 

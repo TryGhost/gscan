@@ -1,8 +1,5 @@
 #!/usr/bin/env node
 
-// Remove all Node warnings before doing anything else
-process.removeAllListeners('warning');
-
 const prettyCLI = require('@tryghost/pretty-cli');
 const ui = require('@tryghost/pretty-cli').ui;
 const _ = require('lodash');
@@ -17,114 +14,65 @@ const levels = {
     feature: chalk.green
 };
 
-const cliOptions = {
-    format: 'cli'
-};
+function resolveOptions(argv) {
+    const options = {format: 'cli'};
 
-prettyCLI
-    .configure({
-        name: 'gscan'
-    })
-    .groupOrder([
-        'Sources:',
-        'Utilities:',
-        'Commands:',
-        'Arguments:',
-        'Required Options:',
-        'Options:',
-        'Global Options:'
-    ])
-    .positional('<themePath>', {
-        paramsDesc: 'Theme folder or .zip file path',
-        mustExist: true
-    })
-    .boolean('-z, --zip', {
-        desc: 'Theme path points to a zip file'
-    })
-    .boolean('-1, --v1', {
-        desc: 'Check theme for Ghost 1.0 compatibility'
-    })
-    .boolean('-2, --v2', {
-        desc: 'Check theme for Ghost 2.0 compatibility'
-    })
-    .boolean('-3, --v3', {
-        desc: 'Check theme for Ghost 3.0 compatibility'
-    })
-    .boolean('-4, --v4', {
-        desc: 'Check theme for Ghost 4.0 compatibility'
-    })
-    .boolean('-5, --v5', {
-        desc: 'Check theme for Ghost 5.0 compatibility'
-    })
-    .boolean('-6, --v6', {
-        desc: 'Check theme for Ghost 6.0 compatibility'
-    })
-    .boolean('-c, --canary', {
-        desc: 'Check theme for Ghost 6.0 compatibility (alias for --v6)'
-    })
-    .boolean('-f, --fatal', {
-        desc: 'Only show fatal errors that prevent upgrading Ghost'
-    })
-    .boolean('--verbose', {
-        desc: 'Output check details'
-    })
-    .array('--labs', {
-        desc: 'a list of labs flags'
-    })
-    .parseAndExit()
-    .then((argv) => {
-        if (argv.v1) {
-            cliOptions.checkVersion = 'v1';
-        } else if (argv.v2) {
-            cliOptions.checkVersion = 'v2';
-        } else if (argv.v3) {
-            cliOptions.checkVersion = 'v3';
-        } else if (argv.v4) {
-            cliOptions.checkVersion = 'v4';
-        } else if (argv.v5) {
-            cliOptions.checkVersion = 'v5';
-        } else if (argv.v6) {
-            cliOptions.checkVersion = 'v6';
-        } else if (argv.canary) {
-            cliOptions.checkVersion = ghostVersions.canary;
-        } else {
-            cliOptions.checkVersion = ghostVersions.default;
-        }
+    if (argv.v1) {
+        options.checkVersion = 'v1';
+    } else if (argv.v2) {
+        options.checkVersion = 'v2';
+    } else if (argv.v3) {
+        options.checkVersion = 'v3';
+    } else if (argv.v4) {
+        options.checkVersion = 'v4';
+    } else if (argv.v5) {
+        options.checkVersion = 'v5';
+    } else if (argv.v6) {
+        options.checkVersion = 'v6';
+    } else if (argv.canary) {
+        options.checkVersion = ghostVersions.canary;
+    } else {
+        options.checkVersion = ghostVersions.default;
+    }
 
-        cliOptions.verbose = argv.verbose;
-        cliOptions.onlyFatalErrors = argv.fatal;
+    options.verbose = argv.verbose;
+    options.onlyFatalErrors = argv.fatal;
 
-        if (argv.labs) {
-            cliOptions.labs = {};
+    if (argv.labs) {
+        options.labs = {};
 
-            argv.labs.forEach((flag) => {
-                cliOptions.labs[flag] = true;
+        argv.labs.forEach((flag) => {
+            options.labs[flag] = true;
+        });
+    }
+
+    return options;
+}
+
+function runCheck(argv, options) {
+    if (options.onlyFatalErrors) {
+        ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
+    } else {
+        ui.log(chalk.bold('\nChecking theme compatibility...'));
+    }
+
+    if (argv.zip) {
+        return gscan.checkZip(argv.themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch((error) => {
+                ui.log(error);
             });
-        }
-
-        if (cliOptions.onlyFatalErrors) {
-            ui.log(chalk.bold('\nChecking theme compatibility (fatal issues only)...'));
-        } else {
-            ui.log(chalk.bold('\nChecking theme compatibility...'));
-        }
-
-        if (argv.zip) {
-            gscan.checkZip(argv.themePath, cliOptions)
-                .then(theme => outputResults(theme, cliOptions))
-                .catch((error) => {
-                    ui.log(error);
-                });
-        } else {
-            gscan.check(argv.themePath, cliOptions)
-                .then(theme => outputResults(theme, cliOptions))
-                .catch((err) => {
-                    ui.log(err.message);
-                    if (err.code === 'ENOTDIR') {
-                        ui.log('Did you mean to add the -z flag to read a zip file?');
-                    }
-                });
-        }
-    });
+    } else {
+        return gscan.check(argv.themePath, options)
+            .then(theme => outputResults(theme, options))
+            .catch((err) => {
+                ui.log(err.message);
+                if (err.code === 'ENOTDIR') {
+                    ui.log('Did you mean to add the -z flag to read a zip file?');
+                }
+            });
+    }
+}
 
 function outputResult(result, options) {
     ui.log(levels[result.level](`- ${_.capitalize(result.level)}:`), result.rule);
@@ -229,7 +177,7 @@ function outputResults(theme, options) {
         _.each(theme.results.recommendation, rule => outputResult(rule, options));
     }
 
-    ui.log(`\nGet more help at ${chalk.cyan.underline('https://ghost.org/docs/themes/')}`);
+    ui.log(`\nGet more help at ${chalk.cyan.underline('https://docs.ghost.org/themes/')}`);
     ui.log(`You can also check theme compatibility at ${chalk.cyan.underline('https://gscan.ghost.org/')}`);
 
     // The CLI feature is mainly used to run gscan programatically in tests within themes.
@@ -243,4 +191,70 @@ function outputResults(theme, options) {
     } else {
         process.exit(0);
     }
+}
+
+function main() {
+    prettyCLI
+        .configure({
+            name: 'gscan'
+        })
+        .groupOrder([
+            'Sources:',
+            'Utilities:',
+            'Commands:',
+            'Arguments:',
+            'Required Options:',
+            'Options:',
+            'Global Options:'
+        ])
+        .positional('<themePath>', {
+            paramsDesc: 'Theme folder or .zip file path',
+            mustExist: true
+        })
+        .boolean('-z, --zip', {
+            desc: 'Theme path points to a zip file'
+        })
+        .boolean('-1, --v1', {
+            desc: 'Check theme for Ghost 1.0 compatibility'
+        })
+        .boolean('-2, --v2', {
+            desc: 'Check theme for Ghost 2.0 compatibility'
+        })
+        .boolean('-3, --v3', {
+            desc: 'Check theme for Ghost 3.0 compatibility'
+        })
+        .boolean('-4, --v4', {
+            desc: 'Check theme for Ghost 4.0 compatibility'
+        })
+        .boolean('-5, --v5', {
+            desc: 'Check theme for Ghost 5.0 compatibility'
+        })
+        .boolean('-6, --v6', {
+            desc: 'Check theme for Ghost 6.0 compatibility'
+        })
+        .boolean('-c, --canary', {
+            desc: 'Check theme for Ghost 6.0 compatibility (alias for --v6)'
+        })
+        .boolean('-f, --fatal', {
+            desc: 'Only show fatal errors that prevent upgrading Ghost'
+        })
+        .boolean('--verbose', {
+            desc: 'Output check details'
+        })
+        .array('--labs', {
+            desc: 'a list of labs flags'
+        })
+        .parseAndExit()
+        .then((argv) => {
+            const options = resolveOptions(argv);
+            runCheck(argv, options);
+        });
+}
+
+module.exports = {formatCount, getSummary, outputResult, outputResults, resolveOptions, runCheck};
+
+if (require.main === module) {
+    // Remove all Node warnings only when run as a CLI, not when imported as a module
+    process.removeAllListeners('warning');
+    main();
 }
