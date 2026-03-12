@@ -6,7 +6,6 @@ const _ = require('lodash');
 const {default: chalk} = require('chalk');
 const gscan = require('../lib');
 const ghostVersions = require('../lib/utils').versions;
-const stripAnsi = require('strip-ansi');
 
 /**
  * @typedef {object} CliArgv
@@ -190,7 +189,12 @@ function getSummary(theme, options) {
             summaryText += chalk.yellow.bold(` ${formatCount('warning', theme.results.warning.length)}`);
         }
 
-        summaryText += `!\n${'-'.repeat(stripAnsi(summaryText).length + 1)}`;
+        summaryText += '!';
+
+        // NOTE: had to subtract the number of 'invisible' formating symbols
+        //       needs update if formatting above changes
+        const hiddenSymbols = 38;
+        summaryText += '\n' + _.repeat('-', (summaryText.length - hiddenSymbols));
     }
 
     return summaryText;
