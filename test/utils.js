@@ -1,5 +1,4 @@
 const path = require('path');
-const should = require('should');
 const readTheme = require('../lib/read-theme');
 const testThemePath = 'test/fixtures/themes';
 
@@ -59,21 +58,6 @@ const assertContains = function (value, ...items) {
         expect(value).toContainEqual(item);
     });
 };
-
-// Temporary compatibility for tests not migrated away from should.js yet.
-should.Assertion.add('ValidResultObject', function () {
-    assertValidResultObject(this.obj);
-});
-
-// Temporary compatibility for tests not migrated away from should.js yet.
-should.Assertion.add('ValidThemeObject', function () {
-    assertValidThemeObject(this.obj);
-});
-
-// Temporary compatibility for tests not migrated away from should.js yet.
-should.Assertion.add('ValidFailObject', function () {
-    assertValidFailObject(this.obj);
-});
 
 const getThemePath = function (themeId) {
     return path.resolve(path.join(testThemePath, themeId));
