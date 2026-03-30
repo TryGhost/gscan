@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/110-page-builder-usage');
 
@@ -9,11 +8,11 @@ describe('110 Page-builder usage', function () {
         it('should fail with missing @page.show_title_and_feature_image', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/invalid/missing-page-usage', options);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
             ]);
 
-            output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures.should.eql([
+            expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
                     message: '@page.show_title_and_feature_image is not used',
@@ -24,22 +23,22 @@ describe('110 Page-builder usage', function () {
 
         it('should pass with @page.show_title_and_feature_image in top-level template', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/valid/usage-in-template', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should pass with @page.show_title_and_feature_image in partial', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/valid/usage-in-partial', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail with unknown @page properties', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/invalid/unknown-page-properties', options);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS110-NO-UNKNOWN-PAGE-BUILDER-USAGE'
             ]);
         });
@@ -51,11 +50,11 @@ describe('110 Page-builder usage', function () {
         it('should fail with missing @page.show_title_and_feature_image', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/invalid/missing-page-usage', options);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
             ]);
 
-            output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures.should.eql([
+            expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
                     message: '@page.show_title_and_feature_image is not used',
@@ -66,22 +65,22 @@ describe('110 Page-builder usage', function () {
 
         it('should pass with @page.show_title_and_feature_image in top-level template', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/valid/usage-in-template', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should pass with @page.show_title_and_feature_image in partial', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/valid/usage-in-partial', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail with unknown @page properties', async function () {
             const output = await utils.testCheck(thisCheck, '110-page-builder/invalid/unknown-page-properties', options);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS110-NO-UNKNOWN-PAGE-BUILDER-USAGE'
             ]);
         });

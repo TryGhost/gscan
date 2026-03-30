@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/090-template-syntax');
 
@@ -8,54 +7,54 @@ describe('090 Template syntax', function () {
 
         it('should output empty array for a theme with no templates', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
-                output.results.fail.should.be.an.Object().which.is.empty();
+                utils.assertValidThemeObject(output);
+                expect(output.results.fail).toEqual({});
 
-                output.results.pass.should.be.an.Array().with.lengthOf(6);
+                expect(output.results.pass).toHaveLength(6);
 
             });
         });
 
         it('should output empty array for a theme with valid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
-                output.results.pass.should.be.an.Array().with.lengthOf(6);
+                expect(output.results.pass).toHaveLength(6);
 
             });
         });
 
         it('should output empty array for a theme with invalid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
-                output.results.pass.should.be.an.Array().with.lengthOf(6);
+                expect(output.results.pass).toHaveLength(6);
             });
         });
 
         it('should output an error for a theme breaking the rules', function () {
             return utils.testCheck(thisCheck, '090-template-syntax/img-url-in-conditional', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys('GS090-NO-IMG-URL-IN-CONDITIONALS');
-                output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS'].should.be.a.ValidFailObject();
+                utils.assertObjectKeys(output.results.fail, 'GS090-NO-IMG-URL-IN-CONDITIONALS');
+                utils.assertValidFailObject(output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS']);
 
-                Object.keys(output.results.fail).should.be.an.Array().with.lengthOf(1);
+                expect(Object.keys(output.results.fail)).toHaveLength(1);
             });
         });
 
         it('should parse partials', function () {
             return utils.testCheck(thisCheck, '090-template-syntax/theme-with-partials', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys('GS090-NO-IMG-URL-IN-CONDITIONALS');
-                output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS'].should.be.a.ValidFailObject();
+                utils.assertObjectKeys(output.results.fail, 'GS090-NO-IMG-URL-IN-CONDITIONALS');
+                utils.assertValidFailObject(output.results.fail['GS090-NO-IMG-URL-IN-CONDITIONALS']);
 
-                Object.keys(output.results.fail).should.be.an.Array().with.lengthOf(1);
+                expect(Object.keys(output.results.fail)).toHaveLength(1);
             });
         });
     });
@@ -65,161 +64,161 @@ describe('090 Template syntax', function () {
 
         it('should fail when {{author}} helper is used in post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
             ]);
-            output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT']);
         });
 
         it('should NOT fail when {{author}} helper is used OUTSIDE post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/no-post-context', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail when {{products}} helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/with-products-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCTS-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCTS-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCTS-HELPER']);
         });
 
         it('should NOT fail when {{products}} helper is NOT used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/no-products-helper', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail when {{@product}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-product-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCT-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCT-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCT-DATA-HELPER']);
         });
 
         it('should fail when {{@products}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCTS-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCTS-DATA-HELPER']);
         });
 
         it('should fail when {{@member.products}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-member-products-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-MEMBER-PRODUCTS-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-MEMBER-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-MEMBER-PRODUCTS-DATA-HELPER']);
         });
 
         it('should fail when {{price currency=@price.currency}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
 
         it('should fail when {{@price.currency}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/global', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
 
         it('should fail when {{@price.currency}} is used inside {{#foreach @member.subscriptions}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/member-subscriptions', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{price @price.currency}} is used inside {{#foreach @member.subscriptions}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/member-subscriptions-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{price @price.currency}} is used inside {{#foreach tiers}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/tiers-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{@price.monthly}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/global', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY']);
         });
 
         it('should fail when {{price @price.monthly}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY']);
         });
 
         it('should fail when {{monthly_price.*}} is used in tiers', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-monthly-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-PRICE-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT']);
         });
 
         it('should fail when {{yearly_price.*}} is used in tiers', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-yearly-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-PRICE-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT']);
         });
 
         it('should fail when {{name}} is used in tier benefits', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-tier-benefit-as-object', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-BENEFIT-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-BENEFIT-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-BENEFIT-AS-OBJECT']);
         });
 
         it('should fail when {{@price.currency}} is used in partial loaded from folder', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/partial', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
     });
 
@@ -228,193 +227,193 @@ describe('090 Template syntax', function () {
 
         it('should fail when {{author}} helper is used in post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'
             ]);
-            output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-AUTHOR-HELPER-IN-POST-CONTEXT']);
         });
 
         it('should NOT fail when {{author}} helper is used OUTSIDE post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/no-post-context', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail when {{products}} helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/with-products-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCTS-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCTS-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCTS-HELPER']);
         });
 
         it('should NOT fail when {{products}} helper is NOT used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-helper/no-products-helper', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail when {{@product}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-product-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCT-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCT-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCT-DATA-HELPER']);
         });
 
         it('should fail when {{@products}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-products-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRODUCTS-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRODUCTS-DATA-HELPER']);
         });
 
         it('should fail when {{@member.products}} data helper is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-member-products-data-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-MEMBER-PRODUCTS-DATA-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-MEMBER-PRODUCTS-DATA-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-MEMBER-PRODUCTS-DATA-HELPER']);
         });
 
         it('should fail when {{price currency=@price.currency}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
 
         it('should fail when {{@price.currency}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/global', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
 
         it('should fail when {{@price.currency}} is used inside {{#foreach @member.subscriptions}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/member-subscriptions', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{price @price.currency}} is used inside {{#foreach @member.subscriptions}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/member-subscriptions-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{price @price.currency}} is used inside {{#foreach tiers}}', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-context/tiers-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-CONTEXT']);
         });
 
         it('should fail when {{@price.monthly}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/global', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY']);
         });
 
         it('should fail when {{price @price.monthly}} is used', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-monthly-yearly/price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-MONTHLY-YEARLY']);
         });
 
         it('should fail when {{monthly_price.*}} is used in tiers', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-monthly-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-PRICE-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT']);
         });
 
         it('should fail when {{yearly_price.*}} is used in tiers', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-yearly-price-helper', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-PRICE-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-PRICE-AS-OBJECT']);
         });
 
         it('should fail when {{name}} is used in tier benefits', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-tier-benefit-as-object', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-TIER-BENEFIT-AS-OBJECT'
             ]);
 
-            output.results.fail['GS090-NO-TIER-BENEFIT-AS-OBJECT'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-TIER-BENEFIT-AS-OBJECT']);
         });
 
         it('should fail when {{@price.currency}} is used in partial loaded from folder', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-price-data-currency-global/partial', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'
             ]);
 
-            output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-PRICE-DATA-CURRENCY-GLOBAL']);
         });
 
         it('should fail when limit="all" is used in {{#get}} helper', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-all-in-get-helper/with-limit-all', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-LIMIT-ALL-IN-GET-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-LIMIT-ALL-IN-GET-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-LIMIT-ALL-IN-GET-HELPER']);
         });
 
         it('should NOT fail when limit="all" is NOT used in {{#get}} helper', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-all-in-get-helper/without-limit-all', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
 
         it('should fail when limit values greater than 100 are used in {{#get}} helper', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-over-100-in-get-helper/with-limit-over-100', options);
-            Object.keys(output.results.fail).should.eql([
+            expect(Object.keys(output.results.fail)).toEqual([
                 'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER'
             ]);
 
-            output.results.fail['GS090-NO-LIMIT-OVER-100-IN-GET-HELPER'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS090-NO-LIMIT-OVER-100-IN-GET-HELPER']);
         });
 
         it('should NOT fail when limit values 100 or lower are used in {{#get}} helper', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-limit-over-100-in-get-helper/without-limit-over-100', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            Object.keys(output.results.fail).should.eql([]);
+            expect(Object.keys(output.results.fail)).toEqual([]);
         });
     });
 });
