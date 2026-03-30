@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
-const themePath = require('./utils').themePath;
+const utils = require('./utils');
 const readZip = require('../lib/read-zip');
+const themePath = utils.themePath;
 
 /**
  * Response object from .check is:
@@ -25,13 +26,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('flat-example.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.not.match(/flat-example$/);
-                zip.path.should.eql(zip.origPath);
-                zip.origName.should.eql('flat-example');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).not.toMatch(/flat-example$/);
+                expect(zip.path).toEqual(zip.origPath);
+                expect(zip.origName).toEqual('flat-example');
             });
     });
 
@@ -39,13 +40,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('example.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.match(/\/example$/);
-                zip.path.should.not.eql(zip.origPath);
-                zip.origName.should.eql('example');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).toMatch(/\/example$/);
+                expect(zip.path).not.toEqual(zip.origPath);
+                expect(zip.origName).toEqual('example');
             });
     });
 
@@ -53,13 +54,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('bad-example.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.match(/\/bad-example-folder/);
-                zip.path.should.not.eql(zip.origPath);
-                zip.origName.should.eql('bad-example');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).toMatch(/\/bad-example-folder/);
+                expect(zip.path).not.toEqual(zip.origPath);
+                expect(zip.origName).toEqual('bad-example');
             });
     });
 
@@ -67,13 +68,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('nested-example.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.match(/\/nested-example\/bad-example-folder$/);
-                zip.path.should.not.eql(zip.origPath);
-                zip.origName.should.eql('nested-example');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).toMatch(/\/nested-example\/bad-example-folder$/);
+                expect(zip.path).not.toEqual(zip.origPath);
+                expect(zip.origName).toEqual('nested-example');
             });
     });
 
@@ -81,13 +82,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('multi-example.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.match(/\/multi-example\/theme\/theme-name/);
-                zip.path.should.not.eql(zip.origPath);
-                zip.origName.should.eql('multi-example');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).toMatch(/\/multi-example\/theme\/theme-name/);
+                expect(zip.path).not.toEqual(zip.origPath);
+                expect(zip.origName).toEqual('multi-example');
             });
     });
 
@@ -96,13 +97,13 @@ describe('Zip file handler can read zip files', function () {
         return testReadZip('not-a-theme.zip')
             .then((zip) => {
                 tempDirs.push(zip.origPath);
-                zip.path.should.be.a.String;
-                zip.origPath.should.be.a.String;
-                zip.name.should.be.a.String;
-                zip.origName.should.be.a.String;
-                zip.path.should.not.match(/not-a-theme$/);
-                zip.path.should.eql(zip.origPath);
-                zip.origName.should.eql('not-a-theme');
+                expect(zip.path).toEqual(expect.any(String));
+                expect(zip.origPath).toEqual(expect.any(String));
+                expect(zip.name).toEqual(expect.any(String));
+                expect(zip.origName).toEqual(expect.any(String));
+                expect(zip.path).not.toMatch(/not-a-theme$/);
+                expect(zip.path).toEqual(zip.origPath);
+                expect(zip.origName).toEqual('not-a-theme');
             });
     });
 });
