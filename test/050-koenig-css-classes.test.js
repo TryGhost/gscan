@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/050-koenig-css-classes');
 
@@ -8,10 +7,10 @@ describe('050 Koenig CSS classes', function () {
 
         it('[success] should not test for v1', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.pass).toEqual([]);
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -22,72 +21,72 @@ describe('050 Koenig CSS classes', function () {
 
         it('[failure] should invalidate theme when .css file is missing', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGC'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
+                expect(output.results.fail['GS050-CSS-KGWF'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGWW'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGC'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGR'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGI'].failures.length).toEqual(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('styles');
+                expect(output.results.fail['GS050-CSS-KGWF'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGWW'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGC'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGR'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGI'].failures[0].ref).toEqual('styles');
 
             });
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(15);
+                expect(output.results.pass).toHaveLength(15);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -98,72 +97,72 @@ describe('050 Koenig CSS classes', function () {
 
         it('[failure] should invalidate theme when .css file is missing', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGC'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
+                expect(output.results.fail['GS050-CSS-KGWF'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGWW'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGC'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGR'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGI'].failures.length).toEqual(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('styles');
+                expect(output.results.fail['GS050-CSS-KGWF'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGWW'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGC'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGR'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGI'].failures[0].ref).toEqual('styles');
 
             });
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(15);
+                expect(output.results.pass).toHaveLength(15);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -174,116 +173,116 @@ describe('050 Koenig CSS classes', function () {
 
         it('[failure] should invalidate theme when .css file is missing', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGC'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGR'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGGI'].failures.length.should.eql(1);
+                expect(output.results.fail['GS050-CSS-KGWF'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGWW'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGC'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGR'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGGI'].failures.length).toEqual(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGC'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGR'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGGI'].failures[0].ref.should.eql('styles');
+                expect(output.results.fail['GS050-CSS-KGWF'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGWW'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGC'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGR'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGGI'].failures[0].ref).toEqual('styles');
 
             });
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGR', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGR'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGR']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWF', 'GS050-CSS-KGGC', 'GS050-CSS-KGGI');
 
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGC'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGGI'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGC']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGGI']);
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(15);
+                expect(output.results.pass).toHaveLength(15);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset is true', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses include', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(93);
+                expect(output.results.pass).toHaveLength(93);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses exclude', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(5);
+                expect(output.results.pass).toHaveLength(5);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(14);
+                expect(output.results.pass).toHaveLength(14);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -294,102 +293,102 @@ describe('050 Koenig CSS classes', function () {
 
         it('[failure] should invalidate theme when .css file is missing', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
+                expect(output.results.fail['GS050-CSS-KGWF'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGWW'].failures.length).toEqual(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
+                expect(output.results.fail['GS050-CSS-KGWF'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGWW'].failures[0].ref).toEqual('styles');
 
             });
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
             });
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset is true', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses include', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(93);
+                expect(output.results.pass).toHaveLength(93);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses exclude', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(5);
+                expect(output.results.pass).toHaveLength(5);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(14);
+                expect(output.results.pass).toHaveLength(14);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -400,102 +399,102 @@ describe('050 Koenig CSS classes', function () {
 
         it('[failure] should invalidate theme when .css file is missing', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
-                output.results.fail['GS050-CSS-KGWF'].failures.length.should.eql(1);
-                output.results.fail['GS050-CSS-KGWW'].failures.length.should.eql(1);
+                expect(output.results.fail['GS050-CSS-KGWF'].failures.length).toEqual(1);
+                expect(output.results.fail['GS050-CSS-KGWW'].failures.length).toEqual(1);
 
-                output.results.fail['GS050-CSS-KGWF'].failures[0].ref.should.eql('styles');
-                output.results.fail['GS050-CSS-KGWW'].failures[0].ref.should.eql('styles');
+                expect(output.results.fail['GS050-CSS-KGWF'].failures[0].ref).toEqual('styles');
+                expect(output.results.fail['GS050-CSS-KGWW'].failures[0].ref).toEqual('styles');
 
             });
         });
 
         it('[failure] should invalidate theme when CSS classes are missing', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/missing', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWW', 'GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWW', 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWW'].should.be.a.ValidFailObject();
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWW']);
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
             });
         });
 
         it('[failure] should invalidate theme when three CSS classes are missing (classes are spread in hbs and css files)', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.fail.should.be.an.Object().with.keys('GS050-CSS-KGWF');
+                utils.assertObjectKeys(output.results.fail, 'GS050-CSS-KGWF');
 
-                output.results.fail['GS050-CSS-KGWF'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS050-CSS-KGWF']);
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset is true', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(2);
+                expect(output.results.pass).toHaveLength(2);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses include', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-include', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(93);
+                expect(output.results.pass).toHaveLength(93);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when CSS classes are present and card-asset uses exclude', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(5);
+                expect(output.results.pass).toHaveLength(5);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
 
         it('[success] should pass theme when card-asset excludes callout and uses Ghost v6 callout class names', function () {
             return utils.testCheck(thisCheck, '050-koenig-css-classes/valid-card-assets-exclude-callout', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(14);
+                expect(output.results.pass).toHaveLength(14);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });

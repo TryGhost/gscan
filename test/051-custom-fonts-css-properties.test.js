@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/051-custom-fonts-css-properties');
 
@@ -8,25 +7,25 @@ describe('051 custom fonts CSS properties', function () {
 
         it('should show warnings for missing custom heading and body font CSS properties when they are not in any .hbs or .css file', function () {
             return utils.testCheck(thisCheck, '051-custom-fonts-css-properties/missing', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS051-CUSTOM-FONTS');
+                utils.assertObjectKeys(output.results.fail, 'GS051-CUSTOM-FONTS');
 
-                output.results.fail['GS051-CUSTOM-FONTS'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS051-CUSTOM-FONTS']);
 
             });
         });
 
         it('should output nothing when custom heading and body font CSS properties are present', function () {
             return utils.testCheck(thisCheck, '051-custom-fonts-css-properties/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS051-CUSTOM-FONTS');
+                expect(output.results.pass).toHaveLength(1);
+                utils.assertContains(output.results.pass, 'GS051-CUSTOM-FONTS');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -37,25 +36,25 @@ describe('051 custom fonts CSS properties', function () {
 
         it('should show warnings for missing custom heading and body font CSS properties when they are not in any .hbs or .css file', function () {
             return utils.testCheck(thisCheck, '051-custom-fonts-css-properties/missing', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
-                output.results.fail.should.be.an.Object().with.keys('GS051-CUSTOM-FONTS');
+                utils.assertObjectKeys(output.results.fail, 'GS051-CUSTOM-FONTS');
 
-                output.results.fail['GS051-CUSTOM-FONTS'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS051-CUSTOM-FONTS']);
 
             });
         });
 
         it('should output nothing when custom heading and body font CSS properties are present', function () {
             return utils.testCheck(thisCheck, '051-custom-fonts-css-properties/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
-                output.results.pass.should.containEql('GS051-CUSTOM-FONTS');
+                expect(output.results.pass).toHaveLength(1);
+                utils.assertContains(output.results.pass, 'GS051-CUSTOM-FONTS');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });

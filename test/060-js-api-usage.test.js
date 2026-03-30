@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/060-js-api-usage');
 
@@ -8,10 +7,10 @@ describe('060 JS API USAGE', function () {
 
         it('[success] should not run check for v1', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.pass).toEqual([]);
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -22,10 +21,10 @@ describe('060 JS API USAGE', function () {
 
         it('[success] should not run check for v2', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().which.is.empty();
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.pass).toEqual([]);
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -36,26 +35,26 @@ describe('060 JS API USAGE', function () {
 
         it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+                expect(output.results.pass).toHaveLength(0);
 
-                output.results.fail.should.be.an.Object().with.keys('GS060-JS-GUA');
+                utils.assertObjectKeys(output.results.fail, 'GS060-JS-GUA');
 
-                output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS060-JS-GUA']);
 
             });
         });
 
         it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.pass[0].should.eql('GS060-JS-GUA');
+                expect(output.results.pass[0]).toEqual('GS060-JS-GUA');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -66,26 +65,26 @@ describe('060 JS API USAGE', function () {
 
         it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+                expect(output.results.pass).toHaveLength(0);
 
-                output.results.fail.should.be.an.Object().with.keys('GS060-JS-GUA');
+                utils.assertObjectKeys(output.results.fail, 'GS060-JS-GUA');
 
-                output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS060-JS-GUA']);
 
             });
         });
 
         it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.pass[0].should.eql('GS060-JS-GUA');
+                expect(output.results.pass[0]).toEqual('GS060-JS-GUA');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -96,26 +95,26 @@ describe('060 JS API USAGE', function () {
 
         it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+                expect(output.results.pass).toHaveLength(0);
 
-                output.results.fail.should.be.an.Object().with.keys('GS060-JS-GUA');
+                utils.assertObjectKeys(output.results.fail, 'GS060-JS-GUA');
 
-                output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS060-JS-GUA']);
 
             });
         });
 
         it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.pass[0].should.eql('GS060-JS-GUA');
+                expect(output.results.pass[0]).toEqual('GS060-JS-GUA');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
@@ -126,26 +125,26 @@ describe('060 JS API USAGE', function () {
 
         it('[failure] should invalidate theme when ghost.url.api is present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+                expect(output.results.pass).toHaveLength(0);
 
-                output.results.fail.should.be.an.Object().with.keys('GS060-JS-GUA');
+                utils.assertObjectKeys(output.results.fail, 'GS060-JS-GUA');
 
-                output.results.fail['GS060-JS-GUA'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS060-JS-GUA']);
 
             });
         });
 
         it('[success] should pass theme when ghost.url.api is not present in JS files', function () {
             return utils.testCheck(thisCheck, '060-js-api-usage/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(1);
+                expect(output.results.pass).toHaveLength(1);
 
-                output.results.pass[0].should.eql('GS060-JS-GUA');
+                expect(output.results.pass[0]).toEqual('GS060-JS-GUA');
 
-                output.results.fail.should.be.an.Object().which.is.empty();
+                expect(output.results.fail).toEqual({});
 
             });
         });
