@@ -1,4 +1,3 @@
-const sinon = require('sinon');
 const fs = require('fs-extra');
 const themePath = require('./utils').themePath;
 const readZip = require('../lib/read-zip');
@@ -16,19 +15,10 @@ function testReadZip(name) {
 }
 
 describe('Zip file handler can read zip files', function () {
-    let sandbox;
     const tempDirs = [];
-
-    beforeAll(function () {
-        sandbox = sinon.createSandbox();
-    });
 
     afterAll(async function () {
         await Promise.all(tempDirs.map(dir => fs.remove(dir)));
-    });
-
-    afterEach(function () {
-        sandbox.restore();
     });
 
     it('Flat example: zip without folder should unzip and callback with a path', function () {

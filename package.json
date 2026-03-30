@@ -72,7 +72,6 @@
     "eslint-plugin-ghost": "3.5.0",
     "nodemon": "3.1.14",
     "should": "13.2.3",
-    "sinon": "21.0.3",
     "vitest": "4.1.2"
   },
   "resolutions": {

@@ -4,7 +4,6 @@ const format = require('../lib/format');
 const calcScore = require('../lib/utils/score-calculator');
 const getPackageJSON = require('../lib/utils/package-json');
 const BaseRule = require('../lib/ast-linter/rules/base');
-const sinon = require('sinon');
 const NoLimitAllInGetHelper = require('../lib/ast-linter/rules/lint-no-limit-all-in-get-helper');
 const NoLimitOver100InGetHelper = require('../lib/ast-linter/rules/lint-no-limit-over-100-in-get-helper');
 const NoMultiParamConditionals = require('../lib/ast-linter/rules/lint-no-multi-param-conditionals');
@@ -152,10 +151,10 @@ describe('Coverage gaps', function () {
     });
 
     it('supports unquoted limit values in get-helper limit-all and limit-over-100 checks', function () {
-        const limitAllLog = sinon.spy();
+        const limitAllLogMock = vi.fn();
         const limitAllRule = new NoLimitAllInGetHelper({
             name: 'GS090-NO-LIMIT-ALL-IN-GET-HELPER',
-            log: limitAllLog,
+            log: limitAllLogMock,
             source: 'x',
             partials: [],
             helpers: []
@@ -167,12 +166,12 @@ describe('Coverage gaps', function () {
             hash: {pairs: [{key: 'limit', value: {original: 'all'}}]},
             loc: {start: {line: 1, column: 0}, end: {line: 1, column: 1}}
         });
-        limitAllLog.calledOnce.should.eql(true);
+        expect(limitAllLogMock).toHaveBeenCalledTimes(1);
 
-        const limitOver100Log = sinon.spy();
+        const limitOver100LogMock = vi.fn();
         const limitOver100Rule = new NoLimitOver100InGetHelper({
             name: 'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER',
-            log: limitOver100Log,
+            log: limitOver100LogMock,
             source: 'x',
             partials: [],
             helpers: []
@@ -184,14 +183,14 @@ describe('Coverage gaps', function () {
             hash: {pairs: [{key: 'limit', value: {original: '150'}}]},
             loc: {start: {line: 1, column: 0}, end: {line: 1, column: 1}}
         });
-        limitOver100Log.calledOnce.should.eql(true);
+        expect(limitOver100LogMock).toHaveBeenCalledTimes(1);
     });
 
     it('reports multi-param unless conditionals', function () {
-        const logSpy = sinon.spy();
+        const logMock = vi.fn();
         const rule = new NoMultiParamConditionals({
             name: 'no-multi-param-conditionals',
-            log: logSpy,
+            log: logMock,
             source: 'x',
             partials: [],
             helpers: []
@@ -203,6 +202,6 @@ describe('Coverage gaps', function () {
             loc: {start: {line: 1, column: 0}, end: {line: 1, column: 1}}
         });
 
-        logSpy.calledOnce.should.eql(true);
+        expect(logMock).toHaveBeenCalledTimes(1);
     });
 });
