@@ -1,36 +1,33 @@
 # ---- Base Node with Alpine ----
 FROM node:24.11.1-alpine3.21 AS base
-# Set working directory in the container
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
 WORKDIR /app
-# Copy package.json and yarn.lock files to the workspace
-COPY package.json yarn.lock ./
+# Copy workspace config and lockfile
+COPY pnpm-workspace.yaml pnpm-lock.yaml .npmrc package.json ./
+# Copy package manifests for all workspace packages
+COPY packages/gscan/package.json packages/gscan/package.json
+COPY apps/web/package.json apps/web/package.json
 
 # ---- Dependencies ----
 FROM base AS dependencies
-# Install production dependencies
-RUN yarn install --ignore-scripts --production --frozen-lockfile
-# Copy only the production node_modules for later use
-RUN cp -R node_modules prod_node_modules
-
-# Install all dependencies, including 'devDependencies'
-RUN yarn install --ignore-scripts --frozen-lockfile
+RUN pnpm install --frozen-lockfile --prod
 
 # ---- Release ----
 FROM node:24.11.1-alpine3.21 AS release
-# Set working directory
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
 WORKDIR /app
-# Copy production node_modules
-COPY --from=dependencies /app/prod_node_modules ./node_modules
-# Copy your source code
-COPY . .
-# Link the config file (from any possible location)
-RUN ln -s /config/config.json /app/config.development.json && \
-    ln -s /config/config.json /app/config.test.json && \
-    ln -s /config/config.json /app/config.staging.json && \
-    ln -s /config/config.json /app/config.production.json
+COPY --from=dependencies /app ./
+# Copy source code
+COPY packages/gscan/lib packages/gscan/lib
+COPY packages/gscan/bin packages/gscan/bin
+COPY apps/web/ apps/web/
+# Link the config file (for @tryghost/config)
+RUN ln -s /config/config.json /app/apps/web/config.development.json && \
+    ln -s /config/config.json /app/apps/web/config.test.json && \
+    ln -s /config/config.json /app/apps/web/config.staging.json && \
+    ln -s /config/config.json /app/apps/web/config.production.json
 
-# Expose the port the app runs on
 EXPOSE 2369
 
-# Run your application
-CMD ["yarn", "start"]
+WORKDIR /app/apps/web
+CMD ["pnpm", "start"]
