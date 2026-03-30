@@ -1,6 +1,5 @@
 const path = require('path');
 const fs = require('fs-extra');
-const sinon = require('sinon');
 const errors = require('@tryghost/errors');
 const {check, checkZip} = require('../lib');
 const themePath = require('./utils').themePath;
@@ -56,7 +55,7 @@ describe('Check zip', function () {
         });
 
         it('wraps non-ghost errors as a check-zip validation error', async function () {
-            const isGhostErrorStub = sinon.stub(errors.utils, 'isGhostError').returns(false);
+            const isGhostErrorStub = vi.spyOn(errors.utils, 'isGhostError').mockReturnValue(false);
 
             try {
                 await checkZip(themePath('030-assets/do_not_exist.zip'));
@@ -67,7 +66,7 @@ describe('Check zip', function () {
                 should.equal(err.message, 'Failed to check zip file');
                 should.equal(err.context, 'do_not_exist');
             } finally {
-                isGhostErrorStub.restore();
+                isGhostErrorStub.mockRestore();
             }
         });
     });
@@ -86,7 +85,8 @@ describe('Check zip', function () {
         it('removes extracted directory when checks fail', async function () {
             const readThemePath = require.resolve('../lib/read-theme');
             const originalReadTheme = require(readThemePath);
-            const removeSpy = sinon.spy(fs, 'remove');
+            const removeSpy = vi.spyOn(fs, 'remove');
+            let removedPath;
 
             require.cache[readThemePath].exports = async function () {
                 throw new Error('forced check failure');
@@ -99,14 +99,14 @@ describe('Check zip', function () {
                 should.exist(err);
                 should.equal(err.errorType, 'ValidationError');
                 should.equal(err.message, 'Failed theme files check');
+
+                expect(removeSpy).toHaveBeenCalledTimes(1);
+                removedPath = removeSpy.mock.calls[0][0];
+                should.exist(removedPath);
             } finally {
                 require.cache[readThemePath].exports = originalReadTheme;
-                removeSpy.restore();
+                removeSpy.mockRestore();
             }
-
-            removeSpy.calledOnce.should.eql(true);
-            const removedPath = removeSpy.firstCall.args[0];
-            should.exist(removedPath);
 
             const extractedThemePathExists = await fs.pathExists(removedPath);
             extractedThemePathExists.should.eql(false);
