@@ -1,6 +1,6 @@
 # ---- Base Node with Alpine ----
 FROM node:24.11.1-alpine3.21 AS base
-RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
+RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 WORKDIR /app
 # Copy workspace config and lockfile
 COPY pnpm-workspace.yaml pnpm-lock.yaml .npmrc package.json ./
@@ -14,7 +14,7 @@ RUN pnpm install --frozen-lockfile --prod
 
 # ---- Release ----
 FROM node:24.11.1-alpine3.21 AS release
-RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
+RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
 WORKDIR /app
 COPY --from=dependencies /app ./
 # Copy source code
