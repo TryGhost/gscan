@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 
 const thisCheck = require('../lib/checks/020-theme-structure');
@@ -8,50 +7,50 @@ describe('020 Theme structure', function () {
 
     it('should fail all rules if no files present', function () {
         return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
             // Should not pass any rules
-            output.results.pass.should.be.an.Array().which.is.empty();
+            expect(output.results.pass).toEqual([]);
 
-            output.results.fail.should.be.an.Object().with.keys('GS020-INDEX-REQ', 'GS020-POST-REQ', 'GS020-DEF-REC');
-            output.results.fail['GS020-INDEX-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS020-POST-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
+            utils.assertObjectKeys(output.results.fail, 'GS020-INDEX-REQ', 'GS020-POST-REQ', 'GS020-DEF-REC');
+            utils.assertValidFailObject(output.results.fail['GS020-INDEX-REQ']);
+            utils.assertValidFailObject(output.results.fail['GS020-POST-REQ']);
+            utils.assertValidFailObject(output.results.fail['GS020-DEF-REC']);
 
-            output.results.fail['GS020-INDEX-REQ'].failures[0].ref.should.eql('index.hbs');
-            output.results.fail['GS020-POST-REQ'].failures[0].ref.should.eql('post.hbs');
-            output.results.fail['GS020-DEF-REC'].failures[0].ref.should.eql('default.hbs');
+            expect(output.results.fail['GS020-INDEX-REQ'].failures[0].ref).toEqual('index.hbs');
+            expect(output.results.fail['GS020-POST-REQ'].failures[0].ref).toEqual('post.hbs');
+            expect(output.results.fail['GS020-DEF-REC'].failures[0].ref).toEqual('default.hbs');
 
         });
     });
 
     it('should pass and fail when some rules pass and others fail', function () {
         return utils.testCheck(thisCheck, '020-structure/mixed', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
             // Should pass the index rule
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
-            output.results.pass.should.containEql('GS020-INDEX-REQ');
+            expect(output.results.pass).toHaveLength(1);
+            utils.assertContains(output.results.pass, 'GS020-INDEX-REQ');
 
-            output.results.fail.should.be.an.Object().with.keys('GS020-POST-REQ', 'GS020-DEF-REC');
+            utils.assertObjectKeys(output.results.fail, 'GS020-POST-REQ', 'GS020-DEF-REC');
 
-            output.results.fail['GS020-POST-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS020-POST-REQ']);
+            utils.assertValidFailObject(output.results.fail['GS020-DEF-REC']);
 
         });
     });
 
     it('should still fail with just a recommendation', function () {
         return utils.testCheck(thisCheck, '020-structure/recommendation', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
             // Should not pass any rules
-            output.results.pass.should.be.an.Array().with.lengthOf(2);
-            output.results.pass.should.containEql('GS020-INDEX-REQ', 'GS020-POST-REQ');
+            expect(output.results.pass).toHaveLength(2);
+            utils.assertContains(output.results.pass, 'GS020-INDEX-REQ', 'GS020-POST-REQ');
 
-            output.results.fail.should.be.an.Object().with.keys('GS020-DEF-REC');
+            utils.assertObjectKeys(output.results.fail, 'GS020-DEF-REC');
 
-            output.results.fail['GS020-DEF-REC'].should.be.a.ValidFailObject();
+            utils.assertValidFailObject(output.results.fail['GS020-DEF-REC']);
 
         });
     });

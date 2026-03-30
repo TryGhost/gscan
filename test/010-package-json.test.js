@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/010-package-json');
 
@@ -11,12 +10,12 @@ describe('010 package.json', function () {
 
         it('should output error for missing package.json', function () {
             return utils.testCheck(thisCheck, 'is-empty', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(0);
+                expect(output.results.pass).toHaveLength(0);
 
                 // package.json not found, can't parse and all fields are missing + invalid
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -29,19 +28,19 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 );
 
-                output.results.fail['GS010-PJ-REQ'].should.be.a.ValidFailObject();
-                output.results.fail['GS010-PJ-REQ'].failures[0].ref.should.eql('package.json');
+                utils.assertValidFailObject(output.results.fail['GS010-PJ-REQ']);
+                expect(output.results.fail['GS010-PJ-REQ'].failures[0].ref).toEqual('package.json');
             });
         });
 
         it('should output error for invalid package.json (parsing)', async function () {
             const output = await utils.testCheck(thisCheck, '010-packagejson/parse-error', options);
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.pass.should.be.an.Array().with.lengthOf(0);
+            expect(output.results.pass).toHaveLength(0);
 
             // can't parse package.json and all fields are missing + invalid
-            output.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(output.results.fail,
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
                 'GS010-PJ-NAME-LC',
@@ -53,9 +52,9 @@ describe('010 package.json', function () {
                 'GS010-PJ-CONF-PPP'
             );
 
-            output.results.fail['GS010-PJ-PARSE'].should.be.a.ValidFailObject();
-            output.results.fail['GS010-PJ-PARSE'].failures.length.should.eql(1);
-            output.results.fail['GS010-PJ-PARSE'].failures[0].ref.should.eql('package.json');
+            utils.assertValidFailObject(output.results.fail['GS010-PJ-PARSE']);
+            expect(output.results.fail['GS010-PJ-PARSE'].failures.length).toEqual(1);
+            expect(output.results.fail['GS010-PJ-PARSE'].failures[0].ref).toEqual('package.json');
 
             // to check the message, we should compare it against the actual error from JSON.parse
             // we can't just use a hardcoded string because it differs between versions (Node 18 + 20)
@@ -74,14 +73,14 @@ describe('010 package.json', function () {
                 throw new Error('This should never happen');
             }
 
-            output.results.fail['GS010-PJ-PARSE'].failures[0].message.should.eql(expectedErrMessage);
+            expect(output.results.fail['GS010-PJ-PARSE'].failures[0].message).toEqual(expectedErrMessage);
         });
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -95,15 +94,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -112,7 +111,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-NAME-LC',
                     'GS010-PJ-NAME-HY',
                     'GS010-PJ-VERSION-SEM',
@@ -120,21 +119,21 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP-INT'
                 );
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -146,9 +145,9 @@ describe('010 package.json', function () {
 
         it('bad config (ppp: -3 > 0)', function () {
             return utils.testCheck(thisCheck, '010-packagejson/bad-config', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -161,7 +160,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-CONF-PPP-INT'
                 );
             });
@@ -169,9 +168,9 @@ describe('010 package.json', function () {
 
         it('bad config 2 (ppp: 0 > 0)', function () {
             return utils.testCheck(thisCheck, '010-packagejson/bad-config-2', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -184,7 +183,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-CONF-PPP-INT'
                 );
             });
@@ -196,9 +195,9 @@ describe('010 package.json', function () {
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -213,15 +212,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -230,7 +229,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CONF-PPP'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-NAME-LC',
                     'GS010-PJ-NAME-HY',
                     'GS010-PJ-VERSION-SEM',
@@ -239,21 +238,21 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 );
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -270,9 +269,9 @@ describe('010 package.json', function () {
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid-v3', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -289,15 +288,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V01'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -307,7 +306,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API'
                 ]);
 
-                Object.keys(theme.results.fail).should.eql([
+                expect(Object.keys(theme.results.fail)).toEqual([
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
@@ -317,22 +316,22 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V01'
                 ]);
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-V01'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -345,9 +344,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api v0.1', function () {
             return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -363,7 +362,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-V01'
                 );
 
@@ -376,9 +375,9 @@ describe('010 package.json', function () {
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -405,15 +404,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -432,7 +431,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                Object.keys(theme.results.fail).should.eql([
+                expect(Object.keys(theme.results.fail)).toEqual([
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
@@ -443,16 +442,16 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V01'
                 ]);
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-V01',
@@ -469,7 +468,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -482,9 +481,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api v0.1', function () {
             return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v01', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -509,7 +508,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-V01'
                 );
 
@@ -518,9 +517,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api v2', function () {
             return utils.testCheck(thisCheck, '010-packagejson/deprecated-engines-ghost-api-v2', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -545,7 +544,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-V2'
                 );
 
@@ -554,9 +553,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api use', function () {
             return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
@@ -565,9 +564,9 @@ describe('010 package.json', function () {
 
         it('correctly flags invalid custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -584,7 +583,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-V2'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
@@ -598,9 +597,9 @@ describe('010 package.json', function () {
 
         it('correctly validates custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -627,7 +626,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-IMAGE-DEFAULT'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
 
             });
         });
@@ -638,9 +637,9 @@ describe('010 package.json', function () {
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -669,15 +668,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -699,7 +698,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                Object.keys(theme.results.fail).should.eql([
+                expect(Object.keys(theme.results.fail)).toEqual([
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
@@ -709,16 +708,16 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-PRESENT'
                 ]);
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-PRESENT',
@@ -736,7 +735,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -750,9 +749,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api use', function () {
             return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
@@ -761,9 +760,9 @@ describe('010 package.json', function () {
 
         it('correctly flags invalid custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -778,7 +777,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
@@ -795,9 +794,9 @@ describe('010 package.json', function () {
 
         it('correctly validates custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -834,9 +833,9 @@ describe('010 package.json', function () {
 
         it('valid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-valid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -865,15 +864,15 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().which.is.empty();
+                expect(theme.results.fail).toEqual({});
             });
         });
 
         it('invalid fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-invalid', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -895,7 +894,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                Object.keys(theme.results.fail).should.eql([
+                expect(Object.keys(theme.results.fail)).toEqual([
                     'GS010-PJ-CONF-PPP-INT',
                     'GS010-PJ-KEYWORDS',
                     'GS010-PJ-NAME-LC',
@@ -905,16 +904,16 @@ describe('010 package.json', function () {
                     'GS010-PJ-GHOST-API-PRESENT'
                 ]);
 
-                theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref.should.eql('package.json');
+                expect(theme.results.fail['GS010-PJ-NAME-LC'].failures[0].ref).toEqual('package.json');
 
             });
         });
 
         it('missing fields', function () {
             return utils.testCheck(thisCheck, '010-packagejson/fields-are-missing', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-GHOST-API-PRESENT',
@@ -932,7 +931,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-VISIBILITY-VALUE'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-AUT-EM-REQ',
                     'GS010-PJ-NAME-REQ',
                     'GS010-PJ-VERSION-REQ',
@@ -946,9 +945,9 @@ describe('010 package.json', function () {
 
         it('deprecated ghost-api use', function () {
             return utils.testCheck(thisCheck, '010-packagejson/ghost-api-use', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-GHOST-API-PRESENT'
                 );
 
@@ -957,9 +956,9 @@ describe('010 package.json', function () {
 
         it('correctly flags invalid custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/invalid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
@@ -974,7 +973,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-KEYWORDS'
                 ]);
 
-                theme.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(theme.results.fail,
                     'GS010-PJ-CUST-THEME-TOTAL-SETTINGS',
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
@@ -991,9 +990,9 @@ describe('010 package.json', function () {
 
         it('correctly validates custom themes', function () {
             return utils.testCheck(thisCheck, '010-packagejson/valid-custom-theme', options).then(function (theme) {
-                theme.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(theme);
 
-                theme.results.pass.should.eql([
+                expect(theme.results.pass).toEqual([
                     'GS010-PJ-REQ',
                     'GS010-PJ-PARSE',
                     'GS010-PJ-NAME-REQ',
