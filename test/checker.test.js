@@ -1,4 +1,5 @@
-const themePath = require('./utils').themePath;
+const utils = require('./utils');
+const themePath = utils.themePath;
 const {check} = require('../lib/checker');
 const labsEnabledHelpers = require('../lib/utils/labs-enabled-helpers');
 const spec = require('../lib/specs');
@@ -17,7 +18,7 @@ describe('Checker', function () {
             });
 
             const v6Spec = spec.get(['v6']);
-            v6Spec.knownHelpers.should.containEql('testHelper');
+            expect(v6Spec.knownHelpers).toContain('testHelper');
 
             // Clean up the spec
             const idx = v6Spec.knownHelpers.indexOf('testHelper');
@@ -40,7 +41,7 @@ describe('Checker', function () {
             });
 
             const v6Spec = spec.get(['v6']);
-            v6Spec.knownHelpers.should.not.containEql('testHelper');
+            expect(v6Spec.knownHelpers).not.toContain('testHelper');
         } finally {
             delete labsEnabledHelpers.testHelper;
         }
@@ -48,32 +49,32 @@ describe('Checker', function () {
 
     it('can read theme but skip checks', function () {
         return check(themePath('is-empty'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(0);
-            theme.results.fail.should.be.an.Object().with.keys();
+            expect(theme.results.pass).toHaveLength(0);
+            expect(theme.results.fail).toEqual({});
 
         });
     });
 
     it('returns a valid theme when running all checks', function () {
         return check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(96);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            expect(theme.results.pass).toHaveLength(96);
+            expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -102,17 +103,17 @@ describe('Checker', function () {
 
     it('checks for v1 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v1'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(33);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            expect(theme.results.pass).toHaveLength(33);
+            expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -130,24 +131,24 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('1.x');
+            expect(theme.checkedVersion).toEqual('1.x');
 
         });
     });
 
     it('checks for a v2 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(96);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM');
+            expect(theme.results.pass).toHaveLength(96);
+            expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -165,24 +166,24 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('2.x');
+            expect(theme.checkedVersion).toEqual('2.x');
 
         });
     });
 
     it('checks for a v3 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v3'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(99);
-            theme.results.pass.should.containEql('GS005-TPL-ERR', 'GS030-ASSET-REQ', 'GS030-ASSET-SYM', 'GS080-FEACH-POSTS', 'GS080-CARD-LAST4');
+            expect(theme.results.pass).toHaveLength(99);
+            expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -200,22 +201,22 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('3.x');
+            expect(theme.checkedVersion).toEqual('3.x');
 
         });
     });
 
     it('checks for a v4 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v4'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(109);
-            theme.results.pass.should.eql([
+            expect(theme.results.pass).toHaveLength(109);
+            expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
                 'GS001-DEPR-IMG',
@@ -327,7 +328,7 @@ describe('Checker', function () {
                 'GS090-NO-PRODUCTS-DATA-HELPER'
             ]);
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -345,21 +346,21 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('4.x');
+            expect(theme.checkedVersion).toEqual('4.x');
         });
     });
 
     it('checks for a v5 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v5'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(118);
-            theme.results.pass.should.eql([
+            expect(theme.results.pass).toHaveLength(118);
+            expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
                 'GS001-DEPR-IMG',
@@ -480,7 +481,7 @@ describe('Checker', function () {
                 'GS120-NO-UNKNOWN-GLOBALS'
             ]);
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -498,21 +499,21 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('5.x');
+            expect(theme.checkedVersion).toEqual('5.x');
         });
     });
 
     it('checks for a v6 version if passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'v6'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
-            theme.results.pass.should.eql([
+            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
                 'GS001-DEPR-IMG',
@@ -638,7 +639,7 @@ describe('Checker', function () {
                 'GS120-NO-UNKNOWN-GLOBALS'
             ]);
 
-            theme.results.fail.should.be.an.Object().with.keys(
+            utils.assertObjectKeys(theme.results.fail,
                 'GS010-PJ-REQ',
                 'GS010-PJ-PARSE',
                 'GS010-PJ-NAME-REQ',
@@ -656,45 +657,45 @@ describe('Checker', function () {
                 'GS040-GF-REQ'
             );
 
-            theme.checkedVersion.should.equal('6.x');
+            expect(theme.checkedVersion).toEqual('6.x');
         });
     });
 
     it('checks for a v6 version if canary is passed', function () {
         return check(themePath('is-empty'), {checkVersion: 'canary'}).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             // Short version of test above
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
-            theme.checkedVersion.should.equal('6.x');
+            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.checkedVersion).toEqual('6.x');
         });
     });
 
     it('should default to v6 when no version is provided', function () {
         return check(themePath('is-empty')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
             // Should default to v6 behavior
-            theme.results.pass.should.be.an.Array().with.lengthOf(123);
-            theme.checkedVersion.should.equal('6.x');
+            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.checkedVersion).toEqual('6.x');
         });
     });
 
     it('should not follow symlinks', function () {
         return check(themePath('030-assets/symlink2')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
-            theme.files.should.containEql({file: 'assets/mysymlink', normalizedFile: 'assets/mysymlink', ext: undefined, symlink: true});
-            theme.results.fail.should.have.ownProperty('GS030-ASSET-SYM');
+            utils.assertValidThemeObject(theme);
+            expect(theme.files).toContainEqual({file: 'assets/mysymlink', normalizedFile: 'assets/mysymlink', ext: undefined, symlink: true});
+            expect(theme.results.fail).toHaveProperty('GS030-ASSET-SYM');
 
         });
     });
