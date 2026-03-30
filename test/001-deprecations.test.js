@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const thisCheck = require('../lib/checks/001-deprecations');
 const utils = require('./utils');
 
@@ -8,9 +7,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v1/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -42,117 +41,117 @@ describe('001 Deprecations', function () {
                 );
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Object().which.is.empty();
+                expect(output.results.pass).toEqual([]);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v1/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(28);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(28);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v1/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -163,9 +162,9 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-C0H'
                 );
 
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(2);
-                output.results.pass.should.be.an.Array().with.lengthOf(20);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(2);
+                expect(output.results.pass).toHaveLength(20);
 
             });
         });
@@ -176,9 +175,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is completely invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v2/invalid_all', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -256,293 +255,293 @@ describe('001 Deprecations', function () {
                 );
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(5);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(5);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author_id}}
-                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAID']);
+                expect(output.results.fail['GS001-DEPR-PAID'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(2);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.ghost_head}}
-                output.results.fail['GS001-DEPR-SGH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGH']);
+                expect(output.results.fail['GS001-DEPR-SGH'].failures.length).toEqual(1);
 
                 // {{@site.ghost_foot}}
-                output.results.fail['GS001-DEPR-SGF'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGF'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGF']);
+                expect(output.results.fail['GS001-DEPR-SGF'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{#get "users"}}
-                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-USER-GET']);
+                expect(output.results.fail['GS001-DEPR-USER-GET'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(17);
+                expect(output.results.pass.length).toEqual(17);
 
             });
         });
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v2/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
@@ -591,206 +590,206 @@ describe('001 Deprecations', function () {
                 );
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(1);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG-2'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG-2'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG-2']);
+                expect(output.results.fail['GS001-DEPR-AIMG-2'].failures.length).toEqual(1);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(1);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.permalinks}}
-                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SPL']);
+                expect(output.results.fail['GS001-DEPR-SPL'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LANG']);
+                expect(output.results.fail['GS001-DEPR-LANG'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(46);
+                expect(output.results.pass).toHaveLength(46);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v2/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(91);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(91);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v2/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
@@ -827,13 +826,13 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-BLOG'
                 );
 
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(58);
+                expect(output.results.pass).toHaveLength(58);
 
             });
         });
@@ -844,9 +843,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is completely invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v3/invalid_all', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -925,297 +924,297 @@ describe('001 Deprecations', function () {
                 );
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(5);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(5);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author_id}}
-                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAID']);
+                expect(output.results.fail['GS001-DEPR-PAID'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{error.code}} / {{code}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(2);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.ghost_head}}
-                output.results.fail['GS001-DEPR-SGH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGH']);
+                expect(output.results.fail['GS001-DEPR-SGH'].failures.length).toEqual(1);
 
                 // {{@site.ghost_foot}}
-                output.results.fail['GS001-DEPR-SGF'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGF'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGF']);
+                expect(output.results.fail['GS001-DEPR-SGF'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{#get "users"}}
-                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-USER-GET']);
+                expect(output.results.fail['GS001-DEPR-USER-GET'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(17);
+                expect(output.results.pass.length).toEqual(17);
 
             });
         });
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v3/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
@@ -1265,210 +1264,210 @@ describe('001 Deprecations', function () {
                 );
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(1);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG-2'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG-2'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG-2']);
+                expect(output.results.fail['GS001-DEPR-AIMG-2'].failures.length).toEqual(1);
 
                 // {{error.statusCode}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(1);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.permalinks}}
-                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SPL']);
+                expect(output.results.fail['GS001-DEPR-SPL'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LANG']);
+                expect(output.results.fail['GS001-DEPR-LANG'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(46);
+                expect(output.results.pass).toHaveLength(46);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v3/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(92);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(92);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v3/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
@@ -1506,13 +1505,13 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-BLOG'
                 );
 
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(58);
+                expect(output.results.pass).toHaveLength(58);
 
             });
         });
@@ -1523,9 +1522,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is completely invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v4/invalid_all', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -1606,305 +1605,305 @@ describe('001 Deprecations', function () {
                 );
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(5);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(5);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author_id}}
-                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAID']);
+                expect(output.results.fail['GS001-DEPR-PAID'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{error.code}} / {{code}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(2);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.ghost_head}}
-                output.results.fail['GS001-DEPR-SGH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGH']);
+                expect(output.results.fail['GS001-DEPR-SGH'].failures.length).toEqual(1);
 
                 // {{@site.ghost_foot}}
-                output.results.fail['GS001-DEPR-SGF'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGF'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGF']);
+                expect(output.results.fail['GS001-DEPR-SGF'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{#get "users"}}
-                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-USER-GET']);
+                expect(output.results.fail['GS001-DEPR-USER-GET'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{@labs.members}} helper usage warning
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LABS-MEMBERS']);
+                expect(output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length).toEqual(1);
 
                 // {{@site.lang}} helper usage warning
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(1);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(18);
+                expect(output.results.pass.length).toEqual(18);
 
             });
         });
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v4/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
@@ -1956,218 +1955,218 @@ describe('001 Deprecations', function () {
                 );
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(1);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG-2'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG-2'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG-2']);
+                expect(output.results.fail['GS001-DEPR-AIMG-2'].failures.length).toEqual(1);
 
                 // {{error.statusCode}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(1);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.permalinks}}
-                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SPL']);
+                expect(output.results.fail['GS001-DEPR-SPL'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LANG']);
+                expect(output.results.fail['GS001-DEPR-LANG'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{.currency_symbol}} usage warning
-                output.results.fail['GS001-DEPR-CURR-SYM'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CURR-SYM']);
+                expect(output.results.fail['GS001-DEPR-CURR-SYM'].failures.length).toEqual(2);
 
                 // {{@site.lang}}
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(47);
+                expect(output.results.pass).toHaveLength(47);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v4/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(95);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(95);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v4/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
@@ -2205,13 +2204,13 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-BLOG'
                 );
 
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(61);
+                expect(output.results.pass).toHaveLength(61);
 
             });
         });
@@ -2222,9 +2221,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is completely invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid_all', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([
+                expect(Object.keys(output.results.fail)).toEqual([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -2307,305 +2306,305 @@ describe('001 Deprecations', function () {
                 ]);
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(5);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(5);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author_id}}
-                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAID']);
+                expect(output.results.fail['GS001-DEPR-PAID'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{error.code}} / {{code}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(2);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.ghost_head}}
-                output.results.fail['GS001-DEPR-SGH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGH']);
+                expect(output.results.fail['GS001-DEPR-SGH'].failures.length).toEqual(1);
 
                 // {{@site.ghost_foot}}
-                output.results.fail['GS001-DEPR-SGF'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGF'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGF']);
+                expect(output.results.fail['GS001-DEPR-SGF'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{#get "users"}}
-                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-USER-GET']);
+                expect(output.results.fail['GS001-DEPR-USER-GET'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{@labs.members}} helper usage warning
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LABS-MEMBERS']);
+                expect(output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length).toEqual(1);
 
                 // {{@site.lang}} helper usage warning
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(16);
+                expect(output.results.pass.length).toEqual(16);
 
             });
         });
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
@@ -2657,230 +2656,230 @@ describe('001 Deprecations', function () {
                 );
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(1);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG-2'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG-2'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG-2']);
+                expect(output.results.fail['GS001-DEPR-AIMG-2'].failures.length).toEqual(1);
 
                 // {{error.statusCode}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(1);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.permalinks}}
-                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SPL']);
+                expect(output.results.fail['GS001-DEPR-SPL'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LANG']);
+                expect(output.results.fail['GS001-DEPR-LANG'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{.currency_symbol}} usage warning
-                output.results.fail['GS001-DEPR-CURR-SYM'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CURR-SYM']);
+                expect(output.results.fail['GS001-DEPR-CURR-SYM'].failures.length).toEqual(2);
 
                 // {{@site.lang}}
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(47);
+                expect(output.results.pass).toHaveLength(47);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(95);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(95);
 
             });
         });
 
         it('[failure] should show deprecations in partials', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid_partial', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([
+                expect(Object.keys(output.results.fail)).toEqual([
                     'GS001-DEPR-PURL'
                 ]);
-                output.results.pass.should.be.an.Array().with.lengthOf(94);
+                expect(output.results.pass).toHaveLength(94);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
@@ -2918,13 +2917,13 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-BLOG'
                 );
 
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(61);
+                expect(output.results.pass).toHaveLength(61);
 
             });
         });
@@ -2935,9 +2934,9 @@ describe('001 Deprecations', function () {
 
         it('[failure] theme is completely invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid_all', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([
+                expect(Object.keys(output.results.fail)).toEqual([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-MD',
                     'GS001-DEPR-IMG',
@@ -3020,305 +3019,305 @@ describe('001 Deprecations', function () {
                 ]);
 
                 // pageUrl
-                output.results.fail['GS001-DEPR-PURL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PURL'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PURL']);
+                expect(output.results.fail['GS001-DEPR-PURL'].failures.length).toEqual(3);
 
                 // meta_description in <head>
-                output.results.fail['GS001-DEPR-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-MD']);
+                expect(output.results.fail['GS001-DEPR-MD'].failures.length).toEqual(1);
 
                 // {{image}}
-                output.results.fail['GS001-DEPR-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IMG']);
+                expect(output.results.fail['GS001-DEPR-IMG'].failures.length).toEqual(2);
 
                 // {{cover}}
-                output.results.fail['GS001-DEPR-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-COV'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-COV']);
+                expect(output.results.fail['GS001-DEPR-COV'].failures.length).toEqual(3);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG']);
+                expect(output.results.fail['GS001-DEPR-AIMG'].failures.length).toEqual(2);
 
                 // {{post.image}}
-                output.results.fail['GS001-DEPR-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PIMG'].failures.length).toEqual(1);
 
                 // {{@blog.cover}}
-                output.results.fail['GS001-DEPR-BC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BC']);
+                expect(output.results.fail['GS001-DEPR-BC'].failures.length).toEqual(1);
 
                 // {{author.cover}}
-                output.results.fail['GS001-DEPR-AC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AC']);
+                expect(output.results.fail['GS001-DEPR-AC'].failures.length).toEqual(2);
 
                 // {{post.author.cover}}
-                output.results.fail['GS001-DEPR-PAC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAC']);
+                expect(output.results.fail['GS001-DEPR-PAC'].failures.length).toEqual(1);
 
                 // {{post.author.image}}
-                output.results.fail['GS001-DEPR-PAIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAIMG']);
+                expect(output.results.fail['GS001-DEPR-PAIMG'].failures.length).toEqual(1);
 
                 // {{tag.image}}
-                output.results.fail['GS001-DEPR-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TIMG']);
+                expect(output.results.fail['GS001-DEPR-TIMG'].failures.length).toEqual(1);
 
                 // {{posts.tags.[4].image}}
-                output.results.fail['GS001-DEPR-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-PTIMG'].failures.length).toEqual(1);
 
                 // {{tags.[4].image}}
-                output.results.fail['GS001-DEPR-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if image}}
-                output.results.fail['GS001-DEPR-CON-IMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-IMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-IMG']);
+                expect(output.results.fail['GS001-DEPR-CON-IMG'].failures.length).toEqual(1);
 
                 // {{#if cover}}
-                output.results.fail['GS001-DEPR-CON-COV'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-COV'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-COV']);
+                expect(output.results.fail['GS001-DEPR-CON-COV'].failures.length).toEqual(1);
 
                 // {{#if tag.image}}
-                output.results.fail['GS001-DEPR-CON-TIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TIMG'].failures.length).toEqual(1);
 
                 // {{#if tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-TSIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-TSIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-TSIMG'].failures.length).toEqual(1);
 
                 // {{#if post.tags.[#].image}}
-                output.results.fail['GS001-DEPR-CON-PTIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PTIMG']);
+                expect(output.results.fail['GS001-DEPR-CON-PTIMG'].failures.length).toEqual(1);
 
                 // {{@blog.posts_per_page}}
-                output.results.fail['GS001-DEPR-PPP'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PPP'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PPP']);
+                expect(output.results.fail['GS001-DEPR-PPP'].failures.length).toEqual(1);
 
                 // {{content word="0"}}
-                output.results.fail['GS001-DEPR-C0H'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-C0H'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-C0H']);
+                expect(output.results.fail['GS001-DEPR-C0H'].failures.length).toEqual(2);
 
                 // css class .page-template-{slug}
-                output.results.fail['GS001-DEPR-CSS-PATS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-PATS'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-PATS']);
+                expect(output.results.fail['GS001-DEPR-CSS-PATS'].failures.length).toEqual(2);
 
                 // css class .achive-template
-                output.results.fail['GS001-DEPR-CSS-AT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-AT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-AT']);
+                expect(output.results.fail['GS001-DEPR-CSS-AT'].failures.length).toEqual(1);
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(5);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(5);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author_id}}
-                output.results.fail['GS001-DEPR-PAID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAID']);
+                expect(output.results.fail['GS001-DEPR-PAID'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{error.code}} / {{code}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(2);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.ghost_head}}
-                output.results.fail['GS001-DEPR-SGH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGH']);
+                expect(output.results.fail['GS001-DEPR-SGH'].failures.length).toEqual(1);
 
                 // {{@site.ghost_foot}}
-                output.results.fail['GS001-DEPR-SGF'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SGF'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SGF']);
+                expect(output.results.fail['GS001-DEPR-SGF'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{#get "users"}}
-                output.results.fail['GS001-DEPR-USER-GET'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-USER-GET'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-USER-GET']);
+                expect(output.results.fail['GS001-DEPR-USER-GET'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{@labs.members}} helper usage warning
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LABS-MEMBERS']);
+                expect(output.results.fail['GS001-DEPR-LABS-MEMBERS'].failures.length).toEqual(1);
 
                 // {{@site.lang}} helper usage warning
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(2);
 
                 // there are some single author rules which are not invalid for this theme.
-                output.results.pass.length.should.eql(19);
+                expect(output.results.pass.length).toEqual(19);
 
             });
         });
 
         it('[failure] theme is invalid', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-CSS-KGMD',
                     'GS001-DEPR-AUTH-INCL',
                     'GS001-DEPR-AUTH-FIELD',
@@ -3370,230 +3369,230 @@ describe('001 Deprecations', function () {
                 );
 
                 // css class .kg-card-markdown
-                output.results.fail['GS001-DEPR-CSS-KGMD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CSS-KGMD']);
+                expect(output.results.fail['GS001-DEPR-CSS-KGMD'].failures.length).toEqual(1);
 
                 // {{#get "posts" include="author"}}
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
                 // {{#get "posts" fields="author"}}
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FIELD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FIELD'].failures.length).toEqual(1);
 
                 // {{#get "posts" filter="author:[...]"}}
-                output.results.fail['GS001-DEPR-AUTH-FILT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FILT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FILT'].failures.length).toEqual(1);
 
                 // {{#author}} but not in author.hbs
-                output.results.fail['GS001-DEPR-AUTHBL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTHBL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTHBL']);
+                expect(output.results.fail['GS001-DEPR-AUTHBL'].failures.length).toEqual(1);
 
                 // {{#if author}} or {{#if author.*}}
-                output.results.fail['GS001-DEPR-CON-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-AUTH'].failures.length.should.eql(3);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-AUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-AUTH'].failures.length).toEqual(3);
 
                 // {{#if post.author}} or {{#if post.author.*}}
-                output.results.fail['GS001-DEPR-CON-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CON-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-CON-PAUTH'].failures.length).toEqual(1);
 
                 // {{author}}
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
                 // {{author.id}}
-                output.results.fail['GS001-DEPR-AUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
 
                 // {{author.slug}}
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(2);
 
                 // {{author.email}}
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{author.meta_title}}
-                output.results.fail['GS001-DEPR-AUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
 
                 // {{author.meta_description}}
-                output.results.fail['GS001-DEPR-AUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MD'].failures.length).toEqual(1);
 
                 // {{author.name}}
-                output.results.fail['GS001-DEPR-AUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-AUTH-NAME'].failures.length).toEqual(1);
 
                 // {{author.bio}}
-                output.results.fail['GS001-DEPR-AUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-AUTH-BIO'].failures.length).toEqual(1);
 
                 // {{author.location}}
-                output.results.fail['GS001-DEPR-AUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-AUTH-LOC'].failures.length).toEqual(1);
 
                 // {{author.website}}
-                output.results.fail['GS001-DEPR-AUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-WEB'].failures.length).toEqual(1);
 
                 // {{author.twitter}}
-                output.results.fail['GS001-DEPR-AUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
 
                 // {{author.facebook}}
-                output.results.fail['GS001-DEPR-AUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-AUTH-FB'].failures.length).toEqual(1);
 
                 // {{author.profile_image}}
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{author.cover_image}}
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{author.url}}
-                output.results.fail['GS001-DEPR-AUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-URL'].failures.length).toEqual(1);
 
                 // {{post.author}}
-                output.results.fail['GS001-DEPR-PAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH']);
+                expect(output.results.fail['GS001-DEPR-PAUTH'].failures.length).toEqual(1);
 
                 // {{post.author.id}}
-                output.results.fail['GS001-DEPR-PAUTH-ID'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-ID'].failures.length).toEqual(1);
 
                 // {{post.author.slug}}
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-SLUG'].failures.length).toEqual(1);
 
                 // {{post.author.email}}
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MAIL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MAIL'].failures.length).toEqual(1);
 
                 // {{post.author.meta_title}}
-                output.results.fail['GS001-DEPR-PAUTH-MT'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MT'].failures.length).toEqual(1);
 
                 // {{post.author.meta_description}}
-                output.results.fail['GS001-DEPR-PAUTH-MD'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-MD']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-MD'].failures.length).toEqual(1);
 
                 // {{post.author.name}}
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-NAME']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-NAME'].failures.length).toEqual(1);
 
                 // {{post.author.bio}}
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-BIO']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-BIO'].failures.length).toEqual(1);
 
                 // {{post.author.location}}
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-LOC']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-LOC'].failures.length).toEqual(1);
 
                 // {{post.author.website}}
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-WEB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-WEB'].failures.length).toEqual(1);
 
                 // {{post.author.twitter}}
-                output.results.fail['GS001-DEPR-PAUTH-TW'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-TW'].failures.length).toEqual(1);
 
                 // {{post.author.facebook}}
-                output.results.fail['GS001-DEPR-PAUTH-FB'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-FB']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-FB'].failures.length).toEqual(1);
 
                 // {{post.author.profile_image}}
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-PIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-PIMG'].failures.length).toEqual(1);
 
                 // {{post.author.cover_image}}
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-CIMG']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-CIMG'].failures.length).toEqual(1);
 
                 // {{post.author.url}}
-                output.results.fail['GS001-DEPR-PAUTH-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-PAUTH-URL']);
+                expect(output.results.fail['GS001-DEPR-PAUTH-URL'].failures.length).toEqual(1);
 
                 // {{#../author}}, {{../author}}, {{#if../author}}
                 // {{#../author.*}}, {{../author.*}}, {{#if../author.*}}
-                output.results.fail['GS001-DEPR-NAUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-NAUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-NAUTH']);
+                expect(output.results.fail['GS001-DEPR-NAUTH'].failures.length).toEqual(1);
 
                 // {{img_url author.*}}
-                output.results.fail['GS001-DEPR-IUA'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-IUA'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-IUA']);
+                expect(output.results.fail['GS001-DEPR-IUA'].failures.length).toEqual(1);
 
                 // {{primary_author.image}}
-                output.results.fail['GS001-DEPR-AIMG-2'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AIMG-2'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AIMG-2']);
+                expect(output.results.fail['GS001-DEPR-AIMG-2'].failures.length).toEqual(1);
 
                 // {{error.statusCode}}
-                output.results.fail['GS001-DEPR-ESC'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-ESC'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-ESC']);
+                expect(output.results.fail['GS001-DEPR-ESC'].failures.length).toEqual(2);
 
                 // {{@blog.*}}
-                output.results.fail['GS001-DEPR-BLOG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BLOG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BLOG']);
+                expect(output.results.fail['GS001-DEPR-BLOG'].failures.length).toEqual(1);
 
                 // {{@blog.permalinks}}
-                output.results.fail['GS001-DEPR-BPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-BPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-BPL']);
+                expect(output.results.fail['GS001-DEPR-BPL'].failures.length).toEqual(1);
 
                 // {{@site.permalinks}}
-                output.results.fail['GS001-DEPR-SPL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SPL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SPL']);
+                expect(output.results.fail['GS001-DEPR-SPL'].failures.length).toEqual(1);
 
                 // {{lang}}
-                output.results.fail['GS001-DEPR-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-LANG']);
+                expect(output.results.fail['GS001-DEPR-LANG'].failures.length).toEqual(1);
 
                 // {{#each}} helper usage warning
-                output.results.fail['GS001-DEPR-EACH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-EACH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-EACH']);
+                expect(output.results.fail['GS001-DEPR-EACH'].failures.length).toEqual(1);
 
                 // {{.currency_symbol}} usage warning
-                output.results.fail['GS001-DEPR-CURR-SYM'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-CURR-SYM'].failures.length.should.eql(2);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-CURR-SYM']);
+                expect(output.results.fail['GS001-DEPR-CURR-SYM'].failures.length).toEqual(2);
 
                 // {{@site.lang}}
-                output.results.fail['GS001-DEPR-SITE-LANG'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-SITE-LANG'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-SITE-LANG']);
+                expect(output.results.fail['GS001-DEPR-SITE-LANG'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(50);
+                expect(output.results.pass).toHaveLength(50);
 
             });
         });
 
         it('[success] should show no error if no deprecated helpers used', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().which.is.empty();
-                output.results.pass.should.be.an.Array().with.lengthOf(98);
+                expect(output.results.fail).toEqual({});
+                expect(output.results.pass).toHaveLength(98);
 
             });
         });
 
         it('[failure] should show deprecations in partials', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/invalid_partial', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([
+                expect(Object.keys(output.results.fail)).toEqual([
                     'GS001-DEPR-PURL'
                 ]);
-                output.results.pass.should.be.an.Array().with.lengthOf(97);
+                expect(output.results.pass).toHaveLength(97);
 
             });
         });
 
         it('[mixed] should pass and fail when some rules pass and others fail', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v5/mixed', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-C0H',
                     'GS001-DEPR-CSS-AT',
@@ -3631,31 +3630,31 @@ describe('001 Deprecations', function () {
                     'GS001-DEPR-BLOG'
                 );
 
-                output.results.fail['GS001-DEPR-AUTH-INCL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-INCL']);
+                expect(output.results.fail['GS001-DEPR-AUTH-INCL'].failures.length).toEqual(1);
 
-                output.results.fail['GS001-DEPR-AUTH'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AUTH'].failures.length.should.eql(1);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
 
-                output.results.pass.should.be.an.Array().with.lengthOf(64);
+                expect(output.results.pass).toHaveLength(64);
 
             });
         });
 
         it('[failure] should detect AMP templates', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/invalid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-AMP-TEMPLATE'
                 );
 
-                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length.should.eql(4);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AMP-TEMPLATE']);
+                expect(output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.length).toEqual(4);
 
                 // Check all AMP template files are detected
                 const ampFiles = output.results.fail['GS001-DEPR-AMP-TEMPLATE'].failures.map(f => f.ref).sort();
-                ampFiles.should.eql([
+                expect(ampFiles).toEqual([
                     'amp-lightning-with-attrs.hbs',
                     'amp-lightning.hbs',
                     'amp-with-class.hbs',
@@ -3667,35 +3666,35 @@ describe('001 Deprecations', function () {
 
         it('[success] should not detect false positive AMP templates', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/valid', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
                 // Should not contain AMP template failures for themes that mention "amp" but aren't actually AMP
-                output.results.fail.should.not.have.key('GS001-DEPR-AMP-TEMPLATE');
-                output.results.pass.should.containEql('GS001-DEPR-AMP-TEMPLATE');
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AMP-TEMPLATE');
+                utils.assertContains(output.results.pass, 'GS001-DEPR-AMP-TEMPLATE');
 
             });
         });
 
         it('[failure] should detect deprecated facebook and twitter helper usage', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/invalid/fb-twitter-helpers', options).then(function (output) {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                output.results.fail.should.be.an.Object().with.keys(
+                utils.assertObjectKeys(output.results.fail,
                     'GS001-DEPR-FACEBOOK-URL',
                     'GS001-DEPR-TWITTER-URL'
                 );
 
-                output.results.fail['GS001-DEPR-FACEBOOK-URL'].should.be.a.ValidFailObject();
-                output.results.fail['GS001-DEPR-TWITTER-URL'].should.be.a.ValidFailObject();
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-FACEBOOK-URL']);
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-TWITTER-URL']);
 
                 const facebookFiles = output.results.fail['GS001-DEPR-FACEBOOK-URL'].failures.map(f => f.ref).sort();
-                facebookFiles.should.eql([
+                expect(facebookFiles).toEqual([
                     'fb-pattern-1.hbs',
                     'fb-pattern-2.hbs',
                     'fb-pattern-3.hbs'
                 ]);
                 const twitterFiles = output.results.fail['GS001-DEPR-TWITTER-URL'].failures.map(f => f.ref).sort();
-                twitterFiles.should.eql([
+                expect(twitterFiles).toEqual([
                     'twitter-pattern-1.hbs',
                     'twitter-pattern-2.hbs',
                     'twitter-pattern-3.hbs'
