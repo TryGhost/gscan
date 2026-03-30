@@ -11,13 +11,13 @@ jobs:
       REGISTRY: registry.digitalocean.com
       NAME: ghost/gscan
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
       - name: Get version
         run: echo "IMAGE_VERSION=$(git describe --tags)" >> $GITHUB_ENV
 
       - name: Publish to DigitalOcean Registry
-        uses: elgohr/Publish-Docker-Github-Action@v5
+        uses: elgohr/Publish-Docker-Github-Action@1c2f28ccd9476e8a936ac9a1f287405504c93304 # v5
         with:
           registry: ${{ env.REGISTRY }}
           name: ${{ env.NAME }}
@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           tags: "latest,${{ env.IMAGE_VERSION }}"
 
-      - uses: matootie/dokube@v1.4.1
+      - uses: matootie/dokube@d928bf89877df4f5170c2d56cc07a70cbd2c4c8b # v1.4.1
         with:
           personalAccessToken: ${{ secrets.DIGITALOCEAN_TOKEN }}
           clusterName: ${{ secrets.CLUSTER_NAME }}
