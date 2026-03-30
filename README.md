@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://gscan.ghost.org/">
-    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/app/public/logo-gscan-black.png" width="216px" alt="Ghost" />
+    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/apps/web/app/public/logo-gscan-black.png" width="216px" alt="Ghost" />
   </a>
 </p>
 
@@ -31,9 +31,9 @@ Visit https://gscan.ghost.org and upload your zip to our online version of Gscan
 
 ### 3. CLI usage
 
-Install using yarn / npm:
+Install using npm:
 
-`yarn global add gscan` /  `npm install -g gscan`
+`npm install -g gscan`
 
 To run a local directory through the checks:
 
@@ -60,7 +60,7 @@ Examples:
 
 ### 4. Lib usage
 
-Install using yarn/npm and then:
+Install using npm and then:
 
 ```js
 var gscan = require('gscan');
@@ -83,22 +83,26 @@ gscan.checkZip({
 
 ## Development
 
+This repository is a pnpm monorepo with two packages:
+- `packages/gscan` — the published npm library and CLI
+- `apps/web` — the web interface at https://gscan.ghost.org
+
 ### Run in browser (for zip uploads)
 
-- Either dev mode: `yarn dev`
-- Or standard server: `yarn start`
+- Either dev mode: `pnpm dev`
+- Or standard server: `pnpm start`
 - View: http://localhost:2369
 
 ### Run on command line
 
-- zip file: `./bin/cli.js -z /path/to/your/theme.zip`
-- directory: `./bin/cli.js /path/to/directory`
+- zip file: `./packages/gscan/bin/cli.js -z /path/to/your/theme.zip`
+- directory: `./packages/gscan/bin/cli.js /path/to/directory`
 
 ### Publish
 
-(Core team only)
+Ghost core team only
 
-- `yarn ship`
+1. Run `pnpm --filter gscan ship` — this bumps the version, commits, tags, pushes to `main`, and publishes to npm
 
 ### Tools
 When developing new rules or testing gscan following tools are great to have in the toolbelt:
