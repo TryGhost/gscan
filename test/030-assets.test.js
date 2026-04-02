@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/030-assets');
 
@@ -7,84 +6,84 @@ describe('030 Assets', function () {
 
     it('should show a warning for missing asset helper when an asset is detected', function () {
         return utils.testCheck(thisCheck, '030-assets/missing', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
-            output.results.pass.should.containEql('GS030-ASSET-SYM');
+            expect(output.results.pass).toHaveLength(1);
+            utils.assertContains(output.results.pass, 'GS030-ASSET-SYM');
 
-            output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-REQ');
+            utils.assertObjectKeys(output.results.fail, 'GS030-ASSET-REQ');
 
-            output.results.fail['GS030-ASSET-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS030-ASSET-REQ'].failures.should.be.an.Array().with.lengthOf(1);
-            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('ref', 'message');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].ref.should.eql('default.hbs');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].message.should.eql('/assets/css/style.css');
+            utils.assertValidFailObject(output.results.fail['GS030-ASSET-REQ']);
+            expect(output.results.fail['GS030-ASSET-REQ'].failures).toHaveLength(1);
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-REQ'].failures[0], 'ref', 'message');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[0].ref).toEqual('default.hbs');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[0].message).toEqual('/assets/css/style.css');
 
         });
     });
 
     it('should show two warning for missing asset helper when an assets are detected in multiple files', function () {
         return utils.testCheck(thisCheck, '030-assets/twoDefectFiles', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
-            output.results.pass.should.containEql('GS030-ASSET-SYM');
+            expect(output.results.pass).toHaveLength(1);
+            utils.assertContains(output.results.pass, 'GS030-ASSET-SYM');
 
-            output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-REQ');
+            utils.assertObjectKeys(output.results.fail, 'GS030-ASSET-REQ');
 
-            output.results.fail['GS030-ASSET-REQ'].should.be.a.ValidFailObject();
-            output.results.fail['GS030-ASSET-REQ'].failures.should.be.an.Array().with.lengthOf(2);
-            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('ref');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].ref.should.eql('default.hbs');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].should.have.keys('message');
-            output.results.fail['GS030-ASSET-REQ'].failures[0].message.should.eql('/assets/css/style.css');
-            output.results.fail['GS030-ASSET-REQ'].failures[1].should.have.keys('ref');
-            output.results.fail['GS030-ASSET-REQ'].failures[1].ref.should.eql('partials/sidebar.hbs');
-            output.results.fail['GS030-ASSET-REQ'].failures[1].should.have.keys('message');
-            output.results.fail['GS030-ASSET-REQ'].failures[1].message.should.eql('/assets/images/JohnDo.jpg');
+            utils.assertValidFailObject(output.results.fail['GS030-ASSET-REQ']);
+            expect(output.results.fail['GS030-ASSET-REQ'].failures).toHaveLength(2);
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-REQ'].failures[0], 'ref');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[0].ref).toEqual('default.hbs');
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-REQ'].failures[0], 'message');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[0].message).toEqual('/assets/css/style.css');
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-REQ'].failures[1], 'ref');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[1].ref).toEqual('partials/sidebar.hbs');
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-REQ'].failures[1], 'message');
+            expect(output.results.fail['GS030-ASSET-REQ'].failures[1].message).toEqual('/assets/images/JohnDo.jpg');
 
         });
     });
 
     it('should pass when asset helper is present', function () {
         return utils.testCheck(thisCheck, '030-assets/valid', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.fail.should.be.an.Object().which.is.empty();
+            expect(output.results.fail).toEqual({});
 
-            output.results.pass.should.be.an.Array().with.lengthOf(2);
-            output.results.pass.should.containEql('GS030-ASSET-REQ');
-            output.results.pass.should.containEql('GS030-ASSET-SYM');
+            expect(output.results.pass).toHaveLength(2);
+            utils.assertContains(output.results.pass, 'GS030-ASSET-REQ');
+            utils.assertContains(output.results.pass, 'GS030-ASSET-SYM');
 
         });
     });
 
     it('should pass for external URLs containing /assets/', function () {
         return utils.testCheck(thisCheck, '030-assets/absolute-url', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.fail.should.be.an.Object().which.is.empty();
+            expect(output.results.fail).toEqual({});
 
-            output.results.pass.should.be.an.Array().with.lengthOf(2);
-            output.results.pass.should.containEql('GS030-ASSET-REQ');
-            output.results.pass.should.containEql('GS030-ASSET-SYM');
+            expect(output.results.pass).toHaveLength(2);
+            utils.assertContains(output.results.pass, 'GS030-ASSET-REQ');
+            utils.assertContains(output.results.pass, 'GS030-ASSET-SYM');
 
         });
     });
 
     it('should show error when symlink is present', function () {
         return utils.testCheck(thisCheck, '030-assets/symlink', options).then(function (output) {
-            output.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(output);
 
-            output.results.pass.should.be.an.Array().with.lengthOf(1);
-            output.results.pass.should.containEql('GS030-ASSET-REQ');
+            expect(output.results.pass).toHaveLength(1);
+            utils.assertContains(output.results.pass, 'GS030-ASSET-REQ');
 
-            output.results.fail.should.be.an.Object().with.keys('GS030-ASSET-SYM');
+            utils.assertObjectKeys(output.results.fail, 'GS030-ASSET-SYM');
 
-            output.results.fail['GS030-ASSET-SYM'].should.be.a.ValidFailObject();
-            output.results.fail['GS030-ASSET-SYM'].failures.should.be.an.Array().with.lengthOf(1);
-            output.results.fail['GS030-ASSET-SYM'].failures[0].should.have.keys('ref');
-            output.results.fail['GS030-ASSET-SYM'].failures[0].ref.should.eql('assets/mysymlink.png');
+            utils.assertValidFailObject(output.results.fail['GS030-ASSET-SYM']);
+            expect(output.results.fail['GS030-ASSET-SYM'].failures).toHaveLength(1);
+            utils.assertObjectKeys(output.results.fail['GS030-ASSET-SYM'].failures[0], 'ref');
+            expect(output.results.fail['GS030-ASSET-SYM'].failures[0].ref).toEqual('assets/mysymlink.png');
 
         });
     });

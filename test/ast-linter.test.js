@@ -1,4 +1,3 @@
-const should = require('should');
 const fs = require('fs');
 const path = require('path');
 const ASTLinter = require('../lib/ast-linter');
@@ -16,7 +15,7 @@ describe('ast-linter', function () {
             template = getTemplate('simple.hbs');
             const parsed = ASTLinter.parse(template);
             const results = linter.verify({parsed, moduleId: 'simple.hbs', source: template});
-            should(results).have.length(0);
+            expect(results).toHaveLength(0);
         });
     });
 
@@ -30,9 +29,9 @@ describe('ast-linter', function () {
             const results = linter
                 .verify({parsed, moduleId: 'simple.hbs', source: template})
                 .filter(error => error.rule === 'GS090-NO-IMG-URL-IN-CONDITIONALS');
-            should(results).have.length(1);
-            should(results[0].line).eql(2);
-            should(results[0].column).eql(0);
+            expect(results).toHaveLength(1);
+            expect(results[0].line).toEqual(2);
+            expect(results[0].column).toEqual(0);
         });
     });
 
@@ -46,9 +45,9 @@ describe('ast-linter', function () {
             const results = linter
                 .verify({parsed, moduleId: 'simple.hbs', source: template})
                 .filter(error => error.rule === 'no-multi-param-conditionals');
-            should(results).have.length(1);
-            should(results[0].line).eql(2);
-            should(results[0].column).eql(0);
+            expect(results).toHaveLength(1);
+            expect(results[0].line).toEqual(2);
+            expect(results[0].column).toEqual(0);
         });
     });
 
@@ -66,8 +65,8 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            localLinter.helpers.length.should.eql(1);
-            localLinter.helpers[0].name.should.eql('pagination');
+            expect(localLinter.helpers.length).toEqual(1);
+            expect(localLinter.helpers[0].name).toEqual('pagination');
         });
 
         it('extracts a simple double-quoted helper', function () {
@@ -83,8 +82,8 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            localLinter.helpers.length.should.eql(1);
-            localLinter.helpers[0].name.should.eql('pagination');
+            expect(localLinter.helpers.length).toEqual(1);
+            expect(localLinter.helpers[0].name).toEqual('pagination');
         });
     });
 
@@ -95,10 +94,10 @@ describe('ast-linter', function () {
             const results = linter
                 .verify({parsed, moduleId: 'index.hbs', source: template})
                 .filter(error => error.rule === 'no-nested-async-helpers');
-            should(results).have.length(1);
-            results[0].message.should.match(/get.*cannot be used inside.*get/);
-            should(results[0].line).eql(2);
-            should(results[0].column).eql(4);
+            expect(results).toHaveLength(1);
+            expect(results[0].message).toMatch(/get.*cannot be used inside.*get/);
+            expect(results[0].line).toEqual(2);
+            expect(results[0].column).toEqual(4);
         });
     });
 
@@ -109,10 +108,10 @@ describe('ast-linter', function () {
             const results = linter
                 .verify({parsed, moduleId: 'index.hbs', source: template})
                 .filter(error => error.rule === 'no-prev-next-post-outside-post-context');
-            should(results).have.length(1);
-            results[0].message.should.match(/prev_post.*can only be used in a post context/);
-            should(results[0].line).eql(1);
-            should(results[0].column).eql(0);
+            expect(results).toHaveLength(1);
+            expect(results[0].message).toMatch(/prev_post.*can only be used in a post context/);
+            expect(results[0].line).toEqual(1);
+            expect(results[0].column).toEqual(0);
         });
     });
 
@@ -130,10 +129,10 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            localLinter.inlinePartials.length.should.eql(1);
-            localLinter.inlinePartials[0].node.should.eql('myInlinePartial');
-            localLinter.inlinePartials[0].parents.length.should.eql(1);
-            localLinter.inlinePartials[0].parents[0].type.should.eql('Program');
+            expect(localLinter.inlinePartials.length).toEqual(1);
+            expect(localLinter.inlinePartials[0].node).toEqual('myInlinePartial');
+            expect(localLinter.inlinePartials[0].parents.length).toEqual(1);
+            expect(localLinter.inlinePartials[0].parents[0].type).toEqual('Program');
         });
     });
 
@@ -155,8 +154,8 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            messages.length.should.eql(0);
-            // messages[0].message.should.eql('Missing Custom Theme Setting: "my_text_prop2"');
+            expect(messages.length).toEqual(0);
+            // Example: expect(messages[0].message).toEqual('Missing Custom Theme Setting: "my_text_prop2"');
         });
 
         it('extracts more complex custom theme settings', function () {
@@ -172,8 +171,8 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            messages.length.should.eql(5);
-            messages.map(msg => msg.source).should.deepEqual([
+            expect(messages.length).toEqual(5);
+            expect(messages.map(msg => msg.source)).toEqual([
                 '@custom.cover_style',
                 '@custom.cover_color',
                 '@custom.my_text_prop',
@@ -206,8 +205,8 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            messages.length.should.eql(1);
-            messages[0].message.should.eql('Invalid custom theme select value: "comic sans"');
+            expect(messages.length).toEqual(1);
+            expect(messages[0].message).toEqual('Invalid custom theme select value: "comic sans"');
         });
 
         it('doesn\'t error out when a kown value is found', function () {
@@ -232,7 +231,7 @@ describe('ast-linter', function () {
                 moduleId: 'index.hbs'
             });
 
-            messages.length.should.eql(0);
+            expect(messages.length).toEqual(0);
         });
     });
 
@@ -242,7 +241,7 @@ describe('ast-linter', function () {
             const pathExpression = parsed.ast.body[0];
             const name = helpers.getPartialName(pathExpression);
 
-            name.should.eql('test/testing');
+            expect(name).toEqual('test/testing');
         });
 
         it('should return the name of a partial without quotes', function () {
@@ -250,7 +249,7 @@ describe('ast-linter', function () {
             const pathExpression = parsed.ast.body[0];
             const name = helpers.getPartialName(pathExpression);
 
-            name.should.eql('test/testing');
+            expect(name).toEqual('test/testing');
         });
 
         it('should return the name of a partial without the context', function () {
@@ -258,7 +257,7 @@ describe('ast-linter', function () {
             const pathExpression = parsed.ast.body[0];
             const name = helpers.getPartialName(pathExpression);
 
-            name.should.eql('test/testing');
+            expect(name).toEqual('test/testing');
         });
 
         it('should return the name of a partial without the parameters', function () {
@@ -266,7 +265,7 @@ describe('ast-linter', function () {
             const pathExpression = parsed.ast.body[0];
             const name = helpers.getPartialName(pathExpression);
 
-            name.should.eql('test/testing');
+            expect(name).toEqual('test/testing');
         });
 
         it('should return the name of a partial block', function () {
@@ -274,72 +273,72 @@ describe('ast-linter', function () {
             const pathExpression = parsed.ast.body[0];
             const name = helpers.getPartialName(pathExpression);
 
-            name.should.eql('test/testing');
+            expect(name).toEqual('test/testing');
         });
     });
 
     describe('helpers utility functions', function () {
         it('getNodeName handles program and path-expression variants', function () {
-            should.equal(helpers.getNodeName({type: 'Program'}), undefined);
-            helpers.getNodeName({type: 'PathExpression', data: true, parts: ['custom', 'color']}).should.eql('@custom.color');
-            helpers.getNodeName({type: 'PathExpression', data: false, parts: ['author', 'name']}).should.eql('author');
-            helpers.getNodeName({type: 'Unknown', name: {parts: ['fallback']}}).should.eql('fallback');
-            helpers.getNodeName({type: 'Unknown', name: {original: 'raw-name'}}).should.eql('raw-name');
+            expect(helpers.getNodeName({type: 'Program'})).toBeUndefined();
+            expect(helpers.getNodeName({type: 'PathExpression', data: true, parts: ['custom', 'color']})).toEqual('@custom.color');
+            expect(helpers.getNodeName({type: 'PathExpression', data: false, parts: ['author', 'name']})).toEqual('author');
+            expect(helpers.getNodeName({type: 'Unknown', name: {parts: ['fallback']}})).toEqual('fallback');
+            expect(helpers.getNodeName({type: 'Unknown', name: {original: 'raw-name'}})).toEqual('raw-name');
         });
 
         it('logNode uses inverse and block prefixes correctly', function () {
-            helpers.logNode({
+            expect(helpers.logNode({
                 type: 'BlockStatement',
                 path: {data: false, parts: ['if']},
                 inverse: {},
                 program: null
-            }).should.eql('{{^if}}');
+            })).toEqual('{{^if}}');
 
-            helpers.logNode({
+            expect(helpers.logNode({
                 type: 'BlockStatement',
                 path: {data: false, parts: ['if']},
                 program: {}
-            }).should.eql('{{#if}}');
+            })).toEqual('{{#if}}');
         });
 
         it('classifyNode handles helper, ambiguous, knownHelpersOnly and block params', function () {
             const ambiguousNode = ASTLinter.parse('{{foo}}').ast.body[0];
 
-            helpers.classifyNode(ambiguousNode, {
+            expect(helpers.classifyNode(ambiguousNode, {
                 knownHelpers: [],
                 knownHelpersOnly: false,
                 blockParams: []
-            }).should.eql('ambiguous');
+            })).toEqual('ambiguous');
 
-            helpers.classifyNode(ambiguousNode, {
+            expect(helpers.classifyNode(ambiguousNode, {
                 knownHelpers: ['foo'],
                 knownHelpersOnly: false,
                 blockParams: []
-            }).should.eql('helper');
+            })).toEqual('helper');
 
-            helpers.classifyNode(ambiguousNode, {
+            expect(helpers.classifyNode(ambiguousNode, {
                 knownHelpers: [],
                 knownHelpersOnly: true,
                 blockParams: []
-            }).should.eql('simple');
+            })).toEqual('simple');
 
-            helpers.classifyNode(ambiguousNode, {
+            expect(helpers.classifyNode(ambiguousNode, {
                 knownHelpers: [],
                 knownHelpersOnly: false,
                 blockParams: [['foo']]
-            }).should.eql('simple');
+            })).toEqual('simple');
         });
 
         it('transformLiteralToPath converts literal paths and skips existing path expressions', function () {
             const literalNode = ASTLinter.parse('{{"pagination"}}').ast.body[0];
             helpers.transformLiteralToPath(literalNode);
-            literalNode.path.parts.should.eql(['pagination']);
-            literalNode.path.original.should.eql('pagination');
+            expect(literalNode.path.parts).toEqual(['pagination']);
+            expect(literalNode.path.original).toEqual('pagination');
 
             const pathNode = ASTLinter.parse('{{pagination}}').ast.body[0];
             const existingPath = pathNode.path;
             helpers.transformLiteralToPath(pathNode);
-            pathNode.path.should.equal(existingPath);
+            expect(pathNode.path).toBe(existingPath);
         });
     });
 });

@@ -1,4 +1,3 @@
-const should = require('should'); // eslint-disable-line no-unused-vars
 const utils = require('./utils');
 const thisCheck = require('../lib/checks/100-custom-template-settings-usage');
 
@@ -8,74 +7,74 @@ describe('100 custom template settings usage', function () {
 
         it('should output nothing when all custom theme settings are used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should show errors when custom theme settings are not used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/unused', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/color_scheme/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/show_logo/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
 
             });
         });
 
         it('should show errors for partially unused custom theme settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/partial', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/unused_setting/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.not.match(/color_scheme/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/unused_setting/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).not.toMatch(/color_scheme/);
 
             });
         });
 
         it('should detect custom settings used in partials', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/with-partials', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not run check when theme has no custom settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/no-custom-settings', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should detect custom settings used in filter attributes', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/authors_list/);
 
             });
         });
@@ -86,74 +85,74 @@ describe('100 custom template settings usage', function () {
 
         it('should output nothing when all custom theme settings are used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should show errors when custom theme settings are not used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/unused', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/color_scheme/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/show_logo/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
 
             });
         });
 
         it('should show errors for partially unused custom theme settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/partial', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/unused_setting/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.not.match(/color_scheme/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/unused_setting/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).not.toMatch(/color_scheme/);
 
             });
         });
 
         it('should detect custom settings used in partials', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/with-partials', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not run check when theme has no custom settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/no-custom-settings', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should detect custom settings used in filter attributes', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/authors_list/);
 
             });
         });
@@ -164,74 +163,74 @@ describe('100 custom template settings usage', function () {
 
         it('should output nothing when all custom theme settings are used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/valid', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should show errors when custom theme settings are not used', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/unused', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/color_scheme/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/show_logo/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
 
             });
         });
 
         it('should show errors for partially unused custom theme settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/partial', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/unused_setting/);
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.not.match(/color_scheme/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/unused_setting/);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).not.toMatch(/color_scheme/);
 
             });
         });
 
         it('should detect custom settings used in partials', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/with-partials', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not run check when theme has no custom settings', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/no-custom-settings', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should detect custom settings used in filter attributes', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql([]);
+                expect(Object.keys(output.results.fail)).toEqual([]);
 
             });
         });
 
         it('should not detect uppercase @CUSTOM in filter attributes (case-sensitive)', function () {
             return utils.testCheck(thisCheck, '100-custom-template-settings-usage/filter-attribute-uppercase', options).then((output) => {
-                output.should.be.a.ValidThemeObject();
+                utils.assertValidThemeObject(output);
 
-                Object.keys(output.results.fail).should.eql(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].should.be.a.ValidFailObject();
-                output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message.should.match(/authors_list/);
+                utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
+                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/authors_list/);
 
             });
         });

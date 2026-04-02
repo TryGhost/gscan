@@ -1,4 +1,3 @@
-const should = require('should');  
 const {getLogger, applyRule, parseWithAST} = require('../lib/utils/check-utils');
 
 describe('check-utils', function () {
@@ -10,10 +9,10 @@ describe('check-utils', function () {
 
             log.failure({message: 'test error'});
 
-            should.exist(theme.results.fail['TEST-001']);
-            theme.results.fail['TEST-001'].failures.should.have.length(1);
-            theme.results.fail['TEST-001'].failures[0].message.should.eql('test error');
-            should.not.exist(theme.results.fail['TEST-001'].failures[0].ref);
+            expect(theme.results.fail['TEST-001']).toBeDefined();
+            expect(theme.results.fail['TEST-001'].failures).toHaveLength(1);
+            expect(theme.results.fail['TEST-001'].failures[0].message).toEqual('test error');
+            expect(theme.results.fail['TEST-001'].failures[0].ref).toBeUndefined();
         });
 
         it('should set failure ref when file is provided', function () {
@@ -24,7 +23,7 @@ describe('check-utils', function () {
 
             log.failure({message: 'test error'});
 
-            theme.results.fail['TEST-001'].failures[0].ref.should.eql('index.hbs');
+            expect(theme.results.fail['TEST-001'].failures[0].ref).toEqual('index.hbs');
         });
 
         it('should append multiple failures for the same rule', function () {
@@ -35,7 +34,7 @@ describe('check-utils', function () {
             log.failure({message: 'error 1'});
             log.failure({message: 'error 2'});
 
-            theme.results.fail['TEST-001'].failures.should.have.length(2);
+            expect(theme.results.fail['TEST-001'].failures).toHaveLength(2);
         });
     });
 
@@ -52,7 +51,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            initCalled.should.be.false();
+            expect(initCalled).toBe(false);
         });
 
         it('should not execute when isEnabled function returns false', function () {
@@ -67,7 +66,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            initCalled.should.be.false();
+            expect(initCalled).toBe(false);
         });
 
         it('should execute when isEnabled function returns true', function () {
@@ -82,7 +81,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            initCalled.should.be.true();
+            expect(initCalled).toBe(true);
         });
 
         it('should work without init function', function () {
@@ -96,7 +95,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            eachFileCalled.should.be.true();
+            expect(eachFileCalled).toBe(true);
         });
 
         it('should work without eachFile function', function () {
@@ -114,8 +113,8 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            initCalled.should.be.true();
-            doneCalled.should.be.true();
+            expect(initCalled).toBe(true);
+            expect(doneCalled).toBe(true);
         });
 
         it('should work without done function', function () {
@@ -129,7 +128,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            initCalled.should.be.true();
+            expect(initCalled).toBe(true);
         });
 
         it('should call eachFile for every theme file', function () {
@@ -146,7 +145,7 @@ describe('check-utils', function () {
                 }
             }, theme);
 
-            seen.should.eql(['a.hbs', 'b.hbs', 'c.hbs']);
+            expect(seen).toEqual(['a.hbs', 'b.hbs', 'c.hbs']);
         });
     });
 
@@ -191,7 +190,7 @@ describe('check-utils', function () {
                 partialVerificationCache: new Map()
             });
 
-            callbackCalled.should.be.false();
+            expect(callbackCalled).toBe(false);
         });
     });
 });

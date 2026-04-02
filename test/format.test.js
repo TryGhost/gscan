@@ -11,9 +11,9 @@ describe('Format', function () {
             return check(themePath('005-compile/v2/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(26);
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[3].fatal.should.eql(false);
+                expect(theme.results.error.length).toEqual(26);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[3].fatal).toEqual(false);
 
             });
         });
@@ -22,12 +22,12 @@ describe('Format', function () {
             return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[1].fatal.should.eql(true);
-                theme.results.error[4].fatal.should.eql(false);
-                theme.results.error[10].fatal.should.eql(false);
-                theme.results.error[11].fatal.should.eql(false);
-                theme.results.error[12].fatal.should.eql(false);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[1].fatal).toEqual(true);
+                expect(theme.results.error[4].fatal).toEqual(false);
+                expect(theme.results.error[10].fatal).toEqual(false);
+                expect(theme.results.error[11].fatal).toEqual(false);
+                expect(theme.results.error[12].fatal).toEqual(false);
 
             });
         });
@@ -37,22 +37,22 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(1);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+                expect(theme.results.recommendation.all.length).toEqual(1);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(1);
 
-                theme.results.warning.all.length.should.eql(3);
-                theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+                expect(theme.results.warning.all.length).toEqual(3);
+                expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(26);
+                expect(theme.results.error.all.length).toEqual(26);
 
                 // 1 rule has file references
-                theme.results.error.byFiles['author.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['page.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(9);
+                expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['package.json'].length).toEqual(9);
 
             });
         });
@@ -62,19 +62,19 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(1);
 
-                theme.results.error.all.length.should.eql(97);
-                theme.results.warning.all.length.should.eql(5);
+                expect(theme.results.error.all.length).toEqual(97);
+                expect(theme.results.warning.all.length).toEqual(5);
 
-                theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(16);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(54);
-                theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(9);
+                expect(theme.results.error.byFiles['assets/my.css'].length).toEqual(3);
+                expect(theme.results.error.byFiles['default.hbs'].length).toEqual(16);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(54);
+                expect(theme.results.error.byFiles['partials/mypartial.hbs'].length).toEqual(5);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(9);
 
             });
         });
@@ -84,10 +84,10 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {format: 'cli'});
                 theme = format(theme, themeOptions);
 
-                theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
+                expect(theme.results.error[0].rule).toEqual('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-                theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-                theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
+                expect(theme.results.error[0].details).toMatch(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+                expect(theme.results.error[0].details).toMatch(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
             });
         });
     });
@@ -99,9 +99,9 @@ describe('Format', function () {
             return check(themePath('005-compile/v3/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(27);
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[3].fatal.should.eql(false);
+                expect(theme.results.error.length).toEqual(27);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[3].fatal).toEqual(false);
 
             });
         });
@@ -110,12 +110,12 @@ describe('Format', function () {
             return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[1].fatal.should.eql(true);
-                theme.results.error[4].fatal.should.eql(false);
-                theme.results.error[10].fatal.should.eql(false);
-                theme.results.error[11].fatal.should.eql(false);
-                theme.results.error[12].fatal.should.eql(false);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[1].fatal).toEqual(true);
+                expect(theme.results.error[4].fatal).toEqual(false);
+                expect(theme.results.error[10].fatal).toEqual(false);
+                expect(theme.results.error[11].fatal).toEqual(false);
+                expect(theme.results.error[12].fatal).toEqual(false);
 
             });
         });
@@ -125,22 +125,22 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(1);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+                expect(theme.results.recommendation.all.length).toEqual(1);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(1);
 
-                theme.results.warning.all.length.should.eql(4);
-                theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+                expect(theme.results.warning.all.length).toEqual(4);
+                expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(27);
+                expect(theme.results.error.all.length).toEqual(27);
 
                 // 1 rule has file references
-                theme.results.error.byFiles['author.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['page.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(10);
+                expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['package.json'].length).toEqual(10);
 
             });
         });
@@ -150,19 +150,19 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(1);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(1);
 
-                theme.results.error.all.length.should.eql(99);
-                theme.results.warning.all.length.should.eql(6);
+                expect(theme.results.error.all.length).toEqual(99);
+                expect(theme.results.warning.all.length).toEqual(6);
 
-                theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(17);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(54);
-                theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(9);
+                expect(theme.results.error.byFiles['assets/my.css'].length).toEqual(3);
+                expect(theme.results.error.byFiles['default.hbs'].length).toEqual(17);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(54);
+                expect(theme.results.error.byFiles['partials/mypartial.hbs'].length).toEqual(5);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(9);
 
             });
         });
@@ -172,10 +172,10 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {format: 'cli'});
                 theme = format(theme, themeOptions);
 
-                theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
+                expect(theme.results.error[0].rule).toEqual('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-                theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-                theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
+                expect(theme.results.error[0].details).toMatch(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+                expect(theme.results.error[0].details).toMatch(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
             });
         });
     });
@@ -187,13 +187,13 @@ describe('Format', function () {
             return check(themePath('005-compile/v4/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(35);
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[3].fatal.should.eql(false);
+                expect(theme.results.error.length).toEqual(35);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[3].fatal).toEqual(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
@@ -204,16 +204,16 @@ describe('Format', function () {
             return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[1].fatal.should.eql(true);
-                theme.results.error[4].fatal.should.eql(false);
-                theme.results.error[10].fatal.should.eql(false);
-                theme.results.error[11].fatal.should.eql(false);
-                theme.results.error[12].fatal.should.eql(false);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[1].fatal).toEqual(true);
+                expect(theme.results.error[4].fatal).toEqual(false);
+                expect(theme.results.error[10].fatal).toEqual(false);
+                expect(theme.results.error[11].fatal).toEqual(false);
+                expect(theme.results.error[12].fatal).toEqual(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(2);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(2);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS020-INDEX-REQ',
                     'GS020-POST-REQ'
                 ]);
@@ -226,28 +226,28 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.warning.all.length.should.eql(5);
-                theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+                expect(theme.results.warning.all.length).toEqual(5);
+                expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(35);
+                expect(theme.results.error.all.length).toEqual(35);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
                 // 1 rule has file references
-                theme.results.error.byFiles['author.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['page.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(18);
+                expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['package.json'].length).toEqual(18);
 
             });
         });
@@ -257,23 +257,23 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(107);
-                theme.results.warning.all.length.should.eql(10);
+                expect(theme.results.error.all.length).toEqual(107);
+                expect(theme.results.warning.all.length).toEqual(10);
 
-                theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(17);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(54);
-                theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(9);
+                expect(theme.results.error.byFiles['assets/my.css'].length).toEqual(3);
+                expect(theme.results.error.byFiles['default.hbs'].length).toEqual(17);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(54);
+                expect(theme.results.error.byFiles['partials/mypartial.hbs'].length).toEqual(5);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(9);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(23);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(23);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-COV',
@@ -299,7 +299,7 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                theme.results.warning.byFiles['index.hbs'].length.should.eql(1);
+                expect(theme.results.warning.byFiles['index.hbs'].length).toEqual(1);
 
             });
         });
@@ -309,10 +309,10 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {format: 'cli'});
                 theme = format(theme, themeOptions);
 
-                theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
+                expect(theme.results.error[0].rule).toEqual('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-                theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-                theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
+                expect(theme.results.error[0].details).toMatch(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+                expect(theme.results.error[0].details).toMatch(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
             });
         });
     });
@@ -324,11 +324,11 @@ describe('Format', function () {
             return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(23);
+                expect(theme.results.error.length).toEqual(23);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
@@ -339,16 +339,16 @@ describe('Format', function () {
             return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[1].fatal.should.eql(true);
-                theme.results.error[4].fatal.should.eql(false);
-                theme.results.error[10].fatal.should.eql(false);
-                theme.results.error[11].fatal.should.eql(false);
-                theme.results.error[12].fatal.should.eql(false);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[1].fatal).toEqual(true);
+                expect(theme.results.error[4].fatal).toEqual(false);
+                expect(theme.results.error[10].fatal).toEqual(false);
+                expect(theme.results.error[11].fatal).toEqual(false);
+                expect(theme.results.error[12].fatal).toEqual(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(2);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(2);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS020-INDEX-REQ',
                     'GS020-POST-REQ'
                 ]);
@@ -361,29 +361,29 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.warning.all.length.should.eql(7);
-                theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+                expect(theme.results.warning.all.length).toEqual(7);
+                expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(23);
+                expect(theme.results.error.all.length).toEqual(23);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
                 // two rules have file references
-                theme.results.error.byFiles['author.hbs'].length.should.eql(1);
+                expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
                 // page.hbs uses @blog which is deprecated and triggers the second rule failure
-                theme.results.error.byFiles['page.hbs'].length.should.eql(3);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(17);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(3);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['package.json'].length).toEqual(17);
 
             });
         });
@@ -393,19 +393,19 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(105);
-                theme.results.warning.all.length.should.eql(9);
+                expect(theme.results.error.all.length).toEqual(105);
+                expect(theme.results.warning.all.length).toEqual(9);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(69);
-                errorErrors.map(e => e.code).should.eql([
+                expect(errorErrors.length).toEqual(69);
+                expect(errorErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
                     'GS001-DEPR-AC',
@@ -478,8 +478,8 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(36);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(36);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-COV',
@@ -518,11 +518,11 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(21);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(66);
-                theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(14);
+                expect(theme.results.error.byFiles['assets/my.css'].length).toEqual(3);
+                expect(theme.results.error.byFiles['default.hbs'].length).toEqual(21);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(66);
+                expect(theme.results.error.byFiles['partials/mypartial.hbs'].length).toEqual(5);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(14);
 
             });
         });
@@ -532,10 +532,10 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {format: 'cli'});
                 theme = format(theme, themeOptions);
 
-                theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
+                expect(theme.results.error[0].rule).toEqual('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-                theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-                theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
+                expect(theme.results.error[0].details).toMatch(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+                expect(theme.results.error[0].details).toMatch(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
             });
         });
     });
@@ -547,11 +547,11 @@ describe('Format', function () {
             return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error.length.should.eql(23);
+                expect(theme.results.error.length).toEqual(23);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
@@ -562,16 +562,16 @@ describe('Format', function () {
             return check(themePath('is-empty'), options).then((theme) => {
                 theme = format(theme, options);
 
-                theme.results.error[0].fatal.should.eql(true);
-                theme.results.error[1].fatal.should.eql(true);
-                theme.results.error[4].fatal.should.eql(false);
-                theme.results.error[10].fatal.should.eql(false);
-                theme.results.error[11].fatal.should.eql(false);
-                theme.results.error[12].fatal.should.eql(false);
+                expect(theme.results.error[0].fatal).toEqual(true);
+                expect(theme.results.error[1].fatal).toEqual(true);
+                expect(theme.results.error[4].fatal).toEqual(false);
+                expect(theme.results.error[10].fatal).toEqual(false);
+                expect(theme.results.error[11].fatal).toEqual(false);
+                expect(theme.results.error[12].fatal).toEqual(false);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
-                fatalErrors.length.should.eql(2);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(2);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS020-INDEX-REQ',
                     'GS020-POST-REQ'
                 ]);
@@ -584,29 +584,29 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.warning.all.length.should.eql(7);
-                theme.results.warning.byFiles['default.hbs'].length.should.eql(2);
+                expect(theme.results.warning.all.length).toEqual(7);
+                expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(23);
+                expect(theme.results.error.all.length).toEqual(23);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(1);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(1);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS005-TPL-ERR'
                 ]);
 
                 // two rules have file references
-                theme.results.error.byFiles['author.hbs'].length.should.eql(1);
+                expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
                 // page.hbs uses @blog which is deprecated and triggers the second rule failure
-                theme.results.error.byFiles['page.hbs'].length.should.eql(3);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(1);
-                theme.results.error.byFiles['package.json'].length.should.eql(17);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(3);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
+                expect(theme.results.error.byFiles['package.json'].length).toEqual(17);
 
             });
         });
@@ -616,19 +616,19 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {sortByFiles: true});
                 theme = format(theme, themeOptions);
 
-                theme.results.hasFatalErrors.should.be.true();
+                expect(theme.results.hasFatalErrors).toBe(true);
 
-                theme.results.recommendation.all.length.should.eql(2);
-                theme.results.recommendation.byFiles['package.json'].length.should.eql(2);
+                expect(theme.results.recommendation.all.length).toEqual(2);
+                expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                theme.results.error.all.length.should.eql(105);
-                theme.results.warning.all.length.should.eql(9);
+                expect(theme.results.error.all.length).toEqual(105);
+                expect(theme.results.warning.all.length).toEqual(9);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                errorErrors.length.should.eql(69);
-                errorErrors.map(e => e.code).should.eql([
+                expect(errorErrors.length).toEqual(69);
+                expect(errorErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
                     'GS001-DEPR-AC',
@@ -701,8 +701,8 @@ describe('Format', function () {
                 ]);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
-                fatalErrors.length.should.eql(36);
-                fatalErrors.map(e => e.code).should.eql([
+                expect(fatalErrors.length).toEqual(36);
+                expect(fatalErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-PURL',
                     'GS001-DEPR-IMG',
                     'GS001-DEPR-COV',
@@ -741,11 +741,11 @@ describe('Format', function () {
                     'GS005-TPL-ERR'
                 ]);
 
-                theme.results.error.byFiles['assets/my.css'].length.should.eql(3);
-                theme.results.error.byFiles['default.hbs'].length.should.eql(21);
-                theme.results.error.byFiles['post.hbs'].length.should.eql(66);
-                theme.results.error.byFiles['partials/mypartial.hbs'].length.should.eql(5);
-                theme.results.error.byFiles['index.hbs'].length.should.eql(14);
+                expect(theme.results.error.byFiles['assets/my.css'].length).toEqual(3);
+                expect(theme.results.error.byFiles['default.hbs'].length).toEqual(21);
+                expect(theme.results.error.byFiles['post.hbs'].length).toEqual(66);
+                expect(theme.results.error.byFiles['partials/mypartial.hbs'].length).toEqual(5);
+                expect(theme.results.error.byFiles['index.hbs'].length).toEqual(14);
 
             });
         });
@@ -755,10 +755,10 @@ describe('Format', function () {
                 const themeOptions = Object.assign({}, options, {format: 'cli'});
                 theme = format(theme, themeOptions);
 
-                theme.results.error[0].rule.should.equal('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
+                expect(theme.results.error[0].rule).toEqual('Replace \u001b[36m{{pageUrl}}\u001b[39m with \u001b[36m{{page_url}}\u001b[39m');
 
-                theme.results.error[0].details.should.startWith(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
-                theme.results.error[0].details.should.endWith(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
+                expect(theme.results.error[0].details).toMatch(`The helper \u001b[36m{{pageUrl}}\u001b[39m was replaced with \u001b[36m{{page_url}}\u001b[39m.\n`);
+                expect(theme.results.error[0].details).toMatch(`Find more information about the \u001b[36m{{page_url}}\u001b[39m helper here (https://ghost.org/docs/themes/helpers/pagination/).`);
             });
         });
     });

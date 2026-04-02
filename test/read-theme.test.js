@@ -1,15 +1,16 @@
 const _ = require('lodash');
 const fs = require('fs-extra');
-const themePath = require('./utils').themePath;
+const utils = require('./utils');
 const readTheme = require('../lib/read-theme');
+const themePath = utils.themePath;
 
 describe('Read theme', function () {
 
     it('returns correct result', function () {
         return readTheme(themePath('is-empty')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.eql([
+            expect(theme.files).toEqual([
                 {file: '.gitkeep', normalizedFile: '.gitkeep', ext: '.gitkeep', symlink: false},
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
@@ -18,9 +19,9 @@ describe('Read theme', function () {
 
     it('Can read partials', function () {
         return readTheme(themePath('theme-with-partials')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.be.an.Array().with.lengthOf(7);
+            expect(theme.files).toHaveLength(7);
 
             const fileNames = _.map(theme.files, function (file) {
                 return _.pickBy(file, function (value, key) {
@@ -28,19 +29,19 @@ describe('Read theme', function () {
                 });
             });
 
-            fileNames.should.containEql({file: 'index.hbs', ext: '.hbs'});
-            fileNames.should.containEql({file: 'package.json', ext: '.json'});
-            fileNames.should.containEql({file: 'partialsbroke.hbs', ext: '.hbs'});
-            fileNames.should.containEql({file: 'partials/mypartial.hbs', ext: '.hbs'});
-            fileNames.should.containEql({file: 'partials/subfolder/test.hbs', ext: '.hbs'});
-            fileNames.should.containEql({file: 'post.hbs', ext: '.hbs'});
-            fileNames.should.containEql({file: 'logo.new.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'index.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'package.json', ext: '.json'});
+            expect(fileNames).toContainEqual({file: 'partialsbroke.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'partials/mypartial.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'partials/subfolder/test.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'post.hbs', ext: '.hbs'});
+            expect(fileNames).toContainEqual({file: 'logo.new.hbs', ext: '.hbs'});
 
-            theme.customSettings.should.be.empty();
+            expect(theme.customSettings).toEqual({});
 
             // partials should not appear in templates
-            theme.templates.all.should.not.containEql('partials/mypartial');
-            theme.templates.all.should.not.containEql('partials/subfolder/test');
+            expect(theme.templates.all).not.toContain('partials/mypartial');
+            expect(theme.templates.all).not.toContain('partials/subfolder/test');
         });
     });
 
@@ -60,8 +61,8 @@ describe('Read theme', function () {
                 path: 'fake/example-i'
             });
 
-            result.partials.should.be.an.Array().with.lengthOf(2);
-            result.partials.should.eql(['mypartial', 'subfolder/test']);
+            expect(result.partials).toHaveLength(2);
+            expect(result.partials).toEqual(['mypartial', 'subfolder/test']);
         } finally {
             readFileSpy.mockRestore();
         }
@@ -83,8 +84,8 @@ describe('Read theme', function () {
                 path: 'fake\\example-i'
             });
 
-            result.partials.should.be.an.Array().with.lengthOf(2);
-            result.partials.should.eql(['mypartial', 'subfolder\\test']);
+            expect(result.partials).toHaveLength(2);
+            expect(result.partials).toEqual(['mypartial', 'subfolder\\test']);
         } finally {
             readFileSpy.mockRestore();
         }
@@ -92,31 +93,31 @@ describe('Read theme', function () {
 
     it('Can extract custom templates', function () {
         return readTheme(themePath('theme-with-custom-templates')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            theme.files.should.be.an.Array().with.lengthOf(13);
-            theme.partials.length.should.eql(0);
-            theme.templates.all.length.should.eql(10);
-            theme.templates.custom.length.should.eql(4);
+            expect(theme.files).toHaveLength(13);
+            expect(theme.partials.length).toEqual(0);
+            expect(theme.templates.all.length).toEqual(10);
+            expect(theme.templates.custom.length).toEqual(4);
 
             // ensure we don't change the structure of theme.files
-            theme.files[0].file.should.eql('assets/ignoreme.hbs');
-            theme.files[0].ext.should.eql('.hbs');
-            theme.files[0].content.should.eql('ignoreme');
+            expect(theme.files[0].file).toEqual('assets/ignoreme.hbs');
+            expect(theme.files[0].ext).toEqual('.hbs');
+            expect(theme.files[0].content).toEqual('ignoreme');
 
-            theme.files[1].file.should.eql('assets/styles.css');
-            theme.files[1].ext.should.eql('.css');
-            theme.files[1].content.should.eql('.some-class {\n    border: 0;\n}\n');
+            expect(theme.files[1].file).toEqual('assets/styles.css');
+            expect(theme.files[1].ext).toEqual('.css');
+            expect(theme.files[1].content).toEqual('.some-class {\n    border: 0;\n}\n');
 
-            theme.files[2].file.should.eql('custom/test.hbs');
-            theme.files[2].ext.should.eql('.hbs');
-            theme.files[2].content.should.eql('test');
+            expect(theme.files[2].file).toEqual('custom/test.hbs');
+            expect(theme.files[2].ext).toEqual('.hbs');
+            expect(theme.files[2].content).toEqual('test');
 
-            theme.files[3].file.should.eql('custom-My-Post.hbs');
-            theme.files[3].ext.should.eql('.hbs');
-            theme.files[3].content.should.eql('content');
+            expect(theme.files[3].file).toEqual('custom-My-Post.hbs');
+            expect(theme.files[3].ext).toEqual('.hbs');
+            expect(theme.files[3].content).toEqual('content');
 
-            theme.templates.all.should.eql([
+            expect(theme.templates.all).toEqual([
                 'custom/test',
                 'custom-My-Post',
                 'custom-about',
@@ -129,48 +130,48 @@ describe('Read theme', function () {
                 'post'
             ]);
 
-            _.map(theme.templates.custom, 'filename').should.eql([
+            expect(_.map(theme.templates.custom, 'filename')).toEqual([
                 'custom-My-Post',
                 'custom-about',
                 'page-1',
                 'post-welcome-ghost'
             ]);
 
-            theme.templates.custom[0].filename.should.eql('custom-My-Post');
-            theme.templates.custom[0].name.should.eql('My Post');
-            theme.templates.custom[0].for.should.eql(['page', 'post']);
-            should.not.exist(theme.templates.custom[0].slug);
+            expect(theme.templates.custom[0].filename).toEqual('custom-My-Post');
+            expect(theme.templates.custom[0].name).toEqual('My Post');
+            expect(theme.templates.custom[0].for).toEqual(['page', 'post']);
+            expect(theme.templates.custom[0].slug).toBeNull();
 
-            theme.templates.custom[1].filename.should.eql('custom-about');
-            theme.templates.custom[1].name.should.eql('About');
-            theme.templates.custom[1].for.should.eql(['page', 'post']);
-            should.not.exist(theme.templates.custom[1].slug);
+            expect(theme.templates.custom[1].filename).toEqual('custom-about');
+            expect(theme.templates.custom[1].name).toEqual('About');
+            expect(theme.templates.custom[1].for).toEqual(['page', 'post']);
+            expect(theme.templates.custom[1].slug).toBeNull();
 
-            theme.templates.custom[2].filename.should.eql('page-1');
-            theme.templates.custom[2].name.should.eql('1');
-            theme.templates.custom[2].for.should.eql(['page']);
-            theme.templates.custom[2].slug.should.eql('1');
+            expect(theme.templates.custom[2].filename).toEqual('page-1');
+            expect(theme.templates.custom[2].name).toEqual('1');
+            expect(theme.templates.custom[2].for).toEqual(['page']);
+            expect(theme.templates.custom[2].slug).toEqual('1');
 
-            theme.templates.custom[3].filename.should.eql('post-welcome-ghost');
-            theme.templates.custom[3].name.should.eql('Welcome Ghost');
-            theme.templates.custom[3].for.should.eql(['post']);
-            theme.templates.custom[3].slug.should.eql('welcome-ghost');
+            expect(theme.templates.custom[3].filename).toEqual('post-welcome-ghost');
+            expect(theme.templates.custom[3].name).toEqual('Welcome Ghost');
+            expect(theme.templates.custom[3].for).toEqual(['post']);
+            expect(theme.templates.custom[3].slug).toEqual('welcome-ghost');
 
             // nested and non-matching templates should not appear in custom
-            _.map(theme.templates.custom, 'filename').should.not.containEql('custom/test');
-            _.map(theme.templates.custom, 'filename').should.not.containEql('post');
-            _.map(theme.templates.custom, 'filename').should.not.containEql('page');
-            _.map(theme.templates.custom, 'filename').should.not.containEql('my-page-about');
+            expect(_.map(theme.templates.custom, 'filename')).not.toContain('custom/test');
+            expect(_.map(theme.templates.custom, 'filename')).not.toContain('post');
+            expect(_.map(theme.templates.custom, 'filename')).not.toContain('page');
+            expect(_.map(theme.templates.custom, 'filename')).not.toContain('my-page-about');
         });
     });
 
     it('can extract custom settings from package.json', function () {
         return readTheme(themePath('theme-with-custom-settings')).then((theme) => {
-            theme.should.be.a.ValidThemeObject();
+            utils.assertValidThemeObject(theme);
 
-            should.exist(theme.customSettings);
+            expect(theme.customSettings).toBeDefined();
 
-            theme.customSettings.should.deepEqual({
+            expect(theme.customSettings).toEqual({
                 test_select: {
                     type: 'select',
                     options: ['one', 'two'],
@@ -186,10 +187,10 @@ describe('Read theme', function () {
 
         const theme = await readTheme(themePath('010-packagejson/no-config'), options);
 
-        theme.should.be.a.ValidThemeObject();
+        utils.assertValidThemeObject(theme);
 
-        should.exist(theme.customSettings);
+        expect(theme.customSettings).toBeDefined();
 
-        theme.customSettings.should.deepEqual({});
+        expect(theme.customSettings).toEqual({});
     });
 });

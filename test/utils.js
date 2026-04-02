@@ -1,50 +1,63 @@
 const path = require('path');
-const should = require('should');
 const readTheme = require('../lib/read-theme');
 const testThemePath = 'test/fixtures/themes';
 
-should.Assertion.add('ValidResultObject', function () {
-    this.params = {operator: 'to be valid result object'};
+const assertValidResultObject = function (result) {
+    expect(result).toBeDefined();
+    expect(result).toEqual(expect.objectContaining({
+        pass: expect.any(Array),
+        fail: expect.any(Object)
+    }));
+};
 
-    should.exist(this.obj);
+const assertValidThemeObject = function (theme) {
+    expect(theme).toBeDefined();
+    expect(theme).toEqual(expect.objectContaining({
+        path: expect.any(String),
+        files: expect.any(Array),
+        results: expect.any(Object)
+    }));
 
-    this.obj.should.be.an.Object().with.properties(['pass', 'fail']);
-    this.obj.pass.should.be.an.Array();
-    this.obj.fail.should.be.an.Object();
-});
+    assertValidResultObject(theme.results);
+};
 
-should.Assertion.add('ValidThemeObject', function () {
-    this.params = {operator: 'to be valid theme object'};
+const assertValidFailObject = function (failObject) {
+    expect(failObject).toBeDefined();
+    expect(failObject).toEqual(expect.any(Object));
 
-    should.exist(this.obj);
-    this.obj.should.be.an.Object().with.properties(['path', 'files', 'results']);
-    this.obj.path.should.be.a.String();
-    this.obj.files.should.be.an.Array();
-    this.obj.results.should.be.a.ValidResultObject();
-});
-
-should.Assertion.add('ValidFailObject', function () {
-    //this.obj.should.be.an.Object().with.properties(['level', 'message', 'ref']);
-    //this.obj.should.have.property('level').which.is.a.String().and.be.oneOf(levels);
-    //this.obj.should.have.property('message').which.is.a.String();
-    //this.obj.should.have.property('ref').which.is.a.String();
-
-    Object.keys(this.obj).forEach(function (key) {
-        key.should.be.oneOf('message', 'failures');
+    Object.keys(failObject).forEach(function (key) {
+        expect(['message', 'failures']).toContain(key);
     });
 
-    if (Object.prototype.hasOwnProperty.call(this.obj, 'message')) {
-        this.obj.message.should.be.a.String();
+    if (Object.prototype.hasOwnProperty.call(failObject, 'message')) {
+        expect(failObject.message).toEqual(expect.any(String));
     }
 
-    if (Object.prototype.hasOwnProperty.call(this.obj, 'failures')) {
-        this.obj.failures.should.be.an.Array();
+    if (Object.prototype.hasOwnProperty.call(failObject, 'failures')) {
+        expect(failObject.failures).toEqual(expect.any(Array));
     }
-});
+};
 
-should.Assertion.add('ValidRule', function () {
-    const levels = ['error', 'warning', 'recommendation', 'feature']; // eslint-disable-line no-unused-vars
-});
+const assertObjectKeys = function (value, ...keys) {
+    const dedupedKeys = [...new Set(keys)];
+
+    dedupedKeys.forEach((key) => {
+        expect(value).toHaveProperty(key);
+    });
+};
+
+const assertContains = function (value, ...items) {
+    if (typeof value === 'string') {
+        items.forEach((item) => {
+            expect(value).toContain(item);
+        });
+        return;
+    }
+
+    items.forEach((item) => {
+        expect(value).toContainEqual(item);
+    });
+};
 
 const getThemePath = function (themeId) {
     return path.resolve(path.join(testThemePath, themeId));
@@ -59,6 +72,11 @@ const testCheck = function testCheck(checkLib, themeId, options) {
 };
 
 module.exports = {
-    testCheck: testCheck,
+    assertContains,
+    assertObjectKeys,
+    assertValidFailObject,
+    assertValidResultObject,
+    assertValidThemeObject,
+    testCheck,
     themePath: getThemePath
 };
