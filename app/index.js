@@ -11,7 +11,7 @@ const server = require('@tryghost/server');
 const config = require('@tryghost/config');
 const errors = require('@tryghost/errors');
 const gscan = require('../lib');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const path = require('path');
 const logRequest = require('./middlewares/log-request');
 const uploadValidation = require('./middlewares/upload-validation');
@@ -103,7 +103,7 @@ app.post('/',
                 checkError = error;
             }).finally(function () {
                 debug('attempting to remove: ' + req.file.path);
-                fs.remove(req.file.path)
+                fs.rm(req.file.path, {recursive: true, force: true})
                     .catch(function (removeError) {
                         debug('failed to remove uploaded file', removeError);
                     })

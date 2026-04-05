@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const utils = require('./utils');
 const readTheme = require('../lib/read-theme');
 const themePath = utils.themePath;

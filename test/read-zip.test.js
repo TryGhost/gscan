@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const utils = require('./utils');
 const readZip = require('../lib/read-zip');
 const themePath = utils.themePath;
@@ -19,7 +19,7 @@ describe('Zip file handler can read zip files', function () {
     const tempDirs = [];
 
     afterAll(async function () {
-        await Promise.all(tempDirs.map(dir => fs.remove(dir)));
+        await Promise.all(tempDirs.map(dir => fs.rm(dir, {recursive: true, force: true})));
     });
 
     it('Flat example: zip without folder should unzip and callback with a path', function () {
