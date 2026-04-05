@@ -11,20 +11,18 @@ describe('Checker', function () {
         labsEnabledHelpers.testHelper = 'testFlag';
 
         try {
+            const v6Spec = spec.get(['v6']);
+            const helpersBefore = [...v6Spec.knownHelpers];
+
             await check(themePath('is-empty'), {
                 checkVersion: 'v6',
                 labs: {testFlag: true},
                 skipChecks: true
             });
 
-            const v6Spec = spec.get(['v6']);
-            expect(v6Spec.knownHelpers).toContain('testHelper');
-
-            // Clean up the spec
-            const idx = v6Spec.knownHelpers.indexOf('testHelper');
-            if (idx > -1) {
-                v6Spec.knownHelpers.splice(idx, 1);
-            }
+            // After check() returns, the spec should be restored (no mutation leak)
+            expect(v6Spec.knownHelpers).not.toContain('testHelper');
+            expect(v6Spec.knownHelpers).toEqual(helpersBefore);
         } finally {
             delete labsEnabledHelpers.testHelper;
         }
@@ -37,6 +35,23 @@ describe('Checker', function () {
             await check(themePath('is-empty'), {
                 checkVersion: 'v6',
                 labs: {},
+                skipChecks: true
+            });
+
+            const v6Spec = spec.get(['v6']);
+            expect(v6Spec.knownHelpers).not.toContain('testHelper');
+        } finally {
+            delete labsEnabledHelpers.testHelper;
+        }
+    });
+
+    it('does not add labs-enabled helpers when flag is explicitly false', async function () {
+        labsEnabledHelpers.testHelper = 'testFlag';
+
+        try {
+            await check(themePath('is-empty'), {
+                checkVersion: 'v6',
+                labs: {testFlag: false},
                 skipChecks: true
             });
 
