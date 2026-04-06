@@ -38,12 +38,11 @@ describe('Scope internals', function () {
         scope3.pushTemplateFrame('custom-about.hbs', {type: 'Program'});
         expect(scope3.currentFrame).toBeDefined();
 
-        // index.hbs has no template context — pushTemplateFrame throws
-        // because getTemplateContext returns undefined and destructuring fails
+        // index.hbs has no template context — pushTemplateFrame throws a deliberate error
         expect(() => {
             const scope4 = new Scope();
             scope4.pushTemplateFrame('index.hbs', {type: 'Program'});
-        }).toThrow(TypeError);
+        }).toThrow('No template context found for template: index.hbs');
     });
 
     it('validates block statements when creating contexts', function () {
