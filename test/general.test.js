@@ -1,5 +1,5 @@
 const path = require('path');
-const fs = require('fs-extra');
+const fs = require('fs/promises');
 const errors = require('@tryghost/errors');
 const {check, checkZip} = require('../lib');
 const utils = require('./utils');
@@ -79,14 +79,13 @@ describe('Check zip', function () {
             expect(theme.files.length).toEqual(1);
             expect(theme.files[0].file).toMatch(/default\.hbs/);
 
-            const extractedThemePathExists = await fs.pathExists(theme.path);
-            expect(extractedThemePathExists).toEqual(false);
+            await expect(fs.access(theme.path)).rejects.toThrow();
         });
 
         it('removes extracted directory when checks fail', async function () {
             const readThemePath = require.resolve('../lib/read-theme');
             const originalReadTheme = require(readThemePath);
-            const removeSpy = vi.spyOn(fs, 'remove');
+            const removeSpy = vi.spyOn(fs, 'rm');
             let removedPath;
 
             require.cache[readThemePath].exports = async function () {
@@ -109,8 +108,7 @@ describe('Check zip', function () {
                 removeSpy.mockRestore();
             }
 
-            const extractedThemePathExists = await fs.pathExists(removedPath);
-            expect(extractedThemePathExists).toEqual(false);
+            await expect(fs.access(removedPath)).rejects.toThrow();
         });
 
         it('removes entire temp directory for nested zips', async function () {
@@ -118,8 +116,7 @@ describe('Check zip', function () {
 
             expect(theme.files.length).toBeGreaterThan(0);
 
-            const extractedParentPathExists = await fs.pathExists(path.dirname(theme.path));
-            expect(extractedParentPathExists).toEqual(false);
+            await expect(fs.access(path.dirname(theme.path))).rejects.toThrow();
         });
 
         it('keeps extracted directory when keepExtractedDir is true', async function () {
@@ -128,10 +125,9 @@ describe('Check zip', function () {
             expect(theme.files.length).toEqual(1);
             expect(theme.files[0].file).toMatch(/default\.hbs/);
 
-            const extractedThemePathExists = await fs.pathExists(theme.path);
-            expect(extractedThemePathExists).toEqual(true);
+            await expect(fs.access(theme.path)).resolves.not.toThrow();
 
-            await fs.remove(theme.path);
+            await fs.rm(theme.path, {recursive: true, force: true});
         });
 
         it('accepts an object zip input', async function () {
@@ -143,7 +139,7 @@ describe('Check zip', function () {
             expect(theme.files.length).toEqual(1);
             expect(theme.files[0].file).toMatch(/default\.hbs/);
 
-            await fs.remove(theme.path);
+            await fs.rm(theme.path, {recursive: true, force: true});
         });
     });
 });
