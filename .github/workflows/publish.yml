@@ -84,7 +84,7 @@ jobs:
           echo "Version check: ${{ steps.version_check.outputs.reason || 'not-run' }}"
           echo "Dry run: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true' }}"
 
-      - uses: tryghost/actions/actions/slack-build@0204421bd3b15725e5b8c606d5d671e9674707ea
+      - uses: tryghost/actions/actions/slack-build@0cbdcbeb9030f46b109d5e6e44c14933026d8ca5
         if: failure()
         with:
           status: ${{ job.status }}
