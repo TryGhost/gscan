@@ -9,7 +9,7 @@ GScan validates Ghost themes for compatibility with Ghost versions v1-v6. It can
 
 ## Tech Stack
 
-- Node.js (supported: `^20.11.1 || ^22.13.1 || ^24.0.0`)
+- Node.js (supported: `^22.13.1 || ^24.0.0`)
 - CommonJS modules
 - Vitest with V8 coverage
 - ESLint for linting
