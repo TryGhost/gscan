@@ -825,22 +825,22 @@
   resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-3.1.0.tgz#d02112b290f5358c2e73f148084d3bad4cf72c17"
   integrity sha512-vavmjjIAxngGuKK+D6vzYM+Bi36Td1cVEPtj25OFfHJj3xwoZL1Hji/wJylzqIRIFoCGvvHw+Ztnqjl9yLLAVw==
 
-"@tryghost/http-stream@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/http-stream/-/http-stream-2.1.0.tgz#996b0e40ef58416426cb10802118eb389ecfc6de"
-  integrity sha512-X23dCRDpDwFBReCYG3WT+F73bg7qMo1tON6nlOiG+6tBgATOAR2EZ7nwT7H0CWzcNUdNxTRGg/zSj7TUHtJQpQ==
+"@tryghost/http-stream@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/http-stream/-/http-stream-2.1.1.tgz#6b94baddd2fb0cfcabc289691c8139c0dfbfda4e"
+  integrity sha512-8nsxYfajNVtcS94hMpPu7N+Z6Lf6bHL4KkYJLRFD0RTYlF+Dz5+u9ERAds7nHYJSUCivLgsa8u2GGTqImlnEZw==
   dependencies:
     "@tryghost/errors" "3.1.0"
-    "@tryghost/request" "3.1.0"
+    "@tryghost/request" "3.1.1"
 
-"@tryghost/logging@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-4.1.0.tgz#9e12c14512faf4475011bd08734ec27f5fe92d5d"
-  integrity sha512-M8tNHRDSGLtAydgNbGRsN4zgUZpprOgXalEcK1112TODmEQMdIUxCjf1Eys3AhOyZZAeQyvonyuqJqDgJDrmww==
+"@tryghost/logging@4.1.1":
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-4.1.1.tgz#9462e98c0f578e01f57caa1783b7cad66063df10"
+  integrity sha512-njeNCysXFZLHGtX+RzvhkdGNvLhCs3fAUS32BGkTvgtnxRioEaNuuU6g50hDejo1pJgLyc5jnOi8N74YdCSbGg==
   dependencies:
     "@tryghost/bunyan-rotating-filestream" "0.0.7"
     "@tryghost/elasticsearch" "5.1.0"
-    "@tryghost/http-stream" "2.1.0"
+    "@tryghost/http-stream" "2.1.1"
     "@tryghost/pretty-stream" "2.1.0"
     "@tryghost/root-utils" "2.1.0"
     bunyan "1.8.15"
@@ -906,13 +906,13 @@
   dependencies:
     "@tryghost/root-utils" "2.0.3"
 
-"@tryghost/request@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/request/-/request-3.1.0.tgz#be04086a1b85b9802ee8763177112c88e05da292"
-  integrity sha512-aDkQPsZs6W7E/F6aNoc9LUtRfR2xUAja17FRmu1W7AlgdTngEsJant4O3Yh9pqGdrJAv0AFUWIY5zcAmp1Fj6Q==
+"@tryghost/request@3.1.1":
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/request/-/request-3.1.1.tgz#96a7bc0a466ece1f80eba7a090b043b3b224084c"
+  integrity sha512-UVDPbde85Hc/tXadUiBxZa7KFRqHCm/HXjp0s/9kCCu6Bc/K6BllylyBDtT7Bk0yCVZb5/Id3bGA57hMGZWWvQ==
   dependencies:
     "@tryghost/errors" "3.1.0"
-    "@tryghost/validator" "2.1.0"
+    "@tryghost/validator" "3.0.0"
     "@tryghost/version" "2.1.0"
     cacheable-lookup "7.0.0"
     got "14.6.6"
@@ -934,29 +934,29 @@
     caller "1.1.0"
     find-root "1.1.0"
 
-"@tryghost/server@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-2.1.0.tgz#76a5ba625ee66ddbeebb3e7eba2f6b4d4635fd1d"
-  integrity sha512-JahB0Xq2bs66tFrp7wth1eSdQSz1gVos8v5h2R2gbMauB+cE99cUQSJv/FTFUROBTIfz2HrhyBih4pvIUI3DWg==
+"@tryghost/server@2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-2.1.1.tgz#b6a439425788b40e0252a4324f471119fd378754"
+  integrity sha512-aAW7paoHwY0NDlMKz+K0S9P40eQC/+cMoDPArUNsJTqdaifJVE8QTZzN3/DCev65TGmnVATKe/pp19mdwlpg/w==
   dependencies:
     "@tryghost/debug" "2.1.0"
-    "@tryghost/logging" "4.1.0"
+    "@tryghost/logging" "4.1.1"
 
 "@tryghost/tpl@2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@tryghost/tpl/-/tpl-2.1.0.tgz#48882a23bf929508d5a3faf2f27194ea520d6d75"
   integrity sha512-NIzGwyHcFUnJRmaDkd5wx6X+lXfqXqUbsICKO4KcPFtwmqLVButlbidNZsXLdoblyI2J5jS6JIGY22TB+mtiBw==
 
-"@tryghost/validator@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/validator/-/validator-2.1.0.tgz#11cf6bc9690e5c45273e150e5df17bfbe7619b8f"
-  integrity sha512-HdM5ucxn91WG4pkLOIojPRFKWW1wF4IS9lhyxv95gA32AMWnGBpA5B1cQ9/Jv30Xn3ZBz6L7nxmoKtmdsRus7A==
+"@tryghost/validator@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/validator/-/validator-3.0.0.tgz#36a883916c0154258bca54a0d130395f444bfe5f"
+  integrity sha512-/VBFzlSz8MMpVuP9dhbjMinaRglEa62XqOgx2umW2gUZoROjE4B77G4AMUrQY+KkDT1eGT/OTUQ8gPT1EQPPLw==
   dependencies:
     "@tryghost/errors" "3.1.0"
     "@tryghost/tpl" "2.1.0"
     lodash "4.18.1"
     moment-timezone "^0.5.23"
-    validator "7.2.0"
+    validator "13.15.35"
 
 "@tryghost/version@2.1.0":
   version "2.1.0"
@@ -4522,12 +4522,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-validator@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/validator/-/validator-7.2.0.tgz#a63dcbaba51d4350bf8df20988e0d5a54d711791"
-  integrity sha512-c8NGTUYeBEcUIGeMppmNVKHE7wwfm3mYbNZxV+c5mlv9fDHI7Ad3p07qfNrn/CvpdkK2k61fOLRO2sTEhgQXmg==
-
-validator@^13.0.0:
+validator@13.15.35, validator@^13.0.0:
   version "13.15.35"
   resolved "https://registry.yarnpkg.com/validator/-/validator-13.15.35.tgz#81cf455c51f15b69d8d340be5914f3fab00dbf7f"
   integrity sha512-TQ5pAGhd5whStmqWvYF4OjQROlmv9SMFVt37qoCBdqRffuuklWYQlCNnEs2ZaIBD1kZRNnikiZOS1eqgkar0iw==
