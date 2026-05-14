@@ -141,5 +141,39 @@ describe('Check zip', function () {
 
             await fs.rm(theme.path, {recursive: true, force: true});
         });
+
+        it('passes limits to readZip', async function () {
+            const readZipPath = require.resolve('../lib/read-zip');
+            const originalReadZip = require(readZipPath);
+            const limits = {
+                perEntryUncompressedBytes: 100,
+                totalUncompressedBytes: 200
+            };
+            const zip = {
+                path: themePath('example.zip'),
+                name: 'example.zip'
+            };
+            const readZip = vi.fn(async () => {
+                return {
+                    path: themePath('is-empty'),
+                    name: 'example.zip'
+                };
+            });
+
+            require.cache[readZipPath].exports = readZip;
+
+            try {
+                await checkZip(zip, {
+                    limits,
+                    skipChecks: true,
+                    checkVersion: 'v5',
+                    keepExtractedDir: true
+                });
+
+                expect(readZip).toHaveBeenCalledWith(zip, {limits});
+            } finally {
+                require.cache[readZipPath].exports = originalReadZip;
+            }
+        });
     });
 });
