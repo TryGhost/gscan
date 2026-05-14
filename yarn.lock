@@ -785,11 +785,6 @@
     "@tryghost/debug" "2.2.0"
     split2 "4.2.0"
 
-"@tryghost/errors@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-3.2.0.tgz#d6dcc78fcdebd6c6767653e0fd859b93791194e7"
-  integrity sha512-FASXloLrHpfJwpT4NDtYiyP3Im41cjsmz95J08dDGRyqGnsIdK7AfJ7SICEPGsMRrUu2qUWkhh9YLRaFNrZjRw==
-
 "@tryghost/errors@3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-3.2.1.tgz#55706fd78b6d874eddaa8475f55b64a87e6d7132"
