@@ -193,4 +193,20 @@ describe('Read theme', function () {
 
         expect(theme.customSettings).toEqual({});
     });
+
+    it('ignores AI tooling files and dirs (.claude, CLAUDE.md, AGENTS.md)', async function () {
+        // Regression for PR #796: a symlink under `.claude/` previously
+        // surfaced in theme.files and triggered a fatal GS030-ASSET-SYM.
+        // The fixture intentionally includes a symlink inside `.claude/`.
+        const theme = await readTheme(themePath('theme-with-ai-tooling'));
+        utils.assertValidThemeObject(theme);
+
+        const filePaths = theme.files.map(f => f.file);
+
+        expect(filePaths).toEqual(['index.hbs']);
+        expect(filePaths).not.toContain('CLAUDE.md');
+        expect(filePaths).not.toContain('AGENTS.md');
+        expect(filePaths.some(p => p.startsWith('.claude'))).toBe(false);
+        expect(theme.files.some(f => f.symlink)).toBe(false);
+    });
 });
