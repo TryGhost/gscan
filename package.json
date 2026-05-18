@@ -75,7 +75,7 @@
   },
   "resolutions": {
     "node-loggly-bulk": "4.0.2",
-    "node-loggly-bulk/axios": "1.16.0",
+    "node-loggly-bulk/axios": "1.16.1",
     "**/handlebars": "4.7.9"
   },
   "files": [
