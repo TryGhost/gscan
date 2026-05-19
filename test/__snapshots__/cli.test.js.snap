@@ -53,7 +53,7 @@ Affected Files: styles
 - Error: The .kg-width-full CSS class is required to appear styled in your theme
 Affected Files: styles
 
-- Error: Not all page features are being used
+- Error: Theme is missing support for one or more {{@page}} properties
 Affected Files: page.hbs
 
 
