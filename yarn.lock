@@ -798,10 +798,10 @@
     "@tryghost/errors" "3.2.1"
     "@tryghost/request" "3.2.1"
 
-"@tryghost/logging@4.2.1":
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-4.2.1.tgz#397115f5707db1fea478975efa41fb15f79e97e6"
-  integrity sha512-yZ83IIZtTbTThBAIc12y+uFSoItZ70Yiek3I8lWHK4p2jX2Nes+G1RwEkKmODw3gRq9SH4NhdHJn/BHD80n2Xw==
+"@tryghost/logging@5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/logging/-/logging-5.0.0.tgz#978ea94721fee536661b3abf377eb1bcdd13c451"
+  integrity sha512-CHH7nkTTUXZkyvM7M5g9UZ2CUZYSrsNMI0rdP9ntcUeCZXNGi85Q2lRzkpv+zQkJ8VGWyE/WL7/tJwPIGo7YcQ==
   dependencies:
     "@tryghost/bunyan-rotating-filestream" "0.0.7"
     "@tryghost/elasticsearch" "5.2.0"
@@ -809,7 +809,6 @@
     "@tryghost/pretty-stream" "2.2.0"
     "@tryghost/root-utils" "2.2.0"
     bunyan "1.8.15"
-    bunyan-loggly "2.0.1"
     fs-extra "11.3.5"
     gelf-stream "1.1.1"
     json-stringify-safe "5.0.1"
@@ -899,13 +898,13 @@
     caller "1.1.0"
     find-root "1.1.0"
 
-"@tryghost/server@2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-2.2.1.tgz#a8cbdbe500bb3aad34e9d3ff6b1e73581b4cd4c7"
-  integrity sha512-WY7YGd+PIIuX5IaZnNV2X3tMNBpAX4fHpEj887ZWRPReUvxoVj6ODOTQnNCN7UlCoNmDS88KrfLUDA4IQCDEmA==
+"@tryghost/server@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/server/-/server-3.0.0.tgz#77c9ef912732633d392c85f9f06565a08844fa30"
+  integrity sha512-nSM8241Z15avw73vGcoSujhE/5dBo4bLu9OYBikKa5CdWtfeoWe0ysypDG+/5CXN6HKmPtuAxDvc7PhT8i3Z5A==
   dependencies:
     "@tryghost/debug" "2.2.0"
-    "@tryghost/logging" "4.2.1"
+    "@tryghost/logging" "5.0.0"
 
 "@tryghost/tpl@2.2.0":
   version "2.2.0"
@@ -1542,14 +1541,6 @@ builtin-modules@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-3.3.0.tgz#cae62812b89801e9656336e46223e030386be7b6"
   integrity sha512-zhaCDicdLuWN5UbN5IMnFqNMhNfo919sH85y2/ea+5Yg9TsTkeZxpL+JLbp6cgYFS4sRLp3YV4S6yDuqVWHYOw==
-
-bunyan-loggly@2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/bunyan-loggly/-/bunyan-loggly-2.0.1.tgz#d65ea3ad0647ed8a2095d0a802a4306fe4a3e174"
-  integrity sha512-9F+BYVqqtrYHmWfDE2JLoQmQmZod7AQQuRtAS41qaXa5wjiOviFNnMlY56gZmv5SZ2czbeuWeX+xSAEFcktsXw==
-  dependencies:
-    json-stringify-safe "^5.0.1"
-    node-loggly-bulk "^3.0.1"
 
 bunyan@1.8.15:
   version "1.8.15"
@@ -3013,7 +3004,7 @@ json-stable-stringify-without-jsonify@^1.0.1:
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==
 
-json-stringify-safe@5.0.1, json-stringify-safe@5.0.x, json-stringify-safe@^5.0.1:
+json-stringify-safe@5.0.1, json-stringify-safe@5.0.x:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==
@@ -3432,7 +3423,7 @@ no-case@^3.0.4:
     lower-case "^2.0.2"
     tslib "^2.0.3"
 
-node-loggly-bulk@4.0.2, node-loggly-bulk@^3.0.1:
+node-loggly-bulk@4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/node-loggly-bulk/-/node-loggly-bulk-4.0.2.tgz#09060608434b4d478b43228cfe4294cfec530dce"
   integrity sha512-4hLNDaW4f2MjIvPh1/HQ+3g5bL19Hl3Q2cyUER93GrscjEdjA1nX61ekrm616NI5emHJT9lBUBFJiS2uoXq5Rw==
