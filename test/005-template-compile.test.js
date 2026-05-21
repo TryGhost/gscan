@@ -387,7 +387,8 @@ describe('005 Template compile', function () {
                 utils.assertValidFailObject(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
                 expect(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures.length).toEqual(1);
                 expect(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].ref).toEqual('post.hbs');
-                utils.assertContains(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].message, 'Inline dynamic partial used');
+                utils.assertContains(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].message, 'Inline dynamic partial on line 1:');
+                utils.assertContains(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].message, '{{>(lookup');
 
                 // The GS005-TPL-ERR rule still passes for this fixture — the
                 // template compiles fine; the inline dynamic partial is a lint
