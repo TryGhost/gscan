@@ -15,7 +15,7 @@ describe('110 Page-builder usage', function () {
             expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
-                    message: '{{@page.show_title_and_feature_image}} is not used in any template — gate the relevant markup with {{#if @page.show_title_and_feature_image}}…{{/if}} so this editor setting takes effect.',
+                    message: '<code>{{@page.show_title_and_feature_image}}</code> is not used in any template — gate the relevant markup with <code>{{#if @page.show_title_and_feature_image}}…{{/if}}</code> so this editor setting takes effect.',
                     rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
                 }
             ]);
@@ -57,7 +57,7 @@ describe('110 Page-builder usage', function () {
             expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
-                    message: '{{@page.show_title_and_feature_image}} is not used in any template — gate the relevant markup with {{#if @page.show_title_and_feature_image}}…{{/if}} so this editor setting takes effect.',
+                    message: '<code>{{@page.show_title_and_feature_image}}</code> is not used in any template — gate the relevant markup with <code>{{#if @page.show_title_and_feature_image}}…{{/if}}</code> so this editor setting takes effect.',
                     rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
                 }
             ]);
