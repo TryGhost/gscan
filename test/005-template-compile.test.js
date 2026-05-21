@@ -378,7 +378,7 @@ describe('005 Template compile', function () {
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
                 expect(output.results.fail['GS005-TPL-ERR'].failures.length).toEqual(1);
                 expect(output.results.fail['GS005-TPL-ERR'].failures[0].ref).toEqual('post.hbs');
-                utils.assertContains(output.results.fail['GS005-TPL-ERR'].failures[0].message, 'Inlined dynamic partials');
+                utils.assertContains(output.results.fail['GS005-TPL-ERR'].failures[0].message, 'Use the block form for dynamic partials');
 
             });
         });
