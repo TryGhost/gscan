@@ -73,7 +73,7 @@ Affected Files: default.hbs
 - Warning: Missing support for custom fonts
 Affected Files: styles
 
-- Warning: Theme is missing support for the {{@page.show_title_and_feature_image}} editor setting
+- Warning: Support the {{@page.show_title_and_feature_image}} editor setting
 Affected Files: page.hbs
 
 
