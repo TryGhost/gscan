@@ -4,7 +4,7 @@ exports[`CLI > CLI binary (smoke test) > should boot, parse args, check a theme,
 "
 Checking theme compatibility...
 
-Your theme has 20 errors and 7 warnings!
+Your theme has 19 errors and 8 warnings!
 ---
 
 Errors
@@ -53,9 +53,6 @@ Affected Files: styles
 - Error: The .kg-width-full CSS class is required to appear styled in your theme
 Affected Files: styles
 
-- Error: Theme is missing support for the {{@page.show_title_and_feature_image}} editor setting
-Affected Files: page.hbs
-
 
 Warnings
 ---
@@ -75,6 +72,9 @@ Affected Files: default.hbs
 
 - Warning: Missing support for custom fonts
 Affected Files: styles
+
+- Warning: Theme is missing support for the {{@page.show_title_and_feature_image}} editor setting
+Affected Files: page.hbs
 
 
 Recommendations
