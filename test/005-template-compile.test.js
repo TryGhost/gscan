@@ -10,8 +10,9 @@ describe('005 Template compile', function () {
                 utils.assertValidThemeObject(output);
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -22,8 +23,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -31,7 +33,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v1/invalid', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -82,8 +84,9 @@ describe('005 Template compile', function () {
                 utils.assertValidThemeObject(output);
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -94,8 +97,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -103,7 +107,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v2/invalid', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -154,8 +158,9 @@ describe('005 Template compile', function () {
                 utils.assertValidThemeObject(output);
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -166,8 +171,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -175,7 +181,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v3/invalid', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -215,8 +221,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -238,8 +245,9 @@ describe('005 Template compile', function () {
                 utils.assertValidThemeObject(output);
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -250,8 +258,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -259,7 +268,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid templates', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -286,7 +295,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid partials', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid-partial', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -304,7 +313,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme with invalid folder partials', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid-partial-folder', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -322,7 +331,7 @@ describe('005 Template compile', function () {
         it('should output errors for a theme in subfolders', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid-folder', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -374,12 +383,17 @@ describe('005 Template compile', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/invalid-with-dynamic-partials', options).then(function (output) {
                 utils.assertValidThemeObject(output);
 
-                utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
-                utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
-                expect(output.results.fail['GS005-TPL-ERR'].failures.length).toEqual(1);
-                expect(output.results.fail['GS005-TPL-ERR'].failures[0].ref).toEqual('post.hbs');
-                utils.assertContains(output.results.fail['GS005-TPL-ERR'].failures[0].message, 'Inlined dynamic partials');
+                utils.assertObjectKeys(output.results.fail, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
+                utils.assertValidFailObject(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
+                expect(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures.length).toEqual(1);
+                expect(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].ref).toEqual('post.hbs');
+                utils.assertContains(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].message, 'Inline dynamic partial on line 1:');
+                utils.assertContains(output.results.fail['GS005-NO-INLINE-DYNAMIC-PARTIAL'].failures[0].message, '{{>(lookup');
 
+                // The GS005-TPL-ERR rule still passes for this fixture — the
+                // template compiles fine; the inline dynamic partial is a lint
+                // warning, not a parse error.
+                utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
             });
         });
 
@@ -389,8 +403,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -401,8 +416,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
             });
         });
@@ -418,7 +434,7 @@ describe('005 Template compile', function () {
         it('Detects missing partials in code flows', function () {
             return utils.testCheck(thisCheck, '005-compile/v4/missing-partials', options).then(function (output) {
                 utils.assertValidThemeObject(output);
-                expect(output.results.pass).toEqual([]);
+                expect(output.results.pass).toEqual(['GS005-NO-INLINE-DYNAMIC-PARTIAL']);
 
                 utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
                 utils.assertValidFailObject(output.results.fail['GS005-TPL-ERR']);
@@ -439,8 +455,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
                 expect(output.partials).toHaveLength(1);
                 utils.assertContains(output.partials, 'mypartial');
@@ -454,8 +471,9 @@ describe('005 Template compile', function () {
 
                 expect(output.results.fail).toEqual({});
 
-                expect(output.results.pass).toHaveLength(1);
+                expect(output.results.pass).toHaveLength(2);
                 utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+                utils.assertContains(output.results.pass, 'GS005-NO-INLINE-DYNAMIC-PARTIAL');
 
                 expect(output.partials).toHaveLength(1);
                 utils.assertContains(output.partials, 'recursive');
