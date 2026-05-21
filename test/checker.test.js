@@ -71,7 +71,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(96);
+            expect(theme.results.pass).toHaveLength(97);
             expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
             utils.assertObjectKeys(theme.results.fail,
@@ -110,7 +110,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(33);
+            expect(theme.results.pass).toHaveLength(34);
             expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
             utils.assertObjectKeys(theme.results.fail,
@@ -145,7 +145,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(96);
+            expect(theme.results.pass).toHaveLength(97);
             expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
             utils.assertObjectKeys(theme.results.fail,
@@ -180,7 +180,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(99);
+            expect(theme.results.pass).toHaveLength(100);
             expect(theme.results.pass).toContain('GS005-TPL-ERR');
 
             utils.assertObjectKeys(theme.results.fail,
@@ -215,7 +215,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(109);
+            expect(theme.results.pass).toHaveLength(110);
             expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -313,6 +313,7 @@ describe('Checker', function () {
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
                 'GS005-TPL-ERR',
+                'GS005-NO-INLINE-DYNAMIC-PARTIAL',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',
                 'GS060-JS-GUA',
@@ -359,7 +360,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(118);
+            expect(theme.results.pass).toHaveLength(119);
             expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -457,6 +458,7 @@ describe('Checker', function () {
                 'GS001-DEPR-CURR-SYM',
                 'GS001-DEPR-SITE-LANG',
                 'GS005-TPL-ERR',
+                'GS005-NO-INLINE-DYNAMIC-PARTIAL',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',
                 'GS060-JS-GUA',
@@ -512,7 +514,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.results.pass).toHaveLength(124);
             expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -613,6 +615,7 @@ describe('Checker', function () {
                 'GS001-DEPR-FACEBOOK-URL',
                 'GS001-DEPR-AMP-TEMPLATE',
                 'GS005-TPL-ERR',
+                'GS005-NO-INLINE-DYNAMIC-PARTIAL',
                 'GS030-ASSET-REQ',
                 'GS030-ASSET-SYM',
                 'GS060-JS-GUA',
@@ -671,7 +674,7 @@ describe('Checker', function () {
             ]);
 
             // Short version of test above
-            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.results.pass).toHaveLength(124);
             expect(theme.checkedVersion).toEqual('6.x');
         });
     });
@@ -686,7 +689,7 @@ describe('Checker', function () {
             ]);
 
             // Should default to v6 behavior
-            expect(theme.results.pass).toHaveLength(123);
+            expect(theme.results.pass).toHaveLength(124);
             expect(theme.checkedVersion).toEqual('6.x');
         });
     });
