@@ -324,7 +324,7 @@ describe('Format', function () {
             return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                expect(theme.results.error.length).toEqual(23);
+                expect(theme.results.error.length).toEqual(22);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 expect(fatalErrors.length).toEqual(1);
@@ -366,10 +366,10 @@ describe('Format', function () {
                 expect(theme.results.recommendation.all.length).toEqual(2);
                 expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                expect(theme.results.warning.all.length).toEqual(7);
+                expect(theme.results.warning.all.length).toEqual(8);
                 expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                expect(theme.results.error.all.length).toEqual(23);
+                expect(theme.results.error.all.length).toEqual(22);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 expect(fatalErrors.length).toEqual(1);
@@ -380,7 +380,7 @@ describe('Format', function () {
                 // two rules have file references
                 expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
                 // page.hbs uses @blog which is deprecated and triggers the second rule failure
-                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(3);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(2);
                 expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
                 expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
                 expect(theme.results.error.byFiles['package.json'].length).toEqual(17);
@@ -398,13 +398,13 @@ describe('Format', function () {
                 expect(theme.results.recommendation.all.length).toEqual(2);
                 expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                expect(theme.results.error.all.length).toEqual(105);
-                expect(theme.results.warning.all.length).toEqual(9);
+                expect(theme.results.error.all.length).toEqual(104);
+                expect(theme.results.warning.all.length).toEqual(10);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                expect(errorErrors.length).toEqual(69);
+                expect(errorErrors.length).toEqual(68);
                 expect(errorErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
@@ -473,7 +473,6 @@ describe('Format', function () {
                     'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                     'GS090-NO-TIER-PRICE-AS-OBJECT',
-                    'GS110-NO-MISSING-PAGE-BUILDER-USAGE',
                     'GS120-NO-UNKNOWN-GLOBALS'
                 ]);
 
@@ -547,7 +546,7 @@ describe('Format', function () {
             return check(themePath('005-compile/v5/invalid'), options).then((theme) => {
                 theme = format(theme, options);
 
-                expect(theme.results.error.length).toEqual(23);
+                expect(theme.results.error.length).toEqual(22);
 
                 const fatalErrors = theme.results.error.filter(error => error.fatal);
                 expect(fatalErrors.length).toEqual(1);
@@ -589,10 +588,10 @@ describe('Format', function () {
                 expect(theme.results.recommendation.all.length).toEqual(2);
                 expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                expect(theme.results.warning.all.length).toEqual(7);
+                expect(theme.results.warning.all.length).toEqual(8);
                 expect(theme.results.warning.byFiles['default.hbs'].length).toEqual(2);
 
-                expect(theme.results.error.all.length).toEqual(23);
+                expect(theme.results.error.all.length).toEqual(22);
 
                 const fatalErrors = theme.results.error.all.filter(error => error.fatal);
                 expect(fatalErrors.length).toEqual(1);
@@ -603,7 +602,7 @@ describe('Format', function () {
                 // two rules have file references
                 expect(theme.results.error.byFiles['author.hbs'].length).toEqual(1);
                 // page.hbs uses @blog which is deprecated and triggers the second rule failure
-                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(3);
+                expect(theme.results.error.byFiles['page.hbs'].length).toEqual(2);
                 expect(theme.results.error.byFiles['post.hbs'].length).toEqual(1);
                 expect(theme.results.error.byFiles['index.hbs'].length).toEqual(1);
                 expect(theme.results.error.byFiles['package.json'].length).toEqual(17);
@@ -621,13 +620,13 @@ describe('Format', function () {
                 expect(theme.results.recommendation.all.length).toEqual(2);
                 expect(theme.results.recommendation.byFiles['package.json'].length).toEqual(2);
 
-                expect(theme.results.error.all.length).toEqual(105);
-                expect(theme.results.warning.all.length).toEqual(9);
+                expect(theme.results.error.all.length).toEqual(104);
+                expect(theme.results.warning.all.length).toEqual(10);
 
                 const errorErrors = theme.results.error.all
                     .filter(error => (error.level === 'error') && !error.fatal);
 
-                expect(errorErrors.length).toEqual(69);
+                expect(errorErrors.length).toEqual(68);
                 expect(errorErrors.map(e => e.code)).toEqual([
                     'GS001-DEPR-MD',
                     'GS001-DEPR-AIMG',
@@ -696,7 +695,6 @@ describe('Format', function () {
                     'GS090-NO-PRICE-DATA-CURRENCY-CONTEXT',
                     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                     'GS090-NO-TIER-PRICE-AS-OBJECT',
-                    'GS110-NO-MISSING-PAGE-BUILDER-USAGE',
                     'GS120-NO-UNKNOWN-GLOBALS'
                 ]);
 

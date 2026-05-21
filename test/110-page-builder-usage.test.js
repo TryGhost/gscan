@@ -15,7 +15,7 @@ describe('110 Page-builder usage', function () {
             expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
-                    message: '@page.show_title_and_feature_image is not used',
+                    message: '{{@page.show_title_and_feature_image}} is not used',
                     rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
                 }
             ]);
@@ -57,7 +57,7 @@ describe('110 Page-builder usage', function () {
             expect(output.results.fail['GS110-NO-MISSING-PAGE-BUILDER-USAGE'].failures).toEqual([
                 {
                     ref: 'page.hbs',
-                    message: '@page.show_title_and_feature_image is not used',
+                    message: '{{@page.show_title_and_feature_image}} is not used',
                     rule: 'GS110-NO-MISSING-PAGE-BUILDER-USAGE'
                 }
             ]);
