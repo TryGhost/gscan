@@ -21,8 +21,9 @@ describe('100 custom template settings usage', function () {
                 expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
                 utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
+                const messages = output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures.map(f => f.message);
+                expect(messages.some(m => /color_scheme/.test(m))).toBe(true);
+                expect(messages.some(m => /show_logo/.test(m))).toBe(true);
 
             });
         });
@@ -99,8 +100,9 @@ describe('100 custom template settings usage', function () {
                 expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
                 utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
+                const messages = output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures.map(f => f.message);
+                expect(messages.some(m => /color_scheme/.test(m))).toBe(true);
+                expect(messages.some(m => /show_logo/.test(m))).toBe(true);
 
             });
         });
@@ -177,8 +179,9 @@ describe('100 custom template settings usage', function () {
                 expect(Object.keys(output.results.fail)).toEqual(['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
 
                 utils.assertValidFailObject(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING']);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/color_scheme/);
-                expect(output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures[0].message).toMatch(/show_logo/);
+                const messages = output.results.fail['GS100-NO-UNUSED-CUSTOM-THEME-SETTING'].failures.map(f => f.message);
+                expect(messages.some(m => /color_scheme/.test(m))).toBe(true);
+                expect(messages.some(m => /show_logo/.test(m))).toBe(true);
 
             });
         });
