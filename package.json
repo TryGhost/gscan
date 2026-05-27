@@ -73,11 +73,6 @@
     "nodemon": "3.1.14",
     "vitest": "4.1.7"
   },
-  "resolutions": {
-    "node-loggly-bulk": "4.0.2",
-    "node-loggly-bulk/axios": "1.16.1",
-    "**/handlebars": "4.7.9"
-  },
   "files": [
     "lib",
     "bin"
