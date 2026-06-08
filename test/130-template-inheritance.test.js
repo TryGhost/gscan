@@ -40,52 +40,80 @@ describe('130 Template inheritance', function () {
     });
 
     it('detects indirect recursive layout inheritance in v6', async function () {
-        const output = await utils.testCheck(thisCheck, '130-template-inheritance/indirect-cycle', {checkVersion: 'v6'});
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/indirect-root-cycle', {checkVersion: 'v6'});
 
         utils.assertValidThemeObject(output);
+
         expect(Object.keys(output.results.fail)).toEqual([ruleCode]);
 
         const failure = output.results.fail[ruleCode].failures[0];
         expect(failure.message).toContain('default.hbs');
+        expect(failure.message).toContain('base.hbs');
+    });
+
+    it('resolves bare layout names relative to the declaring template directory', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/nested-cycle', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
+
+        expect(Object.keys(output.results.fail)).toEqual([ruleCode]);
+
+        const failure = output.results.fail[ruleCode].failures[0];
+        expect(failure.message).toContain('layouts/default.hbs');
         expect(failure.message).toContain('layouts/base.hbs');
     });
 
-    it('supports relative layout paths and explicit hbs extensions', function () {
-        const output = thisCheck({
-            files: [{
-                file: 'index.hbs',
-                ext: '.hbs',
-                content: '{{!< ./layouts/default.hbs}}'
-            }, {
-                file: 'layouts/default.hbs',
-                ext: '.hbs',
-                content: '{{{body}}}'
-            }],
-            results: {
-                pass: [],
-                fail: {}
-            }
-        }, {checkVersion: 'v6'});
+    it('does not treat nested bare layout names as relative to the theme root', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/nested-default-target', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
 
         expect(output.results.fail).toEqual({});
         expect(output.results.pass).toContain(ruleCode);
     });
 
-    it('ignores missing layout targets and templates without content', function () {
-        const output = thisCheck({
-            files: [{
-                file: 'index.hbs',
-                ext: '.hbs',
-                content: '{{!< missing}}'
-            }, {
-                file: 'empty.hbs',
-                ext: '.hbs'
-            }],
-            results: {
-                pass: [],
-                fail: {}
-            }
-        }, {checkVersion: 'v6'});
+    it('does not treat nested bare layout aliases as relative to the theme root', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/nested-shell-target', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
+
+        expect(output.results.fail).toEqual({});
+        expect(output.results.pass).toContain(ruleCode);
+    });
+
+    it('normalizes leading slash layout references to theme-relative paths', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/absolute-default', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
+
+        expect(Object.keys(output.results.fail)).toEqual([ruleCode]);
+
+        const failure = output.results.fail[ruleCode].failures[0];
+        expect(failure.message).toContain('default.hbs -> default.hbs');
+    });
+
+    it('allows multiple templates to share the same layout target', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/shared-layout-target', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
+
+        expect(output.results.fail).toEqual({});
+        expect(output.results.pass).toContain(ruleCode);
+    });
+
+    it('supports relative layout paths and explicit hbs extensions', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/relative-explicit-extension', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
+
+        expect(output.results.fail).toEqual({});
+        expect(output.results.pass).toContain(ruleCode);
+    });
+
+    it('ignores missing layout targets and templates without content', async function () {
+        const output = await utils.testCheck(thisCheck, '130-template-inheritance/missing-and-empty', {checkVersion: 'v6'});
+
+        utils.assertValidThemeObject(output);
 
         expect(output.results.fail).toEqual({});
         expect(output.results.pass).toContain(ruleCode);
