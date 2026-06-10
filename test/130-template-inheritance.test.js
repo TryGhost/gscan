@@ -81,15 +81,13 @@ describe('130 Template inheritance', function () {
         expect(output.results.pass).toContain(ruleCode);
     });
 
-    it('normalizes leading slash layout references to theme-relative paths', async function () {
+    it('ignores leading slash layout references', async function () {
         const output = await utils.testCheck(thisCheck, '130-template-inheritance/absolute-default', {checkVersion: 'v6'});
 
         utils.assertValidThemeObject(output);
 
-        expect(Object.keys(output.results.fail)).toEqual([ruleCode]);
-
-        const failure = output.results.fail[ruleCode].failures[0];
-        expect(failure.message).toContain('default.hbs -> default.hbs');
+        expect(output.results.fail).toEqual({});
+        expect(output.results.pass).toContain(ruleCode);
     });
 
     it('allows multiple templates to share the same layout target', async function () {
