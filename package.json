@@ -43,7 +43,7 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "@sentry/node": "10.56.0",
+    "@sentry/node": "10.57.0",
     "@tryghost/config": "2.2.2",
     "@tryghost/debug": "2.2.2",
     "@tryghost/errors": "3.2.3",
