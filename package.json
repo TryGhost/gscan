@@ -67,11 +67,11 @@
     "@eslint/eslintrc": "3.3.5",
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.0.10",
-    "@vitest/coverage-v8": "4.1.8",
+    "@vitest/coverage-v8": "4.1.9",
     "eslint": "10.5.0",
     "eslint-plugin-ghost": "3.5.0",
     "nodemon": "3.1.14",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   },
   "files": [
     "lib",
