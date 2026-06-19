@@ -215,7 +215,7 @@ Themes can define custom settings in package.json:
 
 ### Important Notes When Adding Rules
 
-- **Check files are auto-loaded**: Any `.js` file in `lib/checks/` is automatically executed by the checker
+- **Check files are statically registered**: Add new checks to the manifest in `lib/checks/index.js` so they run (this replaced runtime `fs.readdirSync` discovery to keep the checker filesystem-free / bundleable for non-Node runtimes like Cloudflare Workers)
 - **Rule codes are alphabetically sorted** in test expectations
 - **All versions need the rule definition** even if the check runs for all versions - otherwise `lib/format.js` will fail with "Cannot read properties of undefined (reading 'level')"
 - **Use require('common-tags/lib/oneLineTrim')** for multi-line rule details in specs
