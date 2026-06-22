@@ -49,6 +49,17 @@ describe('ast-linter', function () {
             expect(results[0].line).toEqual(2);
             expect(results[0].column).toEqual(0);
         });
+
+        it('should reject using no params in a conditional', function () {
+            const source = '{{#unless}}{{/unless}}';
+            const parsed = ASTLinter.parse(source);
+            const results = linter
+                .verify({parsed, moduleId: 'simple.hbs', source})
+                .filter(error => error.rule === 'no-multi-param-conditionals');
+            expect(results).toHaveLength(1);
+            expect(results[0].line).toEqual(1);
+            expect(results[0].column).toEqual(0);
+        });
     });
 
     describe('Helper extraction', function () {
