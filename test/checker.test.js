@@ -514,7 +514,7 @@ describe('Checker', function () {
                 {file: 'README.md', normalizedFile: 'README.md', ext: '.md', symlink: false}
             ]);
 
-            expect(theme.results.pass).toHaveLength(125);
+            expect(theme.results.pass).toHaveLength(126);
             expect(theme.results.pass).toEqual([
                 'GS001-DEPR-PURL',
                 'GS001-DEPR-MD',
@@ -637,6 +637,7 @@ describe('Checker', function () {
                 'GS090-NO-PRICE-DATA-MONTHLY-YEARLY',
                 'GS090-NO-TIER-PRICE-AS-OBJECT',
                 'GS090-NO-TIER-BENEFIT-AS-OBJECT',
+                'GS090-NO-INVALID-CONDITIONAL-ARGUMENTS',
                 'GS090-NO-LIMIT-ALL-IN-GET-HELPER',
                 'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER',
                 'GS120-NO-UNKNOWN-GLOBALS',
@@ -675,7 +676,7 @@ describe('Checker', function () {
             ]);
 
             // Short version of test above
-            expect(theme.results.pass).toHaveLength(125);
+            expect(theme.results.pass).toHaveLength(126);
             expect(theme.checkedVersion).toEqual('6.x');
         });
     });
@@ -690,7 +691,7 @@ describe('Checker', function () {
             ]);
 
             // Should default to v6 behavior
-            expect(theme.results.pass).toHaveLength(125);
+            expect(theme.results.pass).toHaveLength(126);
             expect(theme.checkedVersion).toEqual('6.x');
         });
     });

@@ -225,6 +225,21 @@ describe('090 Template syntax', function () {
     describe('v6', function () {
         const options = {checkVersion: 'v6'};
 
+        it('should fail when {{#if}} has more than one argument', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-invalid-conditional-arguments', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([
+                'GS090-NO-INVALID-CONDITIONAL-ARGUMENTS'
+            ]);
+            expect(output.results.fail['GS090-NO-INVALID-CONDITIONAL-ARGUMENTS'].failures).toEqual([
+                {
+                    ref: 'error.hbs',
+                    message: 'The {{#if}} and {{#unless}} helpers require exactly one argument. (L2)'
+                }
+            ]);
+        });
+
         it('should fail when {{author}} helper is used in post context', async function () {
             const output = await utils.testCheck(thisCheck, '090-template-syntax/no-author-helper-in-post-context/post-context', options);
             utils.assertValidThemeObject(output);
