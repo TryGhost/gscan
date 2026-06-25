@@ -140,7 +140,10 @@ describe('Zip file handler can read zip files', function () {
             const zip = await mocked.readZip({path: '/tmp/theme.zip', name: 'theme.zip'}, {limits});
             tempDirs.push(zip.origPath);
 
-            expect(extract).toHaveBeenCalledWith('/tmp/theme.zip', expect.any(String), {limits});
+            expect(extract).toHaveBeenCalledWith('/tmp/theme.zip', expect.any(String), {
+                ensureOwnerPermissions: true,
+                limits
+            });
         } finally {
             mocked.restore();
         }
@@ -162,7 +165,9 @@ describe('Zip file handler can read zip files', function () {
                 errorDetails: extractError.message
             });
 
-            expect(extract).toHaveBeenCalledWith('/tmp/theme.zip', expect.any(String), {});
+            expect(extract).toHaveBeenCalledWith('/tmp/theme.zip', expect.any(String), {
+                ensureOwnerPermissions: true
+            });
         } finally {
             mocked.restore();
         }
