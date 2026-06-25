@@ -543,6 +543,11 @@
   resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-3.3.0.tgz#aa869dcd3a4118d038bd23a749ab3c2e18a383d1"
   integrity sha512-kDdCTuZeS38IWp0LwmmFX+ZtvT7j9c6GjJ+JYDStjSXr/63JB76BZIs5mL/5rTs1AcSe5AaaUIwSZlxrxtbu/A==
 
+"@tryghost/errors@3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@tryghost/errors/-/errors-3.3.1.tgz#da2d34c53685ce60180e4b911b23d194b458c765"
+  integrity sha512-/TbbCWtmNbc6JY3lR7g0wL+RxBndbFCv1O4BrQ/HxrZCi3DFXUs3KUh2jJeOoWTtisqqdRkR1Z76NluKle3fQg==
+
 "@tryghost/http-stream@2.3.0":
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/@tryghost/http-stream/-/http-stream-2.3.0.tgz#731f8227bad3b4e3055ef9c22ac7f484b96d6541"
@@ -684,12 +689,12 @@
     "@tryghost/root-utils" "2.3.0"
     semver "7.8.4"
 
-"@tryghost/zip@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-3.4.0.tgz#4dd96591364470a3b06d86082022a27d14655184"
-  integrity sha512-H4DnUK1gtSyGAtZwDlvsUF1D0qK8LpIa88ZY2mknopKenrYb52IfY6mHciTM7pR3/TGDcYI14LEMqJhbZlgMng==
+"@tryghost/zip@3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@tryghost/zip/-/zip-3.5.0.tgz#e65c35b4fe6ec4b326ede5267cab6bc18e39990a"
+  integrity sha512-igHHPyBasmo+MWM+l8qtWWX/cdHlAQps5HbCfESi4zGPlkTzuScHfmFAnuXsCx+MZKP5LozgnQHOVIf6jkaU8A==
   dependencies:
-    "@tryghost/errors" "3.3.0"
+    "@tryghost/errors" "3.3.1"
     archiver "8.0.0"
     extract-zip "2.0.1"
 
