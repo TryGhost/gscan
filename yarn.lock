@@ -476,54 +476,54 @@
   resolved "https://registry.yarnpkg.com/@sentry/conventions/-/conventions-0.12.0.tgz#e963cf928ac4d1585b1dcc196e767df3ac45ca5c"
   integrity sha512-z1JQrl/1SLY+8wpzvork6vl+fpsg/oCCxM7HWWhUnI/R+OGNyoIzieQuggX3uUMY7NBtp8UWCQx6FeFazzOF9g==
 
-"@sentry/core@10.60.0":
-  version "10.60.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.60.0.tgz#12548d27b7e4958a24cf7bbc19956b27fa2a2ce7"
-  integrity sha512-szN7ccOJAEaLb1BBQzCQhABGMTJmKNUk0G2sc7rWhajeXoZoMKIbNkI9RvJrFuV69cbad/d/BKGBjbpJhySAzw==
+"@sentry/core@10.61.0":
+  version "10.61.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.61.0.tgz#115f6a12342c23b4bc8544694eee20e21e1b456c"
+  integrity sha512-Edg8t2w45qEKiFnjeA6zRmU47R6la5FEMG+maZEOB2oTyJ+ujmh8LGaZ3G8aC0VdkKn8CXhHtDesze6oDc1oTA==
 
-"@sentry/node-core@10.60.0":
-  version "10.60.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.60.0.tgz#d964354b09cec7e37f4f642ca096300e125e6deb"
-  integrity sha512-aXi9ixvP+hgUZPPZCRwMNHgY2I0gkSeoAKAUuysDJhWDmrygwfGdlkbGmmtW6PQjtMYFx69Igt5btvhjEBoJTw==
+"@sentry/node-core@10.61.0":
+  version "10.61.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.61.0.tgz#49e8e87b2db35834822cc9cfbb7e3d05f1e53a09"
+  integrity sha512-aVSnYqaq5FXv9hX6lVGbg4gB+mVrb6QDoNE/IBq8OBR90TR9I/KU6KlWAcfB9H7I6CHnedldOpljkMAJ5eZ3qA==
   dependencies:
     "@sentry/conventions" "^0.12.0"
-    "@sentry/core" "10.60.0"
-    "@sentry/opentelemetry" "10.60.0"
+    "@sentry/core" "10.61.0"
+    "@sentry/opentelemetry" "10.61.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/node@10.60.0":
-  version "10.60.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.60.0.tgz#ac315d4049a65cc3540a095ef096c20f47146bca"
-  integrity sha512-u//paUrkKaCr0oNn7r7UulGydkYMSkU1wQOIpG/P/jf7psZWnyXhgeszHzUfZXo6pCdxXG9z9viPvzGjqPQN7A==
+"@sentry/node@10.61.0":
+  version "10.61.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.61.0.tgz#3841edd5ef8676efd6a43927e9884f0a4f6c1867"
+  integrity sha512-nct3VqOIuPBnsvqHHWkPG6Ta7QwJftxWXQzHt0+soNcWBoh5WU8hEzIPVEXzxTThJ9AOkF/df3ApWUX4i6ylqQ==
   dependencies:
     "@opentelemetry/api" "^1.9.1"
     "@opentelemetry/instrumentation" "^0.214.0"
     "@opentelemetry/sdk-trace-base" "^2.6.1"
     "@opentelemetry/semantic-conventions" "^1.40.0"
-    "@sentry/core" "10.60.0"
-    "@sentry/node-core" "10.60.0"
-    "@sentry/opentelemetry" "10.60.0"
-    "@sentry/server-utils" "10.60.0"
+    "@sentry/core" "10.61.0"
+    "@sentry/node-core" "10.61.0"
+    "@sentry/opentelemetry" "10.61.0"
+    "@sentry/server-utils" "10.61.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/opentelemetry@10.60.0":
-  version "10.60.0"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.60.0.tgz#9707214b9374b4cb56bba48c2244e52f6cfbf8c4"
-  integrity sha512-gl+2NVH+9RmTu7pd9kV1tKif+Th+p9tmnXR1l3Sb3Wqo1ir5FaNMKrloWEKMXjnepii9EJUrEHdSC+i8NoexxQ==
+"@sentry/opentelemetry@10.61.0":
+  version "10.61.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.61.0.tgz#280627d4ac5a096febc6f644faec9da993523159"
+  integrity sha512-wg8bY1sWPyFOVh59ThiFDeuyheD7DdQliqWmrCCa5q+PSRLij+zpmsGqjlzGU74lzj1Kvpkicw5LsO6U49b2xA==
   dependencies:
     "@sentry/conventions" "^0.12.0"
-    "@sentry/core" "10.60.0"
+    "@sentry/core" "10.61.0"
 
-"@sentry/server-utils@10.60.0":
-  version "10.60.0"
-  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.60.0.tgz#ec92038561bc45ff2492259bdb6a183775475096"
-  integrity sha512-SX+MzWM3nz5ttKT48rlfktm0ERyIpDLma+b6pYeWgW2oFHKcpIu0g0qMGJrZs4lKM3MlgV7IqLa4texMqTp9kQ==
+"@sentry/server-utils@10.61.0":
+  version "10.61.0"
+  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.61.0.tgz#67bb75c62f98e9981dddc152a0c9300bcfc28548"
+  integrity sha512-IrOyMzlOyBkWtnVYb54sALf2f8WVqyyp7woRfHw8c3IMwUr5AskGOi7k2rjmUXO3Q0UkfHNVarexiEfo8ZqTsg==
   dependencies:
     "@apm-js-collab/code-transformer" "^0.15.0"
     "@apm-js-collab/code-transformer-bundler-plugins" "^0.5.0"
     "@apm-js-collab/tracing-hooks" "^0.10.0"
     "@sentry/conventions" "^0.12.0"
-    "@sentry/core" "10.60.0"
+    "@sentry/core" "10.61.0"
     magic-string "~0.30.0"
 
 "@simple-dom/interface@^1.4.0":
