@@ -68,7 +68,7 @@
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.1.4",
     "@vitest/coverage-v8": "4.1.9",
-    "eslint": "10.5.0",
+    "eslint": "10.6.0",
     "eslint-plugin-ghost": "3.5.0",
     "nodemon": "3.1.14",
     "vitest": "4.1.9"
