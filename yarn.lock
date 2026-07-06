@@ -660,10 +660,10 @@
     lodash "4.18.1"
     prettyjson "1.2.5"
 
-"@tryghost/pro-ship@1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.1.4.tgz#4017989eb82ea9a83972c0a714723723cd386bcb"
-  integrity sha512-k4okNuZwxWfyumyC5+A+/96cE/bnBZmcigghWNTP6n/8QuMX4eFQoPlu3XGyUToF5vKGfl1HU5pELPbwSLDYLA==
+"@tryghost/pro-ship@1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.1.5.tgz#9ae6596911b945637d77d9809df6e85fe434f665"
+  integrity sha512-gwd4ynAnEHkj6bx+tfkZCYaL+WlNHQQmCkAJn7Q2H0Uq+mG74i2wwxUWr+wTuyxjLg8KviMux5uwtkEQfzi1VA==
   dependencies:
     "@tryghost/root-utils" "2.3.1"
     semver "7.8.5"
