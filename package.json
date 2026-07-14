@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "2.1.0",
-    "@eslint/eslintrc": "3.3.5",
+    "@eslint/eslintrc": "3.3.6",
     "@eslint/js": "10.0.1",
     "@tryghost/pro-ship": "1.1.5",
     "@vitest/coverage-v8": "4.1.10",
