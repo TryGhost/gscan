@@ -671,12 +671,12 @@
     lodash "4.18.1"
     prettyjson "1.2.5"
 
-"@tryghost/pro-ship@1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.1.5.tgz#9ae6596911b945637d77d9809df6e85fe434f665"
-  integrity sha512-gwd4ynAnEHkj6bx+tfkZCYaL+WlNHQQmCkAJn7Q2H0Uq+mG74i2wwxUWr+wTuyxjLg8KviMux5uwtkEQfzi1VA==
+"@tryghost/pro-ship@1.1.7":
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/@tryghost/pro-ship/-/pro-ship-1.1.7.tgz#bede38eaa07fb043501bd44bf142da8f984b25a2"
+  integrity sha512-pF06n43ZssCV1rjy/B6MQcempQc7Kij46/odeiJZHoP9GAOPhTLfmq0zSdQp9WE4vhHGHdwboee9Z7gSszCD9g==
   dependencies:
-    "@tryghost/root-utils" "2.3.1"
+    "@tryghost/root-utils" "2.3.2"
     semver "7.8.5"
 
 "@tryghost/request@3.3.2":
@@ -690,14 +690,6 @@
     cacheable-lookup "7.0.0"
     got "14.6.6"
     lodash "4.18.1"
-
-"@tryghost/root-utils@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@tryghost/root-utils/-/root-utils-2.3.1.tgz#e961e42ba28455d6d79d3c44e18c53ebaa4981ad"
-  integrity sha512-1g0HskTTDJzn3CzcEWhd4aKtcmPm3IztD7cyfQQiG4QX+6gfpPOkYk7Y5gDOwTKAYtfor0nc8npSY90vvIj93A==
-  dependencies:
-    caller "1.1.0"
-    find-root "1.1.0"
 
 "@tryghost/root-utils@2.3.2":
   version "2.3.2"
