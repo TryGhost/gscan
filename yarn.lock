@@ -2,20 +2,20 @@
 # yarn lockfile v1
 
 
-"@apm-js-collab/code-transformer-bundler-plugins@^0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer-bundler-plugins/-/code-transformer-bundler-plugins-0.5.0.tgz#8a08136e8281f7e8e36ac6810d2b122c5917de93"
-  integrity sha512-YxLBY5nGlurL7QeJLq6e5g0ouBpAp0pwgyA/5rHXEXwhiPLn9ZHbT+Y2LlP90GT872cSocfjWRYu/fnpuBudNQ==
+"@apm-js-collab/code-transformer-bundler-plugins@^0.6.1":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer-bundler-plugins/-/code-transformer-bundler-plugins-0.6.2.tgz#176013d8cc8316e8e1d19a6a1ac032fd893bb16e"
+  integrity sha512-5vBrtIEL+UVbO0YWWoyYG4QMgR+ZfnIL3xlteIkAmU7YaAPhc28k3md/NM14tnkfXKjKOn9yUzEA9AYUmNpvJg==
   dependencies:
-    "@apm-js-collab/code-transformer" "^0.15.0"
+    "@apm-js-collab/code-transformer" "^0.18.0"
     es-module-lexer "^2.1.0"
     magic-string "^0.30.21"
     module-details-from-path "^1.0.4"
 
-"@apm-js-collab/code-transformer@^0.15.0":
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer/-/code-transformer-0.15.0.tgz#a3a1b6c7b92db16f8277636b4a72a1626e2fa52a"
-  integrity sha512-XmXYVs8CzJ1Aj79noVbn2weUO/XWtRyURpGqx7aU7DOXlUQhR0WKOQNF0okh7PCeY37vxf7kU3v57OAkEPm3ww==
+"@apm-js-collab/code-transformer@^0.18.0":
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer/-/code-transformer-0.18.0.tgz#722972c05f04bc37f4bbd5067f42ffd7a990eee9"
+  integrity sha512-aN3Oq8r1J3gPJtCwErP664gM0+HhM1I1lujPr9TMTCcEl/joQQbpGpeMdts9B1+W2wHMsvioDMv5F4PvMWE6gw==
   dependencies:
     "@types/estree" "^1.0.8"
     astring "^1.9.0"
@@ -24,12 +24,12 @@
     semifies "^1.0.0"
     source-map "^0.6.0"
 
-"@apm-js-collab/tracing-hooks@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@apm-js-collab/tracing-hooks/-/tracing-hooks-0.10.1.tgz#52a463f6dd03e99582a7dde9816257efabdf63b9"
-  integrity sha512-w2OWXR7FWrKqSziuE9+QclaZrStxO/8+OwbXM635s/zs0Eez1Qo3ivSPdB2WsaPY/iznKTytONPx/PitD7IXcA==
+"@apm-js-collab/tracing-hooks@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@apm-js-collab/tracing-hooks/-/tracing-hooks-0.13.0.tgz#20b2f77ec7a0e5dfd9fbf2215b56e2c2b7f41e4b"
+  integrity sha512-mTvWz9rnQwx1U3h0XPTHaX7bgfkpipLLTQyjlC2cdhQpQEuoLT0AGzoydeoq2NxfEVv6fWOOETcSbb2nptleyw==
   dependencies:
-    "@apm-js-collab/code-transformer" "^0.15.0"
+    "@apm-js-collab/code-transformer" "^0.18.0"
     debug "^4.4.1"
     module-details-from-path "^1.0.4"
 
@@ -481,62 +481,61 @@
   resolved "https://registry.yarnpkg.com/@sec-ant/readable-stream/-/readable-stream-0.4.1.tgz#60de891bb126abfdc5410fdc6166aca065f10a0c"
   integrity sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==
 
-"@sentry/conventions@^0.15.1":
-  version "0.15.1"
-  resolved "https://registry.yarnpkg.com/@sentry/conventions/-/conventions-0.15.1.tgz#5b8888862d1e444678938f5afdd7842bca42f7cc"
-  integrity sha512-ZLP8bRdMON3prWE2tJyImuYscCxdcJeIPIhrOs/rgyFm3C1nCh1B6gdvPj3AZ5zW08oSFFCsq7T+tYEW3h8MNA==
+"@sentry/conventions@^0.16.0":
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/@sentry/conventions/-/conventions-0.16.0.tgz#3b58d15714cf44dca1518496c00749eec5525009"
+  integrity sha512-fO9PLmHdVURcSPUpWCItWAtgKiMwGdJHbovoSEyLplX5sxs2ugvI4CBPTrkkgqhObnZOD0CnWBKDzSVQYBKEyQ==
 
-"@sentry/core@10.65.0":
-  version "10.65.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.65.0.tgz#a98cfd6e138d9658dd42d050902837ff591452e8"
-  integrity sha512-3aqtmM5NgNGo45BNaaBzi0LPQZAw//NEL4HKS5fXm12pJMa4KEkze8DEKnkTEIrGnWaOJKamecHKlnNg/Mqf/Q==
+"@sentry/core@10.66.0":
+  version "10.66.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.66.0.tgz#5473d3129b3ce26454ffb70f2e8a9af904ad0c30"
+  integrity sha512-9UbgSvds7bMJsP561eWmeyMLcfOmnwxtnx2QuW3yLobzP2Ob7CyJCOzP4tGzlTAGDrzShkFEZhiyuBUKiEK2oQ==
   dependencies:
-    "@sentry/conventions" "^0.15.1"
+    "@sentry/conventions" "^0.16.0"
 
-"@sentry/node-core@10.65.0":
-  version "10.65.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.65.0.tgz#76a59b08947da74d0037d0e84d8074818b4a4aa1"
-  integrity sha512-U01X9mPT+jZnsLPmPWfBU67Ka+t/Sdd9RGAuvGoKdrI6N47a/9PDkM9oCW+kj0fmZwogZHTgSnzJU5oi3pImgA==
+"@sentry/node-core@10.66.0":
+  version "10.66.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.66.0.tgz#e5e9fac0f8e91236b0b101544b79005b57b6af54"
+  integrity sha512-SUnXHROqSdSetKgZC1goDEKCuMz3OmQ1h4rxzWeexLyqan+pensZXfLouP6jzZXlA8e/HP7uQg78LnfqYDcZlQ==
   dependencies:
-    "@sentry/conventions" "^0.15.1"
-    "@sentry/core" "10.65.0"
-    "@sentry/opentelemetry" "10.65.0"
+    "@sentry/conventions" "^0.16.0"
+    "@sentry/core" "10.66.0"
+    "@sentry/opentelemetry" "10.66.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/node@10.65.0":
-  version "10.65.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.65.0.tgz#770bf37552d04f649eaa3a7e2ac6e568aed9b8ba"
-  integrity sha512-t35dcdyksysVch/m/XdLgGJqGKJhr9eMD30Ctn3TeQ8yMB0wNXySfjPR5Yg93fpjmfaHtzc6iYIXRAvgNVfrvA==
+"@sentry/node@10.66.0":
+  version "10.66.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.66.0.tgz#6d0621013eab15ccfa613a08fd595fa3364b808c"
+  integrity sha512-5Ow7iQiRjaSaEOmqEIkYV368hFFzShIZCXPoj+wX3JtOmKFrsNu6lr8/VJlQs7cyjFS6tzE50PrLrD8iAPS/8w==
   dependencies:
     "@opentelemetry/api" "^1.9.1"
     "@opentelemetry/instrumentation" "^0.220.0"
     "@opentelemetry/sdk-trace-base" "^2.9.0"
-    "@sentry/conventions" "^0.15.1"
-    "@sentry/core" "10.65.0"
-    "@sentry/node-core" "10.65.0"
-    "@sentry/opentelemetry" "10.65.0"
-    "@sentry/server-utils" "10.65.0"
+    "@sentry/conventions" "^0.16.0"
+    "@sentry/core" "10.66.0"
+    "@sentry/node-core" "10.66.0"
+    "@sentry/opentelemetry" "10.66.0"
+    "@sentry/server-utils" "10.66.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/opentelemetry@10.65.0":
-  version "10.65.0"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.65.0.tgz#ffdef3b3dd2b06707a2c0bc5313a4414f2f549d8"
-  integrity sha512-8C6FPvm3XBvUrkM52dX3Gz0p2H0Ij8t4sahUA+GTiCz0WM0fnyPeQPGC/b6I4jamV9UXyCZRnE1UEEGCoD+c7A==
+"@sentry/opentelemetry@10.66.0":
+  version "10.66.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.66.0.tgz#a8e4d3d93f4cebd1b94dcd91cdc61c2504cfaab1"
+  integrity sha512-K5Y9IettN9yIOnpqCs40HRLGqaGUoaQ50+ZsLqX2kPCk3TzJVpKZ9icKwaJ4Nxm72QgGVT5Ovfr/9FXbgd3b/Q==
   dependencies:
-    "@sentry/conventions" "^0.15.1"
-    "@sentry/core" "10.65.0"
+    "@sentry/conventions" "^0.16.0"
+    "@sentry/core" "10.66.0"
 
-"@sentry/server-utils@10.65.0":
-  version "10.65.0"
-  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.65.0.tgz#7a261a5591c7451a82ce06ed95af5e2c4dbd6ab0"
-  integrity sha512-80toEFD6s+0Le7jrYB6pHWLF703WSg0WyavAWqrBGWG8JkREHgedAxzFYgoY5GlMI756qk6Ea7UzhJTHd2zAXA==
+"@sentry/server-utils@10.66.0":
+  version "10.66.0"
+  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.66.0.tgz#048f6eaa6b157189839f883375fc5a78a1be3fe5"
+  integrity sha512-h9EM9Wz9Mc6w2Vn7Fyh6ozjy4JC2UbUvWf9Ra1HYA4KMeYqjFA5/o0oB4pg4w/TF+rb+9OF/HNqxjuczxpudpA==
   dependencies:
-    "@apm-js-collab/code-transformer" "^0.15.0"
-    "@apm-js-collab/code-transformer-bundler-plugins" "^0.5.0"
-    "@apm-js-collab/tracing-hooks" "^0.10.1"
-    "@sentry/conventions" "^0.15.1"
-    "@sentry/core" "10.65.0"
-    magic-string "~0.30.0"
+    "@apm-js-collab/code-transformer" "^0.18.0"
+    "@apm-js-collab/code-transformer-bundler-plugins" "^0.6.1"
+    "@apm-js-collab/tracing-hooks" "^0.13.0"
+    "@sentry/conventions" "^0.16.0"
+    "@sentry/core" "10.66.0"
 
 "@simple-dom/interface@^1.4.0":
   version "1.4.0"
@@ -2810,7 +2809,7 @@ lru-cache@^11.0.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.5.1.tgz#f3daa3540847b9737ebc02499ddb36765e54db4a"
   integrity sha512-RPimw/7aMdv2oqRrxKwvZXcPfwBrn/JZ2xYcY9Hus/6LaS3VOAKVWKWgNLCFSiOm1ESXinjsDlidVU7JlnCN2A==
 
-magic-string@^0.30.21, magic-string@~0.30.0:
+magic-string@^0.30.21:
   version "0.30.21"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.21.tgz#56763ec09a0fa8091df27879fd94d19078c00d91"
   integrity sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==
