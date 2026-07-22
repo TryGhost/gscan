@@ -27,10 +27,7 @@
       },
       "no_default": {
         "type": "select",
-        "options": [
-          "one",
-          "two"
-        ],
+        "options": ["one", "two"],
         "default": "one"
       },
       "title": {
