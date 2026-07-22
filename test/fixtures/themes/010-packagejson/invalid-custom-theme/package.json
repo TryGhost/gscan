@@ -33,12 +33,19 @@
       },
       "no_default": {
         "type": "select",
-        "options": ["one", "two"],
+        "options": [
+          "one",
+          "two"
+        ],
         "default": "three"
       },
       "description_too_long": {
         "type": "color",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor."
+      },
+      "default_background_color_invalid": {
+        "type": "color",
+        "default": "oklch(0 0 0)"
       },
       "visibility_invalid_syntax": {
         "type": "boolean",
