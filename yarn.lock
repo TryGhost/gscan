@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@apm-js-collab/code-transformer-bundler-plugins@^0.6.1":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer-bundler-plugins/-/code-transformer-bundler-plugins-0.6.2.tgz#176013d8cc8316e8e1d19a6a1ac032fd893bb16e"
-  integrity sha512-5vBrtIEL+UVbO0YWWoyYG4QMgR+ZfnIL3xlteIkAmU7YaAPhc28k3md/NM14tnkfXKjKOn9yUzEA9AYUmNpvJg==
+"@apm-js-collab/code-transformer-bundler-plugins@^0.7.1":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@apm-js-collab/code-transformer-bundler-plugins/-/code-transformer-bundler-plugins-0.7.2.tgz#83f46588e046c69101e134501ef97024e8d6100c"
+  integrity sha512-GvpKWDmzBFzbtVElU+tEDMDYyMY8SnMH4NNwwlUQioNHZvE6sSuHEqNkfU3iYhWL+/XO5Ej+MzhVJoqM10NYCQ==
   dependencies:
     "@apm-js-collab/code-transformer" "^0.18.0"
     es-module-lexer "^2.1.0"
@@ -486,56 +486,55 @@
   resolved "https://registry.yarnpkg.com/@sentry/conventions/-/conventions-0.16.0.tgz#3b58d15714cf44dca1518496c00749eec5525009"
   integrity sha512-fO9PLmHdVURcSPUpWCItWAtgKiMwGdJHbovoSEyLplX5sxs2ugvI4CBPTrkkgqhObnZOD0CnWBKDzSVQYBKEyQ==
 
-"@sentry/core@10.66.0":
-  version "10.66.0"
-  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.66.0.tgz#5473d3129b3ce26454ffb70f2e8a9af904ad0c30"
-  integrity sha512-9UbgSvds7bMJsP561eWmeyMLcfOmnwxtnx2QuW3yLobzP2Ob7CyJCOzP4tGzlTAGDrzShkFEZhiyuBUKiEK2oQ==
+"@sentry/core@10.67.0":
+  version "10.67.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-10.67.0.tgz#38afb5484d2581d40b212303e8a1abba2daea7a2"
+  integrity sha512-b6U3pJ8AUvN9aouq0vl+VZI8KT8RslBsfGMFuNwRr313zOmdmFJBZqTiUw9VGgJ2jGKxLO9alm9rlxBfX4hf+w==
   dependencies:
     "@sentry/conventions" "^0.16.0"
 
-"@sentry/node-core@10.66.0":
-  version "10.66.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.66.0.tgz#e5e9fac0f8e91236b0b101544b79005b57b6af54"
-  integrity sha512-SUnXHROqSdSetKgZC1goDEKCuMz3OmQ1h4rxzWeexLyqan+pensZXfLouP6jzZXlA8e/HP7uQg78LnfqYDcZlQ==
+"@sentry/node-core@10.67.0":
+  version "10.67.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node-core/-/node-core-10.67.0.tgz#b8c07bf9cec4739df79d5461c3f99ee6b3e3e198"
+  integrity sha512-dBHHRwZyan1pOnFJ+sNBvR8TkXbZAfZU/jpxmALS3JZ2/8AGR7cQKL+b7SleKuJ7iUDZyklN3Nqi0i5JkcA+HA==
   dependencies:
     "@sentry/conventions" "^0.16.0"
-    "@sentry/core" "10.66.0"
-    "@sentry/opentelemetry" "10.66.0"
+    "@sentry/core" "10.67.0"
+    "@sentry/opentelemetry" "10.67.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/node@10.66.0":
-  version "10.66.0"
-  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.66.0.tgz#6d0621013eab15ccfa613a08fd595fa3364b808c"
-  integrity sha512-5Ow7iQiRjaSaEOmqEIkYV368hFFzShIZCXPoj+wX3JtOmKFrsNu6lr8/VJlQs7cyjFS6tzE50PrLrD8iAPS/8w==
+"@sentry/node@10.67.0":
+  version "10.67.0"
+  resolved "https://registry.yarnpkg.com/@sentry/node/-/node-10.67.0.tgz#8bdc35228e5909647db0aa23c89c42a20799269d"
+  integrity sha512-SFKpZGqOCEFSmP93NdDP6ikZp4NS7A/JR8+2ofK3jF6Y9Vyox7pX0pxdOnPLpFcPtMybMahfWqSAWJvsFs4RmA==
   dependencies:
     "@opentelemetry/api" "^1.9.1"
     "@opentelemetry/instrumentation" "^0.220.0"
     "@opentelemetry/sdk-trace-base" "^2.9.0"
     "@sentry/conventions" "^0.16.0"
-    "@sentry/core" "10.66.0"
-    "@sentry/node-core" "10.66.0"
-    "@sentry/opentelemetry" "10.66.0"
-    "@sentry/server-utils" "10.66.0"
+    "@sentry/core" "10.67.0"
+    "@sentry/node-core" "10.67.0"
+    "@sentry/opentelemetry" "10.67.0"
+    "@sentry/server-utils" "10.67.0"
     import-in-the-middle "^3.0.0"
 
-"@sentry/opentelemetry@10.66.0":
-  version "10.66.0"
-  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.66.0.tgz#a8e4d3d93f4cebd1b94dcd91cdc61c2504cfaab1"
-  integrity sha512-K5Y9IettN9yIOnpqCs40HRLGqaGUoaQ50+ZsLqX2kPCk3TzJVpKZ9icKwaJ4Nxm72QgGVT5Ovfr/9FXbgd3b/Q==
+"@sentry/opentelemetry@10.67.0":
+  version "10.67.0"
+  resolved "https://registry.yarnpkg.com/@sentry/opentelemetry/-/opentelemetry-10.67.0.tgz#5c2df7b935d953546443bd63dd7cde1d54df48b7"
+  integrity sha512-oLTOrAK1rOqmYRktOJZwz37B1seXPx1W2FTMVtzTVNjMFA/LZwGzePeZzhUOgzZgfLHixMd/ceWtGqoxAndcjQ==
   dependencies:
     "@sentry/conventions" "^0.16.0"
-    "@sentry/core" "10.66.0"
+    "@sentry/core" "10.67.0"
 
-"@sentry/server-utils@10.66.0":
-  version "10.66.0"
-  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.66.0.tgz#048f6eaa6b157189839f883375fc5a78a1be3fe5"
-  integrity sha512-h9EM9Wz9Mc6w2Vn7Fyh6ozjy4JC2UbUvWf9Ra1HYA4KMeYqjFA5/o0oB4pg4w/TF+rb+9OF/HNqxjuczxpudpA==
+"@sentry/server-utils@10.67.0":
+  version "10.67.0"
+  resolved "https://registry.yarnpkg.com/@sentry/server-utils/-/server-utils-10.67.0.tgz#bb5d4af442541b798d2a1bc26104ecf43438c074"
+  integrity sha512-GQ9t+RSTx5s3b/aZrLFuL4nrwPLMah5NiZk5cjxJmgmOSgm3nMdO8gdqCedDch5B13F3YsxtaQYjSJnzLz8M5A==
   dependencies:
-    "@apm-js-collab/code-transformer" "^0.18.0"
-    "@apm-js-collab/code-transformer-bundler-plugins" "^0.6.1"
+    "@apm-js-collab/code-transformer-bundler-plugins" "^0.7.1"
     "@apm-js-collab/tracing-hooks" "^0.13.0"
     "@sentry/conventions" "^0.16.0"
-    "@sentry/core" "10.66.0"
+    "@sentry/core" "10.67.0"
 
 "@simple-dom/interface@^1.4.0":
   version "1.4.0"
