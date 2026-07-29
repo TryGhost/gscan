@@ -52,7 +52,7 @@
     "@tryghost/pretty-cli": "3.3.6",
     "@tryghost/server": "3.1.6",
     "@tryghost/zip": "3.5.5",
-    "chalk": "5.6.2",
+    "chalk": "6.0.0",
     "express": "5.2.1",
     "express-handlebars": "8.0.1",
     "glob": "13.0.6",
