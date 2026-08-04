@@ -588,6 +588,7 @@ describe('010 package.json', function () {
                     'GS010-PJ-CUST-THEME-SETTINGS-CASE',
                     'GS010-PJ-CUST-THEME-SETTINGS-TYPE',
                     'GS010-PJ-CUST-THEME-SETTINGS-GROUP',
+                    'GS010-PJ-CUST-THEME-SETTINGS-COLOR-DEFAULT',
                     'GS010-PJ-CUST-THEME-SETTINGS-SELECT-OPTIONS',
                     'GS010-PJ-CUST-THEME-SETTINGS-SELECT-DEFAULT'
                 );
