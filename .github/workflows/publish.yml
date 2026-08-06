@@ -37,9 +37,12 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
+      - uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6
+
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 24
+          cache: pnpm
           registry-url: 'https://registry.npmjs.org'
 
       # npm 11+ is required for npm Trusted Publishing (OIDC).
@@ -47,7 +50,7 @@ jobs:
         run: npm install -g npm@11.19.0
 
       - name: Install dependencies
-        run: yarn --prefer-offline --ignore-scripts --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Compare local and npm versions
         id: version_check
@@ -69,13 +72,13 @@ jobs:
 
       - name: Publish to npm (dry run)
         if: github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true'
-        run: yarn ship:ci
+        run: pnpm ship:ci
         env:
           NPM_CONFIG_DRY_RUN: true
 
       - name: Publish to npm
         if: steps.version_check.outputs.should_publish == 'true' && (github.event_name != 'workflow_dispatch' || github.event.inputs['dry-run'] != 'true')
-        run: yarn ship:ci
+        run: pnpm ship:ci
 
       - name: Skip publish summary
         if: steps.version_check.outputs.should_publish != 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true')

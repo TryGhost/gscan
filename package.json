@@ -1,6 +1,7 @@
 {
   "name": "gscan",
   "version": "6.4.2",
+  "packageManager": "pnpm@11.19.0",
   "description": "Scans Ghost themes looking for errors, deprecations, features and compatibility",
   "keywords": [
     "ghost",
@@ -34,8 +35,8 @@
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon",
     "lint": "eslint . --ext .js --cache",
     "test": "NODE_ENV=testing vitest run --coverage",
-    "posttest": "yarn lint",
-    "preship": "yarn test",
+    "posttest": "pnpm lint",
+    "preship": "pnpm test",
     "ship": "pro-ship",
     "ship:ci": "npm publish"
   },

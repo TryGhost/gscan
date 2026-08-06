@@ -17,15 +17,15 @@ GScan validates Ghost themes for compatibility with Ghost versions v1-v6. It can
 ## Quick Start
 
 ```bash
-yarn install
-yarn test
-yarn lint
+pnpm install
+pnpm test
+pnpm lint
 ```
 
 Run local web server:
 
 ```bash
-yarn dev
+pnpm dev
 # http://localhost:2369
 ```
 
@@ -53,7 +53,7 @@ Run CLI checks:
 - Keep implementations consistent with existing CommonJS style.
 - Prefer minimal, targeted edits over broad refactors.
 - Add or update tests for behavior changes.
-- Run `yarn test` and `yarn lint` before finalizing significant changes.
+- Run `pnpm test` and `pnpm lint` before finalizing significant changes.
 - Do not change rule code identifiers unless explicitly requested; they are user-facing and versioned.
 
 ## Adding a New Check

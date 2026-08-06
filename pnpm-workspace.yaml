@@ -1,0 +1,7 @@
+minimumReleaseAge: 4320
+strictDepBuilds: true
+blockExoticSubdeps: true
+
+allowBuilds:
+  # Optional native tracing support is not required by gscan.
+  'dtrace-provider@0.8.8': false

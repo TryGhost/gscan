@@ -1,5 +1,5 @@
 {
-  "exec": "npm start",
+  "exec": "pnpm start",
   "verbose": true,
   "ignore": ["tmp/*", "uploads/*"]
 }
