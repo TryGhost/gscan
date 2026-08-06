@@ -2,18 +2,18 @@
 FROM node:24.11.1-alpine3.21@sha256:b8f7c9056af700568c1ce76173f1c93743fb64ca1343e18cdf3a6ded8985ad3d AS base
 # Set working directory in the container
 WORKDIR /app
-# Copy package.json and yarn.lock files to the workspace
-COPY package.json yarn.lock ./
+# Copy package manager metadata to the workspace
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 # ---- Dependencies ----
 FROM base AS dependencies
 # Install production dependencies
-RUN yarn install --ignore-scripts --production --frozen-lockfile
+RUN corepack pnpm install --prod --frozen-lockfile
 # Copy only the production node_modules for later use
 RUN cp -R node_modules prod_node_modules
 
 # Install all dependencies, including 'devDependencies'
-RUN yarn install --ignore-scripts --frozen-lockfile
+RUN corepack pnpm install --frozen-lockfile
 
 # ---- Release ----
 FROM node:24.11.1-alpine3.21@sha256:b8f7c9056af700568c1ce76173f1c93743fb64ca1343e18cdf3a6ded8985ad3d AS release
@@ -33,4 +33,4 @@ RUN ln -s /config/config.json /app/config.development.json && \
 EXPOSE 2369
 
 # Run your application
-CMD ["yarn", "start"]
+CMD ["node", "app/index.js"]
