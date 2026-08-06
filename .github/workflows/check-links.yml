@@ -20,5 +20,5 @@ jobs:
           node-version: 24 # TODO: return to lts/* once 1) we're back to passing runs and 2) 24 is added to package.json
           cache: yarn
 
-      - run: yarn
+      - run: yarn install --frozen-lockfile --ignore-scripts
       - run: node test/valid-doc-links.js
