@@ -43,8 +43,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       # npm 11+ is required for npm Trusted Publishing (OIDC).
-      - name: Install npm 11
-        run: npm install -g npm@11
+      - name: Install npm 11.19.0
+        run: npm install -g npm@11.19.0
 
       - name: Install dependencies
         run: yarn --prefer-offline --ignore-scripts --frozen-lockfile
