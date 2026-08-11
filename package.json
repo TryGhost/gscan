@@ -48,7 +48,7 @@
     "@tryghost/debug": "2.3.6",
     "@tryghost/errors": "3.3.6",
     "@tryghost/logging": "5.3.1",
-    "@tryghost/nql": "0.13.1",
+    "@tryghost/nql": "0.13.2",
     "@tryghost/pretty-cli": "3.3.6",
     "@tryghost/server": "3.1.6",
     "@tryghost/zip": "3.5.5",
