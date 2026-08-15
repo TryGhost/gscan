@@ -3675,6 +3675,16 @@ describe('001 Deprecations', function () {
             });
         });
 
+        it('[success] should not flag {{author.*}} used inside an {{#is "author"}} block', function () {
+            return utils.testCheck(thisCheck, '001-deprecations/v6/valid-author-is-context', options).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                expect(output.results.fail).toEqual({});
+                utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-NAME');
+
+            });
+        });
+
         it('[failure] should detect deprecated facebook and twitter helper usage', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/invalid/fb-twitter-helpers', options).then(function (output) {
                 utils.assertValidThemeObject(output);
