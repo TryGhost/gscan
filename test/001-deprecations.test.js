@@ -3681,6 +3681,37 @@ describe('001 Deprecations', function () {
 
                 expect(output.results.fail).toEqual({});
                 utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-NAME');
+                utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-BIO');
+
+            });
+        });
+
+        it('[failure] should still flag {{author.*}} usage that only looks author-scoped', function () {
+            return utils.testCheck(thisCheck, '001-deprecations/v6/invalid-author-is-context-edge-cases', options).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                // {{#is "index, author"}} is an OR - the block also renders on
+                // index pages where `author` is not in scope - and
+                // {{#foreach posts}}{{author.name}}{{/foreach}} refers to each
+                // post's author relation, not the page-context author - both
+                // remain genuine deprecations.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                const authNameFiles = output.results.fail['GS001-DEPR-AUTH-NAME'].failures.map(f => f.ref).sort();
+                expect(authNameFiles).toEqual(['foreach-shadow.hbs', 'multi-condition.hbs']);
+
+                // {{author.id}} preceded by a Handlebars comment that merely
+                // *mentions* {{#is "author"}} should not be treated as if it
+                // were inside a real author-is block.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures[0].ref).toEqual('comment-not-a-block.hbs');
+
+                // bare {{author}} is a removed helper, not a property access,
+                // and should never be exempted - even inside a genuine
+                // {{#is "author"}} block it renders [object Object].
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures[0].ref).toEqual('bare-author-helper.hbs');
 
             });
         });

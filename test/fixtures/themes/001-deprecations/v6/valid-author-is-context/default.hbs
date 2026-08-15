@@ -10,6 +10,12 @@
     {{#is "author"}}
       {{author.name}} | {{@site.title}}
     {{/is}}
+    {{#is "author"}}
+      {{#is "paged"}}
+        {{pagination.next}}
+      {{/is}}
+      {{author.bio}}
+    {{/is}}
     {{#is "tag"}}
       {{tag.name}} | {{@site.title}}
     {{/is}}
