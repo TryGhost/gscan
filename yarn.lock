@@ -570,10 +570,10 @@
     json-stringify-safe "5.0.1"
     lodash "4.18.1"
 
-"@tryghost/mongo-knex@^0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@tryghost/mongo-knex/-/mongo-knex-0.11.1.tgz#1e6ceee83c20f6634d8e4fe4b1bfb57e1abafd85"
-  integrity sha512-W5m2aU4WW14fMQoyj5oY6vvHTGzMfz1WEVGK8YTY0zWszJ/kUPo5qHXY9ivoxQthmFoBUpSbNuP0qRAfE6UrNQ==
+"@tryghost/mongo-knex@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@tryghost/mongo-knex/-/mongo-knex-0.11.2.tgz#1ae8bd18fb4b4005f85f4a076b27cdb5996055e3"
+  integrity sha512-0l7L/J609p+12+rA15Muya1JoIeSfBxIUZRB2FfROtJ2U+FTEOzZ/c0HgxB8eAArJMW2VXECmLCAbNUwygRzfg==
   dependencies:
     debug "4.4.3"
     lodash "4.18.1"
@@ -592,12 +592,12 @@
   dependencies:
     luxon "3.7.2"
 
-"@tryghost/nql@0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.13.3.tgz#6841e064a902265835f7d7f4e7e84d4611d5c1cf"
-  integrity sha512-nnX7l8tr6GuPoQML1wDn86JYQpdZ9kFLhJ75JVfF1iTYEWB/WQpJ2tCGRBxXr160jM5L/hMe2dfnZr9EZRMksg==
+"@tryghost/nql@0.13.4":
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/@tryghost/nql/-/nql-0.13.4.tgz#d778251308cc5838a138c64d9c229376e67b04bf"
+  integrity sha512-XE3lEpkqZM3ueOyKz5suwb2W4muWAM/YfYYpXHrnu0H7r46Xuo7FZm1s6Ga2Cut/STtuax5E6NfZ1AFv017X4w==
   dependencies:
-    "@tryghost/mongo-knex" "^0.11.1"
+    "@tryghost/mongo-knex" "^0.11.2"
     "@tryghost/mongo-utils" "^0.6.6"
     "@tryghost/nql-lang" "^0.7.0"
     lodash "4.18.1"
