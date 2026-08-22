@@ -3713,6 +3713,22 @@ describe('001 Deprecations', function () {
                 expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
                 expect(output.results.fail['GS001-DEPR-AUTH'].failures[0].ref).toEqual('bare-author-helper.hbs');
 
+                // {{#is "author"}} only grants exemption in its primary
+                // branch - the {{else}} branch is not author context.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures[0].ref).toEqual('else-branch.hbs');
+
+                // {{^is "author"}} is the inverse - author context is only
+                // in its {{else}} branch, not its primary branch.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures[0].ref).toEqual('else-branch.hbs');
+
+                // {{author.website}} inside the {{else}} branch of
+                // {{^is "author"}} is genuine author context and stays exempt.
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-WEB');
+
             });
         });
 
