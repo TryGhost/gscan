@@ -71,7 +71,7 @@ let rules = {
         details: oneLineTrim`The usage of <code>{{#author}}</code> block helper outside of <code>author.hbs</code> is deprecated and should be replaced with <code>{{#primary_author}}</code> or <code>{{#foreach authors}}...{{/foreach}}</code>.<br>
         Find more information about the <code>{{authors}}</code> helper <a href="${docsBaseUrl}helpers/authors/" target=_blank>here</a>.`,
         regex: /{{\s*?#author\s*?}}/g,
-        notValidIn: 'author.hbs',
+        notValidIn: /^author(-.+)?\.hbs$/,
         helper: '{{#author}}'
     },
     'GS001-DEPR-CON-AUTH': {

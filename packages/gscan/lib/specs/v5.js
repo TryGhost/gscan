@@ -544,7 +544,7 @@ let rules = {
         ${multiAuthorDesc}<br>
         ${authorHelperDocs}`,
         regex: /{{\s*?#author\s*?}}/g,
-        notValidIn: 'author.hbs',
+        notValidIn: /^author(-.+)?\.hbs$/,
         helper: '{{#author}}'
     },
     'GS001-DEPR-PAIMG': {
