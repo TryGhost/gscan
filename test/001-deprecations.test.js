@@ -3729,6 +3729,19 @@ describe('001 Deprecations', function () {
                 // {{^is "author"}} is genuine author context and stays exempt.
                 expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-WEB');
 
+                // A nested {{#if}}/{{#unless}} inside {{#is "author"}} does
+                // not change author context - both of its branches stay
+                // exempt, and its own {{else}} must not leak through to
+                // flip the enclosing is-block's active branch.
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-MAIL');
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-LOC');
+
+                // {{author.twitter}} inside an unrelated {{#unless}} outside
+                // any {{#is "author"}} block remains a genuine deprecation.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures[0].ref).toEqual('if-unless-nested.hbs');
+
             });
         });
 
