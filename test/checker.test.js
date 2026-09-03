@@ -62,6 +62,24 @@ describe('Checker', function () {
         });
     });
 
+    it('skipChecks skips the AST parse and content reads but keeps partials/templates/customSettings', function () {
+        return check(themePath('theme-with-custom-templates'), {checkVersion: 'v5', skipChecks: true}).then((theme) => {
+            utils.assertValidThemeObject(theme);
+
+            expect(theme.results.pass).toHaveLength(0);
+            expect(theme.results.fail).toEqual({});
+
+            expect(theme.helpers).toEqual({});
+
+            expect(theme.templates.all).toContain('post');
+            expect(theme.templates.custom.length).toEqual(4);
+
+            const hbsFile = theme.files.find(f => f.file === 'custom-My-Post.hbs');
+            expect(hbsFile.content).toBeUndefined();
+            expect(hbsFile.parsed).toBeUndefined();
+        });
+    });
+
     it('returns a valid theme when running all checks', function () {
         return check(themePath('is-empty'), {checkVersion: 'v2'}).then((theme) => {
             utils.assertValidThemeObject(theme);
