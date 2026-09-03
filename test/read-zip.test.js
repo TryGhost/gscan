@@ -261,4 +261,30 @@ describe('Zip file handler can read zip files', function () {
             }
         });
     });
+
+    // These test the comparator directly (rather than through resolveBaseDir,
+    // which also calls the platform-native path.dirname()/path.join() - those
+    // only parse backslashes as separators when actually running on Windows)
+    // so the separator-neutral depth sort can be verified on any OS running
+    // this test suite, including with Windows-style ("\\") match strings.
+    describe('compareMatchDepth', function () {
+        it('sorts POSIX-separated matches by depth, shallowest first', function () {
+            const matches = ['deep/nested/index.hbs', 'shallow/index.hbs'];
+            matches.sort(readZip._private.compareMatchDepth);
+            expect(matches).toEqual(['shallow/index.hbs', 'deep/nested/index.hbs']);
+        });
+
+        it('sorts Windows-separated matches by depth, shallowest first', function () {
+            const matches = ['deep\\nested\\index.hbs', 'shallow\\index.hbs'];
+            matches.sort(readZip._private.compareMatchDepth);
+            expect(matches).toEqual(['shallow\\index.hbs', 'deep\\nested\\index.hbs']);
+        });
+
+        it('breaks ties alphabetically at equal depth, for POSIX or Windows separators', function () {
+            expect(['zeta/index.hbs', 'alpha/index.hbs'].sort(readZip._private.compareMatchDepth))
+                .toEqual(['alpha/index.hbs', 'zeta/index.hbs']);
+            expect(['zeta\\index.hbs', 'alpha\\index.hbs'].sort(readZip._private.compareMatchDepth))
+                .toEqual(['alpha\\index.hbs', 'zeta\\index.hbs']);
+        });
+    });
 });
