@@ -86,4 +86,18 @@ describe('createLimiter', function () {
         await expect(first).rejects.toBe(err);
         await expect(second).resolves.toEqual('ok');
     });
+
+    it('releases the slot when fn throws synchronously, instead of leaking it', async function () {
+        const limit = createLimiter(1);
+        const err = new Error('boom');
+
+        const first = limit(() => {
+            throw err;
+        });
+        const second = limit(() => Promise.resolve('ok'));
+
+        await expect(first).rejects.toBe(err);
+        // if the slot leaked, `second` would never run and this would hang/timeout
+        await expect(second).resolves.toEqual('ok');
+    });
 });

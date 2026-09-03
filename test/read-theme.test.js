@@ -395,6 +395,31 @@ describe('Read theme', function () {
 
             expect(theme.customSettings).toEqual({});
         });
+
+        it('only reads the root package.json, not a same-named nested file or lookalike', async function () {
+            const readFileSpy = vi.spyOn(fs, 'readFile').mockImplementation(async (filePath) => {
+                if (filePath.endsWith('/package.json') && !filePath.includes('vendor')) {
+                    return '{"config":{"custom":{"from_root":{"type":"text","default":"yep"}}}}';
+                }
+                throw new Error(`unexpected read: ${filePath}`);
+            });
+
+            try {
+                const theme = await readTheme._private.readFiles({
+                    path: themePath('is-empty'),
+                    files: [
+                        {file: 'package.json', ext: '.json', symlink: false},
+                        {file: 'vendor/package.json', ext: '.json', symlink: false},
+                        {file: 'assets/package.json.hbs', ext: '.hbs', symlink: false}
+                    ]
+                }, {skipChecks: true});
+
+                expect(readFileSpy).toHaveBeenCalledTimes(1);
+                expect(theme.customSettings).toEqual({from_root: {type: 'text', default: 'yep'}});
+            } finally {
+                readFileSpy.mockRestore();
+            }
+        });
     });
 
     describe('without skipChecks (unchanged behavior)', function () {
