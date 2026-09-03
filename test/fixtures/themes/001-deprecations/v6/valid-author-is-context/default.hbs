@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    {{#is "home"}}
+      {{@site.title}} &mdash; {{@site.description}}
+    {{/is}}
+    {{#is "author"}}
+      {{author.name}} | {{@site.title}}
+    {{/is}}
+    {{#is "author"}}
+      {{#is "paged"}}
+        {{pagination.next}}
+      {{/is}}
+      {{author.bio}}
+    {{/is}}
+    {{#is "tag"}}
+      {{tag.name}} | {{@site.title}}
+    {{/is}}
+    {{^is "home, author, tag"}}
+      {{meta_title}} | {{@site.title}}
+    {{/is}}
+  </title>
+  {{ghost_head}}
+</head>
+
+<body>
+  {{{body}}}
+  {{ghost_foot}}
+</body>
+
+</html>
