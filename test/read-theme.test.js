@@ -204,4 +204,63 @@ describe('Read theme', function () {
         expect(filePaths.some(p => p.startsWith('.claude'))).toBe(false);
         expect(theme.files.some(f => f.symlink)).toBe(false);
     });
+
+    it('refuses to read a file path that escapes the theme directory', async function () {
+        await expect(readTheme._private.readFiles({
+            path: themePath('is-empty'),
+            files: [
+                {file: '../../../../etc/evil.hbs', ext: '.hbs'}
+            ]
+        })).rejects.toThrow(/outside of theme directory/);
+    });
+
+    it('does not reject a file whose name merely starts with two dots (readFiles)', async function () {
+        const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('content');
+
+        try {
+            const theme = await readTheme._private.readFiles({
+                path: themePath('is-empty'),
+                files: [
+                    {file: '..backup.hbs', ext: '.hbs'}
+                ]
+            });
+
+            expect(theme.files[0].content).toEqual('content');
+        } finally {
+            readFileSpy.mockRestore();
+        }
+    });
+
+    it('never reads the content of a symlinked file, even one that looks like package.json/*.hbs', async function () {
+        const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('should never be read');
+
+        try {
+            const theme = await readTheme._private.readFiles({
+                path: themePath('is-empty'),
+                files: [
+                    {file: 'package.json', ext: '.json', symlink: true},
+                    {file: 'index.hbs', ext: '.hbs', symlink: true}
+                ]
+            });
+
+            expect(readFileSpy).not.toHaveBeenCalled();
+            expect(theme.files[0].content).toBeUndefined();
+            expect(theme.files[1].content).toBeUndefined();
+        } finally {
+            readFileSpy.mockRestore();
+        }
+    });
+
+    it('does not reject a directory entry whose name merely starts with two dots (readThemeStructure)', async function () {
+        const readdirSpy = vi.spyOn(fs, 'readdir').mockResolvedValue([
+            {name: '..backup.hbs', isDirectory: () => false, isSymbolicLink: () => false}
+        ]);
+
+        try {
+            const result = await readTheme._private.readThemeStructure(themePath('is-empty'));
+            expect(result).toContainEqual(expect.objectContaining({file: '..backup.hbs'}));
+        } finally {
+            readdirSpy.mockRestore();
+        }
+    });
 });
