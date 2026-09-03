@@ -263,4 +263,216 @@ describe('Read theme', function () {
             readdirSpy.mockRestore();
         }
     });
+
+    it('bounds concurrent directory reads across a wide tree instead of fanning out unboundedly', async function () {
+        const root = themePath('is-empty');
+        const dirCount = 200;
+        let activeReaddirs = 0;
+        let peakReaddirs = 0;
+
+        const readdirSpy = vi.spyOn(fs, 'readdir').mockImplementation(async (dirPath) => {
+            activeReaddirs += 1;
+            peakReaddirs = Math.max(peakReaddirs, activeReaddirs);
+
+            await new Promise((resolve) => {
+                setTimeout(resolve, 5);
+            });
+
+            activeReaddirs -= 1;
+
+            if (dirPath === root) {
+                return Array.from({length: dirCount}, (v, i) => ({
+                    name: `dir-${i}`,
+                    isDirectory: () => true,
+                    isSymbolicLink: () => false
+                }));
+            }
+
+            // leaf directories - nothing further to walk
+            return [];
+        });
+
+        try {
+            const result = await readTheme._private.readThemeStructure(root);
+
+            expect(result).toEqual([]);
+            // never more than the configured cap in flight at once...
+            expect(peakReaddirs).toBeLessThanOrEqual(64);
+            // ...but still genuinely running some of the 200 concurrently, not one-by-one
+            expect(peakReaddirs).toBeGreaterThan(1);
+        } finally {
+            readdirSpy.mockRestore();
+        }
+    });
+
+    describe('with skipChecks', function () {
+        it('still returns correct partials, templates, and customSettings', async function () {
+            const theme = await readTheme(themePath('theme-with-partials'), {skipChecks: true});
+            utils.assertValidThemeObject(theme);
+
+            expect(theme.partials).toEqual(['mypartial', 'subfolder/test']);
+            expect(theme.templates.all).not.toContain('partials/mypartial');
+            expect(theme.templates.all).not.toContain('partials/subfolder/test');
+            expect(theme.customSettings).toEqual({});
+        });
+
+        it('excludes a symlinked partial from theme.partials the same way with or without skipChecks', async function () {
+            const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('');
+            const files = () => [
+                {file: 'partials/legit.hbs', ext: '.hbs', symlink: false},
+                {file: 'partials/escape.hbs', ext: '.hbs', symlink: true}
+            ];
+
+            try {
+                const withSkipChecks = await readTheme._private.readFiles(
+                    {path: themePath('is-empty'), files: files()},
+                    {skipChecks: true}
+                );
+                const withoutSkipChecks = await readTheme._private.readFiles(
+                    {path: themePath('is-empty'), files: files()}
+                );
+
+                expect(withSkipChecks.partials).toEqual(['legit']);
+                expect(withoutSkipChecks.partials).toEqual(['legit']);
+            } finally {
+                readFileSpy.mockRestore();
+            }
+        });
+
+        it('still returns correct templates.all and templates.custom', async function () {
+            const theme = await readTheme(themePath('theme-with-custom-templates'), {skipChecks: true});
+            utils.assertValidThemeObject(theme);
+
+            expect(theme.templates.all).toEqual([
+                'custom/test',
+                'custom-My-Post',
+                'custom-about',
+                'my-page-about',
+                'page-1',
+                'page',
+                'podcast/rss',
+                'post-partials/footer',
+                'post-welcome-ghost',
+                'post'
+            ]);
+            expect(_.map(theme.templates.custom, 'filename')).toEqual([
+                'custom-My-Post',
+                'custom-about',
+                'page-1',
+                'post-welcome-ghost'
+            ]);
+        });
+
+        it('extracts customSettings from package.json without checks running', async function () {
+            const theme = await readTheme(themePath('theme-with-custom-settings'), {skipChecks: true});
+            utils.assertValidThemeObject(theme);
+
+            expect(theme.customSettings).toEqual({
+                test_select: {
+                    type: 'select',
+                    options: ['one', 'two'],
+                    default: 'two'
+                }
+            });
+        });
+
+        it('does not populate theme.helpers or read .hbs/.css/.js content', async function () {
+            const theme = await readTheme(themePath('theme-with-custom-templates'), {skipChecks: true});
+
+            expect(theme.helpers).toEqual({});
+
+            const hbsFile = theme.files.find(f => f.file === 'custom-My-Post.hbs');
+            const cssFile = theme.files.find(f => f.file === 'assets/styles.css');
+
+            expect(hbsFile.content).toBeUndefined();
+            expect(hbsFile.parsed).toBeUndefined();
+            expect(cssFile.content).toBeUndefined();
+        });
+
+        it('still reads package.json content for customSettings when no other files match', async function () {
+            const theme = await readTheme(themePath('010-packagejson/no-config'), {skipChecks: true});
+            utils.assertValidThemeObject(theme);
+
+            expect(theme.customSettings).toEqual({});
+        });
+
+        it('only reads the root package.json, not a same-named nested file or lookalike', async function () {
+            const readFileSpy = vi.spyOn(fs, 'readFile').mockImplementation(async (filePath) => {
+                if (filePath.endsWith('/package.json') && !filePath.includes('vendor')) {
+                    return '{"config":{"custom":{"from_root":{"type":"text","default":"yep"}}}}';
+                }
+                throw new Error(`unexpected read: ${filePath}`);
+            });
+
+            try {
+                const theme = await readTheme._private.readFiles({
+                    path: themePath('is-empty'),
+                    files: [
+                        {file: 'package.json', ext: '.json', symlink: false},
+                        {file: 'vendor/package.json', ext: '.json', symlink: false},
+                        {file: 'assets/package.json.hbs', ext: '.hbs', symlink: false}
+                    ]
+                }, {skipChecks: true});
+
+                expect(readFileSpy).toHaveBeenCalledTimes(1);
+                expect(theme.customSettings).toEqual({from_root: {type: 'text', default: 'yep'}});
+            } finally {
+                readFileSpy.mockRestore();
+            }
+        });
+    });
+
+    describe('without skipChecks (unchanged behavior)', function () {
+        it('still populates theme.helpers and file content', async function () {
+            const theme = await readTheme(themePath('theme-with-custom-templates'));
+
+            const hbsFile = theme.files.find(f => f.file === 'custom-My-Post.hbs');
+            const cssFile = theme.files.find(f => f.file === 'assets/styles.css');
+
+            expect(hbsFile.content).toEqual('content');
+            expect(hbsFile.parsed).toBeDefined();
+            expect(cssFile.content).toEqual('.some-class {\n    border: 0;\n}\n');
+        });
+    });
+
+    describe('directory walk ordering', function () {
+        it('returns files in the same order after parallelizing readThemeStructure', async function () {
+            const theme = await readTheme(themePath('theme-with-custom-templates'));
+
+            expect(theme.files.map(f => f.file)).toEqual([
+                'assets/ignoreme.hbs',
+                'assets/styles.css',
+                'custom/test.hbs',
+                'custom-My-Post.hbs',
+                'custom-about.hbs',
+                'my-page-about.hbs',
+                'package.json',
+                'page-1.hbs',
+                'page.hbs',
+                'podcast/rss.hbs',
+                'post-partials/footer.hbs',
+                'post-welcome-ghost.hbs',
+                'post.hbs'
+            ]);
+        });
+
+        it('assembles a wide directory in original readdir order without quadratic re-copying', async function () {
+            const entryCount = 5000;
+            const entries = Array.from({length: entryCount}, (entry, i) => ({
+                name: `file-${String(i).padStart(5, '0')}.hbs`,
+                isDirectory: () => false,
+                isSymbolicLink: () => false
+            }));
+            const readdirSpy = vi.spyOn(fs, 'readdir').mockResolvedValue(entries);
+
+            try {
+                const result = await readTheme._private.readThemeStructure(themePath('is-empty'));
+
+                expect(result).toHaveLength(entryCount);
+                expect(result.map(f => f.file)).toEqual(entries.map(e => e.name));
+            } finally {
+                readdirSpy.mockRestore();
+            }
+        });
+    });
 });
