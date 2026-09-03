@@ -220,4 +220,45 @@ describe('Zip file handler can read zip files', function () {
             mocked.restore();
         }
     });
+
+    describe('resolveBaseDir', function () {
+        it('picks the shallowest index.hbs when multiple matches exist at different depths', async function () {
+            const globSpy = vi.spyOn(fs, 'glob').mockReturnValue([
+                'deep/nested/index.hbs',
+                'shallow/index.hbs'
+            ]);
+
+            try {
+                const result = await readZip._private.resolveBaseDir('/some/zip/path');
+                expect(result).toEqual('/some/zip/path/shallow');
+            } finally {
+                globSpy.mockRestore();
+            }
+        });
+
+        it('breaks ties between equally-deep matches alphabetically, for deterministic results', async function () {
+            const globSpy = vi.spyOn(fs, 'glob').mockReturnValue([
+                'zeta/index.hbs',
+                'alpha/index.hbs'
+            ]);
+
+            try {
+                const result = await readZip._private.resolveBaseDir('/some/zip/path');
+                expect(result).toEqual('/some/zip/path/alpha');
+            } finally {
+                globSpy.mockRestore();
+            }
+        });
+
+        it('returns the input path unchanged when there is no match', async function () {
+            const globSpy = vi.spyOn(fs, 'glob').mockReturnValue([]);
+
+            try {
+                const result = await readZip._private.resolveBaseDir('/some/zip/path');
+                expect(result).toEqual('/some/zip/path');
+            } finally {
+                globSpy.mockRestore();
+            }
+        });
+    });
 });
