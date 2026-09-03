@@ -316,6 +316,29 @@ describe('Read theme', function () {
             expect(theme.customSettings).toEqual({});
         });
 
+        it('excludes a symlinked partial from theme.partials the same way with or without skipChecks', async function () {
+            const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('');
+            const files = () => [
+                {file: 'partials/legit.hbs', ext: '.hbs', symlink: false},
+                {file: 'partials/escape.hbs', ext: '.hbs', symlink: true}
+            ];
+
+            try {
+                const withSkipChecks = await readTheme._private.readFiles(
+                    {path: themePath('is-empty'), files: files()},
+                    {skipChecks: true}
+                );
+                const withoutSkipChecks = await readTheme._private.readFiles(
+                    {path: themePath('is-empty'), files: files()}
+                );
+
+                expect(withSkipChecks.partials).toEqual(['legit']);
+                expect(withoutSkipChecks.partials).toEqual(['legit']);
+            } finally {
+                readFileSpy.mockRestore();
+            }
+        });
+
         it('still returns correct templates.all and templates.custom', async function () {
             const theme = await readTheme(themePath('theme-with-custom-templates'), {skipChecks: true});
             utils.assertValidThemeObject(theme);
