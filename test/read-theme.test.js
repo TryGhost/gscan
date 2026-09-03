@@ -213,4 +213,34 @@ describe('Read theme', function () {
             ]
         })).rejects.toThrow(/outside of theme directory/);
     });
+
+    it('does not reject a file whose name merely starts with two dots (readFiles)', async function () {
+        const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('content');
+
+        try {
+            const theme = await readTheme._private.readFiles({
+                path: themePath('is-empty'),
+                files: [
+                    {file: '..backup.hbs', ext: '.hbs'}
+                ]
+            });
+
+            expect(theme.files[0].content).toEqual('content');
+        } finally {
+            readFileSpy.mockRestore();
+        }
+    });
+
+    it('does not reject a directory entry whose name merely starts with two dots (readThemeStructure)', async function () {
+        const readdirSpy = vi.spyOn(fs, 'readdir').mockResolvedValue([
+            {name: '..backup.hbs', isDirectory: () => false, isSymbolicLink: () => false}
+        ]);
+
+        try {
+            const result = await readTheme._private.readThemeStructure(themePath('is-empty'));
+            expect(result).toContainEqual(expect.objectContaining({file: '..backup.hbs'}));
+        } finally {
+            readdirSpy.mockRestore();
+        }
+    });
 });
