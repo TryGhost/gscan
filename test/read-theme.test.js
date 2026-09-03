@@ -204,4 +204,13 @@ describe('Read theme', function () {
         expect(filePaths.some(p => p.startsWith('.claude'))).toBe(false);
         expect(theme.files.some(f => f.symlink)).toBe(false);
     });
+
+    it('refuses to read a file path that escapes the theme directory', async function () {
+        await expect(readTheme._private.readFiles({
+            path: themePath('is-empty'),
+            files: [
+                {file: '../../../../etc/evil.hbs', ext: '.hbs'}
+            ]
+        })).rejects.toThrow(/outside of theme directory/);
+    });
 });
