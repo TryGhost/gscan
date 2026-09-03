@@ -264,6 +264,47 @@ describe('Read theme', function () {
         }
     });
 
+    it('bounds concurrent directory reads across a wide tree instead of fanning out unboundedly', async function () {
+        const root = themePath('is-empty');
+        const dirCount = 200;
+        let activeReaddirs = 0;
+        let peakReaddirs = 0;
+
+        const readdirSpy = vi.spyOn(fs, 'readdir').mockImplementation(async (dirPath) => {
+            activeReaddirs += 1;
+            peakReaddirs = Math.max(peakReaddirs, activeReaddirs);
+
+            await new Promise((resolve) => {
+                setTimeout(resolve, 5);
+            });
+
+            activeReaddirs -= 1;
+
+            if (dirPath === root) {
+                return Array.from({length: dirCount}, (v, i) => ({
+                    name: `dir-${i}`,
+                    isDirectory: () => true,
+                    isSymbolicLink: () => false
+                }));
+            }
+
+            // leaf directories - nothing further to walk
+            return [];
+        });
+
+        try {
+            const result = await readTheme._private.readThemeStructure(root);
+
+            expect(result).toEqual([]);
+            // never more than the configured cap in flight at once...
+            expect(peakReaddirs).toBeLessThanOrEqual(64);
+            // ...but still genuinely running some of the 200 concurrently, not one-by-one
+            expect(peakReaddirs).toBeGreaterThan(1);
+        } finally {
+            readdirSpy.mockRestore();
+        }
+    });
+
     describe('with skipChecks', function () {
         it('still returns correct partials, templates, and customSettings', async function () {
             const theme = await readTheme(themePath('theme-with-partials'), {skipChecks: true});
