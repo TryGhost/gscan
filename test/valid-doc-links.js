@@ -1,7 +1,7 @@
 // @ts-check
 /* eslint-disable no-console */
 const path = require('path');
-const glob = require('glob');
+const fs = require('fs');
 const {default: chalk} = require('chalk');
 
 const checkIds = process.env.GSCAN_DOC_CHECK_IDS !== 'false';
@@ -198,7 +198,7 @@ function summarize(summaries, otherErrors) {
 const semaphore = new Semaphore(5);
 
 async function run() {
-    const allSpecs = glob.sync('*.js', {cwd: SPEC_ROOT, ignore: 'index.js'});
+    const allSpecs = fs.globSync('*.js', {cwd: SPEC_ROOT}).filter(f => f !== 'index.js');
 
     /** @type {Record<string, Set<string>>} */
     const linksToCheck = {};
