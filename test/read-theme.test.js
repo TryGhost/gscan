@@ -231,6 +231,26 @@ describe('Read theme', function () {
         }
     });
 
+    it('never reads the content of a symlinked file, even one that looks like package.json/*.hbs', async function () {
+        const readFileSpy = vi.spyOn(fs, 'readFile').mockResolvedValue('should never be read');
+
+        try {
+            const theme = await readTheme._private.readFiles({
+                path: themePath('is-empty'),
+                files: [
+                    {file: 'package.json', ext: '.json', symlink: true},
+                    {file: 'index.hbs', ext: '.hbs', symlink: true}
+                ]
+            });
+
+            expect(readFileSpy).not.toHaveBeenCalled();
+            expect(theme.files[0].content).toBeUndefined();
+            expect(theme.files[1].content).toBeUndefined();
+        } finally {
+            readFileSpy.mockRestore();
+        }
+    });
+
     it('does not reject a directory entry whose name merely starts with two dots (readThemeStructure)', async function () {
         const readdirSpy = vi.spyOn(fs, 'readdir').mockResolvedValue([
             {name: '..backup.hbs', isDirectory: () => false, isSymbolicLink: () => false}
