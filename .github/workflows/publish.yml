@@ -33,6 +33,16 @@ jobs:
       FORCE_COLOR: 1
       CI: true
       NPM_CONFIG_PROVENANCE: true
+      # actions/setup-node's registry-url input always writes an .npmrc
+      # referencing ${NODE_AUTH_TOKEN} for the registry auth line, regardless
+      # of auth method. We publish via npm OIDC Trusted Publishing (see
+      # `permissions: id-token: write` above), so no token secret is ever
+      # set - npm itself tolerates that fine at publish time, but yarn
+      # classic (v1, used for install and to run `ship:ci` below) fails hard
+      # on any unresolved env var reference in .npmrc. An empty value here
+      # satisfies yarn's substitution without providing (or needing) a real
+      # token.
+      NODE_AUTH_TOKEN: ''
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
