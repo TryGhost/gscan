@@ -3679,6 +3679,9 @@ describe('001 Deprecations', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/valid-author-is-context', options).then(function (output) {
                 utils.assertValidThemeObject(output);
 
+                // {{author.name}} inside the nested {{#is "paged"}} block stays
+                // exempt - a nested {{#is}} preserves the enclosing author
+                // context, it should only be cleared when entering a loop.
                 expect(output.results.fail).toEqual({});
                 utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-NAME');
                 utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-BIO');
