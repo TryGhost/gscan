@@ -3675,6 +3675,79 @@ describe('001 Deprecations', function () {
             });
         });
 
+        it('[success] should not flag {{author.*}} used inside an {{#is "author"}} block', function () {
+            return utils.testCheck(thisCheck, '001-deprecations/v6/valid-author-is-context', options).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                // {{author.name}} inside the nested {{#is "paged"}} block stays
+                // exempt - a nested {{#is}} preserves the enclosing author
+                // context, it should only be cleared when entering a loop.
+                expect(output.results.fail).toEqual({});
+                utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-NAME');
+                utils.assertContains(output.results.pass, 'GS001-DEPR-AUTH-BIO');
+
+            });
+        });
+
+        it('[failure] should still flag {{author.*}} usage that only looks author-scoped', function () {
+            return utils.testCheck(thisCheck, '001-deprecations/v6/invalid-author-is-context-edge-cases', options).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                // {{#is "index, author"}} is an OR - the block also renders on
+                // index pages where `author` is not in scope - and
+                // {{#foreach posts}}{{author.name}}{{/foreach}} refers to each
+                // post's author relation, not the page-context author - both
+                // remain genuine deprecations.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-NAME']);
+                const authNameFiles = output.results.fail['GS001-DEPR-AUTH-NAME'].failures.map(f => f.ref).sort();
+                expect(authNameFiles).toEqual(['foreach-shadow.hbs', 'multi-condition.hbs']);
+
+                // {{author.id}} preceded by a Handlebars comment that merely
+                // *mentions* {{#is "author"}} should not be treated as if it
+                // were inside a real author-is block.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-ID']);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-ID'].failures[0].ref).toEqual('comment-not-a-block.hbs');
+
+                // bare {{author}} is a removed helper, not a property access,
+                // and should never be exempted - even inside a genuine
+                // {{#is "author"}} block it renders [object Object].
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH']);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH'].failures[0].ref).toEqual('bare-author-helper.hbs');
+
+                // {{#is "author"}} only grants exemption in its primary
+                // branch - the {{else}} branch is not author context.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-MT']);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-MT'].failures[0].ref).toEqual('else-branch.hbs');
+
+                // {{^is "author"}} is the inverse - author context is only
+                // in its {{else}} branch, not its primary branch.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-SLUG']);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-SLUG'].failures[0].ref).toEqual('else-branch.hbs');
+
+                // {{author.website}} inside the {{else}} branch of
+                // {{^is "author"}} is genuine author context and stays exempt.
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-WEB');
+
+                // A nested {{#if}}/{{#unless}} inside {{#is "author"}} does
+                // not change author context - both of its branches stay
+                // exempt, and its own {{else}} must not leak through to
+                // flip the enclosing is-block's active branch.
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-MAIL');
+                expect(output.results.fail).not.toHaveProperty('GS001-DEPR-AUTH-LOC');
+
+                // {{author.twitter}} inside an unrelated {{#unless}} outside
+                // any {{#is "author"}} block remains a genuine deprecation.
+                utils.assertValidFailObject(output.results.fail['GS001-DEPR-AUTH-TW']);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures.length).toEqual(1);
+                expect(output.results.fail['GS001-DEPR-AUTH-TW'].failures[0].ref).toEqual('if-unless-nested.hbs');
+
+            });
+        });
+
         it('[failure] should detect deprecated facebook and twitter helper usage', function () {
             return utils.testCheck(thisCheck, '001-deprecations/v6/invalid/fb-twitter-helpers', options).then(function (output) {
                 utils.assertValidThemeObject(output);
