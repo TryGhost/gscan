@@ -1,0 +1,62 @@
+{
+  "name": "gscan",
+  "version": "6.5.0",
+  "description": "Scans Ghost themes looking for errors, deprecations, features and compatibility",
+  "keywords": [
+    "ghost",
+    "themes",
+    "validator",
+    "lint"
+  ],
+  "homepage": "https://ghost.org/",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:TryGhost/gscan.git",
+    "directory": "packages/gscan"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": "^22.17.0 || ^24.0.0"
+  },
+  "bugs": {
+    "url": "https://github.com/TryGhost/gscan/issues"
+  },
+  "author": {
+    "name": "Ghost Foundation",
+    "email": "hello@ghost.org",
+    "web": "https://ghost.org/"
+  },
+  "main": "lib",
+  "license": "MIT",
+  "scripts": {
+    "test": "NODE_ENV=testing vitest run --coverage",
+    "preship": "pnpm -w run test && pnpm -w run lint",
+    "ship": "pro-ship",
+    "ship:ci": "npm publish"
+  },
+  "bin": {
+    "gscan": "./bin/cli.js"
+  },
+  "dependencies": {
+    "@tryghost/debug": "2.3.13",
+    "@tryghost/errors": "3.3.13",
+    "@tryghost/nql": "0.13.4",
+    "@tryghost/pretty-cli": "3.3.13",
+    "@tryghost/zip": "3.5.12",
+    "chalk": "6.0.0",
+    "handlebars": "4.7.9",
+    "lodash": "4.18.1",
+    "semver": "7.8.5",
+    "validator": "^13.0.0"
+  },
+  "devDependencies": {
+    "@tryghost/pro-ship": "1.1.8"
+  },
+  "files": [
+    "lib",
+    "bin"
+  ],
+  "packageManager": "pnpm@12.4.0+sha512.37536c26ed40ab4134b6511e09f6b27f3ebb45687468f2406ca3805279a4e5ca158c1931350ad9774d6ab2108d71b3dbaeb39943159294375e4d053e8e05685c"
+}

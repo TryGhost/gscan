@@ -33,7 +33,7 @@ package-lock.json
 
 tmp/**
 uploads/**
-app/uploads/**
+apps/web/uploads/**
 
 # editor
 .idea

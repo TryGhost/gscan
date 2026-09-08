@@ -1,6 +1,0 @@
-test/**
-.git*
-.travis.yml
-Gruntfile.js
-node_modules/**
-app/uploads/**
