@@ -1,5 +1,6 @@
 {
   "exec": "pnpm start",
   "verbose": true,
+  "watch": [".", "../../packages/gscan/lib"],
   "ignore": ["tmp/*", "uploads/*"]
 }

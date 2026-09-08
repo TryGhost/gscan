@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://gscan.ghost.org/">
-    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/app/public/logo-gscan-black.png" width="216px" alt="Ghost" />
+    <img src="https://raw.githubusercontent.com/TryGhost/gscan/main/apps/web/public/logo-gscan-black.png" width="216px" alt="Ghost" />
   </a>
 </p>
 
@@ -83,23 +83,43 @@ gscan.checkZip({
 
 ## Development
 
+This repository is a pnpm workspace:
+
+| Path | Package | Description |
+| --- | --- | --- |
+| `packages/gscan` | [`gscan`](https://www.npmjs.com/package/gscan) | The theme validation library and its CLI. This is what gets published to npm and what Ghost depends on. |
+| `apps/web` | `@tryghost/gscan-web` (private) | The [gscan.ghost.org](https://gscan.ghost.org) web frontend. Built into a container image by the `Dockerfile`. |
+
+The workspace root carries only the shared lint and test tooling.
+
+Install everything with `pnpm install` from the repository root.
+
 ### Run in browser (for zip uploads)
 
 - Either dev mode: `pnpm dev`
 - Or standard server: `pnpm start`
 - View: http://localhost:2369
 
+Both scripts proxy to `apps/web`; you can also run them from inside that directory.
+
 ### Run on command line
 
-- zip file: `./bin/cli.js -z /path/to/your/theme.zip`
-- directory: `./bin/cli.js /path/to/directory`
+- zip file: `./packages/gscan/bin/cli.js -z /path/to/your/theme.zip`
+- directory: `./packages/gscan/bin/cli.js /path/to/directory`
+
+### Test and lint
+
+- `pnpm test` runs every workspace package's tests (currently `packages/gscan`) with coverage, then lints
+- `pnpm lint` lints the whole workspace from the root config
 
 ### Publish
 
 Ghost core team only
 
-1. run `pnpm ship` - this bumps the version, commits, tags and pushes to `main`
+1. run `pnpm ship` - this bumps the `packages/gscan` version, commits, tags and pushes to `main`
 2. npm publishing is handled by GitHub Actions in `.github/workflows/publish.yml`
+
+The same `v*` tag also triggers `.github/workflows/deploy.yml`, which builds and deploys the web app image. `apps/web` is private and stays at version `0.0.0` - it is deployed off the library's tag, not versioned separately.
 
 Manual preview is available via workflow dispatch with `dry-run: true`
 

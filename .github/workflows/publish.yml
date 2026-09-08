@@ -67,7 +67,7 @@ jobs:
         id: version_check
         shell: bash
         run: |
-          local_version=$(node -p "require('./package.json').version")
+          local_version=$(node -p "require('./packages/gscan/package.json').version")
           npm_version=$(npm view gscan version 2>/dev/null || true)
 
           echo "local_version=$local_version" >> "$GITHUB_OUTPUT"

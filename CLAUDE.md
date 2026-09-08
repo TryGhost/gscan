@@ -6,6 +6,23 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 GScan is a Ghost theme validation tool that checks themes for compatibility with different Ghost versions (v1-v6). It validates theme structure, Handlebars templates, package.json, assets, and Ghost-specific features.
 
+## Repository Layout
+
+This is a pnpm workspace with two packages:
+
+| Path | Package | Contents |
+| --- | --- | --- |
+| `packages/gscan` | `gscan` (published to npm) | Validation library (`lib/`), CLI (`bin/`), tests (`test/`) |
+| `apps/web` | `@tryghost/gscan-web` (private) | The gscan.ghost.org express app; depends on `gscan` via `workspace:*` |
+
+The workspace root holds only shared lint/test tooling (`eslint`, `vitest`) plus
+`eslint.config.js`, the `Dockerfile` (which builds `apps/web`), and CI config.
+
+**Unless stated otherwise, every `lib/`, `bin/` and `test/` path in this document
+is relative to `packages/gscan/`.** Web-only dependencies must live in
+`apps/web/package.json` - never add them to `packages/gscan`, which ships to npm
+and into Ghost core.
+
 ## Essential Commands
 
 ### Testing
@@ -13,7 +30,7 @@ GScan is a Ghost theme validation tool that checks themes for compatibility with
 # Run all tests with coverage
 pnpm test
 
-# Run specific test file
+# Run specific test file (from packages/gscan)
 NODE_ENV=testing pnpm exec vitest run test/010-package-json.test.js
 
 # Run specific test pattern
@@ -21,15 +38,20 @@ NODE_ENV=testing pnpm exec vitest run test/030-assets.test.js test/040-ghost-hea
 
 # Debug mode testing
 NODE_ENV=testing DEBUG=gscan:* pnpm exec vitest run test/checker.test.js
+
+# Or target the package from the workspace root
+pnpm --filter gscan run test
 ```
 
 ### Development
 ```bash
 # Dev server with debug output (port 2369)
-pnpm dev  # Runs: NODE_ENV=development DEBUG=gscan:* nodemon
+pnpm dev  # Runs: NODE_ENV=development DEBUG=gscan:* nodemon in apps/web
+          # nodemon watches apps/web and packages/gscan/lib, so library
+          # edits restart the server too
 
 # Production server
-pnpm start  # Runs: node app/index.js
+pnpm start  # Runs: node index.js in apps/web
 
 # Lint code
 pnpm lint
@@ -39,30 +61,33 @@ pnpm lint --fix
 # 1) bump version + commit/tag/push
 pnpm ship
 
+# `pnpm ship` bumps the packages/gscan version and pushes a v* tag
 # 2) npm publish is handled in CI by .github/workflows/publish.yml
+#    The same tag triggers .github/workflows/deploy.yml, which builds the
+#    apps/web container image. apps/web stays private at version 0.0.0.
 # Manual preview is available via workflow_dispatch with dry-run=true
 ```
 
 ### CLI Usage
 ```bash
 # Check theme directory
-./bin/cli.js /path/to/theme
+./packages/gscan/bin/cli.js /path/to/theme
 
 # Check zip file
-./bin/cli.js -z /path/to/theme.zip
+./packages/gscan/bin/cli.js -z /path/to/theme.zip
 
 # Check for specific Ghost version
-./bin/cli.js /path/to/theme --v1  # Ghost 1.x
-./bin/cli.js /path/to/theme --v5  # Ghost 5.x
-./bin/cli.js /path/to/theme --canary  # Latest/canary
+./packages/gscan/bin/cli.js /path/to/theme --v1  # Ghost 1.x
+./packages/gscan/bin/cli.js /path/to/theme --v5  # Ghost 5.x
+./packages/gscan/bin/cli.js /path/to/theme --canary  # Latest/canary
 ```
 
 ## Key Architecture Components
 
 ### Entry Points
-- **lib/index.js**: Main library exports (`check`, `checkZip`, `format`)
-- **bin/cli.js**: CLI tool entry point
-- **app/index.js**: Web server for https://gscan.ghost.org
+- **packages/gscan/lib/index.js**: Main library exports (`check`, `checkZip`, `format`)
+- **packages/gscan/bin/cli.js**: CLI tool entry point
+- **apps/web/index.js**: Web server for https://gscan.ghost.org (imports the library as `require('gscan')`)
 
 ### Core Validation Flow
 1. **lib/checker.js**: Orchestrates all checks

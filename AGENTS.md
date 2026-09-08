@@ -3,13 +3,19 @@
 ## Purpose
 
 GScan validates Ghost themes for compatibility with Ghost versions v1-v6. It can run as:
-- A library (`lib/index.js`)
-- A CLI (`bin/cli.js`)
-- A web app (`app/index.js`)
+- A library (`packages/gscan/lib/index.js`)
+- A CLI (`packages/gscan/bin/cli.js`)
+- A web app (`apps/web/index.js`)
+
+The repository is a pnpm workspace. `packages/gscan` is the published `gscan`
+package (library + CLI); `apps/web` is the private `@tryghost/gscan-web`
+frontend, which depends on `gscan` via `workspace:*`. The workspace root holds
+only shared lint/test tooling.
 
 ## Tech Stack
 
 - Node.js (supported: `^22.13.1 || ^24.0.0`)
+- pnpm workspaces
 - CommonJS modules
 - Vitest with V8 coverage
 - ESLint for linting
@@ -32,12 +38,14 @@ pnpm dev
 Run CLI checks:
 
 ```bash
-./bin/cli.js /path/to/theme
-./bin/cli.js -z /path/to/theme.zip
-./bin/cli.js /path/to/theme --v6
+./packages/gscan/bin/cli.js /path/to/theme
+./packages/gscan/bin/cli.js -z /path/to/theme.zip
+./packages/gscan/bin/cli.js /path/to/theme --v6
 ```
 
 ## Repository Map
+
+All library paths below are relative to `packages/gscan/`:
 
 - `lib/checker.js`: orchestrates loading theme input and running checks
 - `lib/checks/`: rule checks (auto-loaded)
@@ -46,7 +54,12 @@ Run CLI checks:
 - `lib/format.js`: transforms results for CLI/web output
 - `test/*.test.js`: tests for checks and core behavior
 - `test/fixtures/themes/`: fixture themes used by tests
-- `app/`: web interface for zip uploads
+
+And the web app:
+
+- `apps/web/index.js`: web interface for zip uploads
+- `apps/web/tpl/`, `apps/web/public/`: templates and static assets
+- `Dockerfile`: builds `apps/web` into a container via `pnpm deploy`
 
 ## Working Rules
 
@@ -58,6 +71,8 @@ Run CLI checks:
 
 ## Adding a New Check
 
+All paths are relative to `packages/gscan/`:
+
 1. Add check file in `lib/checks/` (auto-loaded by checker).
 2. Define corresponding rule metadata in each relevant version spec under `lib/specs/`.
 3. Add fixtures under `test/fixtures/themes/`.
@@ -67,5 +82,6 @@ Run CLI checks:
 ## Common Pitfalls
 
 - Missing rule metadata in one spec can break formatting and test output.
-- `test/checker.test.js` contains exact expectations and may need synchronized updates.
-- Path handling should remain cross-platform; reuse utilities in `lib/utils/`.
+- `packages/gscan/test/checker.test.js` contains exact expectations and may need synchronized updates.
+- Path handling should remain cross-platform; reuse utilities in `packages/gscan/lib/utils/`.
+- Web-only dependencies belong in `apps/web/package.json`; never add them to `packages/gscan`, which ships to npm and into Ghost.

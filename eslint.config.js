@@ -38,14 +38,14 @@ const ghostBrowserConfig = withGhostPlugin(ghostPlugin.configs.browser);
 module.exports = [
     {
         ignores: [
-            'coverage/**',
-            'test/fixtures/**'
+            '**/coverage/**',
+            '**/test/fixtures/**'
         ]
     },
     ...fixupConfigRules(compat.config(ghostNodeConfig)),
     ...fixupConfigRules(compat.config(ghostTestConfig)).map(config => ({
         ...config,
-        files: ['test/**/*.js'],
+        files: ['**/test/**/*.js'],
         languageOptions: {
             ...(config.languageOptions || {}),
             globals: {
@@ -64,7 +64,7 @@ module.exports = [
     })),
     ...fixupConfigRules(compat.config(ghostBrowserConfig)).map(config => ({
         ...config,
-        files: ['app/public/**/*.js']
+        files: ['apps/web/public/**/*.js']
     })),
     {
         rules: {

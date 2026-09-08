@@ -1,13 +1,14 @@
-# Ignore the node_modules directory
-node_modules/
+# Ignore installed dependencies — the image installs its own
+**/node_modules/
 
-# Ignore config
-config.*.json
-!config.example.json
+# Ignore config. These patterns are not recursive by default, so they are
+# anchored with **/ to also cover apps/web, where the app's config now lives.
+**/config.*.json
+!**/config.example.json
 
 # Ignore local environment files
-.env
-.env.local
+**/.env
+**/.env.local
 
 # Ignore version control and CI/CD configuration
 .git/
@@ -17,3 +18,8 @@ config.*.json
 
 # Ignore IDE specific files
 .vscode/
+
+# Ignore artefacts and sources the web app image does not need
+**/coverage/
+packages/gscan/test/
+k8s/
