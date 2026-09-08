@@ -37,27 +37,31 @@ jobs:
       # referencing ${NODE_AUTH_TOKEN} for the registry auth line, regardless
       # of auth method. We publish via npm OIDC Trusted Publishing (see
       # `permissions: id-token: write` above), so no token secret is ever
-      # set - npm itself tolerates that fine at publish time, but yarn
-      # classic (v1, used for install and to run `ship:ci` below) fails hard
-      # on any unresolved env var reference in .npmrc. An empty value here
-      # satisfies yarn's substitution without providing (or needing) a real
-      # token.
+      # set. Both npm and pnpm tolerate the unresolved reference, but pnpm
+      # logs a `Failed to replace env in config` warning on every command.
+      # An empty value here keeps that noise out of the logs without
+      # providing (or needing) a real token.
       NODE_AUTH_TOKEN: ''
 
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
 
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
         with:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
+          cache: pnpm
 
       # npm 11+ is required for npm Trusted Publishing (OIDC).
       - name: Install npm 11
         run: npm install -g npm@11
 
       - name: Install dependencies
-        run: yarn --prefer-offline --ignore-scripts --frozen-lockfile
+        run: pnpm install --prefer-offline --ignore-scripts --frozen-lockfile
 
       - name: Compare local and npm versions
         id: version_check
@@ -79,13 +83,13 @@ jobs:
 
       - name: Publish to npm (dry run)
         if: github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true'
-        run: yarn ship:ci
+        run: pnpm run ship:ci
         env:
           NPM_CONFIG_DRY_RUN: true
 
       - name: Publish to npm
         if: steps.version_check.outputs.should_publish == 'true' && (github.event_name != 'workflow_dispatch' || github.event.inputs['dry-run'] != 'true')
-        run: yarn ship:ci
+        run: pnpm run ship:ci
 
       - name: Skip publish summary
         if: steps.version_check.outputs.should_publish != 'true' || (github.event_name == 'workflow_dispatch' && github.event.inputs['dry-run'] == 'true')
