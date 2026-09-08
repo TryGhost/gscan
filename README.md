@@ -85,8 +85,8 @@ gscan.checkZip({
 
 ### Run in browser (for zip uploads)
 
-- Either dev mode: `yarn dev`
-- Or standard server: `yarn start`
+- Either dev mode: `pnpm dev`
+- Or standard server: `pnpm start`
 - View: http://localhost:2369
 
 ### Run on command line
@@ -98,7 +98,7 @@ gscan.checkZip({
 
 Ghost core team only
 
-1. run `yarn ship` - this bumps the version, commits, tags and pushes to `main`
+1. run `pnpm ship` - this bumps the version, commits, tags and pushes to `main`
 2. npm publishing is handled by GitHub Actions in `.github/workflows/publish.yml`
 
 Manual preview is available via workflow dispatch with `dry-run: true`

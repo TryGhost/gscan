@@ -1,0 +1,6 @@
+allowBuilds:
+  'dtrace-provider@0.8.8': true
+
+strictDepBuilds: true
+blockExoticSubdeps: true
+minimumReleaseAge: 4320

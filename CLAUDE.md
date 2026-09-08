@@ -11,33 +11,33 @@ GScan is a Ghost theme validation tool that checks themes for compatibility with
 ### Testing
 ```bash
 # Run all tests with coverage
-yarn test
+pnpm test
 
 # Run specific test file
-NODE_ENV=testing npx vitest run test/010-package-json.test.js
+NODE_ENV=testing pnpm exec vitest run test/010-package-json.test.js
 
 # Run specific test pattern
-NODE_ENV=testing npx vitest run test/030-assets.test.js test/040-ghost-head-foot.test.js
+NODE_ENV=testing pnpm exec vitest run test/030-assets.test.js test/040-ghost-head-foot.test.js
 
 # Debug mode testing
-NODE_ENV=testing DEBUG=gscan:* npx vitest run test/checker.test.js
+NODE_ENV=testing DEBUG=gscan:* pnpm exec vitest run test/checker.test.js
 ```
 
 ### Development
 ```bash
 # Dev server with debug output (port 2369)
-yarn dev  # Runs: NODE_ENV=development DEBUG=gscan:* nodemon
+pnpm dev  # Runs: NODE_ENV=development DEBUG=gscan:* nodemon
 
 # Production server
-yarn start  # Runs: node app/index.js
+pnpm start  # Runs: node app/index.js
 
 # Lint code
-yarn lint
-yarn lint --fix
+pnpm lint
+pnpm lint --fix
 
 # Full release process (core team)
 # 1) bump version + commit/tag/push
-yarn ship
+pnpm ship
 
 # 2) npm publish is handled in CI by .github/workflows/publish.yml
 # Manual preview is available via workflow_dispatch with dry-run=true
