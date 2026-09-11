@@ -1,5 +1,12 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>TryGhost/renovate-config"],
-  "ignoreDeps": ["validator"]
+  "ignoreDeps": ["validator"],
+  "packageRules": [
+    {
+      "matchFileNames": ["packages/gscan/package.json"],
+      "matchPackageNames": ["@tryghost/**"],
+      "rangeStrategy": "replace"
+    }
+  ]
 }
