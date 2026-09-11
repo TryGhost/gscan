@@ -8,3 +8,5 @@ allowBuilds:
 strictDepBuilds: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
+minimumReleaseAgeExclude:
+  - '@tryghost/*'

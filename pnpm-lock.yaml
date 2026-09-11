@@ -228,20 +228,20 @@ importers:
   packages/gscan:
     dependencies:
       '@tryghost/debug':
-        specifier: 2.3.13
-        version: 2.3.13(supports-color@5.5.0)
+        specifier: ^2.3.14
+        version: 2.3.14(supports-color@5.5.0)
       '@tryghost/errors':
-        specifier: 3.3.13
-        version: 3.3.13
+        specifier: ^3.3.14
+        version: 3.3.14
       '@tryghost/nql':
-        specifier: 0.13.4
+        specifier: ^0.13.4
         version: 0.13.4(supports-color@5.5.0)
       '@tryghost/pretty-cli':
-        specifier: 3.3.13
-        version: 3.3.13
+        specifier: ^3.3.14
+        version: 3.3.14
       '@tryghost/zip':
-        specifier: 3.5.12
-        version: 3.5.12(supports-color@5.5.0)
+        specifier: ^3.5.13
+        version: 3.5.13(supports-color@5.5.0)
       chalk:
         specifier: 6.0.0
         version: 6.0.0
@@ -259,7 +259,7 @@ importers:
         version: 13.15.35
     devDependencies:
       '@tryghost/pro-ship':
-        specifier: 1.1.8
+        specifier: ^1.1.8
         version: 1.1.8
 
 packages:
@@ -690,11 +690,17 @@ packages:
   '@tryghost/debug@2.3.13':
     resolution: {integrity: sha512-3AG+mm2wF9vdSFwH+k9jJaeqLHFigUeEUDyjaJxX5rasb0QPoSmNYxnXfJppbYVEFYOJ1UsqtsSdzG956sNCxQ==}
 
+  '@tryghost/debug@2.3.14':
+    resolution: {integrity: sha512-CuxfDTsuS8uPnAeJVCaokd7izIDhUzIi/mZo8ytKgKupx/K5UY03Pu0KwWJCuRRV2ZrDYeq00p8bBCM/H8uScg==}
+
   '@tryghost/elasticsearch@5.4.10':
     resolution: {integrity: sha512-1b99je7pybU8RLLTEO0bRD2HADVVt9OQUx/Da9K1MVypQ3wlSlRPza5j8T6D8isYVKqxM3AAMfFcIoLjn9sK2g==}
 
   '@tryghost/errors@3.3.13':
     resolution: {integrity: sha512-ZJelL4irZpH+37ZATowbyA3PrSZHc9EsN2ThOXGS1ESThLnq/ETIJdrnXh38I5p/dFB9ZDH7GJfcjmRZvSM69Q==}
+
+  '@tryghost/errors@3.3.14':
+    resolution: {integrity: sha512-Z49f+Wy6benC35x+x30FAjBWDMllJN7mMg5mWrOtxK67ipAflKlcQgubT03ZTYbbPPc9J8Kx2In7fOcvyp6a5g==}
 
   '@tryghost/http-stream@2.3.14':
     resolution: {integrity: sha512-Mo5s5EBehNy9upLGEHkx8uGsJtXq5/ATih7uiCuLVpLxHEUUz1Ss/dt2k+BbLDlKFH6jKEnEmAlAzxUTJQA1pQ==}
@@ -714,8 +720,8 @@ packages:
   '@tryghost/nql@0.13.4':
     resolution: {integrity: sha512-XE3lEpkqZM3ueOyKz5suwb2W4muWAM/YfYYpXHrnu0H7r46Xuo7FZm1s6Ga2Cut/STtuax5E6NfZ1AFv017X4w==}
 
-  '@tryghost/pretty-cli@3.3.13':
-    resolution: {integrity: sha512-5IPhpQ1d2vXTC8Zb0I9FLOQ6LgE9ebSTAYYQERnR9bHgDvPEUPAUf7mZxPi/Cxi1OVsKKecrd0VJumqZw/EbKg==}
+  '@tryghost/pretty-cli@3.3.14':
+    resolution: {integrity: sha512-zL+CX9BmciOx0mb1mG5lUSQQg+Dg57ntj6m0TAkaaSQon3lovrIbHznwpWkHLyggm9f+BltK5JTOdFqT/5oTpw==}
 
   '@tryghost/pretty-stream@2.3.13':
     resolution: {integrity: sha512-Qw+qZ7r4NUSt4T6j83+aCx9hYNOPhC7vQIAiAVDMoOP7djA+qvxnNmzsorPn9an0CR3Va3sXMHnzaIQsbAaR6A==}
@@ -732,6 +738,9 @@ packages:
   '@tryghost/root-utils@2.3.13':
     resolution: {integrity: sha512-b1tejLrOF95Ki21iQ0tH7U1obXmyP3dLTZ/gsyCBBmM1Jc9JhHWCubFldSb0+vN26IY7Lxh739U4U3njTkt0Yw==}
 
+  '@tryghost/root-utils@2.3.14':
+    resolution: {integrity: sha512-VmHSaPdjTCQNOTNvpLTmphi+TdorWbGbjgqTeCYFPgsWw3XUlByWaERYe3PV2JOmd2XeAhpG2KCegrmnPWMlKA==}
+
   '@tryghost/root-utils@2.3.8':
     resolution: {integrity: sha512-n12HsmW0mms6hlfYYSOcsJ9um6jifBvBFXJak2yPBySSmoTZpCgPezG9JlTXtPjG+4VmfvKaOE7NxlbEJyegiw==}
 
@@ -747,8 +756,8 @@ packages:
   '@tryghost/version@2.3.13':
     resolution: {integrity: sha512-Tf1BccmNzqWD2WlRiKiow9YTXBaAzxdZSPkd0ozstJuzCwAGAavzhcldvBic50H6zjkbaURipUNljqqKUQ0d0A==}
 
-  '@tryghost/zip@3.5.12':
-    resolution: {integrity: sha512-0wN9tbV0iylqZqaofNapQV+VxhhGVJCM7U5xqiTYmZqi6gR2U6X1dh+VFYoLvWbXaVma1iPEArhn+iETWk3HWw==}
+  '@tryghost/zip@3.5.13':
+    resolution: {integrity: sha512-p6RQqbpXwUqngWdVG+b8v+OXyO0O4reVLqbIJmHJE8IPoFrZcJxrbVxQ2rX70lYleSvsSZ8y8UoCnTZ6QUhR+w==}
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -3168,6 +3177,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@tryghost/debug@2.3.14(supports-color@5.5.0)':
+    dependencies:
+      '@tryghost/root-utils': 2.3.14
+      debug: 4.4.3(supports-color@5.5.0)
+    transitivePeerDependencies:
+      - supports-color
+
   '@tryghost/elasticsearch@5.4.10(supports-color@5.5.0)':
     dependencies:
       '@elastic/elasticsearch': 8.19.2(supports-color@5.5.0)
@@ -3177,6 +3193,8 @@ snapshots:
       - supports-color
 
   '@tryghost/errors@3.3.13': {}
+
+  '@tryghost/errors@3.3.14': {}
 
   '@tryghost/http-stream@2.3.14':
     dependencies:
@@ -3223,7 +3241,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tryghost/pretty-cli@3.3.13':
+  '@tryghost/pretty-cli@3.3.14':
     dependencies:
       chalk: 6.0.0
       sywac: 1.3.0
@@ -3249,6 +3267,11 @@ snapshots:
       lodash: 4.18.1
 
   '@tryghost/root-utils@2.3.13':
+    dependencies:
+      caller: 1.1.0
+      find-root: 1.1.0
+
+  '@tryghost/root-utils@2.3.14':
     dependencies:
       caller: 1.1.0
       find-root: 1.1.0
@@ -3280,9 +3303,9 @@ snapshots:
       '@tryghost/root-utils': 2.3.13
       semver: 7.8.5
 
-  '@tryghost/zip@3.5.12(supports-color@5.5.0)':
+  '@tryghost/zip@3.5.13(supports-color@5.5.0)':
     dependencies:
-      '@tryghost/errors': 3.3.13
+      '@tryghost/errors': 3.3.14
       archiver: 8.0.0
       extract-zip: 2.0.1(supports-color@5.5.0)
     transitivePeerDependencies:
