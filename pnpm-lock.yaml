@@ -194,20 +194,20 @@ importers:
         specifier: 10.73.0
         version: 10.73.0(@opentelemetry/core@2.11.0(@opentelemetry/api@1.9.1))(supports-color@5.5.0)
       '@tryghost/config':
-        specifier: 2.3.13
-        version: 2.3.13
+        specifier: 2.3.14
+        version: 2.3.14
       '@tryghost/debug':
-        specifier: 2.3.13
-        version: 2.3.13(supports-color@5.5.0)
+        specifier: 2.3.14
+        version: 2.3.14(supports-color@5.5.0)
       '@tryghost/errors':
-        specifier: 3.3.13
-        version: 3.3.13
+        specifier: 3.3.14
+        version: 3.3.14
       '@tryghost/logging':
-        specifier: 5.4.4
-        version: 5.4.4(supports-color@5.5.0)
+        specifier: 5.4.5
+        version: 5.4.5(supports-color@5.5.0)
       '@tryghost/server':
-        specifier: 3.1.14
-        version: 3.1.14(supports-color@5.5.0)
+        specifier: 3.1.15
+        version: 3.1.15(supports-color@5.5.0)
       express:
         specifier: 5.2.1
         version: 5.2.1(supports-color@5.5.0)
@@ -681,32 +681,26 @@ packages:
     resolution: {integrity: sha512-2SX/1jW6CIMAiebvVv5ZInoCEuWQmMyBoJXXGC6Vjakjp/fpxP5eHs7/V6WKuPEIbuK06+VpjH+vjLQhr98rDQ==}
     engines: {node: '>=22'}
 
-  '@tryghost/bunyan-rotating-filestream@0.0.19':
-    resolution: {integrity: sha512-0VREBuHv5AihM4i15YfItnIoWUiAmO9Rj5z1wVEH/gkIUlKJR+hrQhpgCgHtCRhh0ghYT5Gbl/vZNQi6P3FTXQ==}
+  '@tryghost/bunyan-rotating-filestream@0.0.20':
+    resolution: {integrity: sha512-CUovHdDq9qNIlOKeebVCcqgVfkQq/+khzNd8pO3gwjCSrXGhkM9NrYyHP2YTJVKGPMx1vJvDiP3Be/6sgfSn/Q==}
 
-  '@tryghost/config@2.3.13':
-    resolution: {integrity: sha512-OLVQ+CBX1OSF6ophUBa/MG7yHPouhC1YVnUZq3KZPVGFR5yFHYZfk/MInzWcEjRQJvueFzYtzzxDDNe/lXoBPg==}
-
-  '@tryghost/debug@2.3.13':
-    resolution: {integrity: sha512-3AG+mm2wF9vdSFwH+k9jJaeqLHFigUeEUDyjaJxX5rasb0QPoSmNYxnXfJppbYVEFYOJ1UsqtsSdzG956sNCxQ==}
+  '@tryghost/config@2.3.14':
+    resolution: {integrity: sha512-vXq8zaaxDE98miiTnVwRSrIubzFPKsASgc3Rf7JEV5WAc58kYKrsCM8qUhLSvq1n3L29Zc4hAtHjUQadt2J2RQ==}
 
   '@tryghost/debug@2.3.14':
     resolution: {integrity: sha512-CuxfDTsuS8uPnAeJVCaokd7izIDhUzIi/mZo8ytKgKupx/K5UY03Pu0KwWJCuRRV2ZrDYeq00p8bBCM/H8uScg==}
 
-  '@tryghost/elasticsearch@5.4.10':
-    resolution: {integrity: sha512-1b99je7pybU8RLLTEO0bRD2HADVVt9OQUx/Da9K1MVypQ3wlSlRPza5j8T6D8isYVKqxM3AAMfFcIoLjn9sK2g==}
-
-  '@tryghost/errors@3.3.13':
-    resolution: {integrity: sha512-ZJelL4irZpH+37ZATowbyA3PrSZHc9EsN2ThOXGS1ESThLnq/ETIJdrnXh38I5p/dFB9ZDH7GJfcjmRZvSM69Q==}
+  '@tryghost/elasticsearch@5.4.11':
+    resolution: {integrity: sha512-tK4wteSxw1kt+TcCd8nojxpOe9So7JtPoxsyCH5PDtjS0DSlj3WI6G0Di/Oao8yzzt1xldiwhpf61rSKNTTsGA==}
 
   '@tryghost/errors@3.3.14':
     resolution: {integrity: sha512-Z49f+Wy6benC35x+x30FAjBWDMllJN7mMg5mWrOtxK67ipAflKlcQgubT03ZTYbbPPc9J8Kx2In7fOcvyp6a5g==}
 
-  '@tryghost/http-stream@2.3.14':
-    resolution: {integrity: sha512-Mo5s5EBehNy9upLGEHkx8uGsJtXq5/ATih7uiCuLVpLxHEUUz1Ss/dt2k+BbLDlKFH6jKEnEmAlAzxUTJQA1pQ==}
+  '@tryghost/http-stream@2.3.15':
+    resolution: {integrity: sha512-mAbqtPO/ZSj3SC/accLR/XCaveR2FcBXC0AFqLl/ejxfA8d70Cnl72fRbPq+fck/Am5EW2R1WG9ZHXcmw5aWqQ==}
 
-  '@tryghost/logging@5.4.4':
-    resolution: {integrity: sha512-QJnjPhKXlP+RXqUS1G46Mq0OCH1h7AJEqp0aLAqE3UTFcqaHjT842AZREBT4mX5nJxapt5NxprXVv4AAWTv/Gg==}
+  '@tryghost/logging@5.4.5':
+    resolution: {integrity: sha512-fjvRBSskqMPhH6BsAbfCWvJ6NY8nMtc2ivMnuMkiGMZiTbZFO0A91Ph+yusc9fsL30PZXl4zwo7FuzAg6KxuhA==}
 
   '@tryghost/mongo-knex@0.11.2':
     resolution: {integrity: sha512-0l7L/J609p+12+rA15Muya1JoIeSfBxIUZRB2FfROtJ2U+FTEOzZ/c0HgxB8eAArJMW2VXECmLCAbNUwygRzfg==}
@@ -723,20 +717,17 @@ packages:
   '@tryghost/pretty-cli@3.3.14':
     resolution: {integrity: sha512-zL+CX9BmciOx0mb1mG5lUSQQg+Dg57ntj6m0TAkaaSQon3lovrIbHznwpWkHLyggm9f+BltK5JTOdFqT/5oTpw==}
 
-  '@tryghost/pretty-stream@2.3.13':
-    resolution: {integrity: sha512-Qw+qZ7r4NUSt4T6j83+aCx9hYNOPhC7vQIAiAVDMoOP7djA+qvxnNmzsorPn9an0CR3Va3sXMHnzaIQsbAaR6A==}
+  '@tryghost/pretty-stream@2.3.14':
+    resolution: {integrity: sha512-oCXh0aXB7OIXkDBaUIu7n0ZTfkfVOTvv76ucp0M6aBTshdsmeYCJYEL7YItjnL8h9u6zq4N8UQ2W9mqDVqOqhQ==}
 
   '@tryghost/pro-ship@1.1.8':
     resolution: {integrity: sha512-wcra+OZXtHjwuuTh9WRvJCU+fiwOfHPTXSerJ9SHMrTr8LWfUTpmxSQex6YfWT1QtGW7sDCn7jqo2X53ggDqtQ==}
     engines: {node: '>=20.20.0'}
     hasBin: true
 
-  '@tryghost/request@4.0.6':
-    resolution: {integrity: sha512-wRhvhd5MsrDP/9w+XGZ1VVxrwaf+Utppj0uvPwkHK/DaX31k4jX/TkKDFrL2eMts3uhV3OQZKhBihuj85Nw7FQ==}
+  '@tryghost/request@4.0.7':
+    resolution: {integrity: sha512-OHOMsa4JIAVAwb1O8xQnaMwEhiJYIA604DdzkMFetxcDniv6sulaR8a6b+6xGtUdk6sxvnKv7PPgEMfn0D+E3Q==}
     engines: {node: ^22.12.0 || >=24.0.0}
-
-  '@tryghost/root-utils@2.3.13':
-    resolution: {integrity: sha512-b1tejLrOF95Ki21iQ0tH7U1obXmyP3dLTZ/gsyCBBmM1Jc9JhHWCubFldSb0+vN26IY7Lxh739U4U3njTkt0Yw==}
 
   '@tryghost/root-utils@2.3.14':
     resolution: {integrity: sha512-VmHSaPdjTCQNOTNvpLTmphi+TdorWbGbjgqTeCYFPgsWw3XUlByWaERYe3PV2JOmd2XeAhpG2KCegrmnPWMlKA==}
@@ -744,17 +735,17 @@ packages:
   '@tryghost/root-utils@2.3.8':
     resolution: {integrity: sha512-n12HsmW0mms6hlfYYSOcsJ9um6jifBvBFXJak2yPBySSmoTZpCgPezG9JlTXtPjG+4VmfvKaOE7NxlbEJyegiw==}
 
-  '@tryghost/server@3.1.14':
-    resolution: {integrity: sha512-3BEU1n8520rmtpLH6IhFk3Be35eDd+7T32vvjJJQdpagBRHgVmydr6RCg9i+JXPV4QQ/4obmUFgg9dyVmYP4qA==}
+  '@tryghost/server@3.1.15':
+    resolution: {integrity: sha512-neo0XtFCdSijKB4mW8VM0dNwNcBmOgCgnO1qdHAQfsL9UaPhr1NqeFn8edZijEk0FzoOQYJD8YInIQWRxDWXXA==}
 
-  '@tryghost/tpl@2.3.13':
-    resolution: {integrity: sha512-oAXtijesKmcDJZP0ORdzdsSRluBqzO6aQPdcv4vNt9TY3cvoSYjXTFP9HsVUhhwbjrAfSbrcxj7m+nYs2Qk9Bg==}
+  '@tryghost/tpl@2.3.14':
+    resolution: {integrity: sha512-qKo+X3dwf99tT5R2PBNBrlHYsi8ijfjF29+UgCWVVPmcNkjS1FklHyBxE/UOjkFLB/bP+ROeSwukX55JXKawVw==}
 
-  '@tryghost/validator@3.2.13':
-    resolution: {integrity: sha512-VuODJYpEbvmVU1sB2M627C4kOdIla4IhmOTOmxs/Ft8RSV//6QcEZofXIolItxyKlbpayICMPGtsdH/pc0Q0Vg==}
+  '@tryghost/validator@3.2.14':
+    resolution: {integrity: sha512-lC+7tG90UO2gGnJZ/wbE7PYVTGAOWx+ir6FnSgVhGRBdkI0OVu7K76Ump2ICkD3e6zdxNAieBbMygT+h+aRMSw==}
 
-  '@tryghost/version@2.3.13':
-    resolution: {integrity: sha512-Tf1BccmNzqWD2WlRiKiow9YTXBaAzxdZSPkd0ozstJuzCwAGAavzhcldvBic50H6zjkbaURipUNljqqKUQ0d0A==}
+  '@tryghost/version@2.3.14':
+    resolution: {integrity: sha512-LmTTap2WfF1tV4LNN0s+ARBuDBNeGLZJDmCTNpPDufIB0GG8YMYTF7cCSnozwf0dw+O7BM5HbUwYfZ9WBbzONw==}
 
   '@tryghost/zip@3.5.13':
     resolution: {integrity: sha512-p6RQqbpXwUqngWdVG+b8v+OXyO0O4reVLqbIJmHJE8IPoFrZcJxrbVxQ2rX70lYleSvsSZ8y8UoCnTZ6QUhR+w==}
@@ -3161,21 +3152,14 @@ snapshots:
 
   '@sindresorhus/is@8.1.0': {}
 
-  '@tryghost/bunyan-rotating-filestream@0.0.19':
+  '@tryghost/bunyan-rotating-filestream@0.0.20':
     dependencies:
       long-timeout: 0.1.1
 
-  '@tryghost/config@2.3.13':
+  '@tryghost/config@2.3.14':
     dependencies:
-      '@tryghost/root-utils': 2.3.13
+      '@tryghost/root-utils': 2.3.14
       nconf: 0.13.0
-
-  '@tryghost/debug@2.3.13(supports-color@5.5.0)':
-    dependencies:
-      '@tryghost/root-utils': 2.3.13
-      debug: 4.4.3(supports-color@5.5.0)
-    transitivePeerDependencies:
-      - supports-color
 
   '@tryghost/debug@2.3.14(supports-color@5.5.0)':
     dependencies:
@@ -3184,30 +3168,28 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tryghost/elasticsearch@5.4.10(supports-color@5.5.0)':
+  '@tryghost/elasticsearch@5.4.11(supports-color@5.5.0)':
     dependencies:
       '@elastic/elasticsearch': 8.19.2(supports-color@5.5.0)
-      '@tryghost/debug': 2.3.13(supports-color@5.5.0)
+      '@tryghost/debug': 2.3.14(supports-color@5.5.0)
       split2: 4.2.0
     transitivePeerDependencies:
       - supports-color
 
-  '@tryghost/errors@3.3.13': {}
-
   '@tryghost/errors@3.3.14': {}
 
-  '@tryghost/http-stream@2.3.14':
+  '@tryghost/http-stream@2.3.15':
     dependencies:
-      '@tryghost/errors': 3.3.13
-      '@tryghost/request': 4.0.6
+      '@tryghost/errors': 3.3.14
+      '@tryghost/request': 4.0.7
 
-  '@tryghost/logging@5.4.4(supports-color@5.5.0)':
+  '@tryghost/logging@5.4.5(supports-color@5.5.0)':
     dependencies:
-      '@tryghost/bunyan-rotating-filestream': 0.0.19
-      '@tryghost/elasticsearch': 5.4.10(supports-color@5.5.0)
-      '@tryghost/http-stream': 2.3.14
-      '@tryghost/pretty-stream': 2.3.13
-      '@tryghost/root-utils': 2.3.13
+      '@tryghost/bunyan-rotating-filestream': 0.0.20
+      '@tryghost/elasticsearch': 5.4.11(supports-color@5.5.0)
+      '@tryghost/http-stream': 2.3.15
+      '@tryghost/pretty-stream': 2.3.14
+      '@tryghost/root-utils': 2.3.14
       bunyan: 1.8.15
       fs-extra: 11.4.0
       gelf-stream: 1.1.1
@@ -3246,7 +3228,7 @@ snapshots:
       chalk: 6.0.0
       sywac: 1.3.0
 
-  '@tryghost/pretty-stream@2.3.13':
+  '@tryghost/pretty-stream@2.3.14':
     dependencies:
       date-format: 4.0.14
       lodash: 4.18.1
@@ -3257,19 +3239,14 @@ snapshots:
       '@tryghost/root-utils': 2.3.8
       semver: 7.8.5
 
-  '@tryghost/request@4.0.6':
+  '@tryghost/request@4.0.7':
     dependencies:
-      '@tryghost/errors': 3.3.13
-      '@tryghost/validator': 3.2.13
-      '@tryghost/version': 2.3.13
+      '@tryghost/errors': 3.3.14
+      '@tryghost/validator': 3.2.14
+      '@tryghost/version': 2.3.14
       cacheable-lookup: 7.0.0
       got: 16.0.0
       lodash: 4.18.1
-
-  '@tryghost/root-utils@2.3.13':
-    dependencies:
-      caller: 1.1.0
-      find-root: 1.1.0
 
   '@tryghost/root-utils@2.3.14':
     dependencies:
@@ -3281,26 +3258,26 @@ snapshots:
       caller: 1.1.0
       find-root: 1.1.0
 
-  '@tryghost/server@3.1.14(supports-color@5.5.0)':
+  '@tryghost/server@3.1.15(supports-color@5.5.0)':
     dependencies:
-      '@tryghost/debug': 2.3.13(supports-color@5.5.0)
-      '@tryghost/logging': 5.4.4(supports-color@5.5.0)
+      '@tryghost/debug': 2.3.14(supports-color@5.5.0)
+      '@tryghost/logging': 5.4.5(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
-  '@tryghost/tpl@2.3.13': {}
+  '@tryghost/tpl@2.3.14': {}
 
-  '@tryghost/validator@3.2.13':
+  '@tryghost/validator@3.2.14':
     dependencies:
-      '@tryghost/errors': 3.3.13
-      '@tryghost/tpl': 2.3.13
+      '@tryghost/errors': 3.3.14
+      '@tryghost/tpl': 2.3.14
       lodash: 4.18.1
       moment-timezone: 0.5.48
       validator: 13.15.35
 
-  '@tryghost/version@2.3.13':
+  '@tryghost/version@2.3.14':
     dependencies:
-      '@tryghost/root-utils': 2.3.13
+      '@tryghost/root-utils': 2.3.14
       semver: 7.8.5
 
   '@tryghost/zip@3.5.13(supports-color@5.5.0)':
