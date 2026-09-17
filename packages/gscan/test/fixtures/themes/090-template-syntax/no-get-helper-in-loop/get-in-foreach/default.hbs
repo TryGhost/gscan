@@ -1,0 +1,12 @@
+<html>
+<body>
+    {{#foreach tags}}
+        <h2>{{name}}</h2>
+        {{#get "posts" limit="3" filter="tag:{{slug}}"}}
+            {{#foreach posts}}
+                <h3>{{title}}</h3>
+            {{/foreach}}
+        {{/get}}
+    {{/foreach}}
+</body>
+</html>

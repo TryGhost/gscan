@@ -32,6 +32,26 @@ let rules = {
         Find more information about the <code>{{#get}}</code> helper <a href="${docsBaseUrl}helpers/functional/get/" target=_blank>here</a>.`,
         helper: '{{#get}}'
     },
+    'GS090-NO-INVALID-FILTER-IN-GET-HELPER': {
+        level: 'warning',
+        rule: 'Use a valid <code>filter</code> in the <code>{{#get}}</code> helper',
+        details: oneLineTrim`The <code>filter</code> passed to <code>{{#get}}</code> is applied by the Content API.
+        A filter that isn't valid NQL makes the helper render its <code>{{else}}</code> block instead of any content, and a filter on a
+        field the Content API doesn't allow &mdash; such as <code>html</code> or <code>plaintext</code> &mdash; is dropped from the query
+        without an error, so the helper quietly returns more results than you asked for and Ghost does more work to produce them.<br>
+        Find more information about the <code>{{#get}}</code> helper <a href="${docsBaseUrl}helpers/functional/get/" target=_blank>here</a>.`,
+        helper: '{{#get}}'
+    },
+    'GS090-NO-GET-HELPER-IN-LOOP': {
+        level: 'warning',
+        rule: 'Avoid using the <code>{{#get}}</code> helper inside a loop or another <code>{{#get}}</code>',
+        details: oneLineTrim`Every <code>{{#get}}</code> is a Content API query. Placing one inside <code>{{#foreach}}</code> runs that query
+        once per item, and nesting one inside another <code>{{#get}}</code> means the inner query can only start once the outer one has
+        finished. Both patterns make a page slower in proportion to how much content it renders.<br>
+        Fetch what you need in a single <code>{{#get}}</code> &mdash; for example with a combined <code>filter</code> &mdash; instead.<br>
+        Find more information about the <code>{{#get}}</code> helper <a href="${docsBaseUrl}helpers/functional/get/" target=_blank>here</a>.`,
+        helper: '{{#get}}'
+    },
     'GS001-DEPR-TWITTER-URL': {
         level: 'warning',
         rule: 'Replace <code>{{twitter_url}}</code> with <code>{{social_url type="twitter"}}</code>',

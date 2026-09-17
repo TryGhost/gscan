@@ -1,0 +1,9 @@
+<html>
+<body>
+    {{#get "posts" limit="5" filter="plaintext:~'ghost'"}}
+        {{#foreach posts}}
+            <h2>{{title}}</h2>
+        {{/foreach}}
+    {{/get}}
+</body>
+</html>

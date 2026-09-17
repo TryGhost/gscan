@@ -430,5 +430,65 @@ describe('090 Template syntax', function () {
 
             expect(Object.keys(output.results.fail)).toEqual([]);
         });
+
+        it('should fail when a {{#get}} filter is not valid NQL', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-invalid-filter-in-get-helper/invalid-syntax', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([
+                'GS090-NO-INVALID-FILTER-IN-GET-HELPER'
+            ]);
+            utils.assertValidFailObject(output.results.fail['GS090-NO-INVALID-FILTER-IN-GET-HELPER']);
+            expect(output.results.fail['GS090-NO-INVALID-FILTER-IN-GET-HELPER'].failures[0].message)
+                .toMatch(/is not valid NQL/);
+        });
+
+        it('should fail when a {{#get}} filter uses a field the Content API drops', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-invalid-filter-in-get-helper/restricted-field', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([
+                'GS090-NO-INVALID-FILTER-IN-GET-HELPER'
+            ]);
+            expect(output.results.fail['GS090-NO-INVALID-FILTER-IN-GET-HELPER'].failures[0].message)
+                .toMatch(/"plaintext".*silently drops it/);
+        });
+
+        it('should NOT fail for valid, dynamic or non-literal {{#get}} filters', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-invalid-filter-in-get-helper/valid', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([]);
+        });
+
+        it('should fail when {{#get}} is used inside {{#foreach}}', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-get-helper-in-loop/get-in-foreach', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([
+                'GS090-NO-GET-HELPER-IN-LOOP'
+            ]);
+            utils.assertValidFailObject(output.results.fail['GS090-NO-GET-HELPER-IN-LOOP']);
+            expect(output.results.fail['GS090-NO-GET-HELPER-IN-LOOP'].failures[0].message)
+                .toMatch(/one Content API query per iteration/);
+        });
+
+        it('should fail when {{#get}} is nested inside another {{#get}}', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-get-helper-in-loop/nested-get', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([
+                'GS090-NO-GET-HELPER-IN-LOOP'
+            ]);
+            expect(output.results.fail['GS090-NO-GET-HELPER-IN-LOOP'].failures[0].message)
+                .toMatch(/cannot start until the outer query has finished/);
+        });
+
+        it('should NOT fail when {{#foreach}} is used inside {{#get}}', async function () {
+            const output = await utils.testCheck(thisCheck, '090-template-syntax/no-get-helper-in-loop/valid', options);
+            utils.assertValidThemeObject(output);
+
+            expect(Object.keys(output.results.fail)).toEqual([]);
+        });
     });
 });

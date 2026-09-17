@@ -14,6 +14,8 @@ module.exports = {
     'GS090-NO-PRICE-DATA-MONTHLY-YEARLY': require('./lint-no-price-data-monthly-yearly'),
     'GS090-NO-LIMIT-ALL-IN-GET-HELPER': require('./lint-no-limit-all-in-get-helper'),
     'GS090-NO-LIMIT-OVER-100-IN-GET-HELPER': require('./lint-no-limit-over-100-in-get-helper'),
+    'GS090-NO-INVALID-FILTER-IN-GET-HELPER': require('./lint-no-invalid-filter-in-get-helper'),
+    'GS090-NO-GET-HELPER-IN-LOOP': require('./lint-no-get-helper-in-loop'),
     'GS090-NO-INVALID-CONDITIONAL-ARGUMENTS': require('./lint-no-multi-param-conditionals'),
     'GS110-NO-UNKNOWN-PAGE-BUILDER-USAGE': require('./lint-no-unknown-page-properties'),
     'GS120-NO-UNKNOWN-GLOBALS': require('./lint-no-unknown-globals'),

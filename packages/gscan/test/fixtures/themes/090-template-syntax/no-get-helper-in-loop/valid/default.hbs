@@ -1,0 +1,12 @@
+<html>
+<body>
+    {{#get "posts" limit="5" filter="featured:true"}}
+        {{#foreach posts}}
+            <h2>{{title}}</h2>
+            {{#if feature_image}}
+                <img src="{{feature_image}}">
+            {{/if}}
+        {{/foreach}}
+    {{/get}}
+</body>
+</html>

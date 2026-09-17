@@ -1,0 +1,27 @@
+<html>
+<body>
+    {{#get "posts" limit="5" filter="featured:true+tag:-hash-hidden"}}
+        {{#foreach posts}}
+            <h2>{{title}}</h2>
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "posts" limit="3" filter="id:-{{id}}+primary_author.slug:{{primary_author.slug}}"}}
+        {{#foreach posts}}
+            <h2>{{title}}</h2>
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "posts" limit="3" filter=(concat "id:-" id)}}
+        {{#foreach posts}}
+            <h2>{{title}}</h2>
+        {{/foreach}}
+    {{/get}}
+
+    {{#get "tags" limit="10" filter="visibility:public"}}
+        {{#foreach tags}}
+            <span>{{name}}</span>
+        {{/foreach}}
+    {{/get}}
+</body>
+</html>

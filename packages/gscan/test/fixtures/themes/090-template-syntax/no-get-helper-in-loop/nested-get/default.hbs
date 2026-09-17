@@ -1,0 +1,11 @@
+<html>
+<body>
+    {{#get "tags" limit="5"}}
+        {{#get "posts" limit="3"}}
+            {{#foreach posts}}
+                <h3>{{title}}</h3>
+            {{/foreach}}
+        {{/get}}
+    {{/get}}
+</body>
+</html>
