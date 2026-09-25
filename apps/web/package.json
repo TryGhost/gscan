@@ -27,7 +27,7 @@
     "dev": "NODE_ENV=development DEBUG=gscan:* nodemon"
   },
   "dependencies": {
-    "@sentry/node": "10.75.1",
+    "@sentry/node": "10.75.2",
     "@tryghost/config": "2.3.14",
     "@tryghost/debug": "2.3.14",
     "@tryghost/errors": "3.3.14",
