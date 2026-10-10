@@ -539,12 +539,12 @@ let rules = {
         level: 'error',
         fatal: false,
         rule: 'The <code>{{#author}}</code> block helper should be replaced with <code>{{#primary_author}}</code> or <code>{{#foreach authors}}...{{/foreach}}</code>',
-        details: oneLineTrim`The usage of <code>{{#author}}</code> block helper outside of <code>author.hbs</code> is no longer supported and
+        details: oneLineTrim`The usage of <code>{{#author}}</code> block helper outside of <code>author.hbs</code> or <code>author-:slug.hbs</code> is no longer supported and
         should be replaced with <code>{{#primary_author}}</code> or <code>{{#foreach authors}}...{{/foreach}}</code>.<br>
         ${multiAuthorDesc}<br>
         ${authorHelperDocs}`,
         regex: /{{\s*?#author\s*?}}/g,
-        notValidIn: 'author.hbs',
+        notValidIn: /^author(-.+)?\.hbs$/,
         helper: '{{#author}}'
     },
     'GS001-DEPR-PAIMG': {
