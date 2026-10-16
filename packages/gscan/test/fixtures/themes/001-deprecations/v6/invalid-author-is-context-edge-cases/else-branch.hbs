@@ -1,0 +1,11 @@
+{{#is "author"}}
+  {{author.name}}
+{{else}}
+  {{author.meta_title}}
+{{/is}}
+
+{{^is "author"}}
+  {{author.slug}}
+{{else}}
+  {{author.website}}
+{{/is}}
