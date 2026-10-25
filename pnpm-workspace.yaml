@@ -10,3 +10,5 @@ blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@tryghost/*'
+  # Renovate security update: multer@2.5.0
+  - multer@2.5.0
