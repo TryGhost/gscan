@@ -20,6 +20,38 @@ const ghostVersions = require('gscan/lib/utils').versions;
 const uploadDir = path.resolve(__dirname, 'uploads');
 const upload = multer({dest: uploadDir});
 const app = express();
+
+// multer generates the stored filename itself, but only ever touch the
+// filesystem with a path we've confirmed sits inside uploadDir - never pass
+// req.file.path straight through. Returns null for anything else.
+function resolveUploadPath(file) {
+    if (!file || !file.path) {
+        return null;
+    }
+
+    const uploadPath = path.resolve(file.path);
+    if (!uploadPath.startsWith(uploadDir + path.sep)) {
+        return null;
+    }
+
+    return uploadPath;
+}
+
+// Best-effort removal of a multer temp file
+async function removeUpload(file) {
+    const uploadPath = resolveUploadPath(file);
+    if (!uploadPath) {
+        return;
+    }
+
+    debug('attempting to remove: ' + uploadPath);
+    try {
+        await fs.rm(uploadPath, {recursive: true, force: true});
+    } catch (removeError) {
+        debug('failed to remove uploaded file', removeError);
+    }
+}
+
 const viewsDir = path.join(__dirname, 'tpl');
 const scanHbs = create({
     extname: '.hbs',
@@ -82,12 +114,9 @@ app.get('/', function (req, res) {
 app.post('/',
     upload.single('theme'),
     uploadValidation,
-    function (req, res, next) {
-        // CASE: multer generates the stored filename itself, but only ever
-        // touch the filesystem with a path we've confirmed sits inside
-        // uploadDir - never pass req.file.path straight through.
-        const uploadPath = path.resolve(req.file.path);
-        if (!uploadPath.startsWith(uploadDir + path.sep)) {
+    async function (req, res, next) {
+        const uploadPath = resolveUploadPath(req.file);
+        if (!uploadPath) {
             return next(new errors.BadRequestError({
                 message: 'Invalid upload path.'
             }));
@@ -104,30 +133,15 @@ app.post('/',
         debug('Uploaded: ' + zip.name + ' to ' + zip.path);
         debug('Version to check: ' + options.checkVersion);
 
-        let checkError;
+        try {
+            res.theme = await gscan.checkZip(zip, options);
+            debug('Checked: ' + zip.name);
+        } finally {
+            await removeUpload(req.file);
+        }
 
-        gscan.checkZip(zip, options)
-            .then(function processResult(theme) {
-                debug('Checked: ' + zip.name);
-                res.theme = theme;
-            }).catch(function (error) {
-                checkError = error;
-            }).finally(function () {
-                debug('attempting to remove: ' + uploadPath);
-                fs.rm(uploadPath, {recursive: true, force: true})
-                    .catch(function (removeError) {
-                        debug('failed to remove uploaded file', removeError);
-                    })
-                    .then(function () {
-                        if (checkError) {
-                            debug('Calling next with error');
-                            return next(checkError);
-                        }
-
-                        debug('Calling next');
-                        return next();
-                    });
-            });
+        debug('Calling next');
+        next();
     },
     function doRender(req, res) {
         const options = {
@@ -138,6 +152,12 @@ app.post('/',
         debug('Rendering result');
         scanHbs.handlebars.logger.level = 0;
         res.render('result', result);
+    },
+    // CASE: uploadValidation (or anything after multer) rejected the request,
+    // so the success path above never removed the temp file
+    async function cleanupUpload(err, req, res, next) {
+        await removeUpload(req.file);
+        next(err);
     }
 );
 
