@@ -17,7 +17,8 @@ const logRequest = require('./middlewares/log-request');
 const uploadValidation = require('./middlewares/upload-validation');
 const ghostVer = require('./ghost-version');
 const ghostVersions = require('gscan/lib/utils').versions;
-const upload = multer({dest: __dirname + '/uploads/'});
+const uploadDir = path.resolve(__dirname, 'uploads');
+const upload = multer({dest: uploadDir});
 const app = express();
 const viewsDir = path.join(__dirname, 'tpl');
 const scanHbs = create({
@@ -82,8 +83,18 @@ app.post('/',
     upload.single('theme'),
     uploadValidation,
     function (req, res, next) {
+        // CASE: multer generates the stored filename itself, but only ever
+        // touch the filesystem with a path we've confirmed sits inside
+        // uploadDir - never pass req.file.path straight through.
+        const uploadPath = path.resolve(req.file.path);
+        if (!uploadPath.startsWith(uploadDir + path.sep)) {
+            return next(new errors.BadRequestError({
+                message: 'Invalid upload path.'
+            }));
+        }
+
         const zip = {
-            path: req.file.path,
+            path: uploadPath,
             name: req.file.originalname
         };
         const options = {
@@ -102,8 +113,8 @@ app.post('/',
             }).catch(function (error) {
                 checkError = error;
             }).finally(function () {
-                debug('attempting to remove: ' + req.file.path);
-                fs.rm(req.file.path, {recursive: true, force: true})
+                debug('attempting to remove: ' + uploadPath);
+                fs.rm(uploadPath, {recursive: true, force: true})
                     .catch(function (removeError) {
                         debug('failed to remove uploaded file', removeError);
                     })
