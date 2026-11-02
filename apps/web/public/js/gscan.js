@@ -1,38 +1,47 @@
-(function ($) {
-    $(document).ready(function () {
-        if ($('#theme')[0]) {
-            $('#theme-submit').prop('disabled', !$('#theme')[0].files.length);
+(function () {
+    function setDisplay(elements, display) {
+        elements.forEach(function (element) {
+            element.style.display = display;
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const themeInput = document.getElementById('theme');
+        const themeSubmit = document.getElementById('theme-submit');
+
+        if (themeInput && themeSubmit) {
+            themeSubmit.disabled = !themeInput.files.length;
+
+            themeInput.addEventListener('change', function () {
+                themeSubmit.disabled = !themeInput.files.length;
+            });
         }
 
-        $(document).on('change', '#theme', function () {
-            $('#theme-submit').prop('disabled', !$(this)[0].files.length);
-        });
-
         // Mobile Menu Trigger
-        $('.gh-nav-burger').click(function () {
-            $('.gh-mobilehead').toggleClass('gh-mobilehead-open');
-        });
-
-        // Toggle dropdown arrow
-        $('#version').on('click', function () {
-            $('.gh-input-icon.select-arrow').toggleClass('.active');
+        document.querySelectorAll('.gh-nav-burger').forEach(function (burger) {
+            burger.addEventListener('click', function () {
+                document.querySelectorAll('.gh-mobilehead').forEach(function (mobilehead) {
+                    mobilehead.classList.toggle('gh-mobilehead-open');
+                });
+            });
         });
 
         /** Toggle Details **/
-        if ($('.toggle-details').length) {
-            $('.toggle-details').on('click', function () {
-                if ($(this).find('~ .details').is(':hidden')) {
-                    $(this).find('~ .details').show();
-                    $(this).find('.show').hide();
-                    $(this).find('.hide').show();
-                    $(this).parent().addClass('expanded');
-                } else {
-                    $(this).find('~ .details').hide();
-                    $(this).find('.show').show();
-                    $(this).find('.hide').hide();
-                    $(this).parent().removeClass('expanded');
+        document.querySelectorAll('.toggle-details').forEach(function (toggle) {
+            toggle.addEventListener('click', function () {
+                const expanded = toggle.parentElement.classList.toggle('expanded');
+                const details = [];
+
+                for (let sibling = toggle.nextElementSibling; sibling; sibling = sibling.nextElementSibling) {
+                    if (sibling.classList.contains('details')) {
+                        details.push(sibling);
+                    }
                 }
+
+                setDisplay(details, expanded ? 'block' : 'none');
+                setDisplay(toggle.querySelectorAll('.show'), expanded ? 'none' : 'inline');
+                setDisplay(toggle.querySelectorAll('.hide'), expanded ? 'inline' : 'none');
             });
-        }
+        });
     });
-}(jQuery));
+}());

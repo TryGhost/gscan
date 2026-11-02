@@ -161,34 +161,19 @@
 
 </div>{{!-- /.gh-viewport --}}
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="/js/gscan.js"></script>
 
 {{!--Campaign Monitor Scripts for Newsletter--}}
 <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
 <script>
-// Parse the URL parameter
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+// Show the newsletter success/confirmed message based on the ?s= URL parameter
+var subscribeStatus = new URLSearchParams(window.location.search).get('s');
+
+if (subscribeStatus === 'true') {
+    document.body.classList.add('successfully-subscribed');
+} else if (subscribeStatus === 'confirmed') {
+    document.body.classList.add('successfully-confirmed');
 }
-// Give the parameter a variable name
-var dynamicContent = getParameterByName('s');
-
- $(document).ready(function() {
-
-	// Check if the URL parameter is apples
-	if (dynamicContent == 'true') {
-		$('body').addClass("successfully-subscribed");
-	} else if (dynamicContent == 'confirmed') {
-		$('body').addClass("successfully-confirmed");
-	}
-});
 </script>
 </body>
 </html>
