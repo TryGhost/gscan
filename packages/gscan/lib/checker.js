@@ -48,14 +48,15 @@ const check = async function checkAll(themePath, options = {}) {
         options.checkVersion = versions.canary;
     }
 
-    // Resolve labs helpers per invocation without mutating the shared spec.
-    const baseSpec = require('./specs').get([version]);
-    options.knownHelpers = resolveKnownHelpers(baseSpec.knownHelpers, options.labs);
-
     // Require readTheme late to avoid loading entire AST parser until used
     const readTheme = require('./read-theme');
 
     try {
+        // Resolve labs helpers per invocation without mutating the shared spec.
+        // Keep version resolution inside try so unknown versions become ValidationError.
+        const baseSpec = require('./specs').get([version]);
+        options.knownHelpers = resolveKnownHelpers(baseSpec.knownHelpers, options.labs);
+
         const theme = await readTheme(themePath, options);
 
         // set the major version to check
