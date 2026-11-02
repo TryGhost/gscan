@@ -176,4 +176,77 @@ describe('Check zip', function () {
             }
         });
     });
+
+    describe('zip name parsing', function () {
+        const readZipPath = require.resolve('../lib/read-zip');
+        let originalReadZip;
+        let readZip;
+
+        beforeEach(function () {
+            originalReadZip = require(readZipPath);
+            readZip = vi.fn(async () => ({path: themePath('is-empty')}));
+            require.cache[readZipPath].exports = readZip;
+        });
+
+        afterEach(function () {
+            require.cache[readZipPath].exports = originalReadZip;
+        });
+
+        async function nameFor(zipPath) {
+            await checkZip(zipPath, {skipChecks: true, checkVersion: 'v5', keepExtractedDir: true});
+            return readZip.mock.calls[0][0].name;
+        }
+
+        it('strips directories and the .zip extension', async function () {
+            expect(await nameFor('/a/b/theme.zip')).toEqual('theme');
+        });
+
+        it('passes the original path through to readZip', async function () {
+            await nameFor('/a/b/theme.zip');
+            expect(readZip.mock.calls[0][0].path).toEqual('/a/b/theme.zip');
+        });
+
+        it('handles a bare file name', async function () {
+            expect(await nameFor('theme.zip')).toEqual('theme');
+        });
+
+        it('handles Windows-style separators', async function () {
+            expect(await nameFor('C:\\Users\\me\\themes\\theme.zip')).toEqual('theme');
+        });
+
+        it('keeps extra dots in the name', async function () {
+            expect(await nameFor('/a/b/my.theme.zip')).toEqual('my.theme');
+        });
+
+        it('matches the extension case-insensitively', async function () {
+            expect(await nameFor('/a/b/theme.ZIP')).toEqual('theme');
+        });
+
+        it('rejects a path that does not end in .zip', async function () {
+            await expect(checkZip('/a/b/theme.tar.gz')).rejects.toMatchObject({
+                errorType: 'ValidationError',
+                message: 'Failed to check zip file',
+                context: 'theme.tar.gz'
+            });
+            expect(readZip).not.toHaveBeenCalled();
+        });
+
+        it('rejects a path that is only the .zip extension', async function () {
+            await expect(checkZip('/a/b/.zip')).rejects.toMatchObject({
+                errorType: 'ValidationError'
+            });
+            expect(readZip).not.toHaveBeenCalled();
+        });
+
+        it('handles long pathological input quickly', async function () {
+            const start = Date.now();
+
+            await expect(checkZip('a'.repeat(50000))).rejects.toMatchObject({
+                errorType: 'ValidationError'
+            });
+            expect(await nameFor('/'.repeat(50000) + 'a'.repeat(50000) + '.zip')).toEqual('a'.repeat(50000));
+
+            expect(Date.now() - start).toBeLessThan(100);
+        });
+    });
 });
