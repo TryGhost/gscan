@@ -3,12 +3,20 @@ packages:
   - 'apps/*'
 
 allowBuilds:
-  'dtrace-provider@0.8.8': true
+  'dtrace-provider': false
 
 strictDepBuilds: true
 blockExoticSubdeps: true
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@tryghost/*'
-  # Renovate security update: multer@2.5.0
-  - multer@2.5.0
+
+overrides:
+  glob@>=9.0.0 <=14.0.1: ^14.0.2
+  minimatch@<11.0.1: ^11.0.1
+
+# bunyan only needs mv for its built-in rotating-file stream. @tryghost/logging
+# uses @tryghost/bunyan-rotating-filestream unless rotation.useLibrary is false.
+# Dropping mv also drops rimraf@2 > glob@6, which can't run on minimatch v11.
+ignoredOptionalDependencies:
+  - mv
