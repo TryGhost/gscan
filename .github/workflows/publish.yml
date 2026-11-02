@@ -12,6 +12,9 @@ on:
         type: boolean
         default: true
 
+permissions:
+  contents: read
+
 jobs:
   test:
     uses: ./.github/workflows/ci.yml

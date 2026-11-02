@@ -3,6 +3,10 @@ on:
   push:
     tags:
       - v*
+
+permissions:
+  contents: read
+
 jobs:
   build-and-push:
     name: Build and Push
