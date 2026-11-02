@@ -98,9 +98,9 @@ const checkZip = async function checkZip(path, options) {
     if (_.isString(path)) {
         // CASE: win32.basename splits on both `/` and `\`, so Windows paths work on any platform
         const fileName = nodePath.win32.basename(path);
-        const name = fileName.replace(/\.zip$/i, '');
+        const ext = nodePath.win32.extname(fileName);
 
-        if (!name || name === fileName) {
+        if (ext.toLowerCase() !== '.zip') {
             throw new errors.ValidationError({
                 message: 'Failed to check zip file',
                 help: 'The theme file must be a .zip file.',
@@ -109,7 +109,7 @@ const checkZip = async function checkZip(path, options) {
             });
         }
 
-        zip = {path, name};
+        zip = {path, name: nodePath.win32.basename(fileName, ext)};
     } else {
         zip = _.clone(path);
     }
