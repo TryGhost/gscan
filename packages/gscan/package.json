@@ -1,6 +1,6 @@
 {
   "name": "gscan",
-  "version": "6.6.1",
+  "version": "6.7.0",
   "description": "Scans Ghost themes looking for errors, deprecations, features and compatibility",
   "keywords": [
     "ghost",
@@ -18,7 +18,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "engines": {
-    "node": "^22.17.0 || ^24.0.0"
+    "node": "^22.17.0 || ^24.0.0 || ^26.0.0"
   },
   "bugs": {
     "url": "https://github.com/TryGhost/gscan/issues"
@@ -40,11 +40,11 @@
     "gscan": "./bin/cli.js"
   },
   "dependencies": {
-    "@tryghost/debug": "^2.3.14",
-    "@tryghost/errors": "^3.3.14",
+    "@tryghost/debug": "^2.3.19",
+    "@tryghost/errors": "^3.4.5",
     "@tryghost/nql": "^0.13.4",
-    "@tryghost/pretty-cli": "^3.3.14",
-    "@tryghost/zip": "^3.5.13",
+    "@tryghost/pretty-cli": "^3.4.1",
+    "@tryghost/zip": "^4.0.0",
     "chalk": "6.0.1",
     "handlebars": "4.7.10",
     "lodash": "4.18.1",

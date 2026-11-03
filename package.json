@@ -8,7 +8,7 @@
     "url": "git@github.com:TryGhost/gscan.git"
   },
   "engines": {
-    "node": "^22.17.0 || ^24.0.0"
+    "node": "^22.17.0 || ^24.0.0 || ^26.0.0"
   },
   "bugs": {
     "url": "https://github.com/TryGhost/gscan/issues"
@@ -33,7 +33,7 @@
     "@eslint/eslintrc": "3.3.7",
     "@eslint/js": "10.0.1",
     "@vitest/coverage-v8": "5.0.5",
-    "eslint": "10.13.0",
+    "eslint": "10.14.0",
     "eslint-plugin-ghost": "4.0.1",
     "vitest": "5.0.5"
   },
