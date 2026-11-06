@@ -52,7 +52,7 @@
     "validator": "^13.0.0"
   },
   "devDependencies": {
-    "@tryghost/pro-ship": "^1.1.8"
+    "@tryghost/pro-ship": "^2.0.0"
   },
   "files": [
     "lib",
