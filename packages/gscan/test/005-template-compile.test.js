@@ -494,4 +494,33 @@ describe('005 Template compile', function () {
             });
         });
     });
+
+    describe('v6', function () {
+        const options = {checkVersion: 'v6'};
+
+        it('accepts the strip_tags helper in inline and block form', function () {
+            return utils.testCheck(thisCheck, '005-compile/v6/strip-tags-helper', options).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                expect(output.results.fail).toEqual({});
+                utils.assertContains(output.results.pass, 'GS005-TPL-ERR');
+
+                const helperList = Object.keys(output.helpers);
+                utils.assertContains(helperList, 'strip_tags');
+            });
+        });
+
+        it('reports strip_tags as an unknown helper for v5', function () {
+            return utils.testCheck(thisCheck, '005-compile/v6/strip-tags-helper', {checkVersion: 'v5'}).then(function (output) {
+                utils.assertValidThemeObject(output);
+
+                utils.assertObjectKeys(output.results.fail, 'GS005-TPL-ERR');
+
+                const failures = output.results.fail['GS005-TPL-ERR'].failures;
+                expect(failures).toHaveLength(1);
+                expect(failures[0].ref).toEqual('index.hbs');
+                expect(failures[0].message).toEqual('Missing helper: "strip_tags"');
+            });
+        });
+    });
 });
