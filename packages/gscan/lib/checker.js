@@ -7,7 +7,7 @@ const errors = require('@tryghost/errors');
 const versions = require('./utils').versions;
 
 // See lib/utils/labs-enabled-helpers.js to add/remove labs-flagged helpers
-const labsEnabledHelpers = require('./utils/labs-enabled-helpers');
+const resolveKnownHelpers = require('./utils/resolve-known-helpers');
 
 function loadChecks() {
     const checksDir = nodePath.join(__dirname, 'checks');
@@ -48,19 +48,15 @@ const check = async function checkAll(themePath, options = {}) {
         options.checkVersion = versions.canary;
     }
 
-    _.each(labsEnabledHelpers, (flag, helper) => {
-        if (_.has(options.labs, flag)) {
-            const spec = require('./specs').get([version]);
-            if (!spec.knownHelpers.includes(helper)) {
-                spec.knownHelpers.push(helper);
-            }
-        }
-    });
-
     // Require readTheme late to avoid loading entire AST parser until used
     const readTheme = require('./read-theme');
 
     try {
+        // Resolve labs helpers per invocation without mutating the shared spec.
+        // Keep version resolution inside try so unknown versions become ValidationError.
+        const baseSpec = require('./specs').get([version]);
+        options.knownHelpers = resolveKnownHelpers(baseSpec.knownHelpers, options.labs);
+
         const theme = await readTheme(themePath, options);
 
         // set the major version to check
