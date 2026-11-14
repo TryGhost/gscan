@@ -1,5 +1,5 @@
 # ---- Base Node with Alpine ----
-FROM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216 AS base
+FROM node:26.13.1-alpine3.24@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS base
 # Set working directory in the container
 WORKDIR /src
 # Node's bundled corepack is too old to resolve pnpm 12's bin, so use the latest.
@@ -20,7 +20,7 @@ COPY apps/web ./apps/web
 RUN pnpm --filter=@tryghost/gscan-web deploy --prod --frozen-lockfile --ignore-scripts /out
 
 # ---- Release ----
-FROM node:26.13.0-alpine3.24@sha256:8996bb5821d62a8fd9bb27c1cb07462f3fdce6e47d640c6a881ead0b064ce216 AS release
+FROM node:26.13.1-alpine3.24@sha256:6bd9ab43c0ec0190ca7b2d193906cb8b7edf6e7f4afa43ddeccd6452710bffb5 AS release
 # Set working directory
 WORKDIR /app
 # Copy the self-contained web app bundle
