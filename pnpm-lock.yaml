@@ -216,8 +216,8 @@ importers:
         specifier: 5.3.0
         version: 5.3.0(supports-color@5.5.0)
       express-handlebars:
-        specifier: 9.0.4
-        version: 9.0.4
+        specifier: 9.0.5
+        version: 9.0.5
       gscan:
         specifier: workspace:*
         version: link:../../packages/gscan
@@ -1248,9 +1248,9 @@ packages:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
 
-  express-handlebars@9.0.4:
-    resolution: {integrity: sha512-nwrDVURdu+6IRy7HYqPCQbVwBlu05sBG6WXNlxWRt5MdDU9ToWe2ruphDX4oIQ4dy/ylFR8m74CPQVG9YeALvQ==}
-    engines: {node: '>=22.23.4'}
+  express-handlebars@9.0.5:
+    resolution: {integrity: sha512-eZTbrVhAoN5kNwLS/V9XI6SoEODdR3l4BZYggwTe/fu/yYm95zhbqqvf5/ILM5cJALOdcq45LeN/pIjw6gwOxA==}
+    engines: {node: '>=22.23.5'}
 
   express@5.3.0:
     resolution: {integrity: sha512-qCqy1xSoaugxOD4IVHb1ZWdkvCF2W3aE2okKouWj8VwJ+ztskSiXoBnCSJqfKT+cVPJhuJqe9YLbY425+Zh00g==}
@@ -1346,6 +1346,10 @@ packages:
 
   glob@14.0.4:
     resolution: {integrity: sha512-mMiwNKoJZ4HAIRVJxotO6LsNRReA30gQwP9E2/p94tfLv+jygCNpKDjhhSL6OLY6LE371EZm5EAf7RpYuUqlsw==}
+    engines: {node: 18 || 20 || >=22}
+
+  glob@14.0.5:
+    resolution: {integrity: sha512-nbKW5Sl53DEM5PkmZ5Jwfeyss1ohuqcgOBjOarSjz1fp8W4ss4EOOvKADQRbApD6JmVBX+HkpZYfBez4wXbeQQ==}
     engines: {node: 18 || 20 || >=22}
 
   globals@14.0.0:
@@ -3129,9 +3133,9 @@ snapshots:
 
   expect-type@1.4.0: {}
 
-  express-handlebars@9.0.4:
+  express-handlebars@9.0.5:
     dependencies:
-      glob: 14.0.4
+      glob: 14.0.5
       graceful-fs: 4.2.11
       handlebars: 4.7.10
 
@@ -3261,6 +3265,12 @@ snapshots:
       is-glob: 4.0.3
 
   glob@14.0.4:
+    dependencies:
+      minimatch: 11.0.5
+      minipass: 7.1.3
+      path-scurry: 3.0.0
+
+  glob@14.0.5:
     dependencies:
       minimatch: 11.0.5
       minipass: 7.1.3
