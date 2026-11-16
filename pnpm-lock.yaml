@@ -225,8 +225,8 @@ importers:
         specifier: 5.3.0
         version: 5.3.0(supports-color@5.5.0)
       express-handlebars:
-        specifier: 9.0.5
-        version: 9.0.5
+        specifier: 9.0.6
+        version: 9.0.6
       gscan:
         specifier: workspace:*
         version: link:../../packages/gscan
@@ -1257,8 +1257,8 @@ packages:
     resolution: {integrity: sha512-KfYbmpRm0VbLjEvVa9yGwCi9GI34xvi7A/HXYWQO65CSD2u3MczUJSuwXKFIxlGsgBQizV9q5J9NHj4VG0n+pA==}
     engines: {node: '>=12.0.0'}
 
-  express-handlebars@9.0.5:
-    resolution: {integrity: sha512-eZTbrVhAoN5kNwLS/V9XI6SoEODdR3l4BZYggwTe/fu/yYm95zhbqqvf5/ILM5cJALOdcq45LeN/pIjw6gwOxA==}
+  express-handlebars@9.0.6:
+    resolution: {integrity: sha512-YZ/NGVqICb/hhQqJtDXXK/LssRbpjRBAO3jY7ZsnwDkMiqj5gdk5SXGCDIsEdyNv9bMmlincLy0WzwSjpA6Amg==}
     engines: {node: '>=22.23.5'}
 
   express@5.3.0:
@@ -1357,8 +1357,8 @@ packages:
     resolution: {integrity: sha512-mMiwNKoJZ4HAIRVJxotO6LsNRReA30gQwP9E2/p94tfLv+jygCNpKDjhhSL6OLY6LE371EZm5EAf7RpYuUqlsw==}
     engines: {node: 18 || 20 || >=22}
 
-  glob@14.0.5:
-    resolution: {integrity: sha512-nbKW5Sl53DEM5PkmZ5Jwfeyss1ohuqcgOBjOarSjz1fp8W4ss4EOOvKADQRbApD6JmVBX+HkpZYfBez4wXbeQQ==}
+  glob@14.0.6:
+    resolution: {integrity: sha512-OwXjVP2svY5EyLY75Vek96C8qK43gqrt4xsZ+qSILdnaEiJPXkd62mcfUSNx/TQErQRdu5uM5kF67sfONragKw==}
     engines: {node: 18 || 20 || >=22}
 
   globals@14.0.0:
@@ -1382,6 +1382,9 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  graceful-fs@4.2.12:
+    resolution: {integrity: sha512-iuyGF2E4oafQfPsRrG2wtY2ILupMhvtdrhzrxB+0VcjsPpSPttpfYdjnGFGsTi5MaJFjI1jOKHPQ6UTbTj9TAw==}
 
   handlebars@4.7.10:
     resolution: {integrity: sha512-P5VJMVM7qgBn6vjXMw8WG9uVI+ncf2pi72j4de4yz5ZULLj2RGqLYaKOYGsgyrViQ0tePOVlN1tDCCXXtFqXKg==}
@@ -3142,10 +3145,10 @@ snapshots:
 
   expect-type@1.4.0: {}
 
-  express-handlebars@9.0.5:
+  express-handlebars@9.0.6:
     dependencies:
-      glob: 14.0.5
-      graceful-fs: 4.2.11
+      glob: 14.0.6
+      graceful-fs: 4.2.12
       handlebars: 4.7.10
 
   express@5.3.0(supports-color@5.5.0):
@@ -3279,7 +3282,7 @@ snapshots:
       minipass: 7.1.3
       path-scurry: 3.0.0
 
-  glob@14.0.5:
+  glob@14.0.6:
     dependencies:
       minimatch: 11.0.5
       minipass: 7.1.3
@@ -3307,6 +3310,8 @@ snapshots:
       uint8array-extras: 1.6.0
 
   graceful-fs@4.2.11: {}
+
+  graceful-fs@4.2.12: {}
 
   handlebars@4.7.10:
     dependencies:
