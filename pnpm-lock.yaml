@@ -216,11 +216,11 @@ importers:
         specifier: 3.4.8
         version: 3.4.8
       '@tryghost/logging':
-        specifier: 6.0.7
-        version: 6.0.7(supports-color@5.5.0)
+        specifier: 6.1.0
+        version: 6.1.0(supports-color@5.5.0)
       '@tryghost/server':
-        specifier: 3.2.1
-        version: 3.2.1(supports-color@5.5.0)
+        specifier: 3.2.2
+        version: 3.2.2(supports-color@5.5.0)
       express:
         specifier: 5.3.0
         version: 5.3.0(supports-color@5.5.0)
@@ -698,8 +698,8 @@ packages:
   '@tryghost/http-stream@2.4.1':
     resolution: {integrity: sha512-46EYUZ4sayaJ5rLM+FOU/qW5yAFZKd9WiLyLCvRVpjhrjjqOsCMV8Zn/nEFYDBYpvTADK8iqmEThS4onMvzr0w==}
 
-  '@tryghost/logging@6.0.7':
-    resolution: {integrity: sha512-EvWsWwZtD8HCLI9aXHoNY4xajHpUm6p24G8G4MrARvVTHr8Wa044gAqC50gsgKYUeACzG70JbBwXlnFX9TtuHg==}
+  '@tryghost/logging@6.1.0':
+    resolution: {integrity: sha512-bvlzwfLMDT7mHLPMN2q14EDwgwFb8BZxcBV1m6BJrI7uc47/G4P159DNMfhQ0dN7YLVDrnuyy3BXsNRj89PVoA==}
 
   '@tryghost/mongo-knex@0.11.2':
     resolution: {integrity: sha512-0l7L/J609p+12+rA15Muya1JoIeSfBxIUZRB2FfROtJ2U+FTEOzZ/c0HgxB8eAArJMW2VXECmLCAbNUwygRzfg==}
@@ -734,8 +734,8 @@ packages:
   '@tryghost/root-utils@2.4.0':
     resolution: {integrity: sha512-Mil+TJ6eolD8lXgSiWScDgaDRA7ANbjfgHjEioP5CrebZJLM4PAfV94hzHl/Em7KA3fvDMWM5IhMku2JFBkNjw==}
 
-  '@tryghost/server@3.2.1':
-    resolution: {integrity: sha512-kzn3uVQ7pd3ZtXLHQu5R5Dn4hzO417UDCcMQAFN7gmxg+lSc6XAEgD/NL7QBPLa5m5lTAgh7mjiMIk4mmdA+3g==}
+  '@tryghost/server@3.2.2':
+    resolution: {integrity: sha512-SdfeQL5fryWM03wCR4ZgeoDb3/PDQB6m/HlRq2rbrJ4w8nzBawNp+EYXyO0IABNukIN6i66SpKqLwSoGv+nPYQ==}
 
   '@tryghost/tpl@2.3.22':
     resolution: {integrity: sha512-d+Hd1UBfuSC/3KfQ9xWE/Tx0mqc+4BpMfpD4dILppbPMFn65qehAofdferOX3vwK6PYHAd3ZBXu5nWQCJmTmoA==}
@@ -2537,7 +2537,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@tryghost/logging@6.0.7(supports-color@5.5.0)':
+  '@tryghost/logging@6.1.0(supports-color@5.5.0)':
     dependencies:
       '@tryghost/bunyan-rotating-filestream': 0.0.29
       '@tryghost/http-stream': 2.4.1(supports-color@5.5.0)
@@ -2609,10 +2609,10 @@ snapshots:
       caller: 1.1.0
       find-root: 1.1.0
 
-  '@tryghost/server@3.2.1(supports-color@5.5.0)':
+  '@tryghost/server@3.2.2(supports-color@5.5.0)':
     dependencies:
       '@tryghost/debug': 2.3.23(supports-color@5.5.0)
-      '@tryghost/logging': 6.0.7(supports-color@5.5.0)
+      '@tryghost/logging': 6.1.0(supports-color@5.5.0)
     transitivePeerDependencies:
       - supports-color
 
