@@ -108,7 +108,7 @@ const checkNoUnknownGlobals = function checkNoUnknownGlobals(theme, options) {
     _.each(rulesToCheck, function (check, ruleCode) {
         const linter = new ASTLinter({
             partials: theme.partials,
-            helpers: ruleSet.knownHelpers
+            helpers: options.knownHelpers || ruleSet.knownHelpers
         });
 
         _.each(theme.files, function (themeFile) {
