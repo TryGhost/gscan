@@ -8,7 +8,7 @@ const previousTemplates = previousSpec.templates;
 const previousRules = previousSpec.rules;
 
 // assign new or overwrite existing knownHelpers, templates, or rules here:
-let knownHelpers = ['split', 'json', 'color_to_rgba', 'contrast_text_color', 'raw', 'search', 'social_accounts'];
+let knownHelpers = ['split', 'json', 'color_to_rgba', 'contrast_text_color', 'raw', 'search', 'social_accounts', 'strip_tags'];
 let templates = [];
 let rules = {
     'GS090-NO-INVALID-CONDITIONAL-ARGUMENTS': {
