@@ -5,7 +5,7 @@
 // Usage:
 //   1. Add an entry: { helperName: 'labsFlagName' }
 //   2. Ghost passes { labs: { labsFlagName: true } } to GScan
-//   3. GScan adds helperName to the spec's knownHelpers
+//   3. GScan merges helperName into that check's knownHelpers (without mutating the shared spec)
 //   4. When the helper graduates from labs, remove the entry
 //
 // Example (from when match was behind a labs flag):

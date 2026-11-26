@@ -7,8 +7,60 @@ const spec = require('../lib/specs');
 process.env.NODE_ENV = 'testing';
 
 describe('Checker', function () {
-    it('adds labs-enabled helpers to knownHelpers when flag is set', async function () {
+    it('does not mutate shared knownHelpers when a labs flag is set', async function () {
         labsEnabledHelpers.testHelper = 'testFlag';
+        const v6Spec = spec.get(['v6']);
+        const before = v6Spec.knownHelpers.slice();
+
+        try {
+            const options = {
+                checkVersion: 'v6',
+                labs: {testFlag: true},
+                skipChecks: true
+            };
+            await check(themePath('is-empty'), options);
+
+            expect(options.knownHelpers).toContain('testHelper');
+            expect(v6Spec.knownHelpers).toEqual(before);
+            expect(v6Spec.knownHelpers).not.toContain('testHelper');
+        } finally {
+            delete labsEnabledHelpers.testHelper;
+        }
+    });
+
+    it('does not enable labs helpers when the flag is missing or false', async function () {
+        labsEnabledHelpers.testHelper = 'testFlag';
+        const v6Spec = spec.get(['v6']);
+        const before = v6Spec.knownHelpers.slice();
+
+        try {
+            const missing = {
+                checkVersion: 'v6',
+                labs: {},
+                skipChecks: true
+            };
+            await check(themePath('is-empty'), missing);
+            expect(missing.knownHelpers).not.toContain('testHelper');
+
+            // _.has() previously treated `{testFlag: false}` as enabled
+            const disabled = {
+                checkVersion: 'v6',
+                labs: {testFlag: false},
+                skipChecks: true
+            };
+            await check(themePath('is-empty'), disabled);
+            expect(disabled.knownHelpers).not.toContain('testHelper');
+
+            expect(v6Spec.knownHelpers).toEqual(before);
+        } finally {
+            delete labsEnabledHelpers.testHelper;
+        }
+    });
+
+    it('does not leak labs helpers across subsequent check() calls', async function () {
+        labsEnabledHelpers.testHelper = 'testFlag';
+        const v6Spec = spec.get(['v6']);
+        const before = v6Spec.knownHelpers.slice();
 
         try {
             await check(themePath('is-empty'), {
@@ -17,31 +69,15 @@ describe('Checker', function () {
                 skipChecks: true
             });
 
-            const v6Spec = spec.get(['v6']);
-            expect(v6Spec.knownHelpers).toContain('testHelper');
-
-            // Clean up the spec
-            const idx = v6Spec.knownHelpers.indexOf('testHelper');
-            if (idx > -1) {
-                v6Spec.knownHelpers.splice(idx, 1);
-            }
-        } finally {
-            delete labsEnabledHelpers.testHelper;
-        }
-    });
-
-    it('does not add labs-enabled helpers when flag is not set', async function () {
-        labsEnabledHelpers.testHelper = 'testFlag';
-
-        try {
-            await check(themePath('is-empty'), {
+            const second = {
                 checkVersion: 'v6',
                 labs: {},
                 skipChecks: true
-            });
+            };
+            await check(themePath('is-empty'), second);
 
-            const v6Spec = spec.get(['v6']);
-            expect(v6Spec.knownHelpers).not.toContain('testHelper');
+            expect(second.knownHelpers).not.toContain('testHelper');
+            expect(v6Spec.knownHelpers).toEqual(before);
         } finally {
             delete labsEnabledHelpers.testHelper;
         }

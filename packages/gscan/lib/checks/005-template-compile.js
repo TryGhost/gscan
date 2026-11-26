@@ -108,7 +108,7 @@ const checkTemplatesCompile = function checkTemplatesCompile(theme, options) {
 
     const linter = new ASTLinter({
         partials: theme.partials,
-        helpers: ruleSet.knownHelpers
+        helpers: options.knownHelpers || ruleSet.knownHelpers
     });
 
     _.each(theme.files, function (themeFile) {
