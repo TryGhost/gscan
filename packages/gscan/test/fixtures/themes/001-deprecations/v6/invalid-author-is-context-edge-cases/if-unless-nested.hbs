@@ -1,0 +1,11 @@
+{{#is "author"}}
+  {{#if foo}}
+    {{author.email}}
+  {{else}}
+    {{author.location}}
+  {{/if}}
+{{/is}}
+
+{{#unless bar}}
+  {{author.twitter}}
+{{/unless}}
